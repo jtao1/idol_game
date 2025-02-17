@@ -52,12 +52,14 @@ def idol_scraper(soup: BeautifulSoup):
                     print(text)
 
 def write_json(group, votes: dict) -> None:
+    if (group == "IZ*ONE"):
+        group = "IZONE"
     with open(f'./groups/{group}.json', 'w') as f:
         json.dump(votes, f, indent=4)
 
 
 def get_group_data():
-    link_types = ['gg', 'bg']
+    link_types = ['gg']
     for link_type in link_types:
         with open(f'./{link_type}-links.txt', 'r') as links_file:
             url = links_file.readline()
@@ -75,9 +77,9 @@ def get_group_data():
                 url = links_file.readline()
 
 
-soup = get_soup('https://kprofiles.com/itzy-members-profile/')
-idol_scraper(soup)
-
+# soup = get_soup('https://kprofiles.com/izone-members-profile/')
+# idol_scraper(soup)
+get_group_data()
 
 # stage_name, birth_name, birthdate
 
