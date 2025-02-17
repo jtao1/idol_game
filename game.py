@@ -36,38 +36,41 @@ def move_files():
 
 def write_all_idols(sort: bool): # write all idols to a single file
     files = os.listdir('./girl groups')
-    with open(f'./all female idols', 'w') as output:
+    with open(f'./all female idols.txt', 'w', encoding="utf-8") as output:
         sorted = []
         for file in files:
+            print(file)
             with open(f'./girl groups/{file}', 'r') as f:
                 data = json.load(f)
                 dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
                 df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
                 for _, row in df.iterrows():
                     name = row['Name']
-                    string = name + " - " + data['group name'] + '\n'
+                    age = row['Info']
+                    string = name + " - " + data['group name'] + " (" + str(age) + ')\n'
                     if sort:
                         sorted.append(string)
                     else:
                         output.write(string)
         if sort:
             sorted.sort()
-            for str in sorted:
-                output.write(str)
+            for a in sorted:
+                output.write(a)
     print("wrote all idols to file")
 
-def random_idol(group: str) -> str:
+def random_idol(group: str, times: int) -> str:
     files = os.listdir('./girl groups')
-    if group != "":
-        file = group.upper() + ".json"
-    else:
-        file = random.choice(files)
-    try:
-        with open(f'./girl groups/{file}', 'r') as f:
-            data = json.load(f)
-            dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
-            df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
-            while True:
+    results = set()
+    while len(results) < times:
+        if group != "":
+            file = group.upper() + ".json"
+        else:
+            file = random.choice(files)
+        try:
+            with open(f'./girl groups/{file}', 'r') as f:
+                data = json.load(f)
+                dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
+                df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
                 row = df.sample()
                 idol = row['Name'].iloc[0]
                 if row['Info'].iloc[0] < 18:
@@ -76,12 +79,13 @@ def random_idol(group: str) -> str:
                     string = idol + " - " + data['group name']
                 # if "(former member)" in string.lower() and group != "":
                 #     continue
-                return string
-    except FileNotFoundError:
-        return "Invalid group"
+                results.add(string)
+        except FileNotFoundError:
+            return "Invalid group"
+    return '\n'.join(results)
     
 def true_random() -> str:
-    file = './all female idols'
+    file = './all female idols.txt'
     with open(file, 'r') as f:
         lines = f.readlines()
     return random.choice(lines).strip()
@@ -93,21 +97,25 @@ def play_game():
         command = command.lower()
 
         if command.strip() == "r":
-            print(random_idol(""))
+            print(random_idol("", 1))
         elif command.startswith("r "):
-            print(random_idol(command[2:]))
+            print(random_idol(command[2:], 1))
         elif command.strip() == "dr":
-            unique_list = set()
-            while len(unique_list) < 3:
-                unique_list.add(random_idol(""))
-            for string in unique_list:
-                print(string)
+            print(random_idol("", 3))
         elif command.strip() == "tr":
             print(true_random())
         elif command.strip() in ["n", "c"]:
             os.system('cls')
         elif command.strip() in ["e", "exit"]:
             exit()
+        elif command.strip() in ["h", "help"]:
+            print("""List of commands:
+            r: reroll
+            r (group): group reroll
+            dr: deluxe reroll
+            tr: true random reroll
+            n or c: clear console
+            e or exit: quit game""")
 
 # write_all_idols(False)
 play_game()
