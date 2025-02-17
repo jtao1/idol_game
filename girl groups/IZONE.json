@@ -1,19 +1,18 @@
 {
-    "name": "IZ*ONE",
+    "group name": "IZ*ONE",
     "group-type": "gg",
-    "votes": {
-        "Hitomi": 672569,
-        "Chaeyeon": 333575,
-        "Sakura": 316461,
-        "Eunbi": 290524,
-        "Wonyoung": 286681,
-        "Minjoo": 241192,
-        "Yujin": 208591,
-        "Yena": 185566,
-        "Chaewon": 176851,
-        "Yuri": 145520,
-        "Nako": 134416,
-        "Hyewon": 133878
-    },
-    "voters": 2060841
+    "ages": {
+        "Eunbi": 29,
+        "Sakura": 26,
+        "Hyewon": 25,
+        "Yena": 25,
+        "Chaeyeon": 25,
+        "Chaewon": 24,
+        "Minju": 24,
+        "Nako": 23,
+        "Hitomi": 23,
+        "Yuri": 23,
+        "Yujin": 21,
+        "Wonyoung": 20
+    }
 }

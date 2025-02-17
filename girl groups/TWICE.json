@@ -1,16 +1,15 @@
 {
-    "name": "TWICE",
+    "group name": "TWICE",
     "group-type": "gg",
-    "votes": {
-        "Nayeon": 801392,
-        "Tzuyu": 745198,
-        "Sana": 624828,
-        "Mina": 560571,
-        "Jeongyeon": 555659,
-        "Momo": 524073,
-        "Chaeyoung": 511280,
-        "Dahyun": 469216,
-        "Jihyo": 457501
-    },
-    "voters": 3533427
+    "ages": {
+        "Jihyo": 28,
+        "Nayeon": 29,
+        "Jeongyeon": 28,
+        "Momo": 28,
+        "Sana": 28,
+        "Mina": 27,
+        "Dahyun": 26,
+        "Chaeyoung": 25,
+        "Tzuyu": 25
+    }
 }

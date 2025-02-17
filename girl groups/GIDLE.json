@@ -1,13 +1,12 @@
 {
-    "name": "(G)I-DLE",
+    "group name": "(G)I-DLE",
     "group-type": "gg",
-    "votes": {
-        "Yuqi": 488070,
-        "Soojin (former member)": 440205,
-        "Minnie": 375017,
-        "Soyeon": 362748,
-        "Miyeon": 324254,
-        "Shuhua": 287599
-    },
-    "voters": 1556840
+    "ages": {
+        "Soyeon": 26,
+        "Miyeon": 28,
+        "Minnie": 27,
+        "Yuqi": 25,
+        "Shuhua": 25,
+        "Soojin": 26
+    }
 }

@@ -1,14 +1,13 @@
 {
-    "name": "Dreamcatcher",
+    "group name": "Dreamcatcher",
     "group-type": "gg",
-    "votes": {
-        "Yoohyeon": 222314,
-        "SuA": 221938,
-        "JiU": 221165,
-        "Siyeon": 221015,
-        "Handong": 218595,
-        "Gahyun": 218326,
-        "Dami": 218321
-    },
-    "voters": 906765
+    "ages": {
+        "JiU": 30,
+        "SuA": 30,
+        "Siyeon": 29,
+        "Handong": 28,
+        "Yoohyeon": 28,
+        "Dami": 27,
+        "Gahyun": 26
+    }
 }

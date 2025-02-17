@@ -1,13 +1,12 @@
 {
-    "name": "EVERGLOW",
+    "group name": "EVERGLOW",
     "group-type": "gg",
-    "votes": {
-        "Aisha": 343817,
-        "Yiren": 330666,
-        "Mia": 260670,
-        "Onda": 260588,
-        "Sihyeon": 248809,
-        "E:U": 237053
-    },
-    "voters": 1175329
+    "ages": {
+        "Sihyeon": 25,
+        "E:U": 26,
+        "Mia": 25,
+        "Onda": 24,
+        "Aisha": 24,
+        "Yiren": 24
+    }
 }

@@ -1,15 +1,14 @@
 {
-    "name": "UNIS",
+    "group name": "UNIS",
     "group-type": "gg",
-    "votes": {
-        "Gehlee Dangca": 46630,
-        "Elisia": 40183,
-        "Lim Seowon": 24964,
-        "Kotoko": 19348,
-        "Jin Hyeonju": 14006,
-        "Nana": 13973,
-        "Oh Yoona": 10341,
-        "Bang Yunha": 9855
-    },
-    "voters": 136196
+    "ages": {
+        "Hyeonju": 23,
+        "Nana": 17,
+        "Gehlee": 17,
+        "Kotoko": 17,
+        "Yunha": 15,
+        "Elisia": 15,
+        "Yoona": 15,
+        "Seowon": 14
+    }
 }

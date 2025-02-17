@@ -1,13 +1,12 @@
 {
-    "name": "GFRIEND",
+    "group name": "GFRIEND",
     "group-type": "gg",
-    "votes": {
-        "Yerin": 379048,
-        "Eunha": 334255,
-        "Yuju": 330832,
-        "SinB": 326571,
-        "Umji": 326037,
-        "Sowon": 319281
-    },
-    "voters": 1177126
+    "ages": {
+        "Sowon": 29,
+        "Yerin": 28,
+        "Eunha": 27,
+        "Yuju": 27,
+        "SinB": 26,
+        "Umji": 26
+    }
 }

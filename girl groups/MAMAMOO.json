@@ -1,11 +1,10 @@
 {
-    "name": "MAMAMOO",
+    "group name": "MAMAMOO",
     "group-type": "gg",
-    "votes": {
-        "Solar": 232183,
-        "Hwasa": 232172,
-        "Wheein": 229306,
-        "Moonbyul": 228058
-    },
-    "voters": 730271
+    "ages": {
+        "Solar": 33,
+        "Moonbyul": 32,
+        "Wheein": 29,
+        "Hwasa": 29
+    }
 }

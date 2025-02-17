@@ -1,14 +1,13 @@
 {
-    "name": "Soloist",
+    "group name": "Soloists",
     "group-type": "gg",
-    "votes": {
-        "IU": 0,
-        "Taeyeon": 0,
-        "Somi": 0,
-        "Jiyoon Bol4": 0,
-        "Jiyoung Bol4": 0,
-        "Kim Sejeong": 0,
-        "BIBI": 0
-    },
-    "voters": 0
+    "ages": {
+        "IU": 31,
+        "Taeyeon": 35,
+        "Somi": 23,
+        "ODD CHILD": 29,
+        "BOL4": 29,
+        "Kim Sejeong": 28,
+        "BIBI": 26
+    }
 }

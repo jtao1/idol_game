@@ -1,12 +1,11 @@
 {
-    "name": "ILLIT",
+    "group name": "ILLIT",
     "group-type": "gg",
-    "votes": {
-        "Minju": 109335,
-        "Wonhee": 83051,
-        "Iroha": 78375,
-        "Moka": 70397,
-        "Yunah": 66321
-    },
-    "voters": 271734
+    "ages": {
+        "Yunah": 21,
+        "Minju": 20,
+        "Moka": 20,
+        "Wonhee": 17,
+        "Iroha": 17
+    }
 }

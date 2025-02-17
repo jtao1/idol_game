@@ -1,12 +1,11 @@
 {
-    "name": "ITZY",
+    "group name": "ITZY",
     "group-type": "gg",
-    "votes": {
-        "Yeji": 696751,
-        "Ryujin": 690833,
-        "Lia": 678883,
-        "Yuna": 570296,
-        "Chaeryeong": 440489
-    },
-    "voters": 2623724
+    "ages": {
+        "Yeji": 24,
+        "Lia": 24,
+        "Ryujin": 23,
+        "Chaeryeong": 23,
+        "Yuna": 21
+    }
 }

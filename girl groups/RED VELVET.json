@@ -1,12 +1,11 @@
 {
-    "name": "Red Velvet",
+    "group name": "Red Velvet",
     "group-type": "gg",
-    "votes": {
-        "Seulgi": 649306,
-        "Joy": 634419,
-        "Wendy": 463431,
-        "Irene": 462976,
-        "Yeri": 433888
-    },
-    "voters": 2344890
+    "ages": {
+        "Irene": 33,
+        "Seulgi": 31,
+        "Wendy": 30,
+        "Joy": 28,
+        "Yeri": 25
+    }
 }

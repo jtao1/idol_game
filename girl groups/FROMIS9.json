@@ -1,16 +1,15 @@
 {
-    "name": "fromis_9",
+    "group name": "fromis_9",
     "group-type": "gg",
-    "votes": {
-        "Jiheon": 109658,
-        "Gyuri (Former member)": 105075,
-        "Nagyung": 94465,
-        "Hayoung": 79778,
-        "Saerom": 78593,
-        "Jiwon": 77846,
-        "Chaeyoung": 69099,
-        "Jisun": 58144,
-        "Seoyeon": 56154
-    },
-    "voters": 478815
+    "ages": {
+        "Hayoung": 27,
+        "Jiwon": 26,
+        "Chaeyoung": 24,
+        "Nagyung": 24,
+        "Jiheon": 21,
+        "Saerom": 28,
+        "Gyuri": 27,
+        "Jisun": 26,
+        "Seoyeon": 25
+    }
 }

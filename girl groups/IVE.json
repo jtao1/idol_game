@@ -1,13 +1,12 @@
 {
-    "name": "IVE",
+    "group name": "IVE",
     "group-type": "gg",
-    "votes": {
-        "Gaeul": 1177846,
-        "Leeseo": 1175124,
-        "Liz": 454887,
-        "Wonyoung": 295464,
-        "An Yujin": 252744,
-        "Rei": 188380
-    },
-    "voters": 2485223
+    "ages": {
+        "An Yu-jin": 21,
+        "Gaeul": 22,
+        "Rei": 21,
+        "Jang Won-young": 20,
+        "Liz": 20,
+        "Leeseo": 17
+    }
 }

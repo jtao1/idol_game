@@ -1,19 +1,18 @@
 {
-    "name": "LOONA",
+    "group name": "LOONA",
     "group-type": "gg",
-    "votes": {
-        "Chuu (Former member)": 258711,
-        "Heejin": 189975,
-        "HyeJu (Formerly known as Olivia Hye)": 152396,
-        "JinSoul": 138388,
-        "Yves": 129150,
-        "Kim Lip": 98906,
-        "Hyunjin": 92203,
-        "Vivi": 90646,
-        "Yeojin": 87984,
-        "Go Won": 85690,
-        "Choerry": 74916,
-        "Haseul": 70448
-    },
-    "voters": 920949
+    "ages": {
+        "HaSeul": 27,
+        "ViVi": 28,
+        "Yves": 27,
+        "JinSoul": 27,
+        "Kim Lip": 26,
+        "HeeJin": 24,
+        "HyunJin": 24,
+        "Go Won": 24,
+        "Choerry": 23,
+        "HyeJu": 23,
+        "YeoJin": 22,
+        "Chuu": 25
+    }
 }

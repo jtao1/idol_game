@@ -1,14 +1,13 @@
 {
-    "name": "BABYMONSTER",
+    "group name": "BABYMONSTER",
     "group-type": "gg",
-    "votes": {
-        "Ahyeon": 473379,
-        "Ruka": 437013,
-        "Asa": 297057,
-        "Chiquita": 294359,
-        "Pharita": 256665,
-        "Rora": 165788,
-        "Rami": 160820
-    },
-    "voters": 1716070
+    "ages": {
+        "Ruka": 22,
+        "Pharita": 19,
+        "Asa": 18,
+        "Ahyeon": 17,
+        "Rami": 17,
+        "Rora": 16,
+        "Chiquita": 16
+    }
 }

@@ -41,10 +41,11 @@ def write_all_idols(sort: bool): # write all idols to a single file
         for file in files:
             with open(f'./girl groups/{file}', 'r') as f:
                 data = json.load(f)
-                vote_data = pd.DataFrame(list(data['votes'].items()), columns=['Name', 'Votes'])
-                for _, row in vote_data.iterrows():
+                dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
+                df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
+                for _, row in df.iterrows():
                     name = row['Name']
-                    string = name + " - " + data['name'] + '\n'
+                    string = name + " - " + data['group name'] + '\n'
                     if sort:
                         sorted.append(string)
                     else:
@@ -64,13 +65,17 @@ def random_idol(group: str) -> str:
     try:
         with open(f'./girl groups/{file}', 'r') as f:
             data = json.load(f)
-            vote_data = pd.DataFrame(list(data['votes'].items()), columns=['Name', 'Votes'])
+            dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
+            df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
             while True:
-                row = vote_data.sample()
+                row = df.sample()
                 idol = row['Name'].iloc[0]
-                string = idol + " - " + data['name']
-                if "(former member)" in string.lower() and group != "":
-                    continue
+                if row['Info'].iloc[0] < 18:
+                    string = idol + " (M) - " + data['group name']
+                else:
+                    string = idol + " - " + data['group name']
+                # if "(former member)" in string.lower() and group != "":
+                #     continue
                 return string
     except FileNotFoundError:
         return "Invalid group"

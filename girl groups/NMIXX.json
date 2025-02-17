@@ -1,14 +1,13 @@
 {
-    "name": "NMIXX",
+    "group name": "NMIXX",
     "group-type": "gg",
-    "votes": {
-        "Jinni (Former Member)": 381237,
-        "Lily": 229641,
-        "Sullyoon": 219697,
-        "Haewon": 172337,
-        "Kyujin": 152842,
-        "BAE": 141984,
-        "Jiwoo": 121461
-    },
-    "voters": 985154
+    "ages": {
+        "Haewon": 21,
+        "Lily": 22,
+        "Sullyoon": 21,
+        "Bae": 20,
+        "Jiwoo": 19,
+        "Kyujin": 18,
+        "Jinni": 20
+    }
 }

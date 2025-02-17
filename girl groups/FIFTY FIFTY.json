@@ -1,15 +1,14 @@
 {
-    "name": "FIFTY FIFTY",
+    "group name": "FIFTY FIFTY",
     "group-type": "gg",
-    "votes": {
-        "Chanelle Moon": 3787,
-        "Athena": 3222,
-        "Aran (Former member)": 2674,
-        "Keena": 2010,
-        "Sio (Former member)": 1826,
-        "Hana": 1782,
-        "Yewon": 1750,
-        "Saena (Former member)": 1038
-    },
-    "voters": 10612
+    "ages": {
+        "Keena": 22,
+        "Chanelle Moon": 21,
+        "Yewon": 19,
+        "Hana": 18,
+        "Athena": 17,
+        "Sio": 20,
+        "Aran": 20,
+        "Saena": 20
+    }
 }

@@ -1,16 +1,15 @@
 {
-    "name": "Kep1er",
+    "group name": "Kep1er",
     "group-type": "gg",
-    "votes": {
-        "Hikaru": 900376,
-        "Mashiro (Former member)": 850843,
-        "Xiaoting": 307257,
-        "Huening Bahiyyih": 292872,
-        "Yujin": 150506,
-        "Dayeon": 133972,
-        "Chaehyun": 132850,
-        "Youngeun": 122149,
-        "Yeseo (Former member)": 112984
-    },
-    "voters": 1645084
+    "ages": {
+        "Yujin": 28,
+        "Xiaoting": 25,
+        "Chaehyun": 22,
+        "Dayeon": 21,
+        "Hikaru": 20,
+        "Huening Bahiyyih": 20,
+        "Youngeun": 20,
+        "Mashiro": 25,
+        "Yeseo": 19
+    }
 }

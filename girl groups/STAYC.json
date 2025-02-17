@@ -1,13 +1,12 @@
 {
-    "name": "STAYC",
+    "group name": "STAYC",
     "group-type": "gg",
-    "votes": {
-        "Sumin": 212144,
-        "Yoon": 210521,
-        "Isa": 207114,
-        "J": 203130,
-        "Seeun": 201345,
-        "Sieun": 173250
-    },
-    "voters": 828495
+    "ages": {
+        "Sumin": 23,
+        "Sieun": 23,
+        "Isa": 23,
+        "Seeun": 21,
+        "Yoon": 20,
+        "J": 20
+    }
 }

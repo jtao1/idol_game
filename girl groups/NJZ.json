@@ -1,12 +1,11 @@
 {
-    "name": "NJZ",
+    "group name": "NJZ",
     "group-type": "gg",
-    "votes": {
-        "Haerin": 371751,
-        "Hanni": 336117,
-        "Danielle": 250476,
-        "Minji": 239909,
-        "Hyein": 162754
-    },
-    "voters": 1051644
+    "ages": {
+        "Minji": 20,
+        "Hanni": 20,
+        "Danielle": 19,
+        "Haerin": 18,
+        "Hyein": 16
+    }
 }

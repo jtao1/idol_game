@@ -1,11 +1,10 @@
 {
-    "name": "BLACKPINK",
+    "group name": "BLACKPINK",
     "group-type": "gg",
-    "votes": {
-        "Jennie": 819977,
-        "Ros\u00e9": 719588,
-        "Lisa": 696273,
-        "Jisoo": 681722
-    },
-    "voters": 2335980
+    "ages": {
+        "Jisoo": 30,
+        "Jennie": 29,
+        "Ros\u00e9": 28,
+        "Lisa": 27
+    }
 }

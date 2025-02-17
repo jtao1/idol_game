@@ -1,6 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import json
+from datetime import datetime
+import re
 
 
 def get_soup(url: str) -> BeautifulSoup:
@@ -9,22 +11,56 @@ def get_soup(url: str) -> BeautifulSoup:
 
 
 def get_votes(soup: BeautifulSoup, url: str) -> dict:
-    res = {}
+    votes = {}
     group = soup.find('h1', class_='entry-title h1').text
     group = group[:group.index('Members') - 1]
+    print(group)
 
     result = soup.find('ul', class_='dem-answers')
 
-    votes = result.find_all('li')
+    vote_results = result.find_all('li')
 
-    for vote in votes:
+    for vote in vote_results:
         name = vote.find('div', class_='dem-label').contents[0].strip()
         vote = vote.find('span', class_='dem-votes-txt-votes').text.split()[0].strip()
-        res[name] = int(vote)
+        votes[name] = int(vote)
 
     voters = int(soup.find('div', class_='dem-users-voted').text.split()[1].strip())
 
-    return group, res, voters
+    return group, votes, voters
+
+def get_ages(soup: BeautifulSoup) -> dict:
+    ages = {}
+    today = datetime.today()
+    group = soup.find('h1', class_='entry-title h1').text
+    group = group[:group.index('Members') - 1]
+    print(group)
+    
+    if group == "tripleS":
+        names = soup.find_all('span', string=lambda text: text and text.strip() in ["Birth Name:", "Birth Name (Taiwanese):"])
+    else:
+        names = soup.find_all('span', string=lambda text: text and text.strip() in ["Stage Name:", "Stage / Birth Name:", "Stage/Korean Name:"])
+        outlier = soup.find('span', string=lambda text: text and text == " Name:")
+        if outlier:
+            names.append(outlier)
+        if group == "TWICE":
+            names = [span for span in names if not span.find_parent('span')]
+    birthdays = soup.find_all('span', string=lambda text: text and text.strip() in ["Birthdate:", "Birthday:"])
+    print (len(names))
+    print (len(birthdays))
+    for i in range(len(names)):
+        name_text = names[i].find_next(string=True).find_next(string=True).strip()
+        real_name = name_text.split('(')[0].strip()
+        bday = birthdays[i].find_next(string=True).find_next(string=True).strip()
+        if group == "NMIXX" and i == 3:
+            bday = "December 28th, 2004"
+            real_name = "Bae"
+        bday = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', bday)
+        birthday = datetime.strptime(bday, "%B %d, %Y")
+        age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+        ages[real_name] = age
+
+    return group, ages
 
 def idol_scraper(soup: BeautifulSoup):
     div = soup.find('div', class_='entry-content herald-entry-content')
@@ -54,32 +90,39 @@ def idol_scraper(soup: BeautifulSoup):
 def write_json(group, votes: dict) -> None:
     if (group == "IZ*ONE"):
         group = "IZONE"
-    with open(f'./groups/{group}.json', 'w') as f:
+    with open(f'./girl groups/{group}.json', 'w') as f:
         json.dump(votes, f, indent=4)
 
 
-def get_group_data():
+def get_group_data(age: bool):
     link_types = ['gg']
     for link_type in link_types:
         with open(f'./{link_type}-links.txt', 'r') as links_file:
             url = links_file.readline()
             while url:
                 soup = get_soup(url)
-                group, votes, voters = get_votes(soup, url)
-                print(group)
+                if age:
+                    group, ages = get_ages(soup)
 
-                json_text = {}
-                json_text['name'] = group
-                json_text['group-type'] = link_type
-                json_text['votes'] = votes
-                json_text['voters'] = voters
+                    json_text = {}
+                    json_text['group name'] = group
+                    json_text['group-type'] = link_type
+                    json_text['ages'] = ages
+                else:
+                    group, votes, voters = get_votes(soup, url)
+
+                    json_text = {}
+                    json_text['group name'] = group
+                    json_text['group-type'] = link_type
+                    json_text['votes'] = votes
+                    json_text['voters'] = voters
                 write_json(group, json_text)
                 url = links_file.readline()
 
 
 # soup = get_soup('https://kprofiles.com/izone-members-profile/')
 # idol_scraper(soup)
-get_group_data()
+get_group_data(True) # True for age, False for votes
 
 # stage_name, birth_name, birthdate
 

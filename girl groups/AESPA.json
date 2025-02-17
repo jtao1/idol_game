@@ -1,11 +1,10 @@
 {
-    "name": "aespa",
+    "group name": "aespa",
     "group-type": "gg",
-    "votes": {
-        "Karina": 548324,
-        "Winter": 534510,
-        "NingNing": 462349,
-        "Giselle": 342244
-    },
-    "voters": 1470528
+    "ages": {
+        "Karina": 24,
+        "Giselle": 24,
+        "Winter": 24,
+        "NingNing": 22
+    }
 }
