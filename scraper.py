@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 import re
-
+import choose_idol as ci
+import unicodedata
 
 def get_soup(url: str) -> BeautifulSoup:
     page = requests.get(url)
@@ -34,8 +35,9 @@ def get_ages(soup: BeautifulSoup) -> dict:
     today = datetime.today()
     group = soup.find('h1', class_='entry-title h1').text
     group = group[:group.index('Members') - 1]
+    if (group == "IZ*ONE"):
+        group = "IZONE"
     print(group)
-    
     if group == "tripleS":
         names = soup.find_all('span', string=lambda text: text and text.strip() in ["Birth Name:", "Birth Name (Taiwanese):"])
     else:
@@ -49,10 +51,14 @@ def get_ages(soup: BeautifulSoup) -> dict:
     print (len(names))
     print (len(birthdays))
     for i in range(len(names)):
-        name_text = names[i].find_next(string=True).find_next(string=True).strip()
-        real_name = name_text.split('(')[0].strip()
+        real_name = names[i].find_next(string=True).find_next(string=True).strip()
+        real_name = real_name.split('(')[0].replace("-", "").strip()
+        if len(real_name) > 7:
+            real_name = real_name[real_name.find(" ")+1:]
+        real_name = real_name.replace(" ", "")
+        real_name = ''.join(c for c in unicodedata.normalize('NFKD', real_name) if not unicodedata.combining(c))
         bday = birthdays[i].find_next(string=True).find_next(string=True).strip()
-        if group == "NMIXX" and i == 3:
+        if i == 3 and group == "NMIXX":
             bday = "December 28th, 2004"
             real_name = "Bae"
         bday = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', bday)
@@ -93,7 +99,6 @@ def write_json(group, votes: dict) -> None:
     with open(f'./girl groups/{group}.json', 'w') as f:
         json.dump(votes, f, indent=4)
 
-
 def get_group_data(age: bool):
     link_types = ['gg']
     for link_type in link_types:
@@ -122,7 +127,8 @@ def get_group_data(age: bool):
 
 # soup = get_soup('https://kprofiles.com/izone-members-profile/')
 # idol_scraper(soup)
-get_group_data(True) # True for age, False for votes
+# get_group_data(True) # True for age, False for votes
+ci.write_all_idols(True, 1, "all female idols.txt")
 
 # stage_name, birth_name, birthdate
 

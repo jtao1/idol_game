@@ -5,6 +5,20 @@ import pandas as pd
 import numpy as np
 import shutil
 
+class Idol: # class to represent an idol
+    def __init__(self, name, group, age):
+        self.name = name
+        self.group = group
+        self.age = age
+        self.rating = None
+        self.protected = False # group rerolls protect idols
+
+    def to_string(self):
+        string = self.name + " | " + self.group
+        if self.age < 18:
+            string = self.name + " (M) | " + self.group
+        return string
+
 # Moves all group files to a different directory
 # old - Old directory of all group files
 # new - New directory of all group files
@@ -36,7 +50,7 @@ def write_all_idols(sort: bool, type: bool, name: str):
                 dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
                 df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
                 for _, row in df.iterrows():
-                    idols.append(row['Name'] + " - " + data['group name'] + " {" + str(row['Info']) + '}\n')
+                    idols.append(row['Name'] + " | " + data['group name'] + " {" + str(row['Info']) + '}\n')
         if sort:
             idols.sort()
         output.writelines(idols)
@@ -47,24 +61,22 @@ def write_all_idols(sort: bool, type: bool, name: str):
 # times - specifies amount of idols to roll, used for deluxe rerolls
 # type - True for girl groups, False for boy groups
 # duplicate - notes a specific idol to avoid a duplicate roll of, used for group rerolls
-def random_idol(group: str, times: int, type: bool, duplicate: str) -> str: 
+def random_idol(group: str, times: int, type: bool, duplicate: Idol) -> list[Idol]: 
     directory = './girl groups' if type else './boy groups'
     files = os.listdir(directory)
     results = set()
     while len(results) < times:
         file = (group.upper() + ".json") if group else random.choice(files)
-        try:
-            with open(f'./girl groups/{file}', 'r') as f:
-                data = json.load(f)
-                dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
-                df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
-                row = df.sample()
-                string = f"{row['Name'].iloc[0]} {'(M) -' if row['Info'].iloc[0] < 18 else '-'} {data['group name']}"
-                if string != duplicate:
-                    results.add(string)
-        except FileNotFoundError:
-            return "Invalid group"
-    return '\n'.join(results)
+        with open(f'./girl groups/{file}', 'r') as f:
+            data = json.load(f)
+            dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
+            df = pd.DataFrame(list(dict_data.items()), columns=['Name', 'Info'])
+            row = df.sample()
+            idol = Idol(row['Name'].iloc[0], data['group name'], row['Info'].iloc[0])
+            # string = f"{row['Name'].iloc[0]} {'(M) |' if row['Info'].iloc[0] < 18 else '|'} {data['group name']}"
+            if not duplicate or idol.name != duplicate.name:
+                results.add(idol)
+    return results
 
 # Rolls a random idol from the list of all idols. This gives every single idol an equal chance of
 # being chosen, rather than choosing a random group first like random_idol() does.    
@@ -73,44 +85,43 @@ def true_random() -> str:
     with open(file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
     line = random.choice(lines).strip()
-    if int(line[line.find("{")+1:line.find("}")]) < 18:
-        line = line[:line.rfind("-")] + "(M) " + line[line.rfind("-"):]
+    if int(line[line.rfind("{")+1:line.rfind("}")]) < 18:
+        line = line[:line.rfind("|")] + "(M) " + line[line.rfind("|"):]
     return line[:line.rfind('{')-1].strip()
 
 # Main function to play the game and input game commands
-def play_game():
+def manual_game():
     os.system('cls')
-    idol = "Invalid"
+    res = None
     while True:
         command = input("--------->>>  ")
         command = command.lower().strip()
 
-        if command == "r":
-            idol = random_idol(None, 1, 1, None)
-        elif command == "gr":
-            idol = random_idol(idol[idol.rfind('-')+2:], 1, 1, idol)
-        elif command == "dr":
-            idol = random_idol(None, 3, 1, None)
-        elif command == "tr":
-            idol = true_random()
-        elif command in ["n", "c"]:
-            os.system('cls')
-            idol = "Invalid"
-        elif command in ["e", "exit"]:
-            exit()
-        elif command in ["h", "help"]:
-            print("""List of commands:
+        if res and len(res) > 1: # last roll was a DR, no group set for GR
+                res = None
+                cur_idol = None
+        else:
+            cur_idol = next(iter(res)) if res is not None else None
+
+        commands = {
+            "r": lambda: random_idol(None, 1, 1, None),
+            "gr": lambda: random_idol(cur_idol.group if cur_idol else None, 1, 1, cur_idol),
+            "dr": lambda: random_idol(None, 3, 1, None),
+            "tr": lambda: true_random(),
+            "c": lambda: os.system('cls') or "Invalid",
+            "e": exit,
+            "h": lambda: print("""List of commands:
             r: reroll
             gr: group reroll last rolled group
             dr: deluxe reroll
             tr: true random reroll
-            n or c: clear console
-            e or exit: quit game""")
-        # elif command.startswith("r "):
-        #     idol = random_idol(command[2:], 1, 1, None)
+            c: clear console
+            e: quit game"""),
+        }
 
+        res = commands.get(command, lambda: res)()
         if command in ["r", "gr", "dr", "tr"]:
-            print(idol)
+            print("\n".join([idol.to_string() for idol in res]))
 
-# write_all_idols(1, 1, "all female idols.txt")
-play_game()
+# write_all_idols(False, 1, "all female idols.txt")
+# manual_game()

@@ -1,205 +1,212 @@
-Ahyeon - BABYMONSTER {17}
-Aisha - EVERGLOW {24}
-An Yu-jin - IVE {21}
-Aran - FIFTY FIFTY {20}
-Arin - OH MY GIRL {25}
-Asa - BABYMONSTER {18}
-Athena - FIFTY FIFTY {17}
-BIBI - Soloists {26}
-BOL4 - Soloists {29}
-Bae - NMIXX {20}
-Belle - KISS OF LIFE {20}
-Bunraksa Pirada - tripleS {18}
-Chaehyun - Kep1er {22}
-Chaeryeong - ITZY {23}
-Chaewon - IZ*ONE {24}
-Chaeyeon - IZ*ONE {25}
-Chaeyoung - TWICE {25}
-Chaeyoung - fromis_9 {24}
-Chanelle Moon - FIFTY FIFTY {21}
-Chiquita - BABYMONSTER {16}
-Choerry - LOONA {23}
-Chuu - LOONA {25}
-Dahyun - TWICE {26}
-Dami - Dreamcatcher {27}
-Danielle - NJZ {19}
-Dayeon - Kep1er {21}
-E:U - EVERGLOW {26}
-Elisia - UNIS {15}
-Eunbi - IZ*ONE {29}
-Eunha - GFRIEND {27}
-Gaeul - IVE {22}
-Gahyun - Dreamcatcher {26}
-Gehlee - UNIS {17}
-Giselle - aespa {24}
-Go Won - LOONA {24}
-Gong Yu-bin - tripleS {20}
-Gyuri - fromis_9 {27}
-HaSeul - LOONA {27}
-Haerin - NJZ {18}
-Haewon - NMIXX {21}
-Hana - FIFTY FIFTY {18}
-Handong - Dreamcatcher {28}
-Haneul - KISS OF LIFE {19}
-Hanni - NJZ {20}
-Hayoung - fromis_9 {27}
-HeeJin - LOONA {24}
-Hikaru - Kep1er {20}
-Hitomi - IZ*ONE {23}
-Hong Eunchae - LE SSERAFIM {18}
-Hsü Nien-tz’u - tripleS {21}
-Huening Bahiyyih - Kep1er {20}
-Huh Yunjin - LE SSERAFIM {23}
-Hwasa - MAMAMOO {29}
-HyeJu - LOONA {23}
-Hyein - NJZ {16}
-Hyeonju - UNIS {23}
-Hyewon - IZ*ONE {25}
-Hyojung - OH MY GIRL {30}
-HyunJin - LOONA {24}
-IU - Soloists {31}
-Irene - Red Velvet {33}
-Iroha - ILLIT {17}
-Isa - STAYC {23}
-J - STAYC {20}
-Jang Won-young - IVE {20}
-Jennie - BLACKPINK {29}
-Jeong Ha-yeon - tripleS {17}
-Jeong Hae-rin - tripleS {14}
-Jeong Hye-rin - tripleS {17}
-Jeongyeon - TWICE {28}
-Ji Suh-yeon - tripleS {21}
-JiU - Dreamcatcher {30}
-Jiheon - fromis_9 {21}
-Jiho - OH MY GIRL {27}
-Jihyo - TWICE {28}
-JinE - OH MY GIRL {30}
-JinSoul - LOONA {27}
-Jinni - NMIXX {20}
-Jisoo - BLACKPINK {30}
-Jisun - fromis_9 {26}
-Jiwon - fromis_9 {26}
-Jiwoo - NMIXX {19}
-Joo Bin - tripleS {16}
-Joy - Red Velvet {28}
-Julie - KISS OF LIFE {24}
-Kamimoto Kotone - tripleS {20}
-Karina - aespa {24}
-Kawakami Lynn - tripleS {18}
-Kazuha - LE SSERAFIM {21}
-Keena - FIFTY FIFTY {22}
-Kim Chae-won - tripleS {17}
-Kim Chae-yeon - tripleS {20}
-Kim Chaewon - LE SSERAFIM {24}
-Kim Garam - LE SSERAFIM {19}
-Kim Jun-seo - tripleS {22}
-Kim Lip - LOONA {26}
-Kim Sejeong - Soloists {28}
-Kim Soo-min - tripleS {17}
-Kim Yoo-yeon - tripleS {24}
-Kotoko - UNIS {17}
-Kwak Yeon-ji - tripleS {17}
-Kyujin - NMIXX {18}
-Kōma Mayu - tripleS {22}
-Lee Ji-woo - tripleS {19}
-Leeseo - IVE {17}
-Lia - ITZY {24}
-Lily - NMIXX {22}
-Lisa - BLACKPINK {27}
-Liz - IVE {20}
-Lucy - WOOAH {20}
-Mashiro - Kep1er {25}
-Mia - EVERGLOW {25}
-Mimi - OH MY GIRL {29}
-Mina - TWICE {27}
-Minji - NJZ {20}
-Minju - ILLIT {20}
-Minju - IZ*ONE {24}
-Minnie - (G)I-DLE {27}
-Minseo - WOOAH {20}
-Miyeon - (G)I-DLE {28}
-Moka - ILLIT {20}
-Momo - TWICE {28}
-Moonbyul - MAMAMOO {32}
-Nagyung - fromis_9 {24}
-Nako - IZ*ONE {23}
-Nana - UNIS {17}
-Nana - WOOAH {23}
-Natty - KISS OF LIFE {22}
-Nayeon - TWICE {29}
-NingNing - aespa {22}
-ODD CHILD - Soloists {29}
-Onda - EVERGLOW {24}
-Park Shi-on - tripleS {18}
-Park So-hyun - tripleS {22}
-Pharita - BABYMONSTER {19}
-Rami - BABYMONSTER {17}
-Rei - IVE {21}
-Rora - BABYMONSTER {16}
-Rosé - BLACKPINK {28}
-Ruka - BABYMONSTER {22}
-Ryujin - ITZY {23}
-Saena - FIFTY FIFTY {20}
-Saerom - fromis_9 {28}
-Sakura - IZ*ONE {26}
-Sakura - LE SSERAFIM {26}
-Sana - TWICE {28}
-Seeun - STAYC {21}
-Seo Da-hyun - tripleS {22}
-Seowon - UNIS {14}
-Seoyeon - fromis_9 {25}
-Seulgi - Red Velvet {31}
-Seunghee - OH MY GIRL {29}
-Shuhua - (G)I-DLE {25}
-Sieun - STAYC {23}
-Sihyeon - EVERGLOW {25}
-SinB - GFRIEND {26}
-Sio - FIFTY FIFTY {20}
-Siyeon - Dreamcatcher {29}
-Solar - MAMAMOO {33}
-Somi - Soloists {23}
-Songyee - WOOAH {20}
-Soojin - (G)I-DLE {26}
-Sora - WOOAH {21}
-Sowon - GFRIEND {29}
-Soyeon - (G)I-DLE {26}
-SuA - Dreamcatcher {30}
-Sullyoon - NMIXX {21}
-Sumin - STAYC {23}
-Taeyeon - Soloists {35}
-Tzuyu - TWICE {25}
-Umji - GFRIEND {26}
-ViVi - LOONA {28}
-Wendy - Red Velvet {30}
-Wheein - MAMAMOO {29}
-Winter - aespa {24}
-Wonhee - ILLIT {17}
-Wonyoung - IZ*ONE {20}
-Wooyeon - WOOAH {22}
-Xiaoting - Kep1er {25}
-Yamada Kaede - tripleS {19}
-Yeji - ITZY {24}
-Yena - IZ*ONE {25}
-YeoJin - LOONA {22}
-Yeri - Red Velvet {25}
-Yerin - GFRIEND {28}
-Yeseo - Kep1er {19}
-Yewon - FIFTY FIFTY {19}
-Yiren - EVERGLOW {24}
-YooA - OH MY GIRL {29}
-Yoohyeon - Dreamcatcher {28}
-Yoon - STAYC {20}
-Yoon Seo-yeon - tripleS {21}
-Yoona - UNIS {15}
-Youngeun - Kep1er {20}
-Yubin - OH MY GIRL {27}
-Yujin - IZ*ONE {21}
-Yujin - Kep1er {28}
-Yuju - GFRIEND {27}
-Yuna - ITZY {21}
-Yunah - ILLIT {21}
-Yunha - UNIS {15}
-Yuqi - (G)I-DLE {25}
-Yuri - IZ*ONE {23}
-Yves - LOONA {27}
-Zhōu Xīn Yǔ - tripleS {22}
+Ahyeon | BABYMONSTER {17}
+Aisha | EVERGLOW {24}
+Aran | FIFTY FIFTY {20}
+Arin | OH MY GIRL {25}
+Asa | BABYMONSTER {18}
+Athena | FIFTY FIFTY {17}
+BIBI | Soloists {26}
+BOL4 | Soloists {29}
+Bae | NMIXX {20}
+Bahiyyih | Kep1er {20}
+Belle | KISS OF LIFE {20}
+Chaehyun | Kep1er {22}
+Chaejeong | ALICE {25}
+Chaeryeong | ITZY {23}
+Chaewon | IZONE {24}
+Chaewon | LE SSERAFIM {24}
+Chaewon | tripleS {17}
+Chaeyeon | IZONE {25}
+Chaeyeon | tripleS {20}
+Chaeyoung | TWICE {25}
+Chaeyoung | fromis_9 {24}
+Chiquita | BABYMONSTER {16}
+Choerry | LOONA {23}
+Chuu | LOONA {25}
+Dahyun | TWICE {26}
+Dahyun | tripleS {22}
+Dami | Dreamcatcher {27}
+Danielle | NJZ {19}
+Dayeon | Kep1er {21}
+DoA | ALICE {26}
+E:U | EVERGLOW {26}
+EJ | ALICE {27}
+Elisia | UNIS {15}
+Eunbi | IZONE {29}
+Eunchae | LE SSERAFIM {18}
+Eunha | GFRIEND {27}
+Gaeul | IVE {22}
+Gahyun | Dreamcatcher {26}
+Garam | LE SSERAFIM {19}
+Gehlee | UNIS {17}
+Giselle | aespa {24}
+GoWon | LOONA {24}
+Gyuri | fromis_9 {27}
+HaSeul | LOONA {27}
+Haerin | NJZ {18}
+Haerin | tripleS {14}
+Haewon | NMIXX {21}
+Hana | FIFTY FIFTY {18}
+Handong | Dreamcatcher {28}
+Haneul | KISS OF LIFE {19}
+Hanni | NJZ {20}
+Hayeon | tripleS {17}
+Hayoung | fromis_9 {27}
+HeeJin | LOONA {24}
+Hikaru | Kep1er {20}
+Hitomi | IZONE {23}
+Hwasa | MAMAMOO {29}
+HyeJu | LOONA {23}
+Hyein | NJZ {16}
+Hyeonju | UNIS {23}
+Hyerin | tripleS {17}
+Hyewon | IZONE {25}
+Hyojung | OH MY GIRL {30}
+HyunJin | LOONA {24}
+IU | Soloists {31}
+Irene | Red Velvet {33}
+Iroha | ILLIT {17}
+Isa | STAYC {23}
+J | STAYC {20}
+Jennie | BLACKPINK {29}
+Jeongyeon | TWICE {28}
+JiU | Dreamcatcher {30}
+Jiheon | fromis_9 {21}
+Jiho | OH MY GIRL {27}
+Jihyo | TWICE {28}
+JinE | OH MY GIRL {30}
+JinSoul | LOONA {27}
+Jinni | NMIXX {20}
+Jisoo | BLACKPINK {30}
+Jisun | fromis_9 {26}
+Jiwon | fromis_9 {26}
+Jiwoo | NMIXX {19}
+Jiwoo | tripleS {19}
+JooBin | tripleS {16}
+Joy | Red Velvet {28}
+Julie | KISS OF LIFE {24}
+Junseo | tripleS {22}
+Kaede | tripleS {19}
+Karin | ALICE {23}
+Karina | aespa {24}
+Kazuha | LE SSERAFIM {21}
+Keena | FIFTY FIFTY {22}
+Kim Sejeong | Soloists {28}
+KimLip | LOONA {26}
+Kotoko | UNIS {17}
+Kotone | tripleS {20}
+Kyujin | NMIXX {18}
+Leeseo | IVE {17}
+Lia | ITZY {24}
+Lily | NMIXX {22}
+Lisa | BLACKPINK {27}
+Liz | IVE {20}
+Lucy | WOOAH {20}
+Lynn | tripleS {18}
+Mashiro | Kep1er {25}
+Mayu | tripleS {22}
+Mia | EVERGLOW {25}
+Mimi | OH MY GIRL {29}
+Mina | TWICE {27}
+Minji | NJZ {20}
+Minju | ILLIT {20}
+Minju | IZONE {24}
+Minnie | (G)I-DLE {27}
+Minseo | WOOAH {20}
+Miyeon | (G)I-DLE {28}
+Moka | ILLIT {20}
+Momo | TWICE {28}
+Moon | FIFTY FIFTY {21}
+Moonbyul | MAMAMOO {32}
+Nagyung | fromis_9 {24}
+Nako | IZONE {23}
+Nana | UNIS {17}
+Nana | WOOAH {23}
+Natty | KISS OF LIFE {22}
+Nayeon | TWICE {29}
+Nientz’u | tripleS {21}
+NingNing | aespa {22}
+ODD CHILD | Soloists {29}
+Onda | EVERGLOW {24}
+Pharita | BABYMONSTER {19}
+Pirada | tripleS {18}
+Rami | BABYMONSTER {17}
+Rei | IVE {21}
+Rora | BABYMONSTER {16}
+Rose | BLACKPINK {28}
+Ruka | BABYMONSTER {22}
+Ryujin | ITZY {23}
+Saena | FIFTY FIFTY {20}
+Saerom | fromis_9 {28}
+Sakura | IZONE {26}
+Sakura | LE SSERAFIM {26}
+Sana | TWICE {28}
+Seeun | STAYC {21}
+Seowon | UNIS {14}
+Seoyeon | fromis_9 {25}
+Seoyeon | tripleS {21}
+Seulgi | Red Velvet {31}
+Seunghee | OH MY GIRL {29}
+Shion | tripleS {18}
+Shuhua | (G)I-DLE {25}
+Sieun | STAYC {23}
+Sihyeon | EVERGLOW {25}
+SinB | GFRIEND {26}
+Sio | FIFTY FIFTY {20}
+Siyeon | Dreamcatcher {29}
+Sohee | ALICE {25}
+Sohyun | tripleS {22}
+Solar | MAMAMOO {33}
+Somi | Soloists {23}
+Songyee | WOOAH {20}
+Soojin | (G)I-DLE {26}
+Soomin | tripleS {17}
+Sora | WOOAH {21}
+Sowon | GFRIEND {29}
+Soyeon | (G)I-DLE {26}
+SuA | Dreamcatcher {30}
+Suhyeon | tripleS {21}
+Sullyoon | NMIXX {21}
+Sumin | STAYC {23}
+Taeyeon | Soloists {35}
+Tzuyu | TWICE {25}
+Umji | GFRIEND {26}
+ViVi | LOONA {28}
+Wendy | Red Velvet {30}
+Wheein | MAMAMOO {29}
+Winter | aespa {24}
+Wonhee | ILLIT {17}
+Wonyoung | IVE {20}
+Wonyoung | IZONE {20}
+Wooyeon | WOOAH {22}
+Xiaoting | Kep1er {25}
+XinYu | tripleS {22}
+Yeji | ITZY {24}
+Yena | IZONE {25}
+YeoJin | LOONA {22}
+Yeonje | ALICE {25}
+Yeonji | tripleS {17}
+Yeri | Red Velvet {25}
+Yerin | GFRIEND {28}
+Yeseo | Kep1er {19}
+Yewon | FIFTY FIFTY {19}
+Yiren | EVERGLOW {24}
+YooA | OH MY GIRL {29}
+Yoohyeon | Dreamcatcher {28}
+Yoon | STAYC {20}
+Yoona | UNIS {15}
+Yooyeon | tripleS {24}
+Youngeun | Kep1er {20}
+Yubin | OH MY GIRL {27}
+Yubin | tripleS {20}
+Yujin | IVE {21}
+Yujin | IZONE {21}
+Yujin | Kep1er {28}
+Yuju | GFRIEND {27}
+Yukyung | ALICE {25}
+Yuna | ITZY {21}
+Yunah | ILLIT {21}
+Yunha | UNIS {15}
+Yunjin | LE SSERAFIM {23}
+Yuqi | (G)I-DLE {25}
+Yuri | IZONE {23}
+Yves | LOONA {27}
