@@ -8,15 +8,16 @@ class Player:
         self.roster = []
         self.money = 15
 
-    def info(self): # displays money and roster, todo
+    def info(self): # todo: display current money and roster information
         string = ""
         return string
 
 class Game:
-    PRICES = {
+    CONST = {
         "r": 2,
         "gr": 5,
-        "dr": 6
+        "dr": 6,
+        "size": 1 # max roster size
     }
 
     def __init__(self):
@@ -49,15 +50,17 @@ class Game:
     # 0 - No/Reroll
     # 1 - Yes/Group Reroll
     # "bid" - bid/give action, returned integer is bid amount
-    def input_command(self, yon: bool) -> int: # yon: True for yes or no question, False if not
+    def input_command(self, yon: bool, cur_player: Player) -> int: # yon: True for yes or no question, False if not
         while True:
             ans = input("----> ").strip().lower() # Inquires for input
 
-            try: # see if command is a bid
-                bid = int(ans)
-                return ("bid", bid)
-            except ValueError:
-                pass
+            if not yon:
+                try: # see if command is a bid (integer)
+                    bid = int(ans)
+                    if abs(bid) <= cur_player.money:
+                        return ("bid", bid)
+                except ValueError:
+                    pass
 
             if ans in ['new', 'reset']: # reset game
                 self.game_start() # reset game functionality todo
@@ -74,17 +77,17 @@ class Game:
                     return ("com", 0)
                 print("Answer must be yes or no. ")
             elif ans in ['r', 'rr', 'reroll']: # reroll
-                if self.turn.money >= Game.PRICES["r"]:
-                    self.turn.money -= Game.PRICES["r"]
+                if cur_player.money >= Game.CONST["r"]:
+                    cur_player.money -= Game.CONST["r"]
                     return ("com", 0)
                 print("You don't have enough money for a reroll! ")
             elif ans in ['gr', 'group reroll']: # group reroll
-                if self.turn.money >= Game.PRICES["gr"]:
-                    self.turn.money -= Game.PRICES["gr"]
+                if cur_player.money >= Game.CONST["gr"]:
+                    cur_player.money -= Game.CONST["gr"]
                     return ("com", 1)
                 print("You don't have enough money for a group reroll! ")
             else: # all commands checked, invalid command
-                print("Invalid command! ")
+                print("Invalid command/ammount! ")
 
     def duplicate_check(self, cur: str) -> int: # check if rolled idol is already on a roster
         for idol in self.turn.roster:
@@ -108,12 +111,12 @@ class Game:
     
     def bid_process(self, bid: int, cur_idol: Idol): # function that handles bidding process
         opponent_win = False
-        if len(self.opponent.roster) < 5: # check if opponent roster is full
+        if len(self.opponent.roster) < Game.CONST["size"]: # check if opponent roster is full
             if self.opponent.money > abs(bid): # check if opponent has enough money to counter bid
                 print("Enter counter-bid, or n if you do not want to bid. ", end="")
                 while not opponent_win:
-                    counter_bid = self.input_command(True)
-                    if counter_bid[0] == "com" and counter_bid[1] == -1: # opponent doesn't bid
+                    counter_bid = self.input_command(True, self.opponent)
+                    if counter_bid[0] == "com" and counter_bid[1] == 0: # opponent doesn't bid
                         break
                     elif counter_bid[1] <= abs(bid): # opponent bid amount is invalid
                         print("Bid must be more than your opponent ", end="")
@@ -133,12 +136,12 @@ class Game:
 
     def group_reroll(self, cur_idol: Idol): # function for handling group reroll process
         while True:
-            cur_idol = next(iter(choose.random_idol(cur_idol.group, 1, 1, cur_idol)))
-            if self.turn.money >= Game.PRICES["gr"]: # group reroll again
+            cur_idol = next(iter(choose.random_idol(cur_idol.group, 1, True, cur_idol)))
+            if self.turn.money >= Game.CONST["gr"]: # group reroll again
                 print(cur_idol.to_string())
                 print("Would you like to group reroll again? ", end="")
-                if self.input_command(True)[1] == 1: # if answer is yes
-                    self.turn.money -= Game.PRICES["gr"]
+                if self.input_command(True, self.turn)[1] == 1: # if answer is yes
+                    self.turn.money -= Game.CONST["gr"]
                 else: 
                     break
             else:
@@ -146,33 +149,56 @@ class Game:
         cur_idol.protected = True # idols from group rerolls are protected
         self.add_idol(self.turn, cur_idol)
 
-    def play_turn(self):
-        if len(self.turn.roster) >= 5: # switch turn if one player's roster is full
+    def end_game(self): # function for endgame events
+        self.turn = self.p1
+        for _ in range(2):
+            if self.turn.money >= Game.CONST["dr"]:
+                print(f'{self.turn.name}, would you like to deluxe reroll for ${Game.CONST["dr"]}?')
+                if self.input_command(True, self.turn)[1] == 1:
+                    self.turn.money -= Game.CONST["dr"]
+                    print("Pick an idol to replace on your roster (enter number) ")
+                    for i in range(Game.CONST["size"]):
+                        print(f'{i+1}. {self.turn.roster[i].to_string()}')
+
+                    choices = choose.random_idol(None, 3, True, self.p1.roster + self.p2.roster)
+                    print("Pick an idol to add to your roster (enter number) ")
+                    for i, choice in enumerate(choices, start=1):
+                        print(f'{i}. {choice.to_string()}')
+                    
             self.switch_turns()
+
+    def play_turn(self):
+        # if len(self.turn.roster) >= Game.CONST["size"]: # switch turn if one player's roster is full
+        #     self.switch_turns()
 
         print(f'{self.turn.name}\'s turn')
 
         while True:
-            cur_idol = next(iter(choose.random_idol(None, 1, 1, None))) # rol idol
+            cur_idol = next(iter(choose.random_idol(None, 1, True, None))) # rol idol
             print(cur_idol.to_string())
 
             if self.duplicate_check(cur_idol) != 0: # check for duplicates
                 break
             
-            if len(self.opponent.roster) >= 5 and self.opponent.money >= Game.PRICES["r"]: # opponent reroll
-                print(f'{self.opponent.name}, would you like to reroll your opponent\'s idol for ${Game.PRICES("r")}? ', end="")
-                if self.input_command(True)[1] == 1: # if answer is yes
-                    self.opponent.money -= Game.PRICES["r"]
+            if len(self.opponent.roster) >= Game.CONST["size"] and self.opponent.money >= Game.CONST["r"]: # opponent reroll
+                print(f'{self.opponent.name}, would you like to reroll your opponent\'s idol for ${Game.CONST["r"]}? ', end="")
+                if self.input_command(True, self.opponent)[1] == 1: # if answer is yes
+                    self.opponent.money -= Game.CONST["r"]
                     continue
             print(f'{self.turn.name}, Enter action: (r - reroll, gr - group reroll, (number) - bid/give ', end="")
-            ans = self.input_command(False)
+            ans = self.input_command(False, self.turn)
             if ans[0] == "bid": # bid/give
                 self.bid_process(ans[1], cur_idol)
+                break
             elif ans[1] == 0: # reroll
                 continue
             elif ans[1] == 1: # group reroll
                 self.group_reroll(cur_idol)
+                break
+
         self.switch_turns()
+        if len(self.p1.roster) >= Game.CONST["size"] and len(self.p2.roster) >= Game.CONST["size"]:
+            self.end_game()
         # todo: function to check game state after each turn (could be combined with synergy check)
 
     def play_game(self):

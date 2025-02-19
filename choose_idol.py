@@ -18,6 +18,9 @@ class Idol: # class to represent an idol
         if self.age < 18:
             string = self.name + " (M) | " + self.group
         return string
+    
+    def equals(self, compare: "Idol") -> bool:
+        return self.name == compare.name and self.group == compare.group and self.age == compare.age
 
 # Moves all group files to a different directory
 # old - Old directory of all group files
@@ -60,8 +63,8 @@ def write_all_idols(sort: bool, type: bool, name: str):
 # group - specifies a specific group to pick a random idol for, used for group rerolls
 # times - specifies amount of idols to roll, used for deluxe rerolls
 # type - True for girl groups, False for boy groups
-# duplicate - notes a specific idol to avoid a duplicate roll of, used for group rerolls
-def random_idol(group: str, times: int, type: bool, duplicate: Idol) -> list[Idol]: 
+# duplicate - list of idols that rolled idols cannot be a duplicate of
+def random_idol(group: str, times: int, type: bool, duplicate: list[Idol]) -> list[Idol]: 
     directory = './girl groups' if type else './boy groups'
     files = os.listdir(directory)
     results = set()
@@ -74,7 +77,7 @@ def random_idol(group: str, times: int, type: bool, duplicate: Idol) -> list[Ido
             row = df.sample()
             idol = Idol(row['Name'].iloc[0], data['group name'], row['Info'].iloc[0])
             # string = f"{row['Name'].iloc[0]} {'(M) |' if row['Info'].iloc[0] < 18 else '|'} {data['group name']}"
-            if not duplicate or idol.name != duplicate.name:
+            if not duplicate or not any(idol.equals(compare) for compare in duplicate):
                 results.add(idol)
     return results
 
@@ -104,9 +107,9 @@ def manual_game():
             cur_idol = next(iter(res)) if res is not None else None
 
         commands = {
-            "r": lambda: random_idol(None, 1, 1, None),
-            "gr": lambda: random_idol(cur_idol.group if cur_idol else None, 1, 1, cur_idol),
-            "dr": lambda: random_idol(None, 3, 1, None),
+            "r": lambda: random_idol(None, 1, 1, []),
+            "gr": lambda: random_idol(cur_idol.group if cur_idol else None, 1, 1, [cur_idol] if cur_idol else None),
+            "dr": lambda: random_idol(None, 3, 1, []),
             "tr": lambda: true_random(),
             "c": lambda: os.system('cls') or "Invalid",
             "e": exit,
