@@ -1,6 +1,7 @@
 import choose_idol as choose
 from choose_idol import Idol
 import os
+import math
 
 class Player:
     def __init__(self, name):
@@ -25,6 +26,32 @@ class Game:
         self.turn = None # holds player object who is currently their turn
         self.game_over = False
 
+    def show_game_info(self):
+        PADDING = 30
+        num_lines = max(len(self.turn.roster), len(self.opponent.roster))
+
+        def get_player_from_roster(player):
+            try:
+                return player.roster[i].to_string()
+            except IndexError:
+                return ''
+
+        p1_name_padding = (PADDING - len(self.p1.name)) / 2
+        p1_name = f'{" " * int(math.ceil(p1_name_padding))}{self.p1.name}{" " * int(math.floor(p1_name_padding))}'
+        p2_name_padding = (PADDING - len(self.p2.name)) / 2
+        p2_name = f'{" " * int(math.ceil(p2_name_padding))}{self.p2.name}'
+        print(f'{p1_name}||{p2_name}')
+        print("-" * 70)
+
+        for i in range(num_lines):
+            left_player = get_player_from_roster(self.p1)
+            left_padding = (PADDING - len(left_player)) / 2
+            left_player_string = f'{" " * int(math.ceil(left_padding))}{left_player}{" " * int(math.floor(left_padding))}'
+            right_player = get_player_from_roster(self.p2)
+            right_player_string = f'{" " * int(math.ceil((PADDING - len(right_player)) / 2))}{right_player}'
+
+            print(f'{left_player_string}||{right_player_string}')
+
     @property
     def opponent(self): # holds player object who is currently not their turn
         return self.p2 if self.turn == self.p1 else self.p1
@@ -35,8 +62,10 @@ class Game:
     def game_start(self) -> str: # start and restart games
         os.system('cls')
         while True:
-            p1 = input("Enter player one name: ").strip()
-            p2 = input("Enter player two name: ").strip()
+            # p1 = input("Enter player one name: ").strip()
+            # p2 = input("Enter player two name: ").strip()
+            p1 = "Sejun"
+            p2 = "Jason"
 
             if p1 != p2 and p1 and p2:
                 self.p1 = Player(p1)
@@ -173,7 +202,7 @@ class Game:
         # if len(self.turn.roster) >= Game.CONST["size"]: # switch turn if one player's roster is full
         #     self.switch_turns()
 
-        print(f'{self.turn.name}\'s turn')
+        print(f'\n{self.turn.name}\'s turn')
 
         while True:
             cur_idol = next(iter(choose.random_idol(None, 1, True, None))) # roll idol
@@ -187,7 +216,8 @@ class Game:
                 if self.input_command(True, self.opponent)[1] == 1: # if answer is yes
                     self.opponent.money -= Game.CONST["r"]
                     continue
-            print(f'{self.turn.name}, Enter action: (r - reroll, gr - group reroll, (number) - bid/give ', end="")
+            print(f'Actions: (r - reroll, gr - group reroll, (number) - bid/give)')
+            print(f'{self.turn.name} | Enter action: ', end="")
             ans = self.input_command(False, self.turn)
             if ans[0] == "bid": # bid/give
                 self.bid_process(ans[1], cur_idol)
@@ -199,6 +229,9 @@ class Game:
                 break
 
         self.switch_turns()
+
+        self.show_game_info()
+
         if len(self.p1.roster) >= Game.CONST["size"] and len(self.p2.roster) >= Game.CONST["size"]:
             self.end_game()
         # todo: function to check game state after each turn (could be combined with synergy check)
