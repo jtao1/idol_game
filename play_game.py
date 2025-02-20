@@ -50,6 +50,7 @@ class Game:
     # 0 - No/Reroll
     # 1 - Yes/Group Reroll
     # "bid" - bid/give action, returned integer is bid amount
+    # "com" - non-bid command, returned integer is a code
     def input_command(self, yon: bool, cur_player: Player) -> int: # yon: True for yes or no question, False if not
         while True:
             ans = input("----> ").strip().lower() # Inquires for input
@@ -91,12 +92,12 @@ class Game:
 
     def duplicate_check(self, cur: str) -> int: # check if rolled idol is already on a roster
         for idol in self.turn.roster:
-            if idol == cur:
+            if idol.equals(cur):
                 self.turn.money += 2 # Gain reroll instead of money, todo
                 print("You rolled an idol already on your roster, you gain 2 dollars! ", end="")
                 return 1
         for idol in self.opponent.roster: 
-            if idol == cur:
+            if idol.equals(cur):
                 print("You rolled an idol already on your opponent's roster, you steal them onto your roster! ", end="")
                 self.opponent.roster.remove(idol)
                 self.turn.roster.append(idol) # stealing idols, todo
@@ -134,6 +135,7 @@ class Game:
                 self.add_idol(self.opponent, cur_idol)
             self.turn.money -= abs(bid)
 
+    # todo: Add option for opponent to group reroll after outbidding an idol
     def group_reroll(self, cur_idol: Idol): # function for handling group reroll process
         while True:
             cur_idol = next(iter(choose.random_idol(cur_idol.group, 1, True, cur_idol)))
@@ -159,8 +161,8 @@ class Game:
                     print("Pick an idol to replace on your roster (enter number) ")
                     for i in range(Game.CONST["size"]):
                         print(f'{i+1}. {self.turn.roster[i].to_string()}')
-
-                    choices = choose.random_idol(None, 3, True, self.p1.roster + self.p2.roster)
+                    ans = self.input_command(False, self.turn)
+                    choices = choose.random_idol(None, 3, True, self.p1.roster + self.p2.roster) # deluxe reroll cannot roll duplicates
                     print("Pick an idol to add to your roster (enter number) ")
                     for i, choice in enumerate(choices, start=1):
                         print(f'{i}. {choice.to_string()}')
@@ -174,7 +176,7 @@ class Game:
         print(f'{self.turn.name}\'s turn')
 
         while True:
-            cur_idol = next(iter(choose.random_idol(None, 1, True, None))) # rol idol
+            cur_idol = next(iter(choose.random_idol(None, 1, True, None))) # roll idol
             print(cur_idol.to_string())
 
             if self.duplicate_check(cur_idol) != 0: # check for duplicates
