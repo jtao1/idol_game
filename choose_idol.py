@@ -79,6 +79,7 @@ def random_idol(group: str, times: int, type: bool, duplicate: list[Idol]) -> li
             # string = f"{row['Name'].iloc[0]} {'(M) |' if row['Info'].iloc[0] < 18 else '|'} {data['group name']}"
             if not duplicate or not any(idol.equals(compare) for compare in duplicate):
                 results.add(idol)
+    results = list(results)
     return results
 
 # Rolls a random idol from the list of all idols. This gives every single idol an equal chance of
