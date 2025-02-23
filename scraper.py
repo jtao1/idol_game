@@ -32,12 +32,31 @@ def get_votes(soup: BeautifulSoup, url: str) -> dict:
 
 def get_ages(soup: BeautifulSoup) -> dict:
     ages = {}
+    nationality_dict = {}
     today = datetime.today()
     group = soup.find('h1', class_='entry-title h1').text
     group = group[:group.index('Members') - 1]
-    if (group == "IZ*ONE"):
+    if group == "BLACKPINK":
+        nationalities = ["Korean", "Korean", "Australian", "Thai"]
+    elif group == "ITZY" or group == "Red Velvet":
+        nationalities = ["Korean"] * 5
+    elif group == "WOOAH":
+        nationalities = ["Korean", "Korean", "Japanese", "Korean", "Korean", "Korean"]
+    elif group == "IZONE":
+        nationalities = ["Korean", "Japanese", "Korean", "Korean", "Korean", "Korean", "Korean", "Japanese", "Japanese", "Korean", "Korean", "Korean"]
+    elif group == "GFRIEND":
+        nationalities = ["Korean"] * 6 
+    elif group == "OH MY GIRL":
+        nationalities = ["Korean"] * 8
+    
+    else:
+        nationalities = soup.find_all('span', string=lambda text: text and text.strip() in ["Nationality:"])
+    print(nationalities)
+
+    if group == "IZ*ONE":
         group = "IZONE"
     print(group)
+
     if group == "tripleS":
         names = soup.find_all('span', string=lambda text: text and text.strip() in ["Birth Name:", "Birth Name (Taiwanese):"])
     else:
@@ -48,8 +67,8 @@ def get_ages(soup: BeautifulSoup) -> dict:
         if group == "TWICE":
             names = [span for span in names if not span.find_parent('span')]
     birthdays = soup.find_all('span', string=lambda text: text and text.strip() in ["Birthdate:", "Birthday:"])
-    print (len(names))
-    print (len(birthdays))
+    
+    print(names)
     for i in range(len(names)):
         real_name = names[i].find_next(string=True).find_next(string=True).strip()
         real_name = real_name.split('(')[0].replace("-", "").strip()
@@ -58,13 +77,22 @@ def get_ages(soup: BeautifulSoup) -> dict:
         real_name = real_name.replace(" ", "")
         real_name = ''.join(c for c in unicodedata.normalize('NFKD', real_name) if not unicodedata.combining(c))
         bday = birthdays[i].find_next(string=True).find_next(string=True).strip()
+        
+        if group in ['BLACKPINK', 'ITZY', 'Red Velvet', 'WOOAH', 'IZONE', 'GFRIEND', 'OH MY GIRL']:
+            nationality = nationalities[i]
+        else:
+            nationality = nationalities[i].find_next(string=True).find_next(string=True).strip()
+
+        print(nationality)
         if i == 3 and group == "NMIXX":
             bday = "December 28th, 2004"
             real_name = "Bae"
+
         bday = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', bday)
         birthday = datetime.strptime(bday, "%B %d, %Y")
         age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
         ages[real_name] = age
+        nationality_dict[real_name] = nationality
 
     return group, ages
 
@@ -127,8 +155,9 @@ def get_group_data(age: bool):
 
 # soup = get_soup('https://kprofiles.com/izone-members-profile/')
 # idol_scraper(soup)
-# get_group_data(True) # True for age, False for votes
-ci.write_all_idols(True, 1, "all female idols.txt")
+get_group_data(True) # True for age, False for votes
+# ci.write_all_idols(True, 1, "all female idols.txt")
 
 # stage_name, birth_name, birthdate
 
+ 
