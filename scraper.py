@@ -160,3 +160,4 @@ get_group_data(True) # True for age, False for votes
 
 # stage_name, birth_name, birthdate
 
+ 
