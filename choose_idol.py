@@ -14,10 +14,10 @@ class Idol: # class to represent an idol
         self.protected = False # group rerolls protect idols
 
     def to_string(self):
-        string = self.name + " | " + self.group
         if self.age < 18:
-            string = self.name + " (M) | " + self.group
-        return string
+            return self.name + " (M) | " + self.group
+        else:
+            return self.name + " | " + self.group
     
     def equals(self, compare: "Idol") -> bool:
         return self.name == compare.name and self.group == compare.group and self.age == compare.age
@@ -69,7 +69,7 @@ def random_idol(group: str, times: int, type: bool, duplicate: list[Idol]) -> li
     files = os.listdir(directory)
     results = set()
     while len(results) < times:
-        file = (group.upper() + ".json") if group else random.choice(files)
+        file = (group + ".json") if group else random.choice(files)
         with open(f'./girl groups/{file}', 'r') as f:
             data = json.load(f)
             dict_data = next((value for key, value in data.items() if isinstance(value, dict)), None)
