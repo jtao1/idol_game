@@ -6,20 +6,16 @@ from collections import Counter
 import re
 import time
 import random
+import game_history
+from game_history import History
 
-class Col:
-    reset = "\033[0m" # reset color (white)
-    money = "\033[38;2;133;187;101m" # money color
-    p1 = "\033[38;2;255;198;0m" # player 1 color
-    p2 = "\033[38;2;255;67;67m" # player 2 color
-
-class Player:
+class Player: # class to reprsent a player
     def __init__(self, name, color):
         self.name = name
         self.roster = []
         self.money = 15
-        self.color = color
-        self.ult = None
+        self.color = color # color for their text
+        self.ult = None # ultimate bias 
         self.synergies = set() # keeps track of used synergies
 
 class Game:
@@ -27,14 +23,20 @@ class Game:
         "r": 2, # reroll price
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
-        "size": 5, # max roster size
-        "div": 41 # '-' divider width
+        "size": 3, # max roster size
+        "div": 45 # '-' divider width
     }
+
+    c_reset = "\033[0m" # reset color (white)
+    c_money = "\033[38;2;133;187;101m" # money color
+    c_p1 = "\033[38;2;255;198;0m" # player 1 color
+    c_p2 = "\033[38;2;255;67;67m" # player 2 color
 
     def __init__(self):
         self.p1 = self.p2 = None # holds player objects
         self.turn = None # holds player object who is currently their turn
         self.winner = None
+        self.history = History()
 
     @property
     def opponent(self): # holds player object who is currently not their turn
@@ -58,14 +60,14 @@ class Game:
             p2 = "Jason"
 
             if p1 != p2 and p1 and p2:
-                self.p1 = Player(f'{Col.p1}{p1}', Col.p1)
-                self.p2 = Player(f'{Col.p2}{p2}', Col.p2)
+                self.p1 = Player(f'{Game.c_p1}{p1}', Game.c_p1)
+                self.p2 = Player(f'{Game.c_p2}{p2}', Game.c_p2)
                 if player_first():
                     self.p1, self.p2 = self.p2, self.p1
                 break
             print("Player names must be different.")
 
-        print(f'{self.p1.name}{Col.reset} goes first! {self.p2.name}{Col.reset} goes second!')
+        print(f'{self.p1.name}{Game.c_reset} goes first! {self.p2.name}{Game.c_reset} goes second!')
         print("-" * (Game.CONST["div"] * 2 + 2))
         self.turn = self.p1
         for _ in range(2):
@@ -76,14 +78,13 @@ class Game:
                 if len(answer) == 2:
                     self.turn.ult = choose.find_idol(answer[0], answer[1])
                     if self.turn.ult: # check if inputted idol is valid
-                        if self.opponent.ult and not self.turn.ult.equals(self.opponent.ult):
+                        if self.opponent.ult and not self.turn.ult.equals(self.opponent.ult): # check for duplicate
                             break
-                        elif not self.opponent.ult:
+                        elif not self.opponent.ult: # opponent didn't choose yet, impossible to be duplicate
                             break
                 print("Invalid idol!")
-            print(f'{self.turn.name}\'s{Col.reset} ultimate bias: {self.turn.ult.to_string()}')
+            print(f'{self.turn.name}\'s{Game.c_reset} ultimate bias: {self.turn.ult.to_string()}')
             self.switch_turns()
-
 
     def strip_ansi(self, text): # remove ansi from strings (for text using center formatting)
         ansi_escape = re.compile(r'\033\[[0-9;]*m') 
@@ -103,8 +104,8 @@ class Game:
             except IndexError:
                 return ['', '']
 
-        left_name = f"{self.p1.name}{Col.reset} - {Col.money}${self.p1.money}{Col.reset}"
-        right_name = f"{self.p2.name}{Col.reset} - {Col.money}${self.p2.money}{Col.reset}"
+        left_name = f"{self.p1.name}{Game.c_reset} - {Game.c_money}${self.p1.money}{Game.c_reset}"
+        right_name = f"{self.p2.name}{Game.c_reset} - {Game.c_money}${self.p2.money}{Game.c_reset}"
 
         left_name = self.format_text(left_name, width)
         right_name = self.format_text(right_name, width)
@@ -126,7 +127,7 @@ class Game:
     # type - 
     def input_command(self, input_type: str, cur_player: Player) -> str: # yon: True for yes or no question, False if not
         while True:
-            ans = input(f'{cur_player.name}{Col.reset} | ----> ').strip().lower() # Inquires for input
+            ans = input(f'{cur_player.name}{Game.c_reset} | ----> ').strip().lower() # Inquires for input
 
             # UTILITY COMMANDS - Available at any point in the game, do not affect game state
             if ans in ['e', 'exit']: # command to exit the game
@@ -138,17 +139,21 @@ class Game:
             elif ans in ['i', 'info']: # command to print out money and roster information
                 self.show_game_info()
             elif ans in ['m', 'money']: # command to print out only money information
-                print(f'{self.p1.name}: {Col.money}${self.p1.money}{Col.reset} | {self.p2.name}: {Col.money}${self.p2.money}{Col.reset}')
-            elif ans.startswith("u ") and len(ans.split()) == 2: # command to print a player's ultimate bias
-                player_int = int(ans.split()[1])
-                if 1 <= player_int <= 2:
-                    if player_int == 1:
-                        print(f'{self.p1.name}\'s{Col.reset} ultimate bias: {self.p1.ult.to_string()}')
-                    else:
-                        print(f'{self.p2.name}\'s{Col.reset} ultimate bias: {self.p2.ult.to_string()}')
+                print(f'{self.p1.name}: {Game.c_money}${self.p1.money}{Game.c_reset} | {self.p2.name}: {Game.c_money}${self.p2.money}{Game.c_reset}')
+            elif ans in ['u', 'ult']: # command to show ultimate biases
+                if self.p1.ult and self.p2.ult:
+                    print(f'{self.p1.name}\'s{Game.c_reset} ultimate bias: {self.p1.ult.to_string()}')
+                    print(f'{self.p2.name}\'s{Game.c_reset} ultimate bias: {self.p2.ult.to_string()}')
                 else:
-                    ("Invalid command!")
-                    continue
+                    print("Not all ultimate biases chosen yet!")
+            elif ans.startswith("stats "): # command to search up stats for a specific idol
+                answer = ans.split(" ", 2)
+                if len(answer) >= 3:
+                    search = choose.find_idol(answer[1], answer[2])
+                    if search:
+                        search.idol_stats()
+                        continue
+                print("Invalid idol!")
             else:
                 if "idol" in input_type: # for typing in specific idol names
                     return ans
@@ -188,17 +193,19 @@ class Game:
                 print("Invalid command!") # all commands checked, invalid command
 
     def add_idol(self, player: Player, add: Idol, index: int) -> int: # add idol to a roster, potentially check synergies (might make new func for that)
+        choose.multigroup(add)
+        
         if index is not None:
             player.roster.insert(index, add)
         else:
             player.roster.append(add)
 
-        print(f'{add.to_string()} added to {player.name}\'s{Col.reset} roster!')
+        print(f'{add.to_string()} added to {player.name}\'s{Game.c_reset} roster!')
         self.check_synergies(player)
 
     def replace_idol(self, player: Player) -> Idol:
         idol = None # idol to be removed
-        print(f'Pick an idol on {player.name}\'s{Col.reset} roster to remove.')
+        print(f'Pick an idol on {player.name}\'s{Game.c_reset} roster to remove.')
 
         for i in range(len(player.roster)):
             print(f'{i+1}. {player.roster[i].to_string()}')
@@ -216,34 +223,47 @@ class Game:
             
     def check_synergies(self, player: Player): # function to check and handle synergies
         self.check_exodia(player) # checks for exodia synergies
-        opponent = self.p1 if player == self.p2 else self.p2
+        opp = self.p1 if player == self.p2 else self.p2
 
         old_syn = player.synergies.copy()
         counts = Counter()
         for idol in player.roster:
             counts[idol.name[0]] += 1
-            counts[idol.group] += 1 
+            if len(idol.group.split('/')) > 1: # IZONE exception
+                counts[idol.group.split('/')[0].strip()] += 1
+                counts[idol.group.split('/')[1].strip()] += 1
+            else: # for all other regular groups
+                counts[idol.group] += 1 
         player.synergies.update({syn for syn, count in counts.items() if count >= 3})
         new_syn = player.synergies - old_syn
+
+        foreigners = 0 # give money according to amount of foreign idols
+        for idol in player.roster:
+            if idol.country != "Korean":
+                foreigners += 1
+        if foreigners > 1 and foreigners not in player.synergies:
+            player.money += 1
+            player.synergies.add(foreigners)
+            print(f'{player.name}{Game.c_reset} has {foreigners} foreigners! They have gained {Game.c_money}${foreigners - 1}{Game.c_reset} in total!')
 
         if new_syn: # give synergy effects
             for syn in new_syn:
                 if len(syn) > 1: # group synergy (SWITCH))
-                    print(f'{player.name}{Col.reset} hit a group synergy for {Col.money}{syn}{Col.reset}! They receive a switch powerup.')
-                    if len(self.opponent.roster) != 0:
+                    print(f'{player.name}{Game.c_reset} hit a group synergy for {Game.c_money}{syn}{Game.c_reset}! They receive a switch powerup.')
+                    if len(opp.roster) != 0:
                         turn_ind = self.replace_idol(self.turn)
                         opp_ind = self.replace_idol(self.opponent)
 
                         self.add_idol(self.turn, opp_ind[1], turn_ind[0])
-                        self.add_idol(self.opponent, turn_ind[1], opp_ind[0])
+                        self.add_idol(opp, turn_ind[1], opp_ind[0])
                     else:
-                        print(f'{opponent.name}\'s{Col.reset} roster is full, so you can\'t use the switch!')
+                        print(f'{opp.name}\'s{Game.c_reset} roster is empty, so you can\'t use the switch!')
                 else: # letter synergy (ADD/REPLACE))
-                    print(f'{player.name}{Col.reset} hit a letter synergy for {Col.money}{syn}{Col.reset}! They get to add/replace an idol.')
+                    print(f'{player.name}{Game.c_reset} hit a letter synergy for {Game.c_money}{syn}{Game.c_reset}! They get to add/replace an idol.')
                     ind = None
                     if len(player.roster) >= Game.CONST["size"]: # player roster is full, must replace instead of adding
                         ind = self.replace_idol(player)
-                    print(f'Choose an idol whose name starts with a {Col.money}{syn.upper()}{Col.reset}: (name) (group)')
+                    print(f'Choose an idol whose name starts with a {Game.c_money}{syn.upper()}{Game.c_reset}: (name) (group)')
 
                     while True:
                         ans = self.input_command("idol", player)
@@ -263,9 +283,9 @@ class Game:
             group = player.roster[0].group # group
             exodia = True
             if all(idol.name[0] == char for idol in player.roster): # full roster of letter synergy
-                message = f'letter exodia! {Col.money}({char}){Col.reset}'
+                message = f'letter exodia! {Game.c_money}({char}){Game.c_reset}'
             elif all(idol.group == group for idol in player.roster): # full roster of same group
-                message = f'group exodia! {Col.money}({group}){Col.reset}'
+                message = f'group exodia! {Game.c_money}({group}){Game.c_reset}'
             elif all(idol.age < 18 for idol in player.roster): # full roster of minors
                 message = "minor exodia!"
             else:
@@ -273,7 +293,7 @@ class Game:
 
             if exodia:
                 print("-" * (Game.CONST["div"] * 2 + 2))
-                print(f'{player.name}{Col.reset} won through {message}')
+                print(f'{player.name}{Game.c_reset} won through {message}')
                 self.winner = player
                 self.final_screen()
 
@@ -283,7 +303,7 @@ class Game:
         for idol in self.opponent.roster: 
             if cur_idol.equals(idol):
                 if not idol.protected: # only steal if idol is not protected
-                    print(f'{cur_idol.to_string()} is already in {self.opponent.name}\'s{Col.reset} roster, so you steal them to your own roster!')
+                    print(f'{cur_idol.to_string()} is already in {self.opponent.name}\'s{Game.c_reset} roster, so you steal them to your own roster!')
                     self.opponent.roster.remove(idol)
                     self.add_idol(self.turn, cur_idol, None)
                     return 1
@@ -328,6 +348,7 @@ class Game:
                 dupes.append(idol)
         while True:
             cur_idol = choose.random_idol(dup_idol.group, 1, dupes)[0]
+            cur_idol.protected = True # idols from group rerolls are protected
             if self.turn.money >= Game.CONST["gr"]: # group reroll again
                 print(cur_idol.to_string())
                 print("Would you like to group reroll again? ",)
@@ -338,15 +359,13 @@ class Game:
                     break
             else:
                 break
-
-        idol.protected = True # idols from group rerolls are protected
         self.add_idol(self.turn, cur_idol, None)
 
     def deluxe_reroll(self): # function for deluxe reroll
         self.turn = self.p1
         for _ in range(2):
             while self.turn.money >= Game.CONST["dr"]: # if they have money for deluxe reroll
-                print(f'{self.turn.name}{Col.reset}, would you like to deluxe reroll for ${Game.CONST["dr"]}?')
+                print(f'{self.turn.name}{Game.c_reset}, would you like to deluxe reroll for ${Game.CONST["dr"]}?')
                 if self.input_command("yon", self.turn) == 'y': # dr if yes, else break and move to next player
                     self.turn.money -= Game.CONST["dr"]
                     ind = self.replace_idol(self.turn)[0] # index of idol that was removed
@@ -377,8 +396,8 @@ class Game:
             p1_prob = 1 - p2_prob
             if sorted_p1[i].rating < sorted_p2[i].rating:
                 p1_prob, p2_prob = p2_prob, p1_prob
-            p1_text = f'{sorted_p1[i].to_string()} {Col.money}{round(p1_prob*100, 2)}{Col.reset}%'
-            p2_text = f'{sorted_p2[i].to_string()} {Col.money}{round(p2_prob*100, 2)}{Col.reset}%'
+            p1_text = f'{sorted_p1[i].to_string()} {Game.c_money}{round(p1_prob*100, 2)}%{Game.c_reset}'
+            p2_text = f'{sorted_p2[i].to_string()} {Game.c_money}{round(p2_prob*100, 2)}%{Game.c_reset}'
             p1_text, p2_text = self.format_text(p1_text, Game.CONST["div"]), self.format_text(p2_text, Game.CONST["div"]), 
             print(f'{p1_text}||{p2_text}')
 
@@ -391,13 +410,14 @@ class Game:
                 win_string = f'{sorted_p2[i].to_string()} wins!'
                 p2_wins += 1
             print(self.format_text(win_string, (Game.CONST["div"]*2+2)))
-            cur_score = f'{self.p1.name}:{Col.reset} {p1_wins} || {self.p2.name}:{Col.reset} {p2_wins}'
+            cur_score = f'{self.p1.name}: {p1_wins}{Game.c_reset} || {self.p2.name}: {p2_wins}{Game.c_reset}'
             print(self.format_text(cur_score, (Game.CONST["div"]*2+2)))
         if p1_wins > p2_wins:
             self.winner = self.p1
         else:
             self.winner = self.p2
-        final_score = f'{self.winner.name}{Col.reset} wins the game {self.p1.color}{p1_wins}{Col.reset} to {self.p2.color}{p2_wins}{Col.reset}!'
+        final_score = f'{self.winner.name}{Game.c_reset} wins the game {self.p1.color}{p1_wins}{Game.c_reset} to {self.p2.color}{p2_wins}{Game.c_reset}!'
+        print('\n')
         print(self.format_text(final_score, (Game.CONST["div"]*2+2)))
     
     def end_game(self): # performs all end game processes
@@ -407,11 +427,13 @@ class Game:
 
     def final_screen(self): # closes the game, uploads data
         self.show_game_info()
-        # TODO: Upload game history and idol stats to files
+        self.history.write_file(self) # writes game history to a file
         input('Press any key to exit.')
         sys.exit()
 
     def ultimate_bias(self, idol: Idol) -> bool: # handle actions when ultimate bias is rolled
+        choose.multigroup(idol)
+
         ult_player = None
         ult_value = idol.ult_value()
         if idol.equals(self.p1.ult):
@@ -419,20 +441,25 @@ class Game:
         elif idol.equals(self.p2.ult):
             ult_player = self.p2
         if ult_player and ult_player.money >= ult_value:
-            print(f'{idol.to_string()} is {ult_player.name}\'s{Col.reset} ultimate bias! Would you like to instantly buy them for {ult_value}?')
+            print(f'{idol.to_string()} is {ult_player.name}\'s{Game.c_reset} ultimate bias! Would you like to instantly add them to your roster for {Game.c_money}${ult_value}{Game.c_reset}?')
             ans = self.input_command("yon", ult_player)
             if ans == 'y':
                 ult_player.money -= ult_value
+                idol.protected = True
                 self.add_idol(ult_player, idol, None)
+                return True
+        return False
 
     def play_turn(self): # main game function to play out a turn
         if len(self.turn.roster) >= Game.CONST["size"]: # switch turn if one player's roster is full
             self.switch_turns()
 
-        print(f'{"-" * (Game.CONST["div"] * 2 + 2)}\n{self.turn.name}\'s{Col.reset} Turn ')
+        print(f'{"-" * (Game.CONST["div"] * 2 + 2)}\n{self.turn.name}\'s{Game.c_reset} Turn ')
 
         while True:
             cur_idol = choose.random_idol(None, 1, self.turn.roster)[0] # roll idol
+            # if len(self.p1.roster) < 1 and len(self.p2.roster) < 1: # set idol to be rolled for first turn, for testing
+            #     cur_idol = choose.find_idol('sakura', 'le sserafim')
             print(cur_idol.to_string())
 
             dup_res = self.duplicate_check(cur_idol) # check for duplicates
@@ -442,10 +469,11 @@ class Game:
             elif dup_res == 1:
                 break
 
-            self.ultimate_bias(cur_idol)
+            if self.ultimate_bias(cur_idol):
+                break
             
             if len(self.opponent.roster) >= Game.CONST["size"] and self.opponent.money >= Game.CONST["r"]: # opponent reroll
-                print(f'{self.opponent.name}{Col.reset}, would you like to reroll your opponent\'s idol for ${Game.CONST["r"]}? ',)
+                print(f'{self.opponent.name}{Game.c_reset}, would you like to reroll your opponent\'s idol for ${Game.CONST["r"]}? ',)
                 if self.input_command("yon", self.opponent) == 'y': # if answer is yes
                     self.opponent.money -= Game.CONST["r"]
                     continue
@@ -470,3 +498,13 @@ class Game:
 
 new_game = Game()
 new_game.play_game()
+
+# GAME STATE TEST CODE
+# yujin = choose.find_idol('chaewon', 'le sserafim')
+# rei = choose.find_idol('nako', 'izone')
+# gaeul = choose.find_idol('hyewon', 'izone')
+# new_game.game_start()
+# new_game.add_idol(new_Game.c_p2, yujin, None)
+# new_game.add_idol(new_Game.c_p2, rei, None)
+# new_game.add_idol(new_Game.c_p2, gaeul, None)
+# new_game.show_game_info()

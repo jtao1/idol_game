@@ -7,43 +7,43 @@
         {
             "name": "IU",
             "age": 31,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 7
         },
         {
             "name": "Taeyeon",
             "age": 35,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Somi",
             "age": 23,
-            "country": "ENG",
+            "country": "American",
             "rating": 6
         },
         {
             "name": "ODD CHILD",
             "age": 29,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 1
         },
         {
             "name": "BOL4",
             "age": 29,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Kim Sejeong",
             "age": 28,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "BIBI",
             "age": 26,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         }
     ]

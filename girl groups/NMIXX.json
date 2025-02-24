@@ -7,43 +7,43 @@
         {
             "name": "Haewon",
             "age": 21,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Lily",
             "age": 22,
-            "country": "ENG",
+            "country": "Korean-Australian",
             "rating": 3
         },
         {
             "name": "Sullyoon",
             "age": 21,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 7
         },
         {
             "name": "Bae",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Jiwoo",
             "age": 19,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Kyujin",
             "age": 18,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Jinni",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         }
     ]

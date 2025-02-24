@@ -81,16 +81,16 @@ def get_ages(soup: BeautifulSoup) -> dict:
         else:
             nationality = nationalities[i].find_next(string=True).find_next(string=True).strip()
 
-        if "Japanese" in nationality:
-            nationality = "JPN"
-        elif "American" in nationality or "Australian" in nationality:
-            nationality = "ENG"
-        elif "Chinese" in nationality or "Taiwanese" in nationality or "Hongkongese" in nationality:
-            nationality = "CHN"
-        elif "Thai" in nationality or "Filipina" in nationality:
-            nationality = "THA"
-        else:
-            nationality = "KOR"
+        # if "Japanese" in nationality:
+        #     nationality = "JPN"
+        # elif "American" in nationality or "Australian" in nationality:
+        #     nationality = "ENG"
+        # elif "Chinese" in nationality or "Taiwanese" in nationality or "Hongkongese" in nationality:
+        #     nationality = "CHN"
+        # elif "Thai" in nationality or "Filipina" in nationality:
+        #     nationality = "THA"
+        # else:
+        #     nationality = "KOR"
 
         print(nationality)
         if i == 3 and group == "NMIXX":

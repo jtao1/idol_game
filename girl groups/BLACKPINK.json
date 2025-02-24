@@ -7,25 +7,25 @@
         {
             "name": "Jisoo",
             "age": 30,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Jennie",
             "age": 29,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Rose",
             "age": 28,
-            "country": "ENG",
+            "country": "Australian",
             "rating": 6
         },
         {
             "name": "Lisa",
             "age": 27,
-            "country": "THA",
+            "country": "Thai",
             "rating": 6
         }
     ]

@@ -7,31 +7,31 @@
         {
             "name": "Yunah",
             "age": 21,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Minju",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Moka",
             "age": 20,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 5
         },
         {
             "name": "Wonhee",
             "age": 17,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Iroha",
             "age": 17,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 6
         }
     ]

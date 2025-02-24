@@ -7,37 +7,37 @@
         {
             "name": "Sumin",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Sieun",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Isa",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Seeun",
             "age": 21,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Yoon",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "J",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         }
     ]

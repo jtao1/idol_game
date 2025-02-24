@@ -7,43 +7,43 @@
         {
             "name": "Ruka",
             "age": 22,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 5
         },
         {
             "name": "Pharita",
             "age": 19,
-            "country": "THA",
+            "country": "Thai",
             "rating": 6
         },
         {
             "name": "Asa",
             "age": 18,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 5
         },
         {
             "name": "Ahyeon",
             "age": 17,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Rami",
             "age": 17,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Rora",
             "age": 16,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Chiquita",
             "age": 16,
-            "country": "THA",
+            "country": "Thai",
             "rating": 6
         }
     ]

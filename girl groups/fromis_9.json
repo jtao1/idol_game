@@ -7,55 +7,55 @@
         {
             "name": "Hayoung",
             "age": 27,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Jiwon",
             "age": 26,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Chaeyoung",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Nagyung",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Jiheon",
             "age": 21,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Saerom",
             "age": 28,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Gyuri",
             "age": 27,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Jisun",
             "age": 26,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Seoyeon",
             "age": 25,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         }
     ]

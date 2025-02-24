@@ -7,37 +7,37 @@
         {
             "name": "Chaewon",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 7
         },
         {
             "name": "Sakura",
             "age": 26,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 6
         },
         {
             "name": "Yunjin",
             "age": 23,
-            "country": "ENG",
+            "country": "Korean-American",
             "rating": 6
         },
         {
             "name": "Kazuha",
             "age": 21,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 6
         },
         {
             "name": "Eunchae",
             "age": 18,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Garam",
             "age": 19,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         }
     ]

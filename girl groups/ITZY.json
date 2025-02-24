@@ -7,31 +7,31 @@
         {
             "name": "Yeji",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 7
         },
         {
             "name": "Lia",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Ryujin",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Chaeryeong",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Yuna",
             "age": 21,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 8
         }
     ]

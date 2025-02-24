@@ -7,73 +7,73 @@
         {
             "name": "HaSeul",
             "age": 27,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 2
         },
         {
             "name": "ViVi",
             "age": 28,
-            "country": "CHN",
+            "country": "Hongkongese",
             "rating": 3
         },
         {
             "name": "Yves",
             "age": 27,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "JinSoul",
             "age": 27,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "KimLip",
             "age": 26,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "HeeJin",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "HyunJin",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "GoWon",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Choerry",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "HyeJu",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "YeoJin",
             "age": 22,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Chuu",
             "age": 25,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         }
     ]

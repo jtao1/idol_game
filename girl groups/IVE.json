@@ -7,37 +7,37 @@
         {
             "name": "Yujin",
             "age": 21,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Gaeul",
             "age": 22,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Rei",
             "age": 21,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 5
         },
         {
             "name": "Wonyoung",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 7
         },
         {
             "name": "Liz",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Leeseo",
             "age": 18,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         }
     ]

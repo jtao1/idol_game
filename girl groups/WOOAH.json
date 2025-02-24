@@ -7,37 +7,37 @@
         {
             "name": "Nana",
             "age": 23,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 7
         },
         {
             "name": "Wooyeon",
             "age": 22,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Sora",
             "age": 21,
-            "country": "JPN",
+            "country": "Japanese",
             "rating": 3
         },
         {
             "name": "Lucy",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         },
         {
             "name": "Minseo",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "Songyee",
             "age": 20,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 3
         }
     ]

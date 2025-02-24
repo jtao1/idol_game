@@ -5,27 +5,28 @@ import json
 import shutil
 
 class Idol: # class to represent an idol
-    reset = "\033[0m" # reset color (white)
-    COLORS = {
-        8: "\033[38;2;255;0;116m", # The Big 3
-        7: "\033[38;2;255;111;237m", # 910
-        6: "\033[38;2;169;53;255m", # Luka DOncic
-        5: "\033[38;2;206;155;255m", # Jason Taytum
-        4: "\033[38;2;112;146;255m", # Passion UA
-        3: "\033[38;2;98;197;255m", # Anthony Davis
-        2: "\033[38;2;156;190;210m", # Lower AD
-        1: "\033[38;2;149;150;153m", # Dycha
-        0: reset
+    RATINGS = { # dictionary for all possible ratings of all idol [color, rating]
+        8: ["\033[38;2;255;0;116m", "The Big 3"],
+        7: ["\033[38;2;255;111;237m", "910"], 
+        6: ["\033[38;2;169;53;255m", "Luka Doncic"],
+        5: ["\033[38;2;206;155;255m", "Jason Taytum"],
+        4: ["\033[38;2;112;146;255m", "Passion UA"], 
+        3: ["\033[38;2;98;197;255m", "Anthony Davis"], 
+        2: ["\033[38;2;156;190;210m", "Lower AD"],
+        1: ["\033[38;2;149;150;153m", "Dychas"], 
+        0: ["\033[0m", "Unrated"] 
     }
 
-    def __init__(self, name, group, age, rating):
+    def __init__(self, name, group, age, rating, country): # constructor
         self.name = name
         self.group = group
         self.age = age
         self.rating = rating
+        self.country = country
+        self.price = None
         self.protected = False # group rerolls protect idols
 
-    def to_string(self):
+    def to_string(self): # string representation
         string = ''
         if self.age < 18:
             string = f'{self.name} (M) | {self.group}'
@@ -33,16 +34,23 @@ class Idol: # class to represent an idol
             string = f'{self.name} | {self.group}'
         if self.protected:
             string = "(PR) " + string
-        return f'{Idol.COLORS[self.rating]}{string}{Idol.reset}'
+        return f'{Idol.RATINGS[self.rating][0]}{string}{Idol.RATINGS[0][0]}'
     
-    def equals(self, compare: "Idol") -> bool:
+    def equals(self, compare: "Idol") -> bool: # custom equals command
         return self.name == compare.name and self.group == compare.group
     
-    def ult_value(self):
-        if self.rating == 8:
-            return 6
+    def ult_value(self): # return value for when chosen as ultimate bias
+        if self.rating <= 5:
+            return self.rating - 4
         else:
             return self.rating - 3
+        
+    def idol_stats(self): # comamnd to print out stats/information
+        print(f'Stats for {Idol.RATINGS[self.rating][0]}{self.name}:{Idol.RATINGS[0][0]}')
+        print(f'Group: {self.group}')
+        print(f'Age: {self.age}')
+        print(f'Nationality: {self.country}')
+        print(f'Rating: {Idol.RATINGS[self.rating][0]}{Idol.RATINGS[self.rating][1]}{Idol.RATINGS[0][0]}')
 
 # Moves all group files to a different directory
 # old - Old directory of all group files
@@ -77,12 +85,19 @@ def write_all_idols(sort: bool, type: bool, name: str):
                     group = data["group"]["name"]
                     age = data["members"][i]["age"]
                     rating = data["members"][i]["rating"]
-                    idol = Idol(name, group, age, rating)
+                    country = data["members"][i]["country"]
+                    idol = Idol(name, group, age, rating, country)
                     idols.append(f'{idol.to_string()} | {rating}\n')
         if sort:
             idols.sort()
         output.writelines(idols)
     print(f'Wrote all idols from "{search}" to a single file')
+
+def multigroup(idol: Idol): # function to handle idols with multiple groups (mainly IZONE)
+        if idol.name in ["Sakura", "Chaewon"]: # IZONE edge cases
+            idol.group = "LE SSERAFIM/IZONE"
+        elif any(sub in idol.to_string() for sub in ["Wonyoung", "Yujin | IVE", "Yujin | IZONE"]):
+            idol.group = "IVE/IZONE"
 
 def find_idol(name: str, group: str) -> Idol:
     file = f'./girl groups/{group.upper()}.json'
@@ -96,7 +111,9 @@ def find_idol(name: str, group: str) -> Idol:
                     group = data["group"]["name"]
                     age = data["members"][i]["age"]
                     rating = data["members"][i]["rating"]
-                    idol = Idol(name, group, age, rating)
+                    country = data["members"][i]["country"]
+                    idol = Idol(name, group, age, rating, country)
+                    multigroup(idol)
                     break
     return idol
 
@@ -108,7 +125,7 @@ def find_idol(name: str, group: str) -> Idol:
 def random_idol(group: str, times: int, duplicate: list[Idol]) -> list[Idol]: 
     directory = './girl groups' # if type else './boy groups'
     files = os.listdir(directory)
-    results = set()
+    results = []
     while len(results) < times:
         file = (group + ".json") if group else random.choice(files)
         with open(f'./girl groups/{file}', 'r') as f:
@@ -118,12 +135,12 @@ def random_idol(group: str, times: int, duplicate: list[Idol]) -> list[Idol]:
             group_name = data["group"]["name"]
             age = data["members"][rand]["age"]
             rating = data["members"][rand]["rating"]
-            idol = Idol(name, group_name, age, rating)
-
+            country = data["members"][rand]["country"]
+            idol = Idol(name, group_name, age, rating, country)
             if not duplicate or not any(idol.equals(compare) for compare in duplicate):
-                results.add(idol)
-    final = list(results)
-    return final
+                if not any(idol.equals(comp) for comp in results):
+                    results.append(idol)
+    return results
 
 # Rolls a random idol from the list of all idols. This gives every single idol an equal chance of
 # being chosen, rather than choosing a random group first like random_idol() does.    
@@ -172,11 +189,11 @@ def manual_game():
 
 # write_all_idols(False, 1, "all female idols.txt")
 
-# print(f'{Idol.COLORS[8]}Julie')
-# print(f'{Idol.COLORS[7]}Nana')
-# print(f'{Idol.COLORS[6]}Sakura')
-# print(f'{Idol.COLORS[5]}Chaeyoung')
-# print(f'{Idol.COLORS[4]}Kotoko')
-# print(f'{Idol.COLORS[3]}Sieun')
-# print(f'{Idol.COLORS[2]}Mimimeister')
-# print(f'{Idol.COLORS[1]}Hwasa')
+# print(f'{Idol.RATINGS[8][0]}Julie')
+# print(f'{Idol.RATINGS[7][0]}Nana')
+# print(f'{Idol.RATINGS[6][0]}Sakura')
+# print(f'{Idol.RATINGS[5][0]}Chaeyoung')
+# print(f'{Idol.RATINGS[4][0]}Kotoko')
+# print(f'{Idol.RATINGS[3][0]}Sieun')
+# print(f'{Idol.RATINGS[2][0]}Mimimeister')
+# print(f'{Idol.RATINGS[1][0]}Hwasa')

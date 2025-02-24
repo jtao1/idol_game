@@ -7,25 +7,25 @@
         {
             "name": "Julie",
             "age": 24,
-            "country": "ENG",
+            "country": "American",
             "rating": 8
         },
         {
             "name": "Natty",
             "age": 22,
-            "country": "THA",
+            "country": "Thai",
             "rating": 6
         },
         {
             "name": "Belle",
             "age": 20,
-            "country": "ENG",
+            "country": "Korean-American",
             "rating": 6
         },
         {
             "name": "Haneul",
             "age": 19,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         }
     ]

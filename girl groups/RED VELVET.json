@@ -7,31 +7,31 @@
         {
             "name": "Irene",
             "age": 33,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Seulgi",
             "age": 31,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Wendy",
             "age": 31,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         },
         {
             "name": "Joy",
             "age": 28,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 5
         },
         {
             "name": "Yeri",
             "age": 25,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 4
         }
     ]

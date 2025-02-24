@@ -7,25 +7,25 @@
         {
             "name": "Karina",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 8
         },
         {
             "name": "Giselle",
             "age": 24,
-            "country": "JPN",
+            "country": "Japanese-Korean",
             "rating": 6
         },
         {
             "name": "Winter",
             "age": 24,
-            "country": "KOR",
+            "country": "Korean",
             "rating": 6
         },
         {
             "name": "NingNing",
             "age": 22,
-            "country": "CHN",
+            "country": "Chinese",
             "rating": 6
         }
     ]
