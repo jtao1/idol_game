@@ -1,12 +1,44 @@
 {
-    "group name": "WOOAH",
-    "group-type": "gg",
-    "ages": {
-        "Nana": 23,
-        "Wooyeon": 22,
-        "Sora": 21,
-        "Lucy": 20,
-        "Minseo": 20,
-        "Songyee": 20
-    }
+    "group": {
+        "name": "WOOAH",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Nana",
+            "age": 23,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Wooyeon",
+            "age": 22,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Sora",
+            "age": 21,
+            "country": "JPN",
+            "rating": 3
+        },
+        {
+            "name": "Lucy",
+            "age": 20,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Minseo",
+            "age": 20,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Songyee",
+            "age": 20,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

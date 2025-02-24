@@ -1,5 +1,30 @@
 {
-    "name": "random",
-    "gender": "male",
-    "group": ["g1", "g2"]
+    "group": {
+        "name": "ITZY",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Yeji",
+            "age": 24,
+            "country": "Korean",
+            "rating": 8,
+            "stats": {
+                "average_price": 1.2,
+                "reroll_rate": 0.2,
+                "game_presence": 0.02
+            }
+        },
+        {
+            "name": "Yuna",
+            "age": 24,
+            "country": "Korean",
+            "rating": 8,
+            "stats": {
+                "average_price": 1.2,
+                "reroll_rate": 0.2,
+                "game_presence": 0.02
+            }
+        }
+    ]
 }

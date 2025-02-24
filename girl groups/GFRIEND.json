@@ -1,12 +1,44 @@
 {
-    "group name": "GFRIEND",
-    "group-type": "gg",
-    "ages": {
-        "Sowon": 29,
-        "Yerin": 28,
-        "Eunha": 27,
-        "Yuju": 27,
-        "SinB": 26,
-        "Umji": 26
-    }
+    "group": {
+        "name": "GFRIEND",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Sowon",
+            "age": 29,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Yerin",
+            "age": 28,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Eunha",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Yuju",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "SinB",
+            "age": 26,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Umji",
+            "age": 26,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

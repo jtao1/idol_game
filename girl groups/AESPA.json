@@ -1,10 +1,32 @@
 {
-    "group name": "aespa",
-    "group-type": "gg",
-    "ages": {
-        "Karina": 24,
-        "Giselle": 24,
-        "Winter": 24,
-        "NingNing": 22
-    }
+    "group": {
+        "name": "aespa",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Karina",
+            "age": 24,
+            "country": "KOR",
+            "rating": 8
+        },
+        {
+            "name": "Giselle",
+            "age": 24,
+            "country": "JPN",
+            "rating": 6
+        },
+        {
+            "name": "Winter",
+            "age": 24,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "NingNing",
+            "age": 22,
+            "country": "CHN",
+            "rating": 6
+        }
+    ]
 }

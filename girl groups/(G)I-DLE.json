@@ -1,12 +1,44 @@
 {
-    "group name": "(G)I-DLE",
-    "group-type": "gg",
-    "ages": {
-        "Soyeon": 26,
-        "Miyeon": 28,
-        "Minnie": 27,
-        "Yuqi": 25,
-        "Shuhua": 25,
-        "Soojin": 26
-    }
+    "group": {
+        "name": "(G)I-DLE",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Soyeon",
+            "age": 26,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Miyeon",
+            "age": 28,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Minnie",
+            "age": 27,
+            "country": "THA",
+            "rating": 5
+        },
+        {
+            "name": "Yuqi",
+            "age": 25,
+            "country": "CHN",
+            "rating": 7
+        },
+        {
+            "name": "Shuhua",
+            "age": 25,
+            "country": "CHN",
+            "rating": 6
+        },
+        {
+            "name": "Soojin",
+            "age": 26,
+            "country": "KOR",
+            "rating": 2
+        }
+    ]
 }

@@ -1,11 +1,38 @@
 {
-    "group name": "Red Velvet",
-    "group-type": "gg",
-    "ages": {
-        "Irene": 33,
-        "Seulgi": 31,
-        "Wendy": 30,
-        "Joy": 28,
-        "Yeri": 25
-    }
+    "group": {
+        "name": "Red Velvet",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Irene",
+            "age": 33,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Seulgi",
+            "age": 31,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Wendy",
+            "age": 31,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Joy",
+            "age": 28,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Yeri",
+            "age": 25,
+            "country": "KOR",
+            "rating": 4
+        }
+    ]
 }

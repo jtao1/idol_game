@@ -1,14 +1,56 @@
 {
-    "group name": "UNIS",
-    "group-type": "gg",
-    "ages": {
-        "Hyeonju": 23,
-        "Nana": 17,
-        "Gehlee": 17,
-        "Kotoko": 17,
-        "Yunha": 15,
-        "Elisia": 15,
-        "Yoona": 15,
-        "Seowon": 14
-    }
+    "group": {
+        "name": "UNIS",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Hyeonju",
+            "age": 23,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Nana",
+            "age": 17,
+            "country": "JPN",
+            "rating": 4
+        },
+        {
+            "name": "Gehlee",
+            "age": 17,
+            "country": "THA",
+            "rating": 2
+        },
+        {
+            "name": "Kotoko",
+            "age": 17,
+            "country": "JPN",
+            "rating": 4
+        },
+        {
+            "name": "Yunha",
+            "age": 15,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Elisia",
+            "age": 15,
+            "country": "THA",
+            "rating": 3
+        },
+        {
+            "name": "Yoona",
+            "age": 15,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Seowon",
+            "age": 14,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

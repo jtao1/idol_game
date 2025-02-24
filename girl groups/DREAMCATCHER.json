@@ -1,13 +1,50 @@
 {
-    "group name": "Dreamcatcher",
-    "group-type": "gg",
-    "ages": {
-        "JiU": 30,
-        "SuA": 30,
-        "Siyeon": 29,
-        "Handong": 28,
-        "Yoohyeon": 28,
-        "Dami": 27,
-        "Gahyun": 26
-    }
+    "group": {
+        "name": "Dreamcatcher",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "JiU",
+            "age": 30,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "SuA",
+            "age": 30,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Siyeon",
+            "age": 29,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Handong",
+            "age": 28,
+            "country": "CHN",
+            "rating": 2
+        },
+        {
+            "name": "Yoohyeon",
+            "age": 28,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Dami",
+            "age": 27,
+            "country": "KOR",
+            "rating": 1
+        },
+        {
+            "name": "Gahyun",
+            "age": 26,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

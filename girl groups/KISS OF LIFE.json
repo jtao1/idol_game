@@ -1,10 +1,32 @@
 {
-    "group name": "KISS OF LIFE",
-    "group-type": "gg",
-    "ages": {
-        "Julie": 24,
-        "Natty": 22,
-        "Belle": 20,
-        "Haneul": 19
-    }
+    "group": {
+        "name": "KISS OF LIFE",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Julie",
+            "age": 24,
+            "country": "ENG",
+            "rating": 8
+        },
+        {
+            "name": "Natty",
+            "age": 22,
+            "country": "THA",
+            "rating": 6
+        },
+        {
+            "name": "Belle",
+            "age": 20,
+            "country": "ENG",
+            "rating": 6
+        },
+        {
+            "name": "Haneul",
+            "age": 19,
+            "country": "KOR",
+            "rating": 6
+        }
+    ]
 }

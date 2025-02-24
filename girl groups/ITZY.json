@@ -1,11 +1,38 @@
 {
-    "group name": "ITZY",
-    "group-type": "gg",
-    "ages": {
-        "Yeji": 24,
-        "Lia": 24,
-        "Ryujin": 23,
-        "Chaeryeong": 23,
-        "Yuna": 21
-    }
+    "group": {
+        "name": "ITZY",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Yeji",
+            "age": 24,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Lia",
+            "age": 24,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Ryujin",
+            "age": 23,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Chaeryeong",
+            "age": 23,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Yuna",
+            "age": 21,
+            "country": "KOR",
+            "rating": 8
+        }
+    ]
 }

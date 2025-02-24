@@ -1,14 +1,56 @@
 {
-    "group name": "FIFTY FIFTY",
-    "group-type": "gg",
-    "ages": {
-        "Keena": 22,
-        "Moon": 21,
-        "Yewon": 19,
-        "Hana": 18,
-        "Athena": 17,
-        "Sio": 20,
-        "Aran": 20,
-        "Saena": 20
-    }
+    "group": {
+        "name": "FIFTY FIFTY",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Keena",
+            "age": 22,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Moon",
+            "age": 21,
+            "country": "ENG",
+            "rating": 2
+        },
+        {
+            "name": "Yewon",
+            "age": 19,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Hana",
+            "age": 18,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Athena",
+            "age": 17,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Saena",
+            "age": 20,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Sio",
+            "age": 20,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Aran",
+            "age": 20,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

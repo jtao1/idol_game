@@ -1,13 +1,50 @@
 {
-    "group name": "BABYMONSTER",
-    "group-type": "gg",
-    "ages": {
-        "Ruka": 22,
-        "Pharita": 19,
-        "Asa": 18,
-        "Ahyeon": 17,
-        "Rami": 17,
-        "Rora": 16,
-        "Chiquita": 16
-    }
+    "group": {
+        "name": "BABYMONSTER",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Ruka",
+            "age": 22,
+            "country": "JPN",
+            "rating": 5
+        },
+        {
+            "name": "Pharita",
+            "age": 19,
+            "country": "THA",
+            "rating": 6
+        },
+        {
+            "name": "Asa",
+            "age": 18,
+            "country": "JPN",
+            "rating": 5
+        },
+        {
+            "name": "Ahyeon",
+            "age": 17,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Rami",
+            "age": 17,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Rora",
+            "age": 16,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Chiquita",
+            "age": 16,
+            "country": "THA",
+            "rating": 6
+        }
+    ]
 }

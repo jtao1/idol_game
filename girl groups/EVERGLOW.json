@@ -1,12 +1,44 @@
 {
-    "group name": "EVERGLOW",
-    "group-type": "gg",
-    "ages": {
-        "Sihyeon": 25,
-        "E:U": 26,
-        "Mia": 25,
-        "Onda": 24,
-        "Aisha": 24,
-        "Yiren": 24
-    }
+    "group": {
+        "name": "EVERGLOW",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Sihyeon",
+            "age": 25,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "E:U",
+            "age": 26,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Mia",
+            "age": 25,
+            "country": "KOR",
+            "rating": 1
+        },
+        {
+            "name": "Onda",
+            "age": 24,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Aisha",
+            "age": 24,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Yiren",
+            "age": 24,
+            "country": "CHN",
+            "rating": 4
+        }
+    ]
 }

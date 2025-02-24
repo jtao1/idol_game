@@ -1,10 +1,32 @@
 {
-    "group name": "BLACKPINK",
-    "group-type": "gg",
-    "ages": {
-        "Jisoo": 30,
-        "Jennie": 29,
-        "Rose": 28,
-        "Lisa": 27
-    }
+    "group": {
+        "name": "BLACKPINK",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Jisoo",
+            "age": 30,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Jennie",
+            "age": 29,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Rose",
+            "age": 28,
+            "country": "ENG",
+            "rating": 6
+        },
+        {
+            "name": "Lisa",
+            "age": 27,
+            "country": "THA",
+            "rating": 6
+        }
+    ]
 }

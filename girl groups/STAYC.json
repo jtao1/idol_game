@@ -1,12 +1,44 @@
 {
-    "group name": "STAYC",
-    "group-type": "gg",
-    "ages": {
-        "Sumin": 23,
-        "Sieun": 23,
-        "Isa": 23,
-        "Seeun": 21,
-        "Yoon": 20,
-        "J": 20
-    }
+    "group": {
+        "name": "STAYC",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Sumin",
+            "age": 23,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Sieun",
+            "age": 23,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Isa",
+            "age": 23,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Seeun",
+            "age": 21,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Yoon",
+            "age": 20,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "J",
+            "age": 20,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

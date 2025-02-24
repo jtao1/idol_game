@@ -1,30 +1,152 @@
 {
-    "group name": "tripleS",
-    "group-type": "gg",
-    "ages": {
-        "Yooyeon": 24,
-        "Mayu": 22,
-        "XinYu": 22,
-        "Junseo": 22,
-        "Sohyun": 22,
-        "Dahyun": 22,
-        "Nientz\u2019u": 21,
-        "Seoyeon": 21,
-        "Suhyeon": 21,
-        "Kotone": 20,
-        "Chaeyeon": 20,
-        "Yubin": 20,
-        "Jiwoo": 19,
-        "Kaede": 19,
-        "Shion": 18,
-        "Lynn": 18,
-        "Pirada": 18,
-        "Hyerin": 17,
-        "Chaewon": 17,
-        "Hayeon": 17,
-        "Soomin": 17,
-        "Yeonji": 17,
-        "JooBin": 16,
-        "Haerin": 14
-    }
+    "group": {
+        "name": "tripleS",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Yooyeon",
+            "age": 24,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Mayu",
+            "age": 22,
+            "country": "JPN",
+            "rating": 3
+        },
+        {
+            "name": "XinYu",
+            "age": 22,
+            "country": "CHN",
+            "rating": 4
+        },
+        {
+            "name": "NakYoung",
+            "age": 22,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Sohyun",
+            "age": 22,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Dahyun",
+            "age": 22,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Nientz\u2019u",
+            "age": 21,
+            "country": "CHN",
+            "rating": 4
+        },
+        {
+            "name": "Seoyeon",
+            "age": 21,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Suhyeon",
+            "age": 21,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Kotone",
+            "age": 20,
+            "country": "JPN",
+            "rating": 4
+        },
+        {
+            "name": "Chaeyeon",
+            "age": 20,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Yubin",
+            "age": 20,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Jiwoo",
+            "age": 19,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Kaede",
+            "age": 19,
+            "country": "JPN",
+            "rating": 2
+        },
+        {
+            "name": "Shion",
+            "age": 18,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Lynn",
+            "age": 18,
+            "country": "JPN",
+            "rating": 3
+        },
+        {
+            "name": "Pirada",
+            "age": 18,
+            "country": "THA",
+            "rating": 3
+        },
+        {
+            "name": "Hyerin",
+            "age": 17,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Chaewon",
+            "age": 17,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Hayeon",
+            "age": 17,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Soomin",
+            "age": 17,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Yeonji",
+            "age": 17,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "JooBin",
+            "age": 16,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "SeoAh",
+            "age": 14,
+            "country": "KOR",
+            "rating": 5
+        }
+    ]
 }

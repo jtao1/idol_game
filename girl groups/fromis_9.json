@@ -1,15 +1,62 @@
 {
-    "group name": "fromis_9",
-    "group-type": "gg",
-    "ages": {
-        "Hayoung": 27,
-        "Jiwon": 26,
-        "Chaeyoung": 24,
-        "Nagyung": 24,
-        "Jiheon": 21,
-        "Saerom": 28,
-        "Gyuri": 27,
-        "Jisun": 26,
-        "Seoyeon": 25
-    }
+    "group": {
+        "name": "fromis_9",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Hayoung",
+            "age": 27,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Jiwon",
+            "age": 26,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Chaeyoung",
+            "age": 24,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Nagyung",
+            "age": 24,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Jiheon",
+            "age": 21,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Saerom",
+            "age": 28,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Gyuri",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Jisun",
+            "age": 26,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Seoyeon",
+            "age": 25,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

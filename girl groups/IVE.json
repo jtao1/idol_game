@@ -1,12 +1,44 @@
 {
-    "group name": "IVE",
-    "group-type": "gg",
-    "ages": {
-        "Yujin": 21,
-        "Gaeul": 22,
-        "Rei": 21,
-        "Wonyoung": 20,
-        "Liz": 20,
-        "Leeseo": 17
-    }
+    "group": {
+        "name": "IVE",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Yujin",
+            "age": 21,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Gaeul",
+            "age": 22,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Rei",
+            "age": 21,
+            "country": "JPN",
+            "rating": 5
+        },
+        {
+            "name": "Wonyoung",
+            "age": 20,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Liz",
+            "age": 20,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Leeseo",
+            "age": 18,
+            "country": "KOR",
+            "rating": 5
+        }
+    ]
 }

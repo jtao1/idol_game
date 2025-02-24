@@ -1,13 +1,50 @@
 {
-    "group name": "ALICE",
-    "group-type": "gg",
-    "ages": {
-        "Chaejeong": 25,
-        "EJ": 27,
-        "DoA": 26,
-        "Yeonje": 25,
-        "Yukyung": 25,
-        "Sohee": 25,
-        "Karin": 23
-    }
+    "group": {
+        "name": "ALICE",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Chaejeong",
+            "age": 25,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "EJ",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "DoA",
+            "age": 26,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Yeonje",
+            "age": 25,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Yukyung",
+            "age": 25,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Sohee",
+            "age": 25,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Karin",
+            "age": 23,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

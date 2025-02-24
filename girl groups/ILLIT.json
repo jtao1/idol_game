@@ -1,11 +1,38 @@
 {
-    "group name": "ILLIT",
-    "group-type": "gg",
-    "ages": {
-        "Yunah": 21,
-        "Minju": 20,
-        "Moka": 20,
-        "Wonhee": 17,
-        "Iroha": 17
-    }
+    "group": {
+        "name": "ILLIT",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Yunah",
+            "age": 21,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Minju",
+            "age": 20,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Moka",
+            "age": 20,
+            "country": "JPN",
+            "rating": 5
+        },
+        {
+            "name": "Wonhee",
+            "age": 17,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Iroha",
+            "age": 17,
+            "country": "JPN",
+            "rating": 6
+        }
+    ]
 }

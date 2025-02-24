@@ -3,8 +3,8 @@ from bs4 import BeautifulSoup
 import json
 from datetime import datetime
 import re
-import choose_idol as ci
 import unicodedata
+import os
 
 def get_soup(url: str) -> BeautifulSoup:
     page = requests.get(url)
@@ -32,10 +32,12 @@ def get_votes(soup: BeautifulSoup, url: str) -> dict:
 
 def get_ages(soup: BeautifulSoup) -> dict:
     ages = {}
-    nationality_dict = {}
+    nations = {}
     today = datetime.today()
     group = soup.find('h1', class_='entry-title h1').text
     group = group[:group.index('Members') - 1]
+    group = group.replace('*', '')
+
     if group == "BLACKPINK":
         nationalities = ["Korean", "Korean", "Australian", "Thai"]
     elif group == "ITZY" or group == "Red Velvet":
@@ -48,14 +50,11 @@ def get_ages(soup: BeautifulSoup) -> dict:
         nationalities = ["Korean"] * 6 
     elif group == "OH MY GIRL":
         nationalities = ["Korean"] * 8
-    
     else:
         nationalities = soup.find_all('span', string=lambda text: text and text.strip() in ["Nationality:"])
-    print(nationalities)
 
-    if group == "IZ*ONE":
-        group = "IZONE"
-    print(group)
+    print(group + "-------")
+    print(len(nationalities))
 
     if group == "tripleS":
         names = soup.find_all('span', string=lambda text: text and text.strip() in ["Birth Name:", "Birth Name (Taiwanese):"])
@@ -68,7 +67,6 @@ def get_ages(soup: BeautifulSoup) -> dict:
             names = [span for span in names if not span.find_parent('span')]
     birthdays = soup.find_all('span', string=lambda text: text and text.strip() in ["Birthdate:", "Birthday:"])
     
-    print(names)
     for i in range(len(names)):
         real_name = names[i].find_next(string=True).find_next(string=True).strip()
         real_name = real_name.split('(')[0].replace("-", "").strip()
@@ -83,18 +81,34 @@ def get_ages(soup: BeautifulSoup) -> dict:
         else:
             nationality = nationalities[i].find_next(string=True).find_next(string=True).strip()
 
+        if "Japanese" in nationality:
+            nationality = "JPN"
+        elif "American" in nationality or "Australian" in nationality:
+            nationality = "ENG"
+        elif "Chinese" in nationality or "Taiwanese" in nationality or "Hongkongese" in nationality:
+            nationality = "CHN"
+        elif "Thai" in nationality or "Filipina" in nationality:
+            nationality = "THA"
+        else:
+            nationality = "KOR"
+
         print(nationality)
         if i == 3 and group == "NMIXX":
             bday = "December 28th, 2004"
             real_name = "Bae"
+        if group == "tripleS":
+            if i == 23:
+                real_name = "SeoAh"
+            if i == 3:
+                real_name = "NakYoung"
 
         bday = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', bday)
         birthday = datetime.strptime(bday, "%B %d, %Y")
         age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
         ages[real_name] = age
-        nationality_dict[real_name] = nationality
+        nations[real_name] = nationality
 
-    return group, ages
+    return group, ages, nations
 
 def idol_scraper(soup: BeautifulSoup):
     div = soup.find('div', class_='entry-content herald-entry-content')
@@ -121,26 +135,45 @@ def idol_scraper(soup: BeautifulSoup):
                 if 'birthdate' in lowered_text:
                     print(text)
 
-def write_json(group, votes: dict) -> None:
-    if (group == "IZ*ONE"):
-        group = "IZONE"
-    with open(f'./girl groups/{group}.json', 'w') as f:
+def write_json(group: str, votes: dict) -> None:
+    with open(f'./girl groups/{group.upper()}.json', 'w') as f:
         json.dump(votes, f, indent=4)
 
-def get_group_data(age: bool):
+def get_group_data(votes: bool):
     link_types = ['gg']
     for link_type in link_types:
         with open(f'./{link_type}-links.txt', 'r') as links_file:
             url = links_file.readline()
             while url:
                 soup = get_soup(url)
-                if age:
-                    group, ages = get_ages(soup)
+                if not votes:
+                    group, ages, nations = get_ages(soup)
 
-                    json_text = {}
-                    json_text['group name'] = group
-                    json_text['group-type'] = link_type
-                    json_text['ages'] = ages
+                    file_name = f'./girl groups/{group.upper()}.json' # get ratings if already existing
+                    exist = {"members": []}
+                    if os.path.exists(file_name):
+                        with open(file_name, "r") as f:
+                            exist = json.load(f)
+                    ratings = {member["name"]: member["rating"] for member in exist["members"]}
+
+                    json_text = {
+                        "group": {
+                            "name": group,
+                            "type": link_type
+                        },
+                        "members": []
+                    }
+                    for name in ages.keys():
+                        member = {
+                            "name": name,
+                            "age": ages.get(name, None),
+                            "country": nations.get(name, None),
+                            "rating": ratings.get(name, 3)
+                            # "stats": {
+                            #     "stat": 2
+                            # }
+                        }
+                        json_text["members"].append(member)
                 else:
                     group, votes, voters = get_votes(soup, url)
 
@@ -155,7 +188,7 @@ def get_group_data(age: bool):
 
 # soup = get_soup('https://kprofiles.com/izone-members-profile/')
 # idol_scraper(soup)
-get_group_data(True) # True for age, False for votes
+get_group_data(False) # True for votes, false for regular
 # ci.write_all_idols(True, 1, "all female idols.txt")
 
 # stage_name, birth_name, birthdate

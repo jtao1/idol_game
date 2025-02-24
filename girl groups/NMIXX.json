@@ -1,13 +1,50 @@
 {
-    "group name": "NMIXX",
-    "group-type": "gg",
-    "ages": {
-        "Haewon": 21,
-        "Lily": 22,
-        "Sullyoon": 21,
-        "Bae": 20,
-        "Jiwoo": 19,
-        "Kyujin": 18,
-        "Jinni": 20
-    }
+    "group": {
+        "name": "NMIXX",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Haewon",
+            "age": 21,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Lily",
+            "age": 22,
+            "country": "ENG",
+            "rating": 3
+        },
+        {
+            "name": "Sullyoon",
+            "age": 21,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Bae",
+            "age": 20,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Jiwoo",
+            "age": 19,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Kyujin",
+            "age": 18,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Jinni",
+            "age": 20,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

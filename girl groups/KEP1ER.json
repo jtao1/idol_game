@@ -1,15 +1,62 @@
 {
-    "group name": "Kep1er",
-    "group-type": "gg",
-    "ages": {
-        "Yujin": 28,
-        "Xiaoting": 25,
-        "Chaehyun": 22,
-        "Dayeon": 21,
-        "Hikaru": 20,
-        "Bahiyyih": 20,
-        "Youngeun": 20,
-        "Mashiro": 25,
-        "Yeseo": 19
-    }
+    "group": {
+        "name": "Kep1er",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Yujin",
+            "age": 28,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Xiaoting",
+            "age": 25,
+            "country": "CHN",
+            "rating": 4
+        },
+        {
+            "name": "Chaehyun",
+            "age": 22,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Dayeon",
+            "age": 21,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Hikaru",
+            "age": 20,
+            "country": "JPN",
+            "rating": 2
+        },
+        {
+            "name": "Bahiyyih",
+            "age": 20,
+            "country": "ENG",
+            "rating": 2
+        },
+        {
+            "name": "Youngeun",
+            "age": 20,
+            "country": "ENG",
+            "rating": 3
+        },
+        {
+            "name": "Mashiro",
+            "age": 25,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Yeseo",
+            "age": 19,
+            "country": "KOR",
+            "rating": 4
+        }
+    ]
 }

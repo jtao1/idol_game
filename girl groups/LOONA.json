@@ -1,18 +1,80 @@
 {
-    "group name": "LOONA",
-    "group-type": "gg",
-    "ages": {
-        "HaSeul": 27,
-        "ViVi": 28,
-        "Yves": 27,
-        "JinSoul": 27,
-        "KimLip": 26,
-        "HeeJin": 24,
-        "HyunJin": 24,
-        "GoWon": 24,
-        "Choerry": 23,
-        "HyeJu": 23,
-        "YeoJin": 22,
-        "Chuu": 25
-    }
+    "group": {
+        "name": "LOONA",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "HaSeul",
+            "age": 27,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "ViVi",
+            "age": 28,
+            "country": "CHN",
+            "rating": 3
+        },
+        {
+            "name": "Yves",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "JinSoul",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "KimLip",
+            "age": 26,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "HeeJin",
+            "age": 24,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "HyunJin",
+            "age": 24,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "GoWon",
+            "age": 24,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Choerry",
+            "age": 23,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "HyeJu",
+            "age": 23,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "YeoJin",
+            "age": 22,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Chuu",
+            "age": 25,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

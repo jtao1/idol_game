@@ -1,15 +1,62 @@
 {
-    "group name": "TWICE",
-    "group-type": "gg",
-    "ages": {
-        "Jihyo": 28,
-        "Nayeon": 29,
-        "Jeongyeon": 28,
-        "Momo": 28,
-        "Sana": 28,
-        "Mina": 27,
-        "Dahyun": 26,
-        "Chaeyoung": 25,
-        "Tzuyu": 25
-    }
+    "group": {
+        "name": "TWICE",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Jihyo",
+            "age": 28,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Nayeon",
+            "age": 29,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Jeongyeon",
+            "age": 28,
+            "country": "KOR",
+            "rating": 1
+        },
+        {
+            "name": "Momo",
+            "age": 28,
+            "country": "JPN",
+            "rating": 7
+        },
+        {
+            "name": "Sana",
+            "age": 28,
+            "country": "JPN",
+            "rating": 6
+        },
+        {
+            "name": "Mina",
+            "age": 27,
+            "country": "JPN",
+            "rating": 6
+        },
+        {
+            "name": "Dahyun",
+            "age": 26,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Chaeyoung",
+            "age": 25,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Tzuyu",
+            "age": 25,
+            "country": "CHN",
+            "rating": 6
+        }
+    ]
 }

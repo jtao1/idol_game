@@ -1,12 +1,44 @@
 {
-    "group name": "LE SSERAFIM",
-    "group-type": "gg",
-    "ages": {
-        "Chaewon": 24,
-        "Sakura": 26,
-        "Yunjin": 23,
-        "Kazuha": 21,
-        "Eunchae": 18,
-        "Garam": 19
-    }
+    "group": {
+        "name": "LE SSERAFIM",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Chaewon",
+            "age": 24,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Sakura",
+            "age": 26,
+            "country": "JPN",
+            "rating": 6
+        },
+        {
+            "name": "Yunjin",
+            "age": 23,
+            "country": "ENG",
+            "rating": 6
+        },
+        {
+            "name": "Kazuha",
+            "age": 21,
+            "country": "JPN",
+            "rating": 6
+        },
+        {
+            "name": "Eunchae",
+            "age": 18,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Garam",
+            "age": 19,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }

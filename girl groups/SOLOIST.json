@@ -1,0 +1,50 @@
+{
+    "group": {
+        "name": "Soloist",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "IU",
+            "age": 31,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Taeyeon",
+            "age": 35,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Somi",
+            "age": 23,
+            "country": "ENG",
+            "rating": 6
+        },
+        {
+            "name": "ODD CHILD",
+            "age": 29,
+            "country": "KOR",
+            "rating": 1
+        },
+        {
+            "name": "BOL4",
+            "age": 29,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Kim Sejeong",
+            "age": 28,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "BIBI",
+            "age": 26,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
+}

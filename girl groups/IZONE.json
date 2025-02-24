@@ -1,18 +1,80 @@
 {
-    "group name": "IZONE",
-    "group-type": "gg",
-    "ages": {
-        "Eunbi": 29,
-        "Sakura": 26,
-        "Hyewon": 25,
-        "Yena": 25,
-        "Chaeyeon": 25,
-        "Chaewon": 24,
-        "Minju": 24,
-        "Nako": 23,
-        "Hitomi": 23,
-        "Yuri": 23,
-        "Yujin": 21,
-        "Wonyoung": 20
-    }
+    "group": {
+        "name": "IZONE",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Eunbi",
+            "age": 29,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Sakura",
+            "age": 26,
+            "country": "JPN",
+            "rating": 6
+        },
+        {
+            "name": "Hyewon",
+            "age": 25,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Yena",
+            "age": 25,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Chaeyeon",
+            "age": 25,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Chaewon",
+            "age": 24,
+            "country": "KOR",
+            "rating": 7
+        },
+        {
+            "name": "Minju",
+            "age": 24,
+            "country": "KOR",
+            "rating": 5
+        },
+        {
+            "name": "Nako",
+            "age": 23,
+            "country": "JPN",
+            "rating": 4
+        },
+        {
+            "name": "Hitomi",
+            "age": 23,
+            "country": "JPN",
+            "rating": 3
+        },
+        {
+            "name": "Yuri",
+            "age": 23,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Yujin",
+            "age": 21,
+            "country": "KOR",
+            "rating": 6
+        },
+        {
+            "name": "Wonyoung",
+            "age": 20,
+            "country": "KOR",
+            "rating": 7
+        }
+    ]
 }

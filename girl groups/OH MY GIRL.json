@@ -1,14 +1,56 @@
 {
-    "group name": "OH MY GIRL",
-    "group-type": "gg",
-    "ages": {
-        "Hyojung": 30,
-        "Mimi": 29,
-        "YooA": 29,
-        "Seunghee": 29,
-        "Yubin": 27,
-        "Arin": 25,
-        "JinE": 30,
-        "Jiho": 27
-    }
+    "group": {
+        "name": "OH MY GIRL",
+        "type": "gg"
+    },
+    "members": [
+        {
+            "name": "Hyojung",
+            "age": 30,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Mimi",
+            "age": 29,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "YooA",
+            "age": 29,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "Seunghee",
+            "age": 29,
+            "country": "KOR",
+            "rating": 2
+        },
+        {
+            "name": "Yubin",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Arin",
+            "age": 25,
+            "country": "KOR",
+            "rating": 4
+        },
+        {
+            "name": "JinE",
+            "age": 30,
+            "country": "KOR",
+            "rating": 3
+        },
+        {
+            "name": "Jiho",
+            "age": 27,
+            "country": "KOR",
+            "rating": 3
+        }
+    ]
 }
