@@ -8,55 +8,109 @@
             "name": "Yujin",
             "age": 28,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Xiaoting",
             "age": 25,
             "country": "Chinese",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Chaehyun",
             "age": 22,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Dayeon",
             "age": 21,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Hikaru",
             "age": 20,
             "country": "Japanese",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Bahiyyih",
             "age": 20,
             "country": "Korean-American",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Youngeun",
             "age": 20,
             "country": "Korean-American",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Mashiro",
             "age": 25,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yeseo",
             "age": 19,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 2
+            }
         }
     ]
 }

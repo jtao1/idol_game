@@ -8,73 +8,145 @@
             "name": "HaSeul",
             "age": 27,
             "country": "Korean",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": -1
+            }
         },
         {
             "name": "ViVi",
             "age": 28,
             "country": "Hongkongese",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yves",
             "age": 27,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 1
+            }
         },
         {
             "name": "JinSoul",
             "age": 27,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "KimLip",
             "age": 26,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": -1
+            }
         },
         {
             "name": "HeeJin",
             "age": 24,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "HyunJin",
             "age": 24,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 1,
+                "money_spent": -2
+            }
         },
         {
             "name": "GoWon",
             "age": 24,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Choerry",
             "age": 23,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "HyeJu",
             "age": 23,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "YeoJin",
             "age": 22,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Chuu",
             "age": 25,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

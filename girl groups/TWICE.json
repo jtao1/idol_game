@@ -8,55 +8,109 @@
             "name": "Jihyo",
             "age": 28,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Nayeon",
             "age": 29,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 2
+            }
         },
         {
             "name": "Jeongyeon",
             "age": 28,
             "country": "Korean",
-            "rating": 1
+            "rating": 1,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 2,
+                "times_bought": 2,
+                "money_spent": 0
+            }
         },
         {
             "name": "Momo",
             "age": 28,
             "country": "Japanese",
-            "rating": 7
+            "rating": 7,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 5
+            }
         },
         {
             "name": "Sana",
             "age": 28,
             "country": "Japanese",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Mina",
             "age": 27,
             "country": "Japanese (Japanese-American at birth)",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Dahyun",
             "age": 26,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 1
+            }
         },
         {
             "name": "Chaeyoung",
             "age": 25,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Tzuyu",
             "age": 25,
             "country": "Taiwanese",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

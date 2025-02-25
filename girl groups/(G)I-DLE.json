@@ -8,37 +8,73 @@
             "name": "Soyeon",
             "age": 26,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Miyeon",
             "age": 28,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 4
+            }
         },
         {
             "name": "Minnie",
             "age": 27,
             "country": "Thai",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 2
+            }
         },
         {
             "name": "Yuqi",
             "age": 25,
             "country": "Chinese",
-            "rating": 7
+            "rating": 7,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Shuhua",
             "age": 25,
             "country": "Taiwanese",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Soojin",
             "age": 26,
             "country": "Korean",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

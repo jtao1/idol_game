@@ -8,55 +8,109 @@
             "name": "Hayoung",
             "age": 27,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Jiwon",
             "age": 26,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Chaeyoung",
             "age": 24,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Nagyung",
             "age": 24,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Jiheon",
             "age": 21,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 1
+            }
         },
         {
             "name": "Saerom",
             "age": 28,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Gyuri",
             "age": 27,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         },
         {
             "name": "Jisun",
             "age": 26,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Seoyeon",
             "age": 25,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

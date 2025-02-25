@@ -8,49 +8,97 @@
             "name": "Keena",
             "age": 22,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": -1
+            }
         },
         {
             "name": "Moon",
             "age": 21,
             "country": "Korean-American",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yewon",
             "age": 19,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         },
         {
             "name": "Hana",
             "age": 18,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Athena",
             "age": 17,
             "country": "Swedish-Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Saena",
             "age": 20,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Sio",
             "age": 20,
             "country": "Korean",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Aran",
             "age": 20,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

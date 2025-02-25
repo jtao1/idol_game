@@ -8,145 +8,289 @@
             "name": "Yooyeon",
             "age": 24,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 2,
+                "money_spent": 0
+            }
         },
         {
             "name": "Mayu",
             "age": 22,
             "country": "Japanese",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "XinYu",
             "age": 22,
             "country": "Chinese",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "NakYoung",
             "age": 22,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         },
         {
             "name": "Sohyun",
             "age": 22,
             "country": "Korean",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Dahyun",
             "age": 22,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         },
         {
             "name": "Nientz\u2019u",
             "age": 21,
             "country": "Taiwanese",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Seoyeon",
             "age": 21,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Suhyeon",
             "age": 21,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Kotone",
             "age": 20,
             "country": "Japanese",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 1
+            }
         },
         {
             "name": "Chaeyeon",
             "age": 20,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yubin",
             "age": 20,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 1
+            }
         },
         {
             "name": "Jiwoo",
             "age": 19,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Kaede",
             "age": 19,
             "country": "Japanese",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Shion",
             "age": 18,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Lynn",
             "age": 18,
             "country": "Japanese",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Pirada",
             "age": 18,
             "country": "Thai",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Hyerin",
             "age": 17,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Chaewon",
             "age": 17,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Hayeon",
             "age": 17,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Soomin",
             "age": 17,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yeonji",
             "age": 17,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "JooBin",
             "age": 16,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "SeoAh",
             "age": 14,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

@@ -3,4 +3,14 @@ this doesnt work: x:in
 https://kprofiles.com/x-in-members-profile/
 
 
-rn only flat distribution of tiers but what if pyramid, inverted pyramid, and hour glass
+TODO list:
+
+idol editions, perks
+description of all game actions in every game file
+
+possible additions:
+
+group rerolling for opponent after they outbid for an idol
+searching up idol stats without having to type in group
+searching up stats without any names automatically pulls stats for idol of current turn
+removing certain inputs if money/roster space is lacking

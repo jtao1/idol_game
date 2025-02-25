@@ -8,31 +8,61 @@
             "name": "Minji",
             "age": 20,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 1
+            }
         },
         {
             "name": "Hanni",
             "age": 20,
             "country": "Vietnamese-Australian",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Danielle",
             "age": 19,
             "country": "Korean-Australian",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Haerin",
             "age": 18,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Hyein",
             "age": 16,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         }
     ]
 }

@@ -8,25 +8,49 @@
             "name": "Julie",
             "age": 24,
             "country": "American",
-            "rating": 8
+            "rating": 8,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Natty",
             "age": 22,
             "country": "Thai",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Belle",
             "age": 20,
             "country": "Korean-American",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 3,
+                "times_rerolled": 1,
+                "times_bought": 1,
+                "money_spent": 1
+            }
         },
         {
             "name": "Haneul",
             "age": 19,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

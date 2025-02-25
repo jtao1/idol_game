@@ -16,6 +16,10 @@ class Idol: # class to represent an idol
         1: ["\033[38;2;149;150;153m", "Dychas"], 
         0: ["\033[0m", "Unrated"] 
     }
+    c_good = "\033[38;2;133;187;101m"
+    c_bad = "\033[38;2;224;102;102m"
+    c_info = "\033[38;2;245;255;0m"
+    c_reset = "\033[0m"
 
     def __init__(self, name, group, age, rating, country): # constructor
         self.name = name
@@ -23,18 +27,24 @@ class Idol: # class to represent an idol
         self.age = age
         self.rating = rating
         self.country = country
-        self.price = None
+        self.stats = {
+            "price": None,
+            "reroll": 0,
+            "gr": False,
+            "dr": False,
+            "switch": False,
+            "letter": False,
+            "ult": False
+        }
         self.protected = False # group rerolls protect idols
 
     def to_string(self): # string representation
-        string = ''
+        string = f'{self.name} | {self.group}'
         if self.age < 18:
-            string = f'{self.name} (M) | {self.group}'
-        else:
-            string = f'{self.name} | {self.group}'
+            string = string[:string.index('|')] + '(M) ' + string[string.index('|'):]
         if self.protected:
-            string = "(PR) " + string
-        return f'{Idol.RATINGS[self.rating][0]}{string}{Idol.RATINGS[0][0]}'
+            string = string[:string.index('|')] + '(PR) ' + string[string.index('|'):]
+        return f'{Idol.RATINGS[self.rating][0]}{string}{Idol.c_reset}'
     
     def equals(self, compare: "Idol") -> bool: # custom equals command
         return self.name == compare.name and self.group == compare.group
@@ -45,12 +55,53 @@ class Idol: # class to represent an idol
         else:
             return self.rating - 3
         
-    def idol_stats(self): # comamnd to print out stats/information
-        print(f'Stats for {Idol.RATINGS[self.rating][0]}{self.name}:{Idol.RATINGS[0][0]}')
-        print(f'Group: {self.group}')
-        print(f'Age: {self.age}')
-        print(f'Nationality: {self.country}')
-        print(f'Rating: {Idol.RATINGS[self.rating][0]}{Idol.RATINGS[self.rating][1]}{Idol.RATINGS[0][0]}')
+    def idol_stats(self): # comamnd to print out stats/information for an idol
+        groups = self.group.upper().split('/')
+        file_path = f'./girl groups/{groups[0]}.json'
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+
+            for member in data["members"]:
+                if self.name == member["name"]:
+                    stats = member["stats"]
+
+        game_counter = [f for f in os.listdir('game files') if f.startswith('game_') and f.endswith(".txt")]
+        game_count = len(game_counter) # retrieve total amount of games
+
+        # average price of idol within games they are bought
+        avg_price = round(stats["money_spent"] / stats["times_bought"], 2) if stats["times_bought"] else 'N/A'
+        # reroll percentage per game they appear in
+        reroll_rate = stats["times_rerolled"] / stats["total_games"] * 100 if stats["total_games"] else 'N/A'
+        # percentage of total games that the idol appears in some form
+        game_presence = stats["total_games"] / game_count * 100 if game_count else 0
+
+        if avg_price != 'N/A':
+            if avg_price >= 0:
+                avg_price = f'{Idol.c_good}${avg_price:.2f}'
+            else:
+                avg_price = f'{Idol.c_bad}${avg_price:.2f}'
+
+        if reroll_rate != 'N/A':
+            if reroll_rate >= 50:
+                reroll_rate = f'{Idol.c_bad}{reroll_rate:.1f}%'
+            else:
+                reroll_rate = f'{Idol.c_good}{reroll_rate:.1f}%'
+
+        string = f"""
+------------------------------------------
+Info for {Idol.RATINGS[self.rating][0]}{self.name}{Idol.c_reset}
+Group: {Idol.c_info}{self.group}{Idol.c_reset}
+Age: {Idol.c_info}{self.age}{Idol.c_reset}
+Nationality: {Idol.c_info}{self.country}{Idol.c_reset}
+Rating: {Idol.RATINGS[self.rating][0]}{Idol.RATINGS[self.rating][1]}{Idol.c_reset}
+------------------------------------------
+Stats for {Idol.RATINGS[self.rating][0]}{self.name}{Idol.c_reset}
+Average Price: {avg_price}{Idol.c_reset}
+Reroll Rate: {reroll_rate}{Idol.c_reset}
+Game Presence: {Idol.c_info}{game_presence:.1f}%{Idol.c_reset}
+------------------------------------------
+        """.strip()
+        print(string)
 
 # Moves all group files to a different directory
 # old - Old directory of all group files
@@ -188,12 +239,3 @@ def manual_game():
             print("\n".join([idol.to_string() for idol in res]))
 
 # write_all_idols(False, 1, "all female idols.txt")
-
-# print(f'{Idol.RATINGS[8][0]}Julie')
-# print(f'{Idol.RATINGS[7][0]}Nana')
-# print(f'{Idol.RATINGS[6][0]}Sakura')
-# print(f'{Idol.RATINGS[5][0]}Chaeyoung')
-# print(f'{Idol.RATINGS[4][0]}Kotoko')
-# print(f'{Idol.RATINGS[3][0]}Sieun')
-# print(f'{Idol.RATINGS[2][0]}Mimimeister')
-# print(f'{Idol.RATINGS[1][0]}Hwasa')

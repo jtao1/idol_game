@@ -8,43 +8,85 @@
             "name": "Ruka",
             "age": 22,
             "country": "Japanese",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Pharita",
             "age": 19,
             "country": "Thai",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Asa",
             "age": 18,
             "country": "Japanese",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         },
         {
             "name": "Ahyeon",
             "age": 17,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Rami",
             "age": 17,
             "country": "Korean",
-            "rating": 5
+            "rating": 5,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Rora",
             "age": 16,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Chiquita",
             "age": 16,
             "country": "Thai",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         }
     ]
 }

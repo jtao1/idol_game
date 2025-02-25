@@ -54,7 +54,6 @@ def get_ages(soup: BeautifulSoup) -> dict:
         nationalities = soup.find_all('span', string=lambda text: text and text.strip() in ["Nationality:"])
 
     print(group + "-------")
-    print(len(nationalities))
 
     if group == "tripleS":
         names = soup.find_all('span', string=lambda text: text and text.strip() in ["Birth Name:", "Birth Name (Taiwanese):"])
@@ -92,7 +91,6 @@ def get_ages(soup: BeautifulSoup) -> dict:
         # else:
         #     nationality = "KOR"
 
-        print(nationality)
         if i == 3 and group == "NMIXX":
             bday = "December 28th, 2004"
             real_name = "Bae"
@@ -155,6 +153,7 @@ def get_group_data(votes: bool):
                         with open(file_name, "r") as f:
                             exist = json.load(f)
                     ratings = {member["name"]: member["rating"] for member in exist["members"]}
+                    stats = {member["name"]: member["stats"] for member in exist["members"]}
 
                     json_text = {
                         "group": {
@@ -168,10 +167,13 @@ def get_group_data(votes: bool):
                             "name": name,
                             "age": ages.get(name, None),
                             "country": nations.get(name, None),
-                            "rating": ratings.get(name, 3)
-                            # "stats": {
-                            #     "stat": 2
-                            # }
+                            "rating": ratings.get(name, 3),
+                            "stats": {
+                                "total_games": stats.get(name, {}).get("total_games", 0),
+                                "times_rerolled": stats.get(name, {}).get("times_rerolled", 0),
+                                "times_bought": stats.get(name, {}).get("times_bought", 0),
+                                "money_spent": stats.get(name, {}).get("money_spent", 0)
+                            }
                         }
                         json_text["members"].append(member)
                 else:

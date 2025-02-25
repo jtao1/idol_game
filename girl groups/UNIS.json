@@ -8,49 +8,97 @@
             "name": "Hyeonju",
             "age": 23,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Nana",
             "age": 17,
             "country": "Japanese",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         },
         {
             "name": "Gehlee",
             "age": 17,
             "country": "Filipina",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Kotoko",
             "age": 17,
             "country": "Japanese",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yunha",
             "age": 15,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Elisia",
             "age": 15,
             "country": "Filipina",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yoona",
             "age": 15,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Seowon",
             "age": 14,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         }
     ]
 }

@@ -8,25 +8,49 @@
             "name": "Jisoo",
             "age": 30,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Jennie",
             "age": 29,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 4
+            }
         },
         {
             "name": "Rose",
             "age": 28,
             "country": "Australian",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 1,
+                "money_spent": 4
+            }
         },
         {
             "name": "Lisa",
             "age": 27,
             "country": "Thai",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 2,
+                "money_spent": 5
+            }
         }
     ]
 }

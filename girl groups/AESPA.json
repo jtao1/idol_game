@@ -8,25 +8,49 @@
             "name": "Karina",
             "age": 24,
             "country": "Korean",
-            "rating": 8
+            "rating": 8,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Giselle",
             "age": 24,
             "country": "Japanese-Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 3,
+                "times_rerolled": 1,
+                "times_bought": 1,
+                "money_spent": 4
+            }
         },
         {
             "name": "Winter",
             "age": 24,
             "country": "Korean",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "NingNing",
             "age": 22,
             "country": "Chinese",
-            "rating": 6
+            "rating": 6,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         }
     ]
 }

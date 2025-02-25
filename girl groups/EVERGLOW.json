@@ -8,37 +8,73 @@
             "name": "Sihyeon",
             "age": 25,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "E:U",
             "age": 26,
             "country": "Korean",
-            "rating": 3
+            "rating": 3,
+            "stats": {
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Mia",
             "age": 25,
             "country": "Korean",
-            "rating": 1
+            "rating": 1,
+            "stats": {
+                "total_games": 4,
+                "times_rerolled": 4,
+                "times_bought": 4,
+                "money_spent": -5
+            }
         },
         {
             "name": "Onda",
             "age": 24,
             "country": "Korean",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 0,
+                "times_rerolled": 0,
+                "times_bought": 0,
+                "money_spent": 0
+            }
         },
         {
             "name": "Aisha",
             "age": 24,
             "country": "Korean",
-            "rating": 2
+            "rating": 2,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 1,
+                "times_bought": 1,
+                "money_spent": 0
+            }
         },
         {
             "name": "Yiren",
             "age": 24,
             "country": "Chinese",
-            "rating": 4
+            "rating": 4,
+            "stats": {
+                "total_games": 2,
+                "times_rerolled": 0,
+                "times_bought": 2,
+                "money_spent": 0
+            }
         }
     ]
 }
