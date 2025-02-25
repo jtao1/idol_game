@@ -46,23 +46,20 @@ class History:
                     marker += ' (ULT)'
                 if idol.stats["switch"]:
                     marker += ' (SW)'
+                if idol.stats["stolen"]:
+                    marker += ' (STOLEN)'
                 self.overview.append(f'{marker} - {self.remove_ansi(idol.to_string())}')
             self.overview.append('-' * 30) # divider
         
         eval_idols(game.p1)
         eval_idols(game.p2)
 
-    def print_all_idols(self):
-        for idol in self.all_idols:
-            print(f'{idol.to_string()} | Price: {idol.stats["price"]} | Reroll: {idol.stats["reroll"]}')
-
-    def write_file(self, game):
+    def write_history_file(self, game):
         existing_files = [f for f in os.listdir(self.folder_name) if f.startswith('game_') and f.endswith(".txt")]
         game_number = len(existing_files) + 1
         filename = f'game_{game_number}.txt'
         path = os.path.join(self.folder_name, filename)
 
-        # self.print_all_idols()
         self.write_idol_stats()
         self.create_overview(game)
 
@@ -71,12 +68,17 @@ class History:
             f.writelines('\n'.join(self.history))
         print(f'Wrote history of game #{game_number} to {filename}')
 
+    def print_idol(self, idol: Idol):
+        print(f'{idol.to_string()} | Price: {idol.stats["price"]} | Reroll: {idol.stats["reroll"]}')
+
     def write_idol_stats(self):
         for idol in self.all_idols:
+            self.print_idol(idol)
             groups = idol.group.upper().split('/') # for IZONE edge cases
             for group in groups:
                 file_path = f'./girl groups/{group}.json'
                 with open(file_path, 'r') as f:
+                    print(file_path)
                     data = json.load(f)
 
                     for member in data["members"]:
@@ -87,9 +89,8 @@ class History:
                                 stats["times_bought"] += 1 # total games bought by bidding
                                 stats["money_spent"] += idol.stats["price"] # total money spent on bidding
                             stats["times_rerolled"] += idol.stats["reroll"]
-
-            with open(file_path, 'w') as f:
-                json.dump(data, f, indent=4)
+                with open(file_path, 'w') as f:
+                    json.dump(data, f, indent=4)
             
 def reset_stats(): # function to reset all idol stats
     files = glob.glob(os.path.join('./game files', "*"))

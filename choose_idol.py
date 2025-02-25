@@ -33,6 +33,7 @@ class Idol: # class to represent an idol
             "gr": False,
             "dr": False,
             "switch": False,
+            "stolen": False,
             "letter": False,
             "ult": False
         }
@@ -178,7 +179,13 @@ def random_idol(group: str, times: int, duplicate: list[Idol]) -> list[Idol]:
     files = os.listdir(directory)
     results = []
     while len(results) < times:
-        file = (group + ".json") if group else random.choice(files)
+        if group: 
+            if '/' in group: # IZONE edge case
+                file = random.choice(group.split('/')) + '.json'
+            else: # group reroll
+                file = group + '.json'
+        else: # random idol
+            file = random.choice(files)
         with open(f'./girl groups/{file}', 'r') as f:
             data = json.load(f)
             rand = randint(0, len(data["members"])-1)
@@ -188,6 +195,7 @@ def random_idol(group: str, times: int, duplicate: list[Idol]) -> list[Idol]:
             rating = data["members"][rand]["rating"]
             country = data["members"][rand]["country"]
             idol = Idol(name, group_name, age, rating, country)
+            multigroup(idol)
             if not duplicate or not any(idol.equals(compare) for compare in duplicate):
                 if not any(idol.equals(comp) for comp in results):
                     results.append(idol)
