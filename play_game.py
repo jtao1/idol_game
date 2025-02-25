@@ -22,9 +22,9 @@ class Player: # class to reprsent a player
 class Game:
     CONST = {
         "r": 2, # reroll price
-        "gr": 1, # group reroll price
+        "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
-        "size": 2, # max roster size
+        "size": 5, # max roster size
         "div": 45 # '-' divider width
     }
 
@@ -233,14 +233,14 @@ class Game:
         player.synergies.update({syn for syn, count in counts.items() if count >= 3})
         new_syn = player.synergies - old_syn
 
-        foreigners = 0 # give money according to amount of foreign idols
-        for idol in player.roster:
-            if idol.country != "Korean":
-                foreigners += 1
-        if foreigners > 1 and foreigners not in player.synergies:
-            player.money += 1
-            player.synergies.add(foreigners)
-            print(f'{player.name}{Game.c_reset} has {foreigners} foreigners! They have gained {Game.c_money}${foreigners - 1}{Game.c_reset} in total!')
+        # foreigners = 0 # give money according to amount of foreign idols
+        # for idol in player.roster:
+        #     if idol.country != "Korean":
+        #         foreigners += 1
+        # if foreigners > 1 and foreigners not in player.synergies:
+        #     player.money += 1
+        #     player.synergies.add(foreigners)
+        #     print(f'{player.name}{Game.c_reset} has {foreigners} foreigners! They have gained {Game.c_money}${foreigners - 1}{Game.c_reset} in total!')
 
         if new_syn: # give synergy effects
             for syn in new_syn:
@@ -264,14 +264,15 @@ class Game:
                     print(f'{player.name}{Game.c_reset} hit a letter synergy for {Game.c_money}{syn}{Game.c_reset}! They get to add/replace an idol.')
                     ind = None
                     if len(player.roster) >= Game.CONST["size"]: # player roster is full, must replace instead of adding
-                        ind = self.replace_idol(player)[0]
+                        removed = self.replace_idol(player)
+                        removed[1].stats["reroll"] += 1 # add to reroll stat of removed idol
                     print(f'Choose an idol whose name starts with a {Game.c_money}{syn.upper()}{Game.c_reset}: (name) (group)')
 
                     while True:
                         ans = self.input_command("idol", player)
                         if isinstance(ans, Idol) and ans.name.lower().startswith(syn.lower()):
                             self.add_history(ans, "letter", None)
-                            self.add_idol(player, ans, ind)
+                            self.add_idol(player, ans, removed[0])
                             break
                         else:
                             print("Invalid idol!")
@@ -285,7 +286,6 @@ class Game:
             elif all(idol.age < 18 for idol in player.roster): # full roster of minors
                 self.exodia = "minor exodia!"
             for group in groups:
-                print(group)
                 if all(group in idol.group for idol in player.roster): # full roster of same group
                     self.exodia = f'group exodia! {Game.c_money}({group}){Game.c_reset}'
 
@@ -362,6 +362,7 @@ class Game:
                         dupes.append(idol)
             self.switch_turns()
         while True:
+            time.sleep(1) # suspense
             cur_idol = choose.random_idol(cur_idol.group, 1, dupes)[0]
             cur_idol.protected = True # idols from group rerolls are protected
             if self.turn.money >= Game.CONST["gr"]: # group reroll again
@@ -385,6 +386,7 @@ class Game:
                     self.turn.money -= Game.CONST["dr"]
                     removed = self.replace_idol(self.turn) # index and object of removed idol
                     removed[1].stats["reroll"] += 1 # add 1 to reroll stat
+                    time.sleep(1) # suspense
                     choices = choose.random_idol(None, 3, self.p1.roster + self.p2.roster) # deluxe reroll cannot roll duplicates
                     print("Pick an idol to add to your roster:")
                     for i, choice in enumerate(choices, start=1):

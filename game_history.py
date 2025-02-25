@@ -73,12 +73,11 @@ class History:
 
     def write_idol_stats(self):
         for idol in self.all_idols:
-            self.print_idol(idol)
+            # self.print_idol(idol)
             groups = idol.group.upper().split('/') # for IZONE edge cases
             for group in groups:
                 file_path = f'./girl groups/{group}.json'
                 with open(file_path, 'r') as f:
-                    print(file_path)
                     data = json.load(f)
 
                     for member in data["members"]:
@@ -116,3 +115,5 @@ def reset_stats(): # function to reset all idol stats
         with open(file_name, 'w') as f: # rewrite resetted stats to file
             print(file_name)
             json.dump(data, f, indent=4)
+
+# reset_stats()
