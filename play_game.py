@@ -531,10 +531,10 @@ class Game:
                     idol.stats["price"] = price
                 break
         
+        if price is not None:
+            cur_idol.stats[stat] = price
         if stat == "reroll":
             cur_idol.stats[stat] += 1
-        elif stat == "price":
-            cur_idol.stats[stat] = price
         else:
             cur_idol.stats[stat] = True
         if stat == "ult":
