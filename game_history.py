@@ -28,7 +28,7 @@ class History:
             self.overview.append(f'Score: EXODIA ({game.exodia})')
         self.overview.append('-' * 30) # divider
 
-        def eval_idols(player):
+        def eval_idols(player): # evaluates each idol in each player's roster for the overview
             self.overview.append(f'{self.remove_ansi(player.name)}: ${player.money}') # p1 info & roster
             self.overview.append(f'Ult: {self.remove_ansi(player.ult.to_string())}\n')
             for idol in player.roster:
@@ -53,8 +53,9 @@ class History:
         
         eval_idols(game.p1)
         eval_idols(game.p2)
+        # end of overview creation function
 
-    def write_history_file(self, game):
+    def write_history_file(self, game): # writes the history file of the game
         existing_files = [f for f in os.listdir(self.folder_name) if f.startswith('game_') and f.endswith(".txt")]
         game_number = len(existing_files) + 1
         filename = f'game_{game_number}.txt'
@@ -71,7 +72,7 @@ class History:
     def print_idol(self, idol: Idol):
         print(f'{idol.to_string()} | Price: {idol.stats["price"]} | Reroll: {idol.stats["reroll"]}')
 
-    def write_idol_stats(self):
+    def write_idol_stats(self): # uploads idol stats to json database
         for idol in self.all_idols:
             # self.print_idol(idol)
             groups = idol.group.upper().split('/') # for IZONE edge cases
@@ -91,13 +92,12 @@ class History:
                 with open(file_path, 'w') as f:
                     json.dump(data, f, indent=4)
             
-def reset_stats(): # function to reset all idol stats
+def reset_stats(): # resets all idol stats
     files = glob.glob(os.path.join('./game files', "*"))
 
     for file in files:
         if os.path.isfile(file):
             os.remove(file)
-            print(f'Deleted {file}')
 
     files = os.listdir('./girl groups')
     for file in files:
@@ -113,7 +113,8 @@ def reset_stats(): # function to reset all idol stats
                 stats["money_spent"] = 0
 
         with open(file_name, 'w') as f: # rewrite resetted stats to file
-            print(file_name)
             json.dump(data, f, indent=4)
+
+    print("All stats and game history erased!")
 
 # reset_stats()

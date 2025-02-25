@@ -1,5 +1,6 @@
 import choose_idol as choose
 from choose_idol import Idol
+import game_history
 from game_history import History
 
 import os
@@ -123,6 +124,8 @@ class Game:
             # UTILITY COMMANDS - Available at any point in the game, do not affect game state
             if ans in ['e', 'exit']: # command to exit the game
                 sys.exit()
+            elif ans == 'reset stats': # resets all idol stats and removes all game history files
+                game_history.reset_stats()
             elif ans in ['c', 'clear']: # command to clear terminal
                 os.system('cls')
             elif ans in ['h', 'help']: # TODO: create total command list
@@ -137,7 +140,7 @@ class Game:
                     print(f'{self.p2.name}\'s{Game.c_reset} ultimate bias: {self.p2.ult.to_string()}')
                 else:
                     print("Not all ultimate biases chosen yet!")
-            elif ans.startswith("stats "): # command to search up stats for a specific idol
+            elif ans.startswith("st ") or ans.startswith("stats "): # command to search up stats for a specific idol
                 answer = ans.split(" ", 2)
                 if len(answer) >= 3:
                     search = choose.find_idol(answer[1], answer[2])
@@ -308,9 +311,9 @@ class Game:
             if cur_idol.equals(idol):
                 if not idol.protected: # only steal if idol is not protected
                     print(f'{cur_idol.to_string()} is already in {self.opponent.name}\'s{Game.c_reset} roster, so you steal them to your own roster!')
+                    self.add_history(idol, "stolen", None)
+                    self.add_idol(self.turn, idol, None)
                     self.opponent.roster.remove(idol)
-                    self.add_history(cur_idol, "stolen", None)
-                    self.add_idol(self.turn, cur_idol, None)
                     return 1
                 else: # idol is protected, cannot be stolen
                     print(f'{cur_idol.to_string()} is already in {self.opponent.name}\'s{Game.c_reset} roster, but is protected and cannot be stolen!')
@@ -362,7 +365,9 @@ class Game:
                         dupes.append(idol)
             self.switch_turns()
         while True:
+            print("Rolling idol...")
             time.sleep(1) # suspense
+            print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
             cur_idol = choose.random_idol(cur_idol.group, 1, dupes)[0]
             cur_idol.protected = True # idols from group rerolls are protected
             if self.turn.money >= Game.CONST["gr"]: # group reroll again
@@ -374,7 +379,7 @@ class Game:
                     dupes.append(cur_idol)
                     continue
             break
-        self.add_history(cur_idol, "gr", None)
+        self.add_history(cur_idol, "gr", Game.CONST["gr"])
         self.add_idol(self.turn, cur_idol, None)
 
     def deluxe_reroll(self): # function for deluxe reroll
@@ -386,7 +391,9 @@ class Game:
                     self.turn.money -= Game.CONST["dr"]
                     removed = self.replace_idol(self.turn) # index and object of removed idol
                     removed[1].stats["reroll"] += 1 # add 1 to reroll stat
+                    print("Rolling idol...")
                     time.sleep(1) # suspense
+                    print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
                     choices = choose.random_idol(None, 3, self.p1.roster + self.p2.roster) # deluxe reroll cannot roll duplicates
                     print("Pick an idol to add to your roster:")
                     for i, choice in enumerate(choices, start=1):
@@ -453,7 +460,7 @@ class Game:
             ult_player = self.p1
         elif idol.equals(self.p2.ult):
             ult_player = self.p2
-        if ult_player and ult_player.money >= ult_value and all(not idol.equals(target) for target in ult_player.roster):
+        if ult_player and ult_player.money >= ult_value and len(ult_player.roster) < Game.CONST["size"]:
             print(f'{idol.to_string()} is {ult_player.name}\'s{Game.c_reset} ultimate bias! Would you like to instantly add them to your roster for {Game.c_money}${ult_value}{Game.c_reset}?')
             ans = self.input_command("yon", ult_player)
             if ans == 'y':
@@ -471,7 +478,9 @@ class Game:
         print(f'{"-" * (Game.CONST["div"] * 2 + 2)}\n{self.turn.name}\'s{Game.c_reset} Turn ')
         dupes = []
         while True:
-            time.sleep(1) # add a bit of suspense before turn idol is rolled
+            print("Rolling idol...")
+            time.sleep(1) # suspense
+            print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
             cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes)[0] # roll idol
             print(cur_idol.to_string())
 
@@ -512,10 +521,10 @@ class Game:
         for idol in self.history.all_idols: # check if cur_idol already in list
             if cur_idol.equals(idol):
                 duplicate = True
+                if price is not None:
+                    idol.stats[stat] = price
                 if stat == "reroll":
                     idol.stats[stat] += 1
-                elif stat == "price":
-                    idol.stats[stat] = price
                 else:
                     idol.stats[stat] = True
                 if stat == "ult":

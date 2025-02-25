@@ -10,10 +10,10 @@
             "country": "Korean",
             "rating": 8,
             "stats": {
-                "total_games": 0,
+                "total_games": 2,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 1,
+                "money_spent": 6
             }
         },
         {
@@ -22,7 +22,7 @@
             "country": "Japanese-Korean",
             "rating": 6,
             "stats": {
-                "total_games": 0,
+                "total_games": 1,
                 "times_rerolled": 0,
                 "times_bought": 0,
                 "money_spent": 0
@@ -46,10 +46,10 @@
             "country": "Chinese",
             "rating": 6,
             "stats": {
-                "total_games": 0,
+                "total_games": 2,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 1,
+                "money_spent": 2
             }
         }
     ]
