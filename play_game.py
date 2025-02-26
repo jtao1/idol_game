@@ -26,8 +26,9 @@ class Game:
         "r": 2, # reroll price
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
-        "size": 1, # max roster size
-        "div": 45 # '-' divider width
+        "size": 5, # max roster size
+        "div": 45, # '-' divider width
+        "testing": False # whether game is being played in a test state or not
     }
 
     c_reset = "\033[0m" # reset color (white)
@@ -447,11 +448,11 @@ class Game:
         print(f'\n{self.format_text(final_score, (Game.CONST["div"]*2+2))}')
 
     def final_screen(self): # closes the game, uploads data
-        # print(self.winner.name)
         if "Jason" in self.winner.name :
-            on_win(True)
+            on_win(False)
         self.show_game_info()
-        self.history.write_history_file(self) # writes game history to a file
+        if not Game.CONST["testing"]:
+            self.history.write_history_file(self) # writes game history to a file
         sys.exit()
 
     def ultimate_bias(self, idol: Idol) -> bool: # handle actions when ultimate bias is rolled
@@ -477,6 +478,7 @@ class Game:
             self.switch_turns()
 
         print(f'{"-" * (Game.CONST["div"] * 2 + 2)}\n{self.turn.name}\'s{Game.c_reset} Turn ')
+        self.show_game_info()
         dupes = []
         while True:
             print("Rolling idol...")

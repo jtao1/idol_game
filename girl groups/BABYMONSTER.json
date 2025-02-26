@@ -10,9 +10,9 @@
             "country": "Japanese",
             "rating": 5,
             "stats": {
-                "total_games": 3,
+                "total_games": 4,
                 "times_rerolled": 0,
-                "times_bought": 2,
+                "times_bought": 3,
                 "money_spent": 2
             }
         },
@@ -22,10 +22,10 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 1,
+                "total_games": 3,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 2,
+                "money_spent": 6
             }
         },
         {
@@ -34,10 +34,10 @@
             "country": "Japanese",
             "rating": 5,
             "stats": {
-                "total_games": 4,
-                "times_rerolled": 0,
-                "times_bought": 4,
-                "money_spent": 6
+                "total_games": 7,
+                "times_rerolled": 1,
+                "times_bought": 7,
+                "money_spent": 8
             }
         },
         {
@@ -46,10 +46,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 0,
+                "total_games": 4,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 2,
+                "money_spent": 7
             }
         },
         {
@@ -58,10 +58,10 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 0,
+                "total_games": 2,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 1,
+                "money_spent": 2
             }
         },
         {
@@ -70,10 +70,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 0,
+                "total_games": 4,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 3,
+                "money_spent": 3
             }
         },
         {
@@ -82,9 +82,9 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 2,
+                "total_games": 4,
                 "times_rerolled": 0,
-                "times_bought": 2,
+                "times_bought": 3,
                 "money_spent": 7
             }
         }

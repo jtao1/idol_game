@@ -5,14 +5,15 @@ Potential: cignature, X:IN
 
 TODO list:
 
+search up idol stats without typing group
+"help" command (essentially a command list)
+add winrate stat to idols (create function to evaluate game history)
+flush synergy
 idol editions, perks
 description of all game actions in every game file
-"help" command (essentially a command list)
 watch out for bugs with izone members
 
 possible additions:
 
-searching up idol stats without having to type in group
-searching up stats without any names automatically pulls stats for idol of current turn
 removing certain inputs if money/roster space is insufficient
 group rerolling for opponent after they outbid for an idol
