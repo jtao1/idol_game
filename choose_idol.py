@@ -146,7 +146,7 @@ def write_all_idols(sort: bool, type: bool, name: str):
     print(f'Wrote all idols from "{search}" to a single file')
 
 def multigroup(idol: Idol): # function to handle idols with multiple groups (mainly IZONE)
-        if idol.name in ["Sakura", "Chaewon"]: # IZONE edge cases
+        if any(sub in idol.to_string() for sub in ["Sakura", "Chaewon | LE SSERAFIM", "Chaewon | IZONE"]):
             idol.group = "LE SSERAFIM/IZONE"
         elif any(sub in idol.to_string() for sub in ["Wonyoung", "Yujin | IVE", "Yujin | IZONE"]):
             idol.group = "IVE/IZONE"

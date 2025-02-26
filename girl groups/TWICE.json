@@ -106,10 +106,10 @@
             "country": "Taiwanese",
             "rating": 6,
             "stats": {
-                "total_games": 0,
+                "total_games": 1,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 1,
+                "money_spent": 1
             }
         }
     ]

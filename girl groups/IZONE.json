@@ -70,10 +70,10 @@
             "country": "Korean",
             "rating": 7,
             "stats": {
-                "total_games": 0,
+                "total_games": 1,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 1,
+                "money_spent": 1
             }
         },
         {
@@ -106,10 +106,10 @@
             "country": "Japanese",
             "rating": 3,
             "stats": {
-                "total_games": 0,
+                "total_games": 2,
                 "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "times_bought": 2,
+                "money_spent": 2
             }
         },
         {

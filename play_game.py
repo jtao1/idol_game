@@ -270,13 +270,14 @@ class Game:
                     if len(player.roster) >= Game.CONST["size"]: # player roster is full, must replace instead of adding
                         removed = self.replace_idol(player)
                         removed[1].stats["reroll"] += 1 # add to reroll stat of removed idol
+                        ind = removed[0]
                     print(f'Choose an idol whose name starts with a {Game.c_money}{syn.upper()}{Game.c_reset}: (name) (group)')
 
                     while True:
                         ans = self.input_command("idol", player)
                         if isinstance(ans, Idol) and ans.name.lower().startswith(syn.lower()):
                             self.add_history(ans, "letter", None)
-                            self.add_idol(player, ans, removed[0])
+                            self.add_idol(player, ans, ind)
                             break
                         else:
                             print("Invalid idol!")
@@ -331,14 +332,14 @@ class Game:
                         break
                     if bid >= 0: # opponent bids to buy
                         if counter_bid > bid:
-                            self.add_history(cur_idol, "price", counter_bid)
+                            self.add_history(cur_idol, None, counter_bid)
                             self.add_idol(self.opponent, cur_idol, None)
                         else: 
                             print("Bid must be more than your opponent ",)
                             continue
                     else: # opponent bids to give
                         if counter_bid < bid:
-                            self.add_history(cur_idol, "price", counter_bid)
+                            self.add_history(cur_idol, None, counter_bid)
                             self.add_idol(self.turn, cur_idol, None)
                         else: 
                             print("Bid must be more than your opponent ",)
@@ -351,7 +352,7 @@ class Game:
                 self.add_idol(self.turn, cur_idol, None)
             else:
                 self.add_idol(self.opponent, cur_idol, None)
-            self.add_history(cur_idol, "price", bid)
+            self.add_history(cur_idol, None, bid)
             self.turn.money -= abs(bid)
 
     # TODO: Add group rerolling for opponent after they outbid for the idol
@@ -445,11 +446,6 @@ class Game:
         if self.winner.name == "Jason":
             stupid.on_win()
         print(f'\n{self.format_text(final_score, (Game.CONST["div"]*2+2))}')
-    
-    def end_game(self): # performs all end game processes
-        self.deluxe_reroll()
-        self.combat()
-        self.final_screen()
 
     def final_screen(self): # closes the game, uploads data
         self.show_game_info()
@@ -522,35 +518,38 @@ class Game:
     def add_history(self, cur_idol: Idol, stat: str, price: int): # adds an idol to the history list in History object
         duplicate = False
         for idol in self.history.all_idols: # check if cur_idol already in list
-            if cur_idol.equals(idol):
+            if cur_idol.equals(idol): # edit the info of the idol in the list instead of appending a new one
                 duplicate = True
                 if price is not None:
-                    idol.stats[stat] = price
+                    idol.stats["price"] = price
                 if stat == "reroll":
                     idol.stats[stat] += 1
-                else:
+                elif stat:
                     idol.stats[stat] = True
-                if stat == "ult":
-                    idol.stats["price"] = price
                 break
         
-        if price is not None:
-            cur_idol.stats[stat] = price
+        if price is not None: # always edit the new idol object passed in for accurate data when creating overview
+            cur_idol.stats["price"] = price
         if stat == "reroll":
             cur_idol.stats[stat] += 1
-        else:
+        elif stat:
             cur_idol.stats[stat] = True
-        if stat == "ult":
-            cur_idol.stats["price"] = price
 
-        if not duplicate:
+        if not duplicate: # if idol was not already in idol history list
             self.history.all_idols.append(cur_idol) # add idol to list
 
     def play_game(self): # function that runs entire game
+        # start game
         self.game_start()
+
+        # playing out all turns until rosters are full
         while len(self.p1.roster) < Game.CONST["size"] or len(self.p2.roster) < Game.CONST["size"]:
             self.play_turn()
-        self.end_game()
+        
+        # end game processes
+        self.deluxe_reroll()
+        self.combat()
+        self.final_screen()
 
 new_game = Game()
 new_game.play_game()
