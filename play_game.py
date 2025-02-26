@@ -444,7 +444,7 @@ class Game:
             self.winner = self.p2
         final_score = f'{self.winner.name}{Game.c_reset} wins the game {self.p1.color}{self.p1.combat_score}{Game.c_reset} to {self.p2.color}{self.p2.combat_score}{Game.c_reset}!'
         if self.winner.name == "Jason":
-            stupid.on_win()
+            stupid.on_win(True)
         print(f'\n{self.format_text(final_score, (Game.CONST["div"]*2+2))}')
 
     def final_screen(self): # closes the game, uploads data
