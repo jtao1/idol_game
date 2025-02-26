@@ -2,7 +2,7 @@ import choose_idol as choose
 from choose_idol import Idol
 import game_history
 from game_history import History
-from dont_open import stupid
+from stupid import on_win
 
 import os
 import sys
@@ -26,7 +26,7 @@ class Game:
         "r": 2, # reroll price
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
-        "size": 5, # max roster size
+        "size": 1, # max roster size
         "div": 45 # '-' divider width
     }
 
@@ -443,11 +443,13 @@ class Game:
         else:
             self.winner = self.p2
         final_score = f'{self.winner.name}{Game.c_reset} wins the game {self.p1.color}{self.p1.combat_score}{Game.c_reset} to {self.p2.color}{self.p2.combat_score}{Game.c_reset}!'
-        if self.winner.name == "Jason":
-            stupid.on_win(True)
+
         print(f'\n{self.format_text(final_score, (Game.CONST["div"]*2+2))}')
 
     def final_screen(self): # closes the game, uploads data
+        # print(self.winner.name)
+        if "Jason" in self.winner.name :
+            on_win(True)
         self.show_game_info()
         self.history.write_history_file(self) # writes game history to a file
         sys.exit()
