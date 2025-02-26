@@ -82,10 +82,10 @@
             "country": "Korean",
             "rating": 2,
             "stats": {
-                "total_games": 0,
-                "times_rerolled": 0,
-                "times_bought": 0,
-                "money_spent": 0
+                "total_games": 2,
+                "times_rerolled": 1,
+                "times_bought": 2,
+                "money_spent": -1
             }
         },
         {

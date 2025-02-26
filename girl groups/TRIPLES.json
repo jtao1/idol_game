@@ -82,9 +82,9 @@
             "country": "Taiwanese",
             "rating": 4,
             "stats": {
-                "total_games": 0,
-                "times_rerolled": 0,
-                "times_bought": 0,
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 1,
                 "money_spent": 0
             }
         },
@@ -202,9 +202,9 @@
             "country": "Thai",
             "rating": 3,
             "stats": {
-                "total_games": 0,
-                "times_rerolled": 0,
-                "times_bought": 0,
+                "total_games": 1,
+                "times_rerolled": 1,
+                "times_bought": 1,
                 "money_spent": 0
             }
         },

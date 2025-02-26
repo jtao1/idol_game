@@ -34,10 +34,10 @@
             "country": "Japanese",
             "rating": 5,
             "stats": {
-                "total_games": 3,
+                "total_games": 4,
                 "times_rerolled": 0,
-                "times_bought": 3,
-                "money_spent": 5
+                "times_bought": 4,
+                "money_spent": 6
             }
         },
         {
@@ -82,10 +82,10 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 1,
+                "total_games": 2,
                 "times_rerolled": 0,
-                "times_bought": 1,
-                "money_spent": 4
+                "times_bought": 2,
+                "money_spent": 7
             }
         }
     ]

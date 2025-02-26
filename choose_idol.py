@@ -3,6 +3,7 @@ import random
 from random import randint
 import json
 import shutil
+import re
 
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating]
@@ -119,6 +120,10 @@ def move_files(old: str, new: str, type: bool):
             shutil.move(path, os.path.join(new, file))
     print("Moved all group files")
 
+def remove_ansi(text): # remove ansi codes from any string
+        ansi_escape = re.compile(r'\033\[[0-9;]*m')
+        return ansi_escape.sub('', text)
+
 # Writes all idols to a single file
 # sort - True for sorting alphabetically, False for sorting by group
 # type - True for girl groups, False for boy groups
@@ -126,6 +131,7 @@ def move_files(old: str, new: str, type: bool):
 def write_all_idols(sort: bool, type: bool, name: str):
     search = './girl groups' if type else './boy groups'
     files = os.listdir(search)
+    rating_counts, letter_counts = [0] * 8, [0] * 26
     with open(name, 'w', encoding="utf-8") as output:
         idols = []
         for file in files:
@@ -139,9 +145,19 @@ def write_all_idols(sort: bool, type: bool, name: str):
                     rating = data["members"][i]["rating"]
                     country = data["members"][i]["country"]
                     idol = Idol(name, group, age, rating, country)
-                    idols.append(f'{idol.to_string()} | {rating}\n')
+                    rating_counts[idol.rating - 1] += 1 # add to rating stats
+                    letter_counts[ord(idol.name[0].lower()) - ord('a')] += 1 # add to letter stats
+                    idols.append(remove_ansi(f'{idol.to_string()} | {rating}\n'))
         if sort:
             idols.sort()
+
+        rating_string, letter_string = '', ''
+        for i in range(len(rating_counts)):
+            rating_string += f'{Idol.RATINGS[i + 1][1]}: {rating_counts[i]}\n'
+        for i in range(len(letter_counts)):
+            letter_string += f'{chr(i + ord("a"))}: {letter_counts[i]}\n'
+        idols.append(rating_string)
+        idols.append(letter_string)
         output.writelines(idols)
     print(f'Wrote all idols from "{search}" to a single file')
 
@@ -246,4 +262,4 @@ def manual_game():
         if command in ["r", "gr", "dr", "tr"]:
             print("\n".join([idol.to_string() for idol in res]))
 
-# write_all_idols(False, 1, "all female idols.txt")
+# write_all_idols(True, 1, "all female idols.txt")

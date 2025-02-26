@@ -1,7 +1,4 @@
-from pydub import AudioSegment
-from pydub.playback import play
-
+from playsound import playsound
 def on_win(play):
     if play:
-        audio = AudioSegment.from_file("example.mp3")
-        play(audio)
+        playsound("./secret.mp3")
