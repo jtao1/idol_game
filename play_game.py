@@ -2,6 +2,7 @@ import choose_idol as choose
 from choose_idol import Idol
 import game_history
 from game_history import History
+from dont_open import stupid
 
 import os
 import sys
@@ -441,6 +442,8 @@ class Game:
         else:
             self.winner = self.p2
         final_score = f'{self.winner.name}{Game.c_reset} wins the game {self.p1.color}{self.p1.combat_score}{Game.c_reset} to {self.p2.color}{self.p2.combat_score}{Game.c_reset}!'
+        if self.winner.name == "Jason":
+            stupid.on_win()
         print(f'\n{self.format_text(final_score, (Game.CONST["div"]*2+2))}')
     
     def end_game(self): # performs all end game processes
