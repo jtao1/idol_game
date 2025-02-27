@@ -10,10 +10,10 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 5,
-                "times_rerolled": 1,
-                "times_bought": 3,
-                "money_spent": 9
+                "total_games": 7,
+                "times_rerolled": 2,
+                "times_bought": 4,
+                "money_spent": 10
             }
         },
         {
@@ -58,7 +58,7 @@
             "country": "Taiwanese",
             "rating": 6,
             "stats": {
-                "total_games": 7,
+                "total_games": 8,
                 "times_rerolled": 1,
                 "times_bought": 5,
                 "money_spent": 9
@@ -70,7 +70,7 @@
             "country": "Korean",
             "rating": 2,
             "stats": {
-                "total_games": 5,
+                "total_games": 7,
                 "times_rerolled": 2,
                 "times_bought": 4,
                 "money_spent": -3

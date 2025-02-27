@@ -1,5 +1,4 @@
 import os
-import shutil
 import glob
 import re
 from choose_idol import Idol

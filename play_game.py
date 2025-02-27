@@ -18,9 +18,9 @@ class Player: # class to reprsent a player
         self.roster = []
         self.money = 15
         self.color = color # color for their text
-        self.ult = None # ultimate bias 
+        self.ult = None # ultimate bias
         self.combat_score = 0 # combat score of this game
-        self.dr = False
+        self.dr = False # tracks whether they are finished with deluxe rerolls
         self.synergies = set() # keeps track of used synergies
 
 class Game:
@@ -28,10 +28,10 @@ class Game:
         "r": 2, # reroll price
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
-        "size": 3, # max roster size
+        "size": 5, # max roster size
         "div": 90, # '-' divider width
         "synergies": 3, # number of idols needed to hit a synergy
-        "testing": True # whether game is being played in a test state or not
+        "testing": False # whether game is being played in a test state or not
     }
 
     c_reset = "\033[0m" # reset color (white)
@@ -495,10 +495,10 @@ class Game:
                 p1_prob, p2_prob = p2_prob, p1_prob
 
             if self.flush == self.p1:
-                p1_prob += ((1 - p1_prob) ** 4) * 0.6 + 0.02
+                p1_prob = min(p1_prob + ((1 - p1_prob) ** 4) * 0.6 + 0.02, 1)
                 p2_prob = 1 - p1_prob
             elif self.flush == self.p2:
-                p2_prob += ((1 - p2_prob) ** 4) * 0.6 + 0.02
+                p2_prob = min(p2_prob + ((1 - p2_prob) ** 4) * 0.6 + 0.02, 1)
                 p1_prob = 1 - p2_prob
             
             p1_text = self.format_text(f'{sorted_p1[i].to_string()}', Game.CONST["div"] // 2 - 8)
@@ -510,12 +510,16 @@ class Game:
             # add suspense before each matchup, extra if game is tied at 5th matchup
             if i == (len(sorted_p1) - 1) and self.p1.combat_score == self.p2.combat_score:
                 wait = 5
-            elif self.p1.combat_score >= (math.ceil(len(sorted_p1) / 2)) or self.p2.combat_score >= (math.ceil(len(sorted_p1) / 2)):
+            # speed up combat if one player is already guaranteed to win, or combat percentages of particular match up is 100-0
+            elif self.p1.combat_score >= (math.ceil(len(sorted_p1) / 2)) or self.p2.combat_score >= (math.ceil(len(sorted_p1) / 2)) or p1_prob == 1 or p2_prob == 1:
                 wait = 1
             else:
                 wait = 3
             for j in range(wait):
-                print(f'{" " * (Game.CONST["div"] // 2 - 5)}Fighting{"." * (j + 1)}')
+                if wait == 1:
+                    print(f'{" " * (Game.CONST["div"] // 2 - 5)}Fighting...')
+                else:
+                    print(f'{" " * (Game.CONST["div"] // 2 - 5)}Fighting{"." * (j + 1)}')
                 time.sleep(1)
                 print("\033[F\033[K", end="")
 

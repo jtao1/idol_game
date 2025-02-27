@@ -46,7 +46,7 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 4,
+                "total_games": 5,
                 "times_rerolled": 0,
                 "times_bought": 2,
                 "money_spent": 7
@@ -82,10 +82,10 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 6,
+                "total_games": 7,
                 "times_rerolled": 0,
-                "times_bought": 4,
-                "money_spent": 11
+                "times_bought": 5,
+                "money_spent": 15
             }
         }
     ]

@@ -4,18 +4,28 @@ from random import randint
 import json
 import shutil
 import re
+from enum import Enum
+
+class Variants(Enum): # represents all the variants that idols can spawn in
+    WILD = "Wildcard"
+    AFIT = "AFIT"
+    MUTATE = "Mutating"
+    ELIGE = "Elige"
+    BULLY = "Bully"
+    GAMBLER = "Gambler"
+    MONEY = "I-Bonds"
 
 class Idol: # class to represent an idol
-    RATINGS = { # dictionary for all possible ratings of all idol [color, rating]
+    RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
         8: ["\033[38;2;255;0;116m", "The Big 3"],
-        7: ["\033[38;2;255;111;237m", "910"], 
+        7: ["\033[38;2;255;111;237m", "910"],
         6: ["\033[38;2;169;53;255m", "Luka Doncic"],
         5: ["\033[38;2;206;155;255m", "Jason Taytum"],
-        4: ["\033[38;2;112;146;255m", "Passion UA"], 
-        3: ["\033[38;2;98;197;255m", "Anthony Davis"], 
+        4: ["\033[38;2;112;146;255m", "Passion UA"],
+        3: ["\033[38;2;98;197;255m", "Anthony Davis"],
         2: ["\033[38;2;156;190;210m", "Lower AD"],
-        1: ["\033[38;2;149;150;153m", "Dychas"], 
-        0: ["\033[0m", "Unrated"] 
+        1: ["\033[38;2;149;150;153m", "Dychas"],
+        0: ["\033[0m", "Unrated"]
     }
     c_good = "\033[38;2;133;187;101m"
     c_bad = "\033[38;2;224;102;102m"
@@ -28,6 +38,10 @@ class Idol: # class to represent an idol
         self.age = age
         self.rating = rating
         self.country = country
+        # self.variant = variant
+        # if self.variant == Variants.AFIT: # AFIT variants gain increase in ranking by 1
+        #     self.rating += 1
+        self.protected = False # group rerolls, ult biases, and synergies protect idols
         self.stats = {
             "price": None,
             "reroll": 0,
@@ -38,7 +52,6 @@ class Idol: # class to represent an idol
             "letter": False,
             "ult": False
         }
-        self.protected = False # group rerolls protect idols
 
     def to_string(self): # string representation
         string = f'{self.name} | {self.group}'

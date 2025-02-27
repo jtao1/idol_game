@@ -86,11 +86,11 @@
                 "game_presence": 0,
                 "reroll_rate": 0,
                 "ult_pickrate": 0,
-                "total_games": 4,
+                "total_games": 5,
                 "bought_games": 0,
-                "times_rerolled": 2,
+                "times_rerolled": 3,
                 "times_ult": 0,
-                "times_bought": 3,
+                "times_bought": 4,
                 "money_spent": 0
             }
         },
@@ -104,11 +104,11 @@
                 "game_presence": 0,
                 "reroll_rate": 0,
                 "ult_pickrate": 0,
-                "total_games": 4,
+                "total_games": 6,
                 "bought_games": 0,
-                "times_rerolled": 0,
+                "times_rerolled": 1,
                 "times_ult": 0,
-                "times_bought": 3,
+                "times_bought": 4,
                 "money_spent": 3
             }
         },
