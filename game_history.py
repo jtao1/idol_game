@@ -55,16 +55,16 @@ class History:
         eval_idols(game.p2)
         # end of overview creation function
 
-    def write_history_file(self, game): # writes the history file of the game
+    def write_history(self, game): # writes the history file of the game
         existing_files = [f for f in os.listdir(self.folder_name) if f.startswith('game_') and f.endswith(".txt")]
         game_number = len(existing_files) + 1
         filename = f'game_{game_number}.txt'
         path = os.path.join(self.folder_name, filename)
 
-        self.write_idol_stats()
-        self.create_overview(game)
+        self.write_idol_stats() # update idol stats
+        self.create_overview(game) # create overview for history file
 
-        with open(path, 'w') as f:
+        with open(path, 'w') as f: # write overview to history file
             f.writelines('\n'.join(self.overview))
             f.writelines('\n'.join(self.history))
         print(f'Wrote history of game #{game_number} to {filename}')
@@ -92,29 +92,30 @@ class History:
                 with open(file_path, 'w') as f:
                     json.dump(data, f, indent=4)
             
-def reset_stats(): # resets all idol stats
-    files = glob.glob(os.path.join('./game files', "*"))
+    def reset_stats(self): # resets all idol stats
+        files = glob.glob(os.path.join(self.folder_name, "*"))
 
-    for file in files:
-        if os.path.isfile(file):
-            os.remove(file)
+        for file in files:
+            if os.path.isfile(file):
+                os.remove(file)
 
-    files = os.listdir('./girl groups')
-    for file in files:
-        file_name = f'./girl groups/{file}'
-        with open(file_name, 'r') as f:
-            data = json.load(f)
+        files = os.listdir('./girl groups')
+        for file in files:
+            file_name = f'./girl groups/{file}'
+            with open(file_name, 'r') as f:
+                data = json.load(f)
 
-            for member in data["members"]: # reset all stats
-                stats = member["stats"]
-                stats["total_games"] = 0
-                stats["times_rerolled"] = 0
-                stats["times_bought"] = 0
-                stats["money_spent"] = 0
+                for member in data["members"]: # reset all stats
+                    stats = member["stats"]
+                    stats["total_games"] = 0
+                    stats["times_rerolled"] = 0
+                    stats["times_bought"] = 0
+                    stats["money_spent"] = 0
 
-        with open(file_name, 'w') as f: # rewrite resetted stats to file
-            json.dump(data, f, indent=4)
+            with open(file_name, 'w') as f: # rewrite resetted stats to file
+                json.dump(data, f, indent=4)
 
-    print("All stats and game history erased!")
+        print("All stats and game history erased!")
 
-# reset_stats()
+# history = History()
+# history.reset_stats()

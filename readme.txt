@@ -5,7 +5,6 @@ Potential: cignature, X:IN
 
 TODO list:
 
-search up idol stats without typing group
 "help" command (essentially a command list)
 add winrate stat to idols (create function to evaluate game history)
 flush synergy

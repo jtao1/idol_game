@@ -105,17 +105,15 @@ Game Presence: {Idol.c_info}{game_presence:.1f}%{Idol.c_reset}
         """.strip()
         print(string)
 
-# Moves all group files to a different directory
 # old - Old directory of all group files
-# new - New directory of all group files
-# type - True for girl groups only, False for boy groups only            
-def move_files(old: str, new: str, type: bool):
+# new - New directory of all group files         
+def move_files(old: str, new: str): # Moves all group files to a different directory
     files = os.listdir(old)
     for file in files:
         path = os.path.join(old, file)
         with open(path, 'r') as f:
             data = json.load(f)
-        determinant = 'gg' if type else 'bg'
+        determinant = 'gg' # if type else 'bg'
         if data['group-type'] == determinant:
             shutil.move(path, os.path.join(new, file))
     print("Moved all group files")
@@ -124,12 +122,10 @@ def remove_ansi(text): # remove ansi codes from any string
         ansi_escape = re.compile(r'\033\[[0-9;]*m')
         return ansi_escape.sub('', text)
 
-# Writes all idols to a single file
 # sort - True for sorting alphabetically, False for sorting by group
-# type - True for girl groups, False for boy groups
 # name - Name of file to write all idols to
-def write_all_idols(sort: bool, type: bool, name: str):
-    search = './girl groups' if type else './boy groups'
+def write_all_idols(sort: bool, name: str): # Writes all idols to a single file
+    search = './girl groups' # if type else './boy groups'
     files = os.listdir(search)
     rating_counts, letter_counts = [0] * 8, [0] * 26
     with open(name, 'w', encoding="utf-8") as output:
@@ -167,28 +163,60 @@ def multigroup(idol: Idol): # function to handle idols with multiple groups (mai
         elif any(sub in idol.to_string() for sub in ["Wonyoung", "Yujin | IVE", "Yujin | IZONE"]):
             idol.group = "IVE/IZONE"
 
-def find_idol(name: str, group: str) -> Idol:
-    file = f'./girl groups/{group.upper()}.json'
-    idol = None
-    if os.path.exists(file):
-        with open (file, 'r') as f:
+def find_idol(name: str, group: str) -> Idol: # find a specific idol and create an Idol object for it
+
+    def find_member(file: str, name: str): # helper function to search for a member in a group file
+        with open(file, 'r') as f:
             data = json.load(f)
             for i in range(len(data["members"])):
-                if name.lower() == data["members"][i]["name"].lower():
-                    name = data["members"][i]["name"]
-                    group = data["group"]["name"]
-                    age = data["members"][i]["age"]
-                    rating = data["members"][i]["rating"]
-                    country = data["members"][i]["country"]
-                    idol = Idol(name, group, age, rating, country)
-                    multigroup(idol)
+                for member in data["members"]:
+                    if name.lower() == member["name"].lower():
+                        return {
+                            "name": member["name"],
+                            "group": data["group"]["name"],
+                            "age": member["age"],
+                            "rating": member["rating"],
+                            "country": member["country"]
+                        }
+        return None
+
+    idol = None
+    if group and group != "stat": # group was specified, find exact idol
+        file = f'./girl groups/{group.upper()}.json'
+        if os.path.exists(file):
+            with open (file, 'r') as f:
+                idol_data = find_member(file, name)
+                idol = Idol(**idol_data)
+                multigroup(idol)
+                return idol
+    else: # group not specified, search all group files for matching name
+        groups = []
+        files = os.listdir('./girl groups')
+        for file in files:
+            idol_data = find_member(os.path.join('./girl groups', file), name)
+            if idol_data:
+                idol = Idol(**idol_data)
+                multigroup(idol)
+                if group == "stat": # return first found idol for stat command to prevent extra inputs
                     break
-    return idol
+                groups.append(idol_data["group"]) # otherwise ask for which group specifically for things like adding idols/ult biases
+        if len(groups) > 1:
+            print("Multiple idols detected, please specify which group:")
+            for i in range(len(groups)):
+                print(f'{i+1}. {groups[i]}')
+            while True:
+                ans = input("Enter group number: ")
+                if 1 <= int(ans) <= (len(groups) + 1):
+                    file = f'./girl groups/{groups[int(ans)-1].upper()}.json'
+                    idol = Idol(**find_member(file, name))
+                    multigroup(idol)
+                    return idol
+        else:
+            return idol
 
 # Rolls a random idol
 # group - specifies a specific group to pick a random idol for, used for group rerolls
 # times - specifies amount of idols to roll, used for deluxe rerolls
-# type - (UNUSED) True for girl groups, False for boy groups
 # duplicate - list of idols that rolled idols cannot be a duplicate of
 def random_idol(group: str, times: int, duplicate: list[Idol]) -> list[Idol]: 
     directory = './girl groups' # if type else './boy groups'
@@ -262,4 +290,4 @@ def manual_game():
         if command in ["r", "gr", "dr", "tr"]:
             print("\n".join([idol.to_string() for idol in res]))
 
-# write_all_idols(True, 1, "all female idols.txt")
+# write_all_idols(True, "all female idols.txt")
