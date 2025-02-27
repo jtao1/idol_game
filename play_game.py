@@ -2,7 +2,7 @@ import choose_idol as choose
 from choose_idol import Idol
 import game_history
 from game_history import History
-from stupid import on_win
+from sounds.audio import on_win
 
 import os
 import sys
