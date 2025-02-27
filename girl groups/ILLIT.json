@@ -22,10 +22,10 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 4,
+                "total_games": 5,
                 "times_rerolled": 0,
-                "times_bought": 4,
-                "money_spent": 4
+                "times_bought": 5,
+                "money_spent": 6
             }
         },
         {
@@ -46,10 +46,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 5,
+                "total_games": 6,
                 "times_rerolled": 0,
-                "times_bought": 1,
-                "money_spent": 4
+                "times_bought": 2,
+                "money_spent": 8
             }
         },
         {

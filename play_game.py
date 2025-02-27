@@ -9,6 +9,7 @@ import sys
 import re
 import time
 import random
+import math
 from collections import Counter
 
 class Player: # class to reprsent a player
@@ -19,6 +20,7 @@ class Player: # class to reprsent a player
         self.color = color # color for their text
         self.ult = None # ultimate bias 
         self.combat_score = 0 # combat score of this game
+        self.dr = False
         self.synergies = set() # keeps track of used synergies
 
 class Game:
@@ -42,6 +44,7 @@ class Game:
         self.turn = None # holds player object who is currently their turn
         self.winner = None
         self.exodia = None
+        self.flush = None
         self.history = History()
 
     @property
@@ -95,6 +98,17 @@ class Game:
 
     def format_text(self, text: str, width: int) -> str: # formats text to show in center without ansi code interference
             return text.center(width + (len(text) - len(self.strip_ansi(text))))
+    
+    def uncenter_text(self, text: str, width: int, left: bool) -> str: # formats text to left or right without ansi code interference
+            if left:
+                return text.ljust(width + (len(text) - len(self.strip_ansi(text))))
+            else:
+                return text.rjust(width + (len(text) - len(self.strip_ansi(text))))
+            
+    def show_money(self):
+        ltext = self.uncenter_text(f'{self.p1.name}: {Game.c_money}${self.p1.money}{Game.c_reset}', Game.CONST["div"] // 2 - 1, False)
+        rtext = self.uncenter_text(f'{self.p2.name}: {Game.c_money}${self.p2.money}{Game.c_reset}', Game.CONST["div"] // 2 - 1, True)
+        print(f'{ltext} || {rtext}')
 
     def show_game_info(self):
         # print(f'{"-" * (Game.CONST["div"] + 2)}')
@@ -139,7 +153,7 @@ class Game:
             elif ans in ['i', 'info']: # command to print out money and roster information
                 self.show_game_info()
             elif ans in ['m', 'money']: # command to print out only money information
-                print(f'{self.p1.name}: {Game.c_money}${self.p1.money}{Game.c_reset} | {self.p2.name}: {Game.c_money}${self.p2.money}{Game.c_reset}')
+                self.show_money()
             elif ans in ['u', 'ult']: # command to show ultimate biases
                 if self.p1.ult and self.p2.ult:
                     print(f'{self.p1.name}\'s{Game.c_reset} ultimate bias: {self.p1.ult.to_string()}')
@@ -186,6 +200,13 @@ class Game:
                             return num
                     except ValueError:
                         pass
+                if input_type == "opp bid": # opponent is counter bidding, add option to group reroll or say no to bidding
+                    if ans in ['gr', 'group reroll']:
+                        return 'gr'
+                    elif ans in ['n', 'no']:
+                        return 'n'
+                    print("Invalid response!")
+                    continue
                 if "yon" in input_type: # for yes or no questions
                     if ans in ['y', 'yes']:
                         return 'y'
@@ -330,7 +351,7 @@ class Game:
                     self.opponent.roster.remove(idol)
                     return 1
                 else: # idol is protected, cannot be stolen
-                    print(f'{self.turn.name} tries to steal {cur_idol.to_string()} from {self.opponent.name}{Game.c_reset}, but they are protected!')
+                    print(f'{self.turn.name}{Game.c_reset} tries to steal {cur_idol.to_string()} from {self.opponent.name}{Game.c_reset}, but they are protected!')
                     return 2
         return 0
     
@@ -339,10 +360,23 @@ class Game:
         if len(self.opponent.roster) < Game.CONST["size"]: # check if opponent roster is full
             if self.opponent.money > abs(bid): # check if opponent has enough money to counter bid
                 while not opponent_win:
-                    counter_bid = self.input_command("bid yon", self.opponent)
+                    counter_bid = self.input_command("opp bid", self.opponent)
                     if counter_bid == 'n': # opponent doesn't bid
                         break
-                    if bid >= 0: # opponent bids to buy
+                    if counter_bid == 'gr': # opponent group rerolls
+                        amount = Game.CONST["gr"]
+                        if bid >= 0:
+                            amount += bid + 1 # must have enough money to both buy and group reroll
+                        if self.opponent.money >= amount:
+                            self.opponent.money -= amount
+                            self.switch_turns() # switch turns so idol is added to proper player
+                            self.group_reroll(cur_idol)
+                            self.switch_turns() # switch back to preserve turn order
+                            return
+                        else:
+                            print("You do not have enough money to bid and group reroll!")
+                            continue
+                    elif bid >= 0: # opponent bids to buy
                         if counter_bid > bid:
                             self.add_history(cur_idol, None, counter_bid)
                             self.add_idol(self.opponent, cur_idol, None)
@@ -399,8 +433,10 @@ class Game:
 
     def deluxe_reroll(self): # function for deluxe reroll
         self.turn = self.p1
-        for _ in range(2):
-            while self.turn.money >= Game.CONST["dr"]: # if they have money for deluxe reroll
+        while not self.p1.dr or not self.p2.dr:
+            if self.turn.dr: # if current player is done with deluxe rerolls, switch to next player
+                self.switch_turns()
+            if self.turn.money >= Game.CONST["dr"]: # if they have money for deluxe reroll
                 print(f'{self.turn.name}{Game.c_reset}, would you like to deluxe reroll for ${Game.CONST["dr"]}?')
                 if self.input_command("yon", self.turn) == 'y': # dr if yes, else break and move to next player
                     self.turn.money -= Game.CONST["dr"]
@@ -421,20 +457,34 @@ class Game:
                             self.add_idol(self.turn, choices[ans-1], removed[0])
                             break
                         print(f'Invalid selection!')
-                else:
-                    break
-            self.switch_turns()
+                    self.switch_turns()
+                    continue
+                self.turn.dr = True # player says no to deluxe reroll
+            else: # player does not have enough money for deluxe reroll
+                self.turn.dr = True
 
     def combat(self): # simulates combat to determine a game winner
         print("-" * (Game.CONST["div"] + 2)) # divider
+
+        self.turn = self.p1 
+        for _ in range(2): # check for flushes
+            compare_rating = self.turn.roster[0].rating
+            for idol in self.turn.roster:
+                if compare_rating != idol.rating:
+                    break
+            else:
+                if self.flush:
+                    self.flush = None
+                    print("Both players hit a flush! Neither player gets a combat advantage.\n")
+                else:
+                    self.flush = self.turn
+            self.switch_turns()
+
+        if self.flush:
+            print(f'{self.flush.name}{Game.c_reset} hit a flush! They receive a combat advantage.\n')
+
         sorted_p1 = sorted(self.p1.roster, key=lambda idol: idol.rating, reverse=True) # sort rosters to determine matchups
         sorted_p2 = sorted(self.p2.roster, key=lambda idol: idol.rating, reverse=True)
-
-        def uncenter_text(text: str, width: int, left: bool) -> str: # formats text to left or right without ansi code interference
-            if left:
-                return text.ljust(width + (len(text) - len(self.strip_ansi(text))))
-            else:
-                return text.rjust(width + (len(text) - len(self.strip_ansi(text))))
 
         for i in range(len(sorted_p1)):
             print(self.format_text(f'Matchup #{i+1}:', (Game.CONST["div"] + 2)))
@@ -443,16 +493,25 @@ class Game:
             p1_prob = 1 - p2_prob
             if sorted_p1[i].rating < sorted_p2[i].rating:
                 p1_prob, p2_prob = p2_prob, p1_prob
+
+            if self.flush == self.p1:
+                p1_prob += ((1 - p1_prob) ** 4) * 0.6 + 0.02
+                p2_prob = 1 - p1_prob
+            elif self.flush == self.p2:
+                p2_prob += ((1 - p2_prob) ** 4) * 0.6 + 0.02
+                p1_prob = 1 - p2_prob
             
             p1_text = self.format_text(f'{sorted_p1[i].to_string()}', Game.CONST["div"] // 2 - 8)
             p2_text = self.format_text(f'{sorted_p2[i].to_string()}', Game.CONST["div"] // 2 - 8)
-            p1_percent = uncenter_text(f'{Game.c_money}{round(p1_prob*100, 2)}%{Game.c_reset}', 6, False)
-            p2_percent = uncenter_text(f'{Game.c_money}{round(p2_prob*100, 2)}%{Game.c_reset}', 6, True)
+            p1_percent = self.uncenter_text(f'{Game.c_money}{round(p1_prob*100, 2)}%{Game.c_reset}', 6, False)
+            p2_percent = self.uncenter_text(f'{Game.c_money}{round(p2_prob*100, 2)}%{Game.c_reset}', 6, True)
             print(f'{p1_text} {p1_percent} || {p2_percent} {p2_text}')
 
             # add suspense before each matchup, extra if game is tied at 5th matchup
             if i == (len(sorted_p1) - 1) and self.p1.combat_score == self.p2.combat_score:
                 wait = 5
+            elif self.p1.combat_score >= (math.ceil(len(sorted_p1) / 2)) or self.p2.combat_score >= (math.ceil(len(sorted_p1) / 2)):
+                wait = 1
             else:
                 wait = 3
             for j in range(wait):
@@ -534,8 +593,14 @@ class Game:
                 if self.input_command("yon", self.opponent) == 'y': # if answer is yes
                     self.opponent.money -= Game.CONST["r"]
                     self.add_history(cur_idol, "reroll", None) # add idol to history
+                    self.show_money()
                     continue
 
+            if len(self.opponent.roster) >= Game.CONST["size"] and self.turn.money <= 0: # opponent roster is full and turn player has no options, automatically add idol
+                self.add_idol(self.turn, cur_idol, None)
+                self.add_history(cur_idol, None, 0)
+                break
+            
             ans = self.input_command("bid turn", self.turn) # turn player chooses action for rolled idol
             if isinstance(ans, int): # bid/give
                 self.bid_process(ans, cur_idol)
@@ -544,6 +609,7 @@ class Game:
                 self.turn.money -= Game.CONST["r"] # deduct money
                 dupes.append(cur_idol) # add idol to dupe list and reroll idol
                 self.add_history(cur_idol, "reroll", None) # add idol to history
+                self.show_money()
                 continue 
             elif ans == 'gr': # group reroll
                 self.turn.money -= Game.CONST["gr"] # deduct money

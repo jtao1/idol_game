@@ -46,10 +46,10 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 11,
+                "total_games": 13,
                 "times_rerolled": 2,
-                "times_bought": 9,
-                "money_spent": 19
+                "times_bought": 11,
+                "money_spent": 26
             }
         }
     ]

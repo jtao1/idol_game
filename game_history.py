@@ -29,7 +29,10 @@ class History:
         self.overview.append('-' * 30) # divider
 
         def eval_idols(player): # evaluates each idol in each player's roster for the overview
-            self.overview.append(f'{self.remove_ansi(player.name)}: ${player.money}') # p1 info & roster
+            player_string = f'{self.remove_ansi(player.name)}: ${player.money}' # p1 info & roster
+            if game.flush == player:
+                player_string += ' (FLUSH)'
+            self.overview.append(player_string)
             self.overview.append(f'Ult: {self.remove_ansi(player.ult.to_string())}\n')
             for idol in player.roster:
                 if idol.stats["price"] is not None: # set marker for idol in overview

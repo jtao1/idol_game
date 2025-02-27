@@ -103,6 +103,7 @@ def get_ages(soup: BeautifulSoup) -> dict:
         bday = re.sub(r'(\d+)(st|nd|rd|th)', r'\1', bday)
         birthday = datetime.strptime(bday, "%B %d, %Y")
         age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+        real_name = real_name.replace("\u2019", "")
         ages[real_name] = age
         nations[real_name] = nationality
 

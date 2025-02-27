@@ -6,13 +6,13 @@
     "members": [
         {
             "name": "Haewon",
-            "age": 21,
+            "age": 22,
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "total_games": 3,
+                "total_games": 4,
                 "times_rerolled": 0,
-                "times_bought": 2,
+                "times_bought": 3,
                 "money_spent": 2
             }
         },
@@ -58,9 +58,9 @@
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "total_games": 5,
+                "total_games": 6,
                 "times_rerolled": 2,
-                "times_bought": 5,
+                "times_bought": 6,
                 "money_spent": 1
             }
         },

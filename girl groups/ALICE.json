@@ -10,8 +10,8 @@
             "country": "Korean",
             "rating": 2,
             "stats": {
-                "total_games": 7,
-                "times_rerolled": 4,
+                "total_games": 9,
+                "times_rerolled": 6,
                 "times_bought": 5,
                 "money_spent": -1
             }
@@ -22,8 +22,8 @@
             "country": "Korean",
             "rating": 3,
             "stats": {
-                "total_games": 7,
-                "times_rerolled": 4,
+                "total_games": 8,
+                "times_rerolled": 5,
                 "times_bought": 6,
                 "money_spent": -8
             }
@@ -46,9 +46,9 @@
             "country": "Korean",
             "rating": 3,
             "stats": {
-                "total_games": 4,
-                "times_rerolled": 0,
-                "times_bought": 3,
+                "total_games": 6,
+                "times_rerolled": 1,
+                "times_bought": 5,
                 "money_spent": -2
             }
         },
@@ -58,8 +58,8 @@
             "country": "Korean",
             "rating": 2,
             "stats": {
-                "total_games": 4,
-                "times_rerolled": 3,
+                "total_games": 5,
+                "times_rerolled": 4,
                 "times_bought": 2,
                 "money_spent": -1
             }
