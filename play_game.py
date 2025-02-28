@@ -3,7 +3,8 @@ from choose_idol import Idol
 from choose_idol import Variants
 import game_history
 from game_history import History
-from stupid import on_win
+from media.audio import on_win
+import media.video_player
 
 import os
 import sys
@@ -346,6 +347,8 @@ class Game:
                 self.winner = player
                 self.final_screen()
 
+                media.video_player.play_exodia()
+                
     # True if duplicate is protected and cannot be stolen
     # False if no duplicate, or duplicate exists and is stolen
     def duplicate_check(self, cur_idol: Idol) -> int: # check if rolled idol is already on a roster
