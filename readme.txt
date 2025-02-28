@@ -5,13 +5,10 @@ Potential: cignature, X:IN, weeekly
 
 TODO list:
 
-stealing idols that have editions (check edge cases)
-
 "help" command (essentially a command list)
 
 give players a choice on whether they want to steal a duplicate idol or not?
 
-idol variants
 perks
 upgrade minigame (endgame feature, can be bought for $2 after all DR's finished)
 
