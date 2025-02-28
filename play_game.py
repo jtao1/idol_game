@@ -1,5 +1,6 @@
 import choose_idol as choose
 from choose_idol import Idol
+from choose_idol import Variants
 import game_history
 from game_history import History
 from stupid import on_win
@@ -29,22 +30,23 @@ class Game:
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
         "size": 5, # max roster size
-        "div": 90, # '-' divider width
+        "div": 110, # '-' divider width
+        "variant": 0.9, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
-        "testing": False # whether game is being played in a test state or not
+        "testing": True # whether game is being played in a test state or not
     }
 
     c_reset = "\033[0m" # reset color (white)
     c_money = "\033[38;2;133;187;101m" # money color
-    c_p1 = "\033[38;2;255;198;0m" # player 1 color
+    c_p1 = "\033[38;2;255;250;0m" # player 1 color
     c_p2 = "\033[38;2;255;67;67m" # player 2 color
 
-    def __init__(self):
+    def __init__(self): # constructor for game object
         self.p1 = self.p2 = None # holds player objects
         self.turn = None # holds player object who is currently their turn
         self.winner = None
-        self.exodia = None
         self.flush = None
+        self.exodia = None # whether game was won by exodia or not (and what kind)
         self.history = History()
 
     @property
@@ -87,6 +89,7 @@ class Game:
                 ans = self.input_command("idol", self.turn)
                 self.turn.ult = ans
                 if self.opponent.ult is None or (self.opponent.ult and not self.turn.ult.equals(self.opponent.ult)): # not duplicate of opponent's
+                    self.add_history(self.turn.ult, "ult", None)
                     break
                 print("Invalid idol!")
             print(f'{self.turn.name}\'s{Game.c_reset} ultimate bias: {self.turn.ult.to_string()}')
@@ -232,8 +235,12 @@ class Game:
             player.roster.insert(index, add)
         else:
             player.roster.append(add)
-
         print(f'{add.to_string()} added to {player.name}\'s{Game.c_reset} roster!')
+
+        if add.variant == Variants.IBONDS:
+            gain_money = Game.CONST["size"] - len(player.roster)
+            player.money += gain_money
+            print(f'{player.name}{Game.c_reset} gained {Game.c_money}${gain_money}{Game.c_reset} for {gain_money} empty slots in their roster!')
         self.check_synergies(player)
 
     def replace_idol(self, player: Player) -> Idol: # function for replacing an idol on a roster
@@ -321,8 +328,8 @@ class Game:
             groups = player.roster[0].group.split('/') # group
             if all(idol.name[0] == char for idol in player.roster): # full roster of letter synergy
                 self.exodia = f'letter exodia! {Game.c_money}({char.upper()}){Game.c_reset}'
-            elif all(idol.age < 18 for idol in player.roster): # full roster of minors
-                self.exodia = "minor exodia!"
+            # elif all(idol.age < 18 for idol in player.roster): # full roster of minors
+            #     self.exodia = "minor exodia!"
             for group in groups:
                 if all(group in idol.group for idol in player.roster): # full roster of same group
                     self.exodia = f'group exodia! {Game.c_money}({group}){Game.c_reset}'
@@ -344,8 +351,9 @@ class Game:
     def duplicate_check(self, cur_idol: Idol) -> int: # check if rolled idol is already on a roster
         for idol in self.opponent.roster: 
             if cur_idol.equals(idol):
+                print(self.format_text(cur_idol.to_string(), Game.CONST["div"] + 2))
                 if not idol.protected: # only steal if idol is not protected
-                    print(f'{self.turn.name} steals {cur_idol.to_string()} from {self.opponent.name}\'s{Game.c_reset} roster!')
+                    print(f'{self.turn.name}{Game.c_reset} steals {cur_idol.to_string()} from {self.opponent.name}\'s{Game.c_reset} roster!')
                     self.add_history(idol, "stolen", None)
                     self.add_idol(self.turn, idol, None)
                     self.opponent.roster.remove(idol)
@@ -418,6 +426,7 @@ class Game:
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
             cur_idol = choose.random_idol(cur_idol.group, 1, dupes)[0]
+            choose.determine_variant(cur_idol, Game.CONST["variant"])
             cur_idol.protected = True # idols from group rerolls are protected
             if self.turn.money >= Game.CONST["gr"]: # group reroll again
                 print(cur_idol.to_string())
@@ -437,16 +446,18 @@ class Game:
             if self.turn.dr: # if current player is done with deluxe rerolls, switch to next player
                 self.switch_turns()
             if self.turn.money >= Game.CONST["dr"]: # if they have money for deluxe reroll
+                print("-" * (Game.CONST["div"] + 2)) # divider
                 print(f'{self.turn.name}{Game.c_reset}, would you like to deluxe reroll for ${Game.CONST["dr"]}?')
                 if self.input_command("yon", self.turn) == 'y': # dr if yes, else break and move to next player
                     self.turn.money -= Game.CONST["dr"]
                     removed = self.replace_idol(self.turn) # index and object of removed idol
                     removed[1].stats["reroll"] += 1 # add 1 to reroll stat
+                    print(f'{removed[1].to_string()} removed from {self.turn.name}\'s{Game.c_reset} roster!')
                     if not Game.CONST["testing"]:
-                        print("Rolling idol...")
+                        print("Rolling idols...")
                         time.sleep(1) # suspense
                         print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
-                    choices = choose.random_idol(None, 3, self.p1.roster + self.p2.roster) # deluxe reroll cannot roll duplicates
+                    choices = choose.random_idol(None, 3, self.p1.roster + self.p2.roster + [removed[1]]) # deluxe reroll cannot roll duplicates
                     print("Pick an idol to add to your roster:")
                     for i, choice in enumerate(choices, start=1):
                         print(f'{i}. {choice.to_string()}')
@@ -507,7 +518,7 @@ class Game:
             p2_percent = self.uncenter_text(f'{Game.c_money}{round(p2_prob*100, 2)}%{Game.c_reset}', 6, True)
             print(f'{p1_text} {p1_percent} || {p2_percent} {p2_text}')
 
-            # add suspense before each matchup, extra if game is tied at 5th matchup
+            # add suspense before each matchup, extra if game is tied at last matchup
             if i == (len(sorted_p1) - 1) and self.p1.combat_score == self.p2.combat_score:
                 wait = 5
             # speed up combat if one player is already guaranteed to win, or combat percentages of particular match up is 100-0
@@ -546,7 +557,10 @@ class Game:
         if "Jason" in self.winner.name :
             on_win(False)
         self.show_game_info()
-        if not Game.CONST["testing"]:
+        if Game.CONST["testing"]: # if testing, don't write history/stats but print out idol stats for debugging
+            for idol in self.history.all_idols:
+                self.history.print_idol(idol)
+        else:
             self.history.write_history(self) # writes game history to a file and updates idol stats
         sys.exit()
 
@@ -574,6 +588,7 @@ class Game:
 
         print(f'{"-" * (Game.CONST["div"] + 2)}')
         print(self.format_text(f'{self.turn.name}\'s{Game.c_reset} Turn ', Game.CONST["div"] + 2))
+
         dupes = []
         while True:
             if not Game.CONST["testing"]:
@@ -581,7 +596,6 @@ class Game:
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
             cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes)[0] # roll idol
-            print(self.format_text(cur_idol.to_string(), Game.CONST["div"] + 2))
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
@@ -589,6 +603,10 @@ class Game:
             elif dup_check == 2: # duplicate was protected, reroll idol
                 dupes.append(cur_idol)
                 continue
+
+            choose.determine_variant(cur_idol, Game.CONST["variant"])
+            print(self.format_text(cur_idol.to_string(), Game.CONST["div"] + 2))
+            
             if self.ultimate_bias(cur_idol): # check for ultimate bias
                 break # end turn if ultimate bias was bought
             
@@ -620,32 +638,28 @@ class Game:
                 self.add_history(cur_idol, "reroll", None) # add idol to history
                 self.group_reroll(cur_idol)
                 break
-        print('\n')
+
+        print('\n') # show info and switch players for next turn
         self.show_game_info()
         self.switch_turns()
 
     def add_history(self, cur_idol: Idol, stat: str, price: int): # adds an idol to the history list in History object
+        edit_idol = cur_idol
         duplicate = False
         for idol in self.history.all_idols: # check if cur_idol already in list
             if cur_idol.equals(idol): # edit the info of the idol in the list instead of appending a new one
+                edit_idol = idol
                 duplicate = True
-                if price is not None:
-                    idol.stats["price"] = price
-                if stat == "reroll":
-                    idol.stats[stat] += 1
-                elif stat:
-                    idol.stats[stat] = True
                 break
         
-        if price is not None: # always edit the new idol object passed in for accurate data when creating overview
-            cur_idol.stats["price"] = price
+        if price is not None: # if idol is not already on list, edit its values and add it
+            edit_idol.stats["price"] = price
         if stat == "reroll":
-            cur_idol.stats[stat] += 1
+            edit_idol.stats[stat] += 1
         elif stat:
-            cur_idol.stats[stat] = True
-
-        if not duplicate: # if idol was not already in idol history list
-            self.history.all_idols.append(cur_idol) # add idol to list
+            edit_idol.stats[stat] = True
+        if not duplicate: # only add idol if it's not a duplicate
+            self.history.all_idols.append(edit_idol) # add idol to list
 
     def play_game(self): # function that runs entire game
         # start game

@@ -7,16 +7,17 @@ import re
 from enum import Enum
 
 class Variants(Enum): # represents all the variants that idols can spawn in
-    WILD = "Wildcard"
-    AFIT = "AFIT"
-    MUTATE = "Mutating"
-    ELIGE = "Elige"
-    BULLY = "Bully"
-    GAMBLER = "Gambler"
-    MONEY = "I-Bonds"
+    AFIT = "\033[1;38;2;255;0;222m(AFIT)"
+    IBONDS = "\033[1;38;2;255;190;0m(I-Bonds)"
+    # ELIGE = "(Elige)"
+    # GAMBLER = "(Gambler)"
+    # MUTATING = "(Mutating)"
+    # BULLY = "(Bully)"
+    # WILDCARD = "(Wildcard)"
 
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
+        9: ["", "M0e"], # secret rating
         8: ["\033[38;2;255;0;116m", "The Big 3"],
         7: ["\033[38;2;255;111;237m", "910"],
         6: ["\033[38;2;169;53;255m", "Luka Doncic"],
@@ -38,27 +39,27 @@ class Idol: # class to represent an idol
         self.age = age
         self.rating = rating
         self.country = country
-        # self.variant = variant
-        # if self.variant == Variants.AFIT: # AFIT variants gain increase in ranking by 1
-        #     self.rating += 1
+        self.variant = None
         self.protected = False # group rerolls, ult biases, and synergies protect idols
         self.stats = {
-            "price": None,
-            "reroll": 0,
-            "gr": False,
-            "dr": False,
-            "switch": False,
-            "stolen": False,
-            "letter": False,
-            "ult": False
+            "price": None, # set to integer of price if idol is bought through bidding
+            "reroll": 0, # +1 if rerolled, group rerolled, deluxe rerolled, or replaced
+            "gr": False, # true if obtained through group reroll
+            "dr": False, # true if obtained through deluxe reroll
+            "switch": False, # true if used in a switch powerup
+            "stolen": False, # true if stolen during the game
+            "letter": False, # true if obtained through letter synergy
+            "ult": False # true if chosen as ultimate bias
         }
 
     def to_string(self): # string representation
         string = f'{self.name} | {self.group}'
-        if self.age < 18:
-            string = string[:string.index('|')] + '(M) ' + string[string.index('|'):]
+        # if self.age < 18:
+        #     string = string[:string.index('|')] + '(M) ' + string[string.index('|'):]
         if self.protected:
             string = string[:string.index('|')] + '(PR) ' + string[string.index('|'):]
+        if self.variant:
+            string = string[:string.index('|')] + f'{self.variant.value}{Idol.c_reset}{Idol.RATINGS[self.rating][0]} ' + string[string.index('|'):]
         return f'{Idol.RATINGS[self.rating][0]}{string}{Idol.c_reset}'
     
     def equals(self, compare: "Idol") -> bool: # custom equals command
@@ -245,18 +246,27 @@ def random_idol(group: str, times: int, duplicate: list[Idol]) -> list[Idol]:
             file = random.choice(files)
         with open(f'./girl groups/{file}', 'r') as f:
             data = json.load(f)
+            
+            # store idol data from group file
             rand = randint(0, len(data["members"])-1)
             name = data["members"][rand]["name"]
             group_name = data["group"]["name"]
             age = data["members"][rand]["age"]
             rating = data["members"][rand]["rating"]
             country = data["members"][rand]["country"]
+
             idol = Idol(name, group_name, age, rating, country)
-            multigroup(idol)
-            if not duplicate or not any(idol.equals(compare) for compare in duplicate):
+            multigroup(idol) # handle izone edge cases
+            if not duplicate or not any(idol.equals(compare) for compare in duplicate): # check if in duplicate loop
                 if not any(idol.equals(comp) for comp in results):
                     results.append(idol)
     return results
+
+def determine_variant(idol: Idol, chance: float): # function to add variants to idols
+    if random.random() < chance: # chance is a float less than 1, represents percentage chance to hit variant
+        idol.variant = random.choice(list(Variants))
+    if idol.variant == Variants.AFIT: # increase rating if variant is AFIT
+        idol.rating += 1
 
 # Rolls a random idol from the list of all idols. This gives every single idol an equal chance of
 # being chosen, rather than choosing a random group first like random_idol() does.    

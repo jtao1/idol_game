@@ -72,7 +72,7 @@ class History:
         print(f'Wrote history of game #{game_number} to {filename}')
 
     def print_idol(self, idol: Idol):
-        print(f'{idol.to_string()} | Price: {idol.stats["price"]} | Reroll: {idol.stats["reroll"]}')
+        print(f'{idol.to_string()} | Stats: {idol.stats}')
 
     def write_idol_stats(self): # uploads idol stats to json database
         for idol in self.all_idols:
