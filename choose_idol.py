@@ -32,7 +32,7 @@ class Variants(Enum): # represents all the variants that idols can spawn in
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
         9: ["", "m0e", 0], # secret rating
-        8: ["\033[38;2;255;0;116m", "The Big 3", 0.01],
+        8: ["\033[38;2;255;0;116m", "The Big 3", 0],
         7: ["\033[38;2;255;111;237m", "910", 0.05],
         6: ["\033[38;2;169;53;255m", "Luka Doncic", 0.1],
         5: ["\033[38;2;206;155;255m", "Jason Taytum", 0.15],
@@ -65,6 +65,7 @@ class Idol: # class to represent an idol
             "dr": False, # true if obtained through deluxe reroll
             "switch": False, # true if used in a switch powerup
             "stolen": False, # true if stolen during the game
+            "evolve": False, # true if obtained from an evolving idol
             "letter": False, # true if obtained through letter synergy
             "ult": False # true if chosen as ultimate bias
         }
@@ -147,7 +148,7 @@ def remove_ansi(text): # remove ansi codes from any string
     
 def determine_variant(idol: Idol, chance: float): # function to add variants to idols
     if random.random() < chance: # chance is a float less than 1, represents percentage chance to hit variant
-        idol.variant = Variants.WILDCARD # random.choice(list(Variants))
+        idol.variant = random.choice(list(Variants))
     if idol.variant == Variants.AFIT: # increase rating if variant is AFIT
         idol.rating += 1
 

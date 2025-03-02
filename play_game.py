@@ -32,10 +32,11 @@ class Game:
         "dr": 6, # deluxe reroll price
         "size": 5, # max roster size
         "div": 110, # '-' divider width
-        "variant": 0.25, # default chance for idol to spawn with variant
+        "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
         "testing": False, # whether game is being played in a test state or not
-        "media": False # whether to add sound/video effects to game
+        "media": True, # whether to add sound/video effects to game
+        "crazy": False # whether to change game settings to crazy mode
     }
 
     c_reset = "\033[0m" # reset color (white)
@@ -81,6 +82,15 @@ class Game:
                     self.p1, self.p2 = self.p2, self.p1
                 break
             print("Player names must be different.")
+
+        if Game.CONST["crazy"]: # set game stats to crazy mode
+            Game.CONST["r"] = 1
+            Game.CONST["gr"] = 3
+            Game.CONST["dr"] = 3
+            Game.CONST["variant"] = 1
+            Game.CONST["size"] = 9
+            self.p1.money = 20
+            self.p2.money = 20
 
         print(f'{self.p1.name}{Game.c_reset} goes first! {self.p2.name}{Game.c_reset} goes second!')
         print("-" * (Game.CONST["div"] + 2))
@@ -349,12 +359,14 @@ class Game:
 
     def check_exodia(self, player: Player): # function to check exodia synergies
         if len(player.roster) >= Game.CONST["size"]:
-            char = player.roster[0].name[0] # starting letter
-            groups = player.roster[0].group.split('/') # group
-            if all(idol.name[0] == char for idol in player.roster): # full roster of letter synergy
+            chars = [player.roster[0].name[0].upper()] # starting letter
+            if player.roster[0].wildcard: # append second wildcard letter if exists for first idol
+                chars.append(player.roster[0].wildcard)
+            if all(idol.name[0] in chars or idol.wildcard in chars for idol in player.roster): # full roster of letter synergy
                 self.exodia = f'letter exodia! {Game.c_money}({char.upper()}){Game.c_reset}'
-            # elif all(idol.age < 18 for idol in player.roster): # full roster of minors
-            #     self.exodia = "minor exodia!"
+
+            # check group synergies
+            groups = player.roster[0].group.split('/') # group
             for group in groups:
                 if all(group in idol.group for idol in player.roster): # full roster of same group
                     self.exodia = f'group exodia! {Game.c_money}({group}){Game.c_reset}'
@@ -547,15 +559,21 @@ class Game:
                         new_idol.protected = True if idol.protected else False # copy protected stats
 
                         ind = self.turn.roster.index(idol) # get index of old idol and delete idol from roster
+                        price = self.turn.roster[ind].stats["price"]
                         del self.turn.roster[ind]
 
                         self.turn.roster.insert(ind, new_idol) # add idol to roster
-                        self.add_history(new_idol, None, None)
+                        self.add_history(new_idol, "evolve", price)
                         self.check_synergies(self.turn) # check synergies after adding new idol
                         print(f'{idol.to_string()} evolved into {new_idol.to_string()}!')
                 elif idol.variant == Variants.BULLY: # handle bully variant actions
                     if random.random() < Idol.bully_chance: # if bully chance hits
-                        remove_player = random.choice([self.p1, self.p2])
+                        players = []
+                        if len(self.p1.roster) > 0:
+                            players.append(self.p1)
+                        if len(self.p2.roster) > 0:
+                            players.append(self.p2)
+                        remove_player = random.choice(players)
                         remove_idol = random.choice(remove_player.roster)
                         if remove_idol.protected or remove_idol.variant == Variants.ELIGE: # if idol is protected, bullying fails
                             if remove_idol.variant == Variants.ELIGE:
@@ -659,7 +677,7 @@ class Game:
 
     def final_screen(self): # closes the game, uploads data
         if "Jason" in self.winner.name and Game.CONST["media"]:
-            on_win(True)
+            on_win(False)
         self.show_game_info()
         if Game.CONST["testing"]: # if testing, don't write history/stats but print out idol stats for debugging
             for idol in self.history.all_idols:

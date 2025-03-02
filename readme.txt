@@ -1,20 +1,18 @@
-Groups to add:
-Rocket Punch
-QWER
-Potential: cignature, X:IN, weeekly
-
 TODO list:
 
 "help" command (essentially a command list)
 
 give players a choice on whether they want to steal a duplicate idol or not?
 
-perks
 upgrade minigame (endgame feature, can be bought for $2 after all DR's finished)
+perks
 
 --
 
-Once main feature todo list completed, think of all groups to add, 
+Groups to add: Rocket Punch, QWER
+Potential: cignature, X:IN, weeekly
+
+Once main feature todo list completed, finalize list of groups to add,
 then reset idol stats and create these new stats:
 
 +general winrate
@@ -25,4 +23,6 @@ then reset idol stats and create these new stats:
 when letter synergy is hit, which letter is it?
 
 Have a description of all game actions in every game file
+OR 
+Remove game history files entirely, only track idol stats
 Possibly database/online file storage for idol stats/game history?

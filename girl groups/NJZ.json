@@ -10,10 +10,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 2,
+                "total_games": 9,
                 "times_rerolled": 0,
-                "times_bought": 2,
-                "money_spent": 4
+                "times_bought": 8,
+                "money_spent": 20
             }
         },
         {
@@ -22,10 +22,10 @@
             "country": "Vietnamese-Australian",
             "rating": 5,
             "stats": {
-                "total_games": 9,
-                "times_rerolled": 0,
-                "times_bought": 6,
-                "money_spent": 6
+                "total_games": 16,
+                "times_rerolled": 1,
+                "times_bought": 12,
+                "money_spent": 7
             }
         },
         {
@@ -34,10 +34,10 @@
             "country": "Korean-Australian",
             "rating": 5,
             "stats": {
-                "total_games": 8,
-                "times_rerolled": 0,
-                "times_bought": 7,
-                "money_spent": 5
+                "total_games": 18,
+                "times_rerolled": 3,
+                "times_bought": 15,
+                "money_spent": 14
             }
         },
         {
@@ -46,10 +46,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 11,
+                "total_games": 16,
                 "times_rerolled": 2,
-                "times_bought": 6,
-                "money_spent": 16
+                "times_bought": 9,
+                "money_spent": 23
             }
         },
         {
@@ -58,10 +58,10 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 12,
+                "total_games": 14,
                 "times_rerolled": 2,
-                "times_bought": 11,
-                "money_spent": 15
+                "times_bought": 13,
+                "money_spent": 21
             }
         }
     ]

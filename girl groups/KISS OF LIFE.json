@@ -10,10 +10,10 @@
             "country": "American",
             "rating": 8,
             "stats": {
-                "total_games": 18,
+                "total_games": 24,
                 "times_rerolled": 2,
-                "times_bought": 6,
-                "money_spent": 31
+                "times_bought": 7,
+                "money_spent": 35
             }
         },
         {
@@ -22,10 +22,10 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 8,
-                "times_rerolled": 2,
-                "times_bought": 4,
-                "money_spent": 8
+                "total_games": 17,
+                "times_rerolled": 4,
+                "times_bought": 8,
+                "money_spent": 16
             }
         },
         {
@@ -34,10 +34,10 @@
             "country": "Korean-American",
             "rating": 6,
             "stats": {
-                "total_games": 9,
-                "times_rerolled": 3,
-                "times_bought": 7,
-                "money_spent": 20
+                "total_games": 14,
+                "times_rerolled": 5,
+                "times_bought": 10,
+                "money_spent": 29
             }
         },
         {
@@ -46,10 +46,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 7,
+                "total_games": 9,
                 "times_rerolled": 1,
-                "times_bought": 3,
-                "money_spent": 6
+                "times_bought": 5,
+                "money_spent": 8
             }
         }
     ]

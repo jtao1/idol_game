@@ -10,10 +10,10 @@
             "country": "Japanese",
             "rating": 5,
             "stats": {
-                "total_games": 6,
-                "times_rerolled": 0,
-                "times_bought": 4,
-                "money_spent": 4
+                "total_games": 11,
+                "times_rerolled": 1,
+                "times_bought": 8,
+                "money_spent": 9
             }
         },
         {
@@ -22,10 +22,10 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 3,
+                "total_games": 7,
                 "times_rerolled": 0,
-                "times_bought": 2,
-                "money_spent": 6
+                "times_bought": 6,
+                "money_spent": 15
             }
         },
         {
@@ -34,10 +34,10 @@
             "country": "Japanese",
             "rating": 5,
             "stats": {
-                "total_games": 8,
+                "total_games": 10,
                 "times_rerolled": 1,
-                "times_bought": 8,
-                "money_spent": 10
+                "times_bought": 10,
+                "money_spent": 11
             }
         },
         {
@@ -46,10 +46,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 5,
+                "total_games": 6,
                 "times_rerolled": 0,
-                "times_bought": 2,
-                "money_spent": 7
+                "times_bought": 3,
+                "money_spent": 11
             }
         },
         {
@@ -70,10 +70,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 4,
+                "total_games": 8,
                 "times_rerolled": 0,
-                "times_bought": 3,
-                "money_spent": 3
+                "times_bought": 5,
+                "money_spent": 6
             }
         },
         {
@@ -82,10 +82,10 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 7,
+                "total_games": 9,
                 "times_rerolled": 0,
-                "times_bought": 5,
-                "money_spent": 15
+                "times_bought": 7,
+                "money_spent": 20
             }
         }
     ]

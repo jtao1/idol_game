@@ -10,10 +10,10 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 7,
-                "times_rerolled": 2,
-                "times_bought": 4,
-                "money_spent": 10
+                "total_games": 12,
+                "times_rerolled": 3,
+                "times_bought": 8,
+                "money_spent": 12
             }
         },
         {
@@ -22,10 +22,10 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 3,
+                "total_games": 6,
                 "times_rerolled": 0,
-                "times_bought": 1,
-                "money_spent": 2
+                "times_bought": 3,
+                "money_spent": 5
             }
         },
         {
@@ -34,10 +34,10 @@
             "country": "Thai",
             "rating": 5,
             "stats": {
-                "total_games": 4,
-                "times_rerolled": 1,
-                "times_bought": 4,
-                "money_spent": 5
+                "total_games": 8,
+                "times_rerolled": 2,
+                "times_bought": 6,
+                "money_spent": 7
             }
         },
         {
@@ -46,10 +46,10 @@
             "country": "Chinese",
             "rating": 7,
             "stats": {
-                "total_games": 8,
+                "total_games": 10,
                 "times_rerolled": 2,
-                "times_bought": 4,
-                "money_spent": 21
+                "times_bought": 5,
+                "money_spent": 25
             }
         },
         {
@@ -58,10 +58,10 @@
             "country": "Taiwanese",
             "rating": 6,
             "stats": {
-                "total_games": 8,
+                "total_games": 11,
                 "times_rerolled": 1,
-                "times_bought": 5,
-                "money_spent": 9
+                "times_bought": 7,
+                "money_spent": 12
             }
         },
         {
@@ -70,9 +70,9 @@
             "country": "Korean",
             "rating": 2,
             "stats": {
-                "total_games": 7,
-                "times_rerolled": 2,
-                "times_bought": 4,
+                "total_games": 12,
+                "times_rerolled": 5,
+                "times_bought": 7,
                 "money_spent": -3
             }
         }
