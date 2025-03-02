@@ -31,11 +31,11 @@ class Game:
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
         "up": 2, # upgrade price
-        "size": 3, # max roster size
+        "size": 5, # max roster size
         "div": 110, # '-' divider width
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
-        "testing": True, # whether game is being played in a test state or not
+        "testing": False, # whether game is being played in a test state or not
         "media": False, # whether to add sound/video effects to game
         "crazy": False # whether to change game settings to crazy mode
     }
@@ -143,6 +143,7 @@ class Game:
 
         left_name = self.format_text(left_name, width)
         right_name = self.format_text(right_name, width)
+        print("-" * (Game.CONST["div"] + 2)) # divider
         print(f'{left_name}||{right_name}')
         print("-" * (width * 2 + 2))
 
@@ -152,6 +153,21 @@ class Game:
             left_idol, left_group = self.format_text(left_idol, half), self.format_text(left_group, half)
             right_idol, right_group = self.format_text(right_idol, half), self.format_text(right_group, half)
             print(f'{left_idol}|{left_group}||{right_idol}|{right_group}')
+
+    def help_command(self):
+        string = f"""
+------------------------------------------
+All Commands:
+{Game.c_p1}i{Game.c_reset} - show roster info
+{Game.c_p1}m{Game.c_reset} - show money info
+{Game.c_p1}u{Game.c_reset} - show ultimate biases
+{Game.c_p1}h{Game.c_reset} - show all commands
+{Game.c_p1}c{Game.c_reset} - clear console
+{Game.c_p1}e{Game.c_reset} - exit game
+\033[38;2;255;118;118mreset stats - resets all idol stats and game files{Game.c_reset}
+------------------------------------------
+""".strip()
+        print(string)
     
     def input_command(self, input_type: str, cur_player: Player) -> str: # yon: True for yes or no question, False if not
         while True:
@@ -168,7 +184,7 @@ class Game:
             elif ans in ['c', 'clear']: # command to clear terminal
                 os.system('cls')
             elif ans in ['h', 'help']: # TODO: create total command list
-                print ("") 
+                self.help_command()
             elif ans in ['i', 'in', 'info']: # command to print out money and roster information
                 self.show_game_info()
             elif ans in ['m', 'mo', 'money']: # command to print out only money information
@@ -270,13 +286,15 @@ class Game:
         self.check_synergies(player) # check synergies after adding idol to roster
 
     def replace_idol(self, player: Player) -> Idol: # function for replacing an idol on a roster
-        print(f'Pick an idol on {player.name}\'s{Game.c_reset} roster to remove.')
-
+        print(f'\nPick an idol on {player.name}\'s{Game.c_reset} roster to remove.')
+        print("0. Cancel")
         for i in range(len(player.roster)):
             print(f'{i+1}. {player.roster[i].to_string()}')
         while True:
             ans = self.input_command("number", self.turn) # pick idol 1-5 to replace
-            if 1 <= ans <= Game.CONST["size"]:
+            if ans == 0:
+                return None
+            elif 1 <= ans <= Game.CONST["size"]:
                 idol = player.roster[ans - 1]
                 if idol.variant == Variants.ELIGE: # idol is eliged, cannot replace
                     print(f'{idol.to_string()} is Eliged!')
@@ -324,7 +342,11 @@ class Game:
                         print(f'{opp.name}\'s{Game.c_reset} roster is completely Eliged, so you can\'t use the switch!')
                     elif len(opp.roster) != 0:
                         turn_ind = self.replace_idol(player)
+                        if turn_ind is None: # cancelled switch
+                            continue
                         opp_ind = self.replace_idol(opp)
+                        if opp_ind is None:
+                            continue # cancelled switch
 
                         opp_ind[1].stats["switch"] ^= True # invert current boolean values for SWITCH info
                         turn_ind[1].stats["switch"] ^= True
@@ -344,6 +366,8 @@ class Game:
                             print("Your roster is completely Eliged, cannot use synergy!")
                             continue
                         removed = self.replace_idol(player)
+                        if removed is None:
+                            continue # cancelled replace
                         removed[1].stats["reroll"] += 1 # add to reroll stat of removed idol
                         ind = removed[0]
                     print(f'Choose an idol whose name starts with a {Game.c_money}{syn.upper()}{Game.c_reset}: (name) (group)')
@@ -397,13 +421,18 @@ class Game:
     def duplicate_check(self, cur_idol: Idol) -> int: # check if rolled idol is already on a roster
         for idol in self.opponent.roster: 
             if cur_idol.equals(idol):
-                print(self.format_text(cur_idol.to_string(), Game.CONST["div"] + 2))
+                print(self.format_text(cur_idol.to_string(), Game.CONST["div"] + 2)) # print the idol like you would on a normal turn, but without adding any editions
                 if not idol.protected and not idol.variant == Variants.ELIGE: # only steal if idol is not protected or eliged
-                    print(f'{self.turn.name}{Game.c_reset} steals {cur_idol.to_string()} from {self.opponent.name}\'s{Game.c_reset} roster!')
-                    self.add_history(idol, "stolen", None)
-                    self.add_idol(self.turn, idol, None)
-                    self.opponent.roster.remove(idol)
-                    return 1
+                    print(f'{self.turn.name}{Game.c_reset}, would you like to steal {idol.to_string()} from {self.opponent.name}{Game.c_reset}?')
+                    ans = self.input_command("yon", self.turn)
+                    if ans == 'y':
+                        print(f'{self.turn.name}{Game.c_reset} steals {idol.to_string()} from {self.opponent.name}\'s{Game.c_reset} roster!')
+                        self.opponent.roster.remove(idol)
+                        self.add_history(idol, "stolen", None)
+                        self.add_idol(self.turn, idol, None)
+                        return 1
+                    else:
+                        return 2
                 else: # idol is protected, cannot be stolen
                     if idol.protected:
                         print(f'{self.turn.name}{Game.c_reset} tries to steal {cur_idol.to_string()} from {self.opponent.name}{Game.c_reset}, but they are protected!')
@@ -519,9 +548,10 @@ class Game:
                 print("-" * (Game.CONST["div"] + 2)) # divider
                 print(f'{self.turn.name}{Game.c_reset}, would you like to deluxe reroll for ${Game.CONST["dr"]}?')
                 if self.input_command("yon", self.turn) == 'y': # dr if yes, else break and move to next player
-                    self.turn.money -= Game.CONST["dr"]
-                    self.gambler_check(Game.CONST["dr"]) # update gambler variant idols
                     removed = self.replace_idol(self.turn) # index and object of removed idol
+                    if removed is None:
+                        self.turn.done = True
+                        continue # deluxe reroll is cancelled
                     removed[1].stats["reroll"] += 1 # add 1 to reroll stat
                     print(f'{removed[1].to_string()} removed from {self.turn.name}\'s{Game.c_reset} roster!')
                     
@@ -530,7 +560,7 @@ class Game:
                         time.sleep(1) # suspense
                         print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
                     choices = choose.random_idol(None, 3, self.p1.roster + self.p2.roster + [removed[1]], None) # deluxe reroll cannot roll duplicates
-                    print("Pick an idol to add to your roster:")
+                    print("\nPick an idol to add to your roster:")
                     for i, choice in enumerate(choices, start=1):
                         print(f'{i}. {choice.to_string()}')
                     while True:
@@ -540,7 +570,10 @@ class Game:
                             self.add_idol(self.turn, choices[ans-1], removed[0])
                             break
                         print(f'Invalid selection!')
-                    
+
+                    self.turn.money -= Game.CONST["dr"]
+                    self.gambler_check(Game.CONST["dr"]) # update gambler variant idols
+                    self.show_game_info()
                     self.switch_turns()
                 else: # player says no to deluxe reroll
                     self.turn.done = True
@@ -561,15 +594,15 @@ class Game:
                 print("-" * (Game.CONST["div"] + 2)) # divider
                 print(f'{self.turn.name}{Game.c_reset}, would you like to upgrade for ${Game.CONST["up"]}?')
                 if self.input_command("yon", self.turn) == 'y': # dr if yes, else break and move to next player
-                    self.turn.money -= Game.CONST["up"]
-                    self.gambler_check(Game.CONST["up"]) # update gambler variant idols
-
-                    print(f'Pick an idol on {self.turn.name}\'s{Game.c_reset} roster to upgrade.')
+                    print(f'\nPick an idol on {self.turn.name}\'s{Game.c_reset} roster to upgrade.')
+                    print("0. Cancel")
                     for i in range(len(self.turn.roster)):
                         print(f'{i+1}. {self.turn.roster[i].to_string()}')
                     while True:
                         ind = self.input_command("number", self.turn) # pick idol 1-5 to upgrade
-                        if 1 <= ind <= Game.CONST["size"]:
+                        if ind == 0:
+                            break # cancel upgrade
+                        elif 1 <= ind <= Game.CONST["size"]:
                             upgrade_idol = self.turn.roster[ind - 1]
                             if upgrade_idol.variant == Variants.ELIGE: # idol is eliged, cannot upgrade
                                 print(f'{upgrade_idol.to_string()} is Eliged!')
@@ -578,38 +611,63 @@ class Game:
                                 break # choice is valid
                         print(f'Invalid selection. Please choose a number between 1 and {Game.CONST["size"]}.')
 
+                    if ind == 0:
+                        self.turn.done = True
+                        continue # cancel upgrade
+
                     print("Please enter the number of tiers you would like to upgrade your idol.")
                     while True:
                         ans = self.input_command("number", self.turn) 
                         if 1 <= ans <= 8 and upgrade_idol.rating + ans <= 9:
-                                chance = 0.5 ** ans
-                                print(f'Upgrade chance: {Game.c_money}{round(chance * 100, 2)}%{Game.c_reset}')
-                                print("Upgrading...")
-                                time.sleep(1.5) # suspense
-                                print("\033[F\033[K", end="") # deletes previous line to replace with upgrade result
-                                if random.random() < chance: # if upgrade chance hits
-                                    print(f'{Game.c_money}SUCCESSFUL!{Game.c_reset}')
-                                    time.sleep(1)
-                                    upgrade_idol.stats["reroll"] += 1 # add 1 to reroll stat
-                                    self.turn.roster.remove(upgrade_idol)
-                                    new_idol = choose.random_idol(None, 1, self.turn.roster + self.opponent.roster, upgrade_idol.rating + ans)[0]
-                                    print(f'{upgrade_idol.to_string()} upgraded into {new_idol.to_string()}!')
+                            if upgrade_idol.rating == 7 and self.big_three_check(): 
+                                print("Unable to upgrade this idol!") # 910 idol cannot be upgraded when all of the big 3 exist
+                                continue 
+                            chance = 0.5 ** ans
+                            print(f'Upgrade chance: {Game.c_money}{round(chance * 100, 2)}%{Game.c_reset}')
+                            print("Upgrading...")
+                            time.sleep(1) # suspense
+                            print("\033[F\033[K", end="") # deletes previous line to replace with upgrade result
+                            if random.random() < chance: # if upgrade chance hits
+                                print(f'{Game.c_money}SUCCESSFUL!{Game.c_reset}')
+                                time.sleep(0.5)
+                                if upgrade_idol.rating == 8: # if idol is big 3, upgrade rating but do not change the idol itself
+                                    print(f'{upgrade_idol.to_string()} upgraded into their m0e form, ', end="")
+                                    upgrade_idol.rating += 1
+                                    print(f'{upgrade_idol.to_string()}!')
+                                    break
+                                upgrade_idol.stats["reroll"] += 1 # add 1 to reroll stat
+                                self.turn.roster.remove(upgrade_idol)
+                                new_idol = choose.random_idol(None, 1, self.turn.roster + self.opponent.roster, upgrade_idol.rating + ans)[0]
+                                print(f'{upgrade_idol.to_string()} upgraded into {new_idol.to_string()}!')
 
-                                    self.turn.roster.insert(ind - 1, new_idol) # insert upgraded idol and check synergies
-                                    self.check_synergies(self.turn)
-                                    self.add_history(new_idol, "upgrade", None)
-                                else:
-                                    print(f'\033[38;2;255;118;118mFAILED!{Game.c_reset}')
-                                self.show_game_info()
-                                break
+                                self.turn.roster.insert(ind - 1, new_idol) # insert upgraded idol and check synergies
+                                self.check_synergies(self.turn)
+                                self.add_history(new_idol, "upgrade", None)
+                            else:
+                                print(f'\033[38;2;255;118;118mFAILED!{Game.c_reset}')
+                                time.sleep(0.5)
+                            break
                         print("Invalid amount entered!")
-
+                    
+                    self.turn.money -= Game.CONST["up"]
+                    self.gambler_check(Game.CONST["up"]) # update gambler variant idols
+                    self.show_game_info()
                     self.switch_turns()
                 else: # player says no to upgrade
                     self.turn.done = True
             else: # player does not have enough money for deluxe reroll
                 self.turn.done = True
         self.p1.done, self.p2.done = False, False
+
+    def big_three_check(self) -> bool: # function to check if all of the big 3 are already in a roster
+        big3 = []
+        big3.append(choose.find_idol("yuna", "itzy"))
+        big3.append(choose.find_idol("julie", "kiss of life"))
+        big3.append(choose.find_idol("karina", "aespa"))
+        for big in big3:
+            if not any(big.equals(big_compare) for big_compare in self.p1.roster + self.p2.roster):
+                return False # one of the big three is missing, return false
+        return True # all big three exist in the game, return true
 
     def gambler_check(self, add_winrate: int): # updates bonus winrate of all gambler variant idols
         for _ in range(2):
@@ -627,9 +685,13 @@ class Game:
             for idol in self.turn.roster:
                 if idol.variant == Variants.EVOLVING: # handle evolving variant actions
                     if random.random() < Idol.RATINGS[idol.rating][2]: # if evolve chance hits
+                        if idol.rating == 7 and self.big_three_check():
+                            continue # idol is a 910 and all big 3 already exist, cancel evolve
+                        elif idol.rating == 8:
+                            idol.rating = 9
+                            print(f'{idol.to_string()} evolved into their m0e form, {new_idol.to_string()}!')
+                            continue
                         new_idol = choose.random_idol(None, 1, self.turn.roster + self.opponent.roster, idol.rating + 1)[0] # create new idol one tier above
-                        if new_idol is None:
-                            continue # idol is an evolving 910 when all 3 big3 idols already exist, cancel evolve
                         new_idol.variant = Variants.EVOLVING
                         new_idol.protected = True if idol.protected else False # copy protected stats
 
@@ -774,12 +836,12 @@ class Game:
                 print(self.format_text("Rolling idol...", Game.CONST["div"] + 2))
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
-            cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # roll idol
+            cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # ROLL IDOL FOR TURN -----
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
                 break # end turn 
-            elif dup_check == 2: # duplicate was protected, reroll idol
+            elif dup_check == 2: # duplicate was denied/protected/eliged, reroll idol
                 dupes.append(cur_idol)
                 continue
 
@@ -824,7 +886,6 @@ class Game:
         self.variant_check() # try variant conditions
 
         # show info and switch players for next turn
-        print()
         self.show_game_info()
         self.switch_turns()
 
