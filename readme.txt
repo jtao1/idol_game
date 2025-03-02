@@ -1,11 +1,13 @@
 TODO list:
 
+should upgrade minigame give a new idol on successful upgrade or simply upgrade current idol's rating?
+
 "help" command (essentially a command list)
-
 give players a choice on whether they want to steal a duplicate idol or not?
+add option to cancel for deluxe rerolls, letter synergy replacements, group synergy switches
 
-upgrade minigame (endgame feature, can be bought for $2 after all DR's finished)
 perks
+booster packs?
 
 --
 

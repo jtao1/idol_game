@@ -44,6 +44,8 @@ class History:
                     marker = '(Letter)'
                 elif idol.stats["evolve"]:
                     marker = '(EVO)'
+                elif idol.stats["upgrade"]:
+                    marker = '(UP)'
                 else:
                     marker = 'N/A'
                 if idol.stats["ult"]:
