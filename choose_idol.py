@@ -31,7 +31,7 @@ class Variants(Enum): # represents all the variants that idols can spawn in
 
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
-        9: ["", "m0e", 0], # secret rating
+        9: ["", "Hackclaw", 0], # secret rating
         8: ["\033[38;2;255;0;116m", "The Big 3", 0.05],
         7: ["\033[38;2;255;111;237m", "910", 0.1],
         6: ["\033[38;2;169;53;255m", "Luka Doncic", 0.15],

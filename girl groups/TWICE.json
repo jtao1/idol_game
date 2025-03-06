@@ -58,9 +58,9 @@
             "country": "Japanese",
             "rating": 6,
             "stats": {
-                "total_games": 10,
+                "total_games": 11,
                 "times_rerolled": 1,
-                "times_bought": 5,
+                "times_bought": 6,
                 "money_spent": 15
             }
         },
@@ -82,10 +82,10 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 3,
+                "total_games": 4,
                 "times_rerolled": 1,
-                "times_bought": 1,
-                "money_spent": 0
+                "times_bought": 2,
+                "money_spent": 1
             }
         },
         {
@@ -94,10 +94,10 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 8,
+                "total_games": 9,
                 "times_rerolled": 2,
-                "times_bought": 5,
-                "money_spent": 3
+                "times_bought": 6,
+                "money_spent": 6
             }
         },
         {

@@ -10,7 +10,7 @@
             "country": "Korean",
             "rating": 7,
             "stats": {
-                "total_games": 43,
+                "total_games": 45,
                 "times_rerolled": 2,
                 "times_bought": 6,
                 "money_spent": 23
@@ -22,8 +22,8 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 9,
-                "times_rerolled": 1,
+                "total_games": 10,
+                "times_rerolled": 2,
                 "times_bought": 3,
                 "money_spent": 8
             }

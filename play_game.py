@@ -619,8 +619,8 @@ All Commands:
                     while True:
                         ans = self.input_command("number", self.turn) 
                         if 1 <= ans <= 8 and upgrade_idol.rating + ans <= 9:
-                            if upgrade_idol.rating == 7 and self.big_three_check(): 
-                                print("Unable to upgrade this idol!") # 910 idol cannot be upgraded when all of the big 3 exist
+                            if upgrade_idol.rating == 7 and ans == 1 and self.big_three_check(): 
+                                print("Unable to upgrade this idol!") # 910 idol cannot be upgraded by exactly 1 tier if all big 3 exist
                                 continue 
                             chance = 0.5 ** ans
                             print(f'Upgrade chance: {Game.c_money}{round(chance * 100, 2)}%{Game.c_reset}')
@@ -630,9 +630,9 @@ All Commands:
                             if random.random() < chance: # if upgrade chance hits
                                 print(f'{Game.c_money}SUCCESSFUL!{Game.c_reset}')
                                 time.sleep(0.5)
-                                if upgrade_idol.rating == 8: # if idol is big 3, upgrade rating but do not change the idol itself
-                                    print(f'{upgrade_idol.to_string()} upgraded into their m0e form, ', end="")
-                                    upgrade_idol.rating += 1
+                                if upgrade_idol.rating + ans == 9: # if idol is being upgraded into Hackclaw, do not roll new idol
+                                    print(f'{upgrade_idol.to_string()} upgraded into their {Idol.RATINGS[9][1]} form, ', end="")
+                                    upgrade_idol.rating += ans
                                     print(f'{upgrade_idol.to_string()}!')
                                     break
                                 upgrade_idol.stats["reroll"] += 1 # add 1 to reroll stat
@@ -689,7 +689,7 @@ All Commands:
                             continue # idol is a 910 and all big 3 already exist, cancel evolve
                         elif idol.rating == 8:
                             idol.rating = 9
-                            print(f'{idol.to_string()} evolved into their m0e form, {new_idol.to_string()}!')
+                            print(f'{idol.to_string()} evolved into their {Idol.RATINGS[9][1]} form, {new_idol.to_string()}!')
                             continue
                         new_idol = choose.random_idol(None, 1, self.turn.roster + self.opponent.roster, idol.rating + 1)[0] # create new idol one tier above
                         new_idol.variant = Variants.EVOLVING
@@ -750,26 +750,32 @@ All Commands:
 
         for i in range(len(sorted_p1)):
             print(self.format_text(f'Matchup #{i+1}:', (Game.CONST["div"] + 2)))
+            p1_prob, p2_prob = 0, 0
 
-            p1_prob = 0.5 ** (abs(sorted_p1[i].rating - sorted_p2[i].rating) + 1) # probability calculation
-            p2_prob = 1 - p1_prob
-            if sorted_p1[i].rating > sorted_p2[i].rating:
-                p1_prob, p2_prob = p2_prob, p1_prob
-
-            if self.flush == self.p1: # add flush winrates
-                p1_prob = min(p1_prob + ((1 - p1_prob) ** 4) * 0.6 + 0.02, 1)
+            if sorted_p1[i].rating == 9:
+                p1_prob = 1
+            elif sorted_p2[i].rating == 9:
+                p2_prob = 1
+            else:
+                p1_prob = 0.5 ** (abs(sorted_p1[i].rating - sorted_p2[i].rating) + 1) # probability calculation
                 p2_prob = 1 - p1_prob
-            elif self.flush == self.p2:
-                p2_prob = min(p2_prob + ((1 - p2_prob) ** 4) * 0.6 + 0.02, 1)
-                p1_prob = 1 - p2_prob
+                if sorted_p1[i].rating > sorted_p2[i].rating:
+                    p1_prob, p2_prob = p2_prob, p1_prob
 
-            bonus = sorted_p1[i].winrate - sorted_p2[i].winrate # add bonus winrates from gambler variants
-            if bonus > 0:
-                p1_prob = min(p1_prob + bonus, 1)
-                p2_prob = 1 - p1_prob
-            elif bonus < 0:
-                p2_prob = min(p2_prob + abs(bonus), 1)
-                p1_prob = 1 - p2_prob
+                if self.flush == self.p1: # add flush winrates
+                    p1_prob = min(p1_prob + ((1 - p1_prob) ** 4) * 0.6 + 0.02, 1)
+                    p2_prob = 1 - p1_prob
+                elif self.flush == self.p2:
+                    p2_prob = min(p2_prob + ((1 - p2_prob) ** 4) * 0.6 + 0.02, 1)
+                    p1_prob = 1 - p2_prob
+
+                bonus = sorted_p1[i].winrate - sorted_p2[i].winrate # add bonus winrates from gambler variants
+                if bonus > 0:
+                    p1_prob = min(p1_prob + bonus, 1)
+                    p2_prob = 1 - p1_prob
+                elif bonus < 0:
+                    p2_prob = min(p2_prob + abs(bonus), 1)
+                    p1_prob = 1 - p2_prob
             
             p1_text = self.format_text(f'{sorted_p1[i].to_string()}', Game.CONST["div"] // 2 - 8)
             p2_text = self.format_text(f'{sorted_p2[i].to_string()}', Game.CONST["div"] // 2 - 8)

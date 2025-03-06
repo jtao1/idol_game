@@ -16,7 +16,7 @@ then reset idol stats and create these new stats:
 +opponent reroll rate
 +letter synergy rate
 +deluxe reroll pickrate?
-when letter synergy is hit, which letter is it?
+distribution of successful letter synergies
 
 Have a description of all game actions in every game file
 OR 

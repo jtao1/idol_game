@@ -22,7 +22,7 @@
             "country": "Japanese-Korean",
             "rating": 6,
             "stats": {
-                "total_games": 15,
+                "total_games": 16,
                 "times_rerolled": 2,
                 "times_bought": 7,
                 "money_spent": 16
@@ -34,8 +34,8 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 15,
-                "times_rerolled": 5,
+                "total_games": 16,
+                "times_rerolled": 7,
                 "times_bought": 7,
                 "money_spent": 16
             }

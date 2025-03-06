@@ -10,8 +10,8 @@
             "country": "American",
             "rating": 8,
             "stats": {
-                "total_games": 24,
-                "times_rerolled": 2,
+                "total_games": 25,
+                "times_rerolled": 3,
                 "times_bought": 7,
                 "money_spent": 35
             }
@@ -22,8 +22,8 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "total_games": 17,
-                "times_rerolled": 4,
+                "total_games": 18,
+                "times_rerolled": 5,
                 "times_bought": 8,
                 "money_spent": 16
             }
