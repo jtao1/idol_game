@@ -1,24 +1,27 @@
 TODO list:
 
+booster packs/collectible cards
 perks
-booster packs?
 
 --
 
 Groups to add: Rocket Punch, QWER
 Potential: cignature, X:IN, weeekly
 
-Once main feature todo list completed, finalize list of groups to add,
-then reset idol stats and create these new stats:
+LIST OF ALL IDOL stats
+- game presence
+- winrate
+- average price
+- reroll rate (rr, dr, up, syn)
+- opponent reroll rate
+- group reroll rate
 
-+general winrate
-+ultimate bias pickrate
-+opponent reroll rate
-+letter synergy rate
-+deluxe reroll pickrate?
-distribution of successful letter synergies
+Grand total file - Contains total amount of games, wins/losses in head-to-head
+exodia rate
+total amount of synergies
+letter/group synergy distribution
 
-Have a description of all game actions in every game file
-OR 
-Remove game history files entirely, only track idol stats
-Possibly database/online file storage for idol stats/game history?
+card collection of both players
+
+Stats file - distribution of idols according to group, letter, age, nationality, etc.
+All idols file - Contains a list of every idol, used for true random selection

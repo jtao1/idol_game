@@ -170,10 +170,14 @@ def get_group_data(votes: bool):
                             "country": nations.get(name, None),
                             "rating": ratings.get(name, 3),
                             "stats": {
-                                "total_games": stats.get(name, {}).get("total_games", 0),
-                                "times_rerolled": stats.get(name, {}).get("times_rerolled", 0),
-                                "times_bought": stats.get(name, {}).get("times_bought", 0),
-                                "money_spent": stats.get(name, {}).get("money_spent", 0)
+                                "games": stats.get(name, {}).get("games", 0), # total games idol appeared in
+                                "wins": stats.get(name, {}).get("wins", 0), # total wins idol has achieved
+                                "reroll": stats.get(name, {}).get("reroll", 0), # total times idol was rerolled, upgraded, replaced, or deluxe rerolled
+                                "opp reroll": stats.get(name, {}).get("opp reroll", 0), # total times idol was opponent rerolled
+                                "opp chances": stats.get(name, {}).get("opp chances", 0), # total chances for opponent to reroll
+                                "gr": stats.get(name, {}).get("gr", 0), # total times group rerolled
+                                "times bought": stats.get(name, {}).get("times bought", 0), # total times idol was bought
+                                "money spent": stats.get(name, {}).get("money spent", 0) # total amount of money spent on idol
                             }
                         }
                         json_text["members"].append(member)

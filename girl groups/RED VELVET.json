@@ -10,10 +10,14 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 8,
-                "times_rerolled": 3,
-                "times_bought": 7,
-                "money_spent": 5
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -22,10 +26,14 @@
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "total_games": 14,
-                "times_rerolled": 2,
-                "times_bought": 12,
-                "money_spent": 0
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -34,10 +42,14 @@
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "total_games": 8,
-                "times_rerolled": 2,
-                "times_bought": 6,
-                "money_spent": -1
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -46,22 +58,30 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 10,
-                "times_rerolled": 1,
-                "times_bought": 7,
-                "money_spent": 1
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
             "name": "Yeri",
-            "age": 25,
+            "age": 26,
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "total_games": 11,
-                "times_rerolled": 2,
-                "times_bought": 7,
-                "money_spent": -2
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         }
     ]

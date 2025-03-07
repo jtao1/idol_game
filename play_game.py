@@ -102,7 +102,6 @@ class Game:
                 ans = self.input_command("idol", self.turn)
                 self.turn.ult = ans
                 if self.opponent.ult is None or (self.opponent.ult and not self.turn.ult.equals(self.opponent.ult)): # not duplicate of opponent's
-                    self.add_history(self.turn.ult, "ult", None)
                     break
                 print("Invalid idol!")
             print(f'{self.turn.name}\'s{Game.c_reset} ultimate bias: {self.turn.ult.to_string()}')
@@ -180,7 +179,7 @@ All Commands:
             if ans in ['e', 'exit']: # command to exit the game
                 sys.exit()
             elif ans == 'reset stats': # resets all idol stats and removes all game history files
-                game_history.reset_stats()
+                self.history.reset_stats()
             elif ans in ['c', 'clear']: # command to clear terminal
                 os.system('cls')
             elif ans in ['h', 'help']: # TODO: create total command list
@@ -195,7 +194,7 @@ All Commands:
                     print(f'{self.p2.name}\'s{Game.c_reset} ultimate bias: {self.p2.ult.to_string()}')
                 else:
                     print("Not all ultimate biases chosen yet!")
-            elif ans.startswith("st ") or ans.startswith("stats "): # command to search up stats for a specific idol
+            elif ans.startswith(("in ", "info ", "st ", "stats ")): # searching up info/statistics on an idol
                 answer = ans.split(" ", 2)
                 search = None
                 if len(answer) >= 3: # group specified
@@ -203,7 +202,10 @@ All Commands:
                 elif len(answer) >= 2: # group not specified
                     search = choose.find_idol(answer[1], "stat")
                 if search:
-                    search.idol_stats()
+                    if ans.startswith(("in ", "info ")): # searching up idol info
+                        search.idol_info()
+                    else: # searching up idol stats
+                        search.idol_stats()
                     continue
                 print("Invalid idol!")
             else: ### need continue after all failures after this point
@@ -325,15 +327,6 @@ All Commands:
         player.synergies.update({syn for syn, count in counts.items() if count >= Game.CONST["synergies"]})
         new_syn = player.synergies - old_syn
 
-        # foreigners = 0 # give money according to amount of foreign idols
-        # for idol in player.roster:
-        #     if idol.country != "Korean":
-        #         foreigners += 1
-        # if foreigners > 1 and foreigners not in player.synergies:
-        #     player.money += 1
-        #     player.synergies.add(foreigners)
-        #     print(f'{player.name}{Game.c_reset} has {foreigners} foreigners! They have gained {Game.c_money}${foreigners - 1}{Game.c_reset} in total!')
-
         if new_syn: # give synergy effects
             for syn in new_syn:
                 if len(syn) > 1: # group synergy (SWITCH))
@@ -348,19 +341,13 @@ All Commands:
                         if opp_ind is None:
                             continue # cancelled switch
 
-                        opp_ind[1].stats["switch"] ^= True # invert current boolean values for SWITCH info
-                        turn_ind[1].stats["switch"] ^= True
-
-                        self.add_history(opp_ind[1], "switch", None)
-                        self.add_history(turn_ind[1], "switch", None)
-
                         self.add_idol(player, opp_ind[1], turn_ind[0])
                         self.add_idol(opp, turn_ind[1], opp_ind[0])
                     else:
                         print(f'{opp.name}\'s{Game.c_reset} roster is empty, so you can\'t use the switch!')
                 else: # letter synergy (ADD/REPLACE))
-                    print(f'{player.name}{Game.c_reset} hit a letter synergy for {Game.c_money}{syn}{Game.c_reset}! They get to add/replace an idol.')
                     ind = None
+                    print(f'{player.name}{Game.c_reset} hit a letter synergy for {Game.c_money}{syn}{Game.c_reset}! They get to add/replace an idol.')
                     if len(player.roster) >= Game.CONST["size"]: # player roster is full, must replace instead of adding
                         if all(check.variant == Variants.ELIGE for check in player.roster):
                             print("Your roster is completely Eliged, cannot use synergy!")
@@ -368,15 +355,15 @@ All Commands:
                         removed = self.replace_idol(player)
                         if removed is None:
                             continue # cancelled replace
-                        removed[1].stats["reroll"] += 1 # add to reroll stat of removed idol
                         ind = removed[0]
+                        self.edit_history(removed[1], "reroll", None)
                     print(f'Choose an idol whose name starts with a {Game.c_money}{syn.upper()}{Game.c_reset}: (name) (group)')
 
                     while True:
                         ans = self.input_command("idol", player)
                         if isinstance(ans, Idol) and ans.name.lower().startswith(syn.lower()) and not any(ans.equals(compare) for compare in self.turn.roster + self.opponent.roster):
                             ans.protected = True
-                            self.add_history(ans, "letter", None)
+                            self.edit_history(ans, None, None)
                             self.add_idol(player, ans, ind)
                             break
                         else:
@@ -428,7 +415,6 @@ All Commands:
                     if ans == 'y':
                         print(f'{self.turn.name}{Game.c_reset} steals {idol.to_string()} from {self.opponent.name}\'s{Game.c_reset} roster!')
                         self.opponent.roster.remove(idol)
-                        self.add_history(idol, "stolen", None)
                         self.add_idol(self.turn, idol, None)
                         return 1
                     else:
@@ -454,7 +440,7 @@ All Commands:
             if ans == 'y':
                 ult_player.money -= ult_value
                 idol.protected = True
-                self.add_history(idol, "ult", ult_value)
+                self.edit_history(idol, None, ult_value)
                 self.add_idol(ult_player, idol, None)
                 return True
         return False
@@ -482,27 +468,25 @@ All Commands:
                             continue
                     elif bid >= 0: # opponent bids to buy
                         if counter_bid > bid:
-                            self.add_history(cur_idol, None, counter_bid)
                             self.add_idol(self.opponent, cur_idol, None)
                         else: 
                             print("Bid must be more than your opponent.")
                             continue
                     else: # opponent bids to give
                         if counter_bid < bid:
-                            self.add_history(cur_idol, None, counter_bid)
                             self.add_idol(self.turn, cur_idol, None)
                         else: 
                             print("Bid must be more than your opponent.")
                             continue
                     self.opponent.money -= abs(counter_bid)
                     opponent_win = True
+                    self.edit_history(cur_idol, None, counter_bid)
         if not opponent_win: # turn player wins bid
-            cur_idol.stats["price"] = bid
+            self.edit_history(cur_idol, None, bid)
             if bid >= 0:
                 self.add_idol(self.turn, cur_idol, None)
             else:
                 self.add_idol(self.opponent, cur_idol, None)
-            self.add_history(cur_idol, None, bid)
             self.turn.money -= abs(bid)
 
     def group_reroll(self, dup_idol: Idol): # function for handling group reroll process
@@ -528,11 +512,11 @@ All Commands:
                 print("Would you like to group reroll again? ",)
                 if self.input_command("yon", self.turn) == 'y': # if answer is yes
                     self.turn.money -= Game.CONST["gr"]
-                    self.add_history(cur_idol, "reroll", None)
+                    self.edit_history(cur_idol, "gr", None)
                     dupes.append(cur_idol)
                     continue
             break
-        self.add_history(cur_idol, "gr", None)
+        self.edit_history(cur_idol, None, None)
         self.add_idol(self.turn, cur_idol, None)
 
     def deluxe_reroll(self): # function for deluxe reroll
@@ -552,7 +536,7 @@ All Commands:
                     if removed is None:
                         self.turn.done = True
                         continue # deluxe reroll is cancelled
-                    removed[1].stats["reroll"] += 1 # add 1 to reroll stat
+                    self.edit_history(removed[1], "reroll", None) # add to reroll stat of deluxe rerolled idol
                     print(f'{removed[1].to_string()} removed from {self.turn.name}\'s{Game.c_reset} roster!')
                     
                     if not Game.CONST["testing"]:
@@ -566,7 +550,7 @@ All Commands:
                     while True:
                         ans = self.input_command("number", self.turn) # pick idol 1-3 to add
                         if 1 <= ans <= 3:
-                            self.add_history(choices[ans-1], "dr", None)
+                            self.edit_history(choices[ans-1], None, None)
                             self.add_idol(self.turn, choices[ans-1], removed[0])
                             break
                         print(f'Invalid selection!')
@@ -594,7 +578,7 @@ All Commands:
                 print("-" * (Game.CONST["div"] + 2)) # divider
                 print(f'{self.turn.name}{Game.c_reset}, would you like to upgrade for ${Game.CONST["up"]}?')
                 if self.input_command("yon", self.turn) == 'y': # dr if yes, else break and move to next player
-                    print(f'\nPick an idol on {self.turn.name}\'s{Game.c_reset} roster to upgrade.')
+                    print(f'Pick an idol on {self.turn.name}\'s{Game.c_reset} roster to upgrade.')
                     print("0. Cancel")
                     for i in range(len(self.turn.roster)):
                         print(f'{i+1}. {self.turn.roster[i].to_string()}')
@@ -635,14 +619,14 @@ All Commands:
                                     upgrade_idol.rating += ans
                                     print(f'{upgrade_idol.to_string()}!')
                                     break
-                                upgrade_idol.stats["reroll"] += 1 # add 1 to reroll stat
+                                self.edit_history(upgrade_idol, "reroll", None) # add to reroll stat of upgraded idol
                                 self.turn.roster.remove(upgrade_idol)
                                 new_idol = choose.random_idol(None, 1, self.turn.roster + self.opponent.roster, upgrade_idol.rating + ans)[0]
                                 print(f'{upgrade_idol.to_string()} upgraded into {new_idol.to_string()}!')
 
+                                self.edit_history(new_idol, None, None)
                                 self.turn.roster.insert(ind - 1, new_idol) # insert upgraded idol and check synergies
                                 self.check_synergies(self.turn)
-                                self.add_history(new_idol, "upgrade", None)
                             else:
                                 print(f'\033[38;2;255;118;118mFAILED!{Game.c_reset}')
                                 time.sleep(0.5)
@@ -696,11 +680,10 @@ All Commands:
                         new_idol.protected = True if idol.protected else False # copy protected stats
 
                         ind = self.turn.roster.index(idol) # get index of old idol and delete idol from roster
-                        price = self.turn.roster[ind].stats["price"]
                         del self.turn.roster[ind]
 
+                        self.edit_history(new_idol, None, None)
                         self.turn.roster.insert(ind, new_idol) # add idol to roster
-                        self.add_history(new_idol, "evolve", price)
                         self.check_synergies(self.turn) # check synergies after adding new idol
                         print(f'{idol.to_string()} evolved into {new_idol.to_string()}!')
                 elif idol.variant == Variants.BULLY: # handle bully variant actions
@@ -819,14 +802,18 @@ All Commands:
         print(f'{self.format_text(final_score, (Game.CONST["div"] + 2))}')
 
     def final_screen(self): # closes the game, uploads data
-        if "Jason" in self.winner.name and Game.CONST["media"]:
+        if "Jason" in self.winner.name and Game.CONST["media"]: # video/sound effects for win
             on_win(False)
+
+        for idol in self.winner.roster: # edit win stat of idols in winning roster
+            self.edit_history(idol, "win", None)
         self.show_game_info()
+
         if Game.CONST["testing"]: # if testing, don't write history/stats but print out idol stats for debugging
             for idol in self.history.all_idols:
                 self.history.print_idol(idol)
         else:
-            self.history.write_history(self) # writes game history to a file and updates idol stats
+            self.history.update_game_stats(self) # writes game history to a file and updates idol stats
         sys.exit()
 
     def play_turn(self): # main game function to play out a turn
@@ -842,7 +829,7 @@ All Commands:
                 print(self.format_text("Rolling idol...", Game.CONST["div"] + 2))
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
-            cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # ROLL IDOL FOR TURN -----
+            cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
@@ -862,13 +849,15 @@ All Commands:
                 if self.input_command("yon", self.opponent) == 'y': # if answer is yes
                     self.opponent.money -= Game.CONST["r"]
                     self.gambler_check(Game.CONST["r"]) # update gambler variant idols
-                    self.add_history(cur_idol, "reroll", None) # add idol to history
+                    self.edit_history(cur_idol, "opp reroll", None) # add idol to history
                     self.show_money()
                     continue
+                else:
+                    self.edit_history(cur_idol, "opp chances", None)
 
             if len(self.opponent.roster) >= Game.CONST["size"] and self.turn.money <= 0: # opponent roster is full and turn player has no options, automatically add idol
+                self.edit_history(cur_idol, None, 0)
                 self.add_idol(self.turn, cur_idol, None)
-                self.add_history(cur_idol, None, 0)
                 break
             
             ans = self.input_command("bid turn", self.turn) # turn player chooses action for rolled idol
@@ -878,13 +867,13 @@ All Commands:
             elif ans == 'r': # reroll
                 self.turn.money -= Game.CONST["r"] # deduct money
                 dupes.append(cur_idol) # add idol to dupe list and reroll idol
-                self.add_history(cur_idol, "reroll", None) # add idol to history
+                self.edit_history(cur_idol, "reroll", None) # add to reroll stat of rerolled idol
                 self.gambler_check(Game.CONST["r"]) # update gambler variant idols
                 self.show_money()
                 continue 
             elif ans == 'gr': # group reroll
                 self.turn.money -= Game.CONST["gr"] # deduct money
-                self.add_history(cur_idol, "reroll", None) # add idol to history
+                self.edit_history(cur_idol, "gr", None) # add to gr stat of gr'd idol
                 self.gambler_check(Game.CONST["gr"]) # update gambler variant idols
                 self.group_reroll(cur_idol)
                 break
@@ -895,7 +884,7 @@ All Commands:
         self.show_game_info()
         self.switch_turns()
 
-    def add_history(self, cur_idol: Idol, stat: str, price: int): # adds an idol to the history list in History object
+    def edit_history(self, cur_idol: Idol, stat: str, price: int): # edits history of idols for stats
         edit_idol = cur_idol
         duplicate = False
         for idol in self.history.all_idols: # check if cur_idol already in list
@@ -903,15 +892,18 @@ All Commands:
                 edit_idol = idol
                 duplicate = True
                 break
-        
-        if price is not None: # if idol is not already on list, edit its values and add it
+
+        if price is not None: # set price of idol
             edit_idol.stats["price"] = price
-        if stat == "reroll":
+        if stat in ["reroll", "opp reroll", "gr", "opp chances"]: # add to reroll stats
             edit_idol.stats[stat] += 1
-        elif stat:
+            if stat == "opp reroll":
+                edit_idol.stats["opp chances"] += 1
+        elif stat: 
             edit_idol.stats[stat] = True
-        if not duplicate: # only add idol if it's not a duplicate
-            self.history.all_idols.append(edit_idol) # add idol to list
+
+        if not duplicate: # append idol if not in history already
+            self.history.all_idols.append(edit_idol)
 
     def play_game(self): # function that runs entire game
         # start game

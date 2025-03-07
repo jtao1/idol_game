@@ -10,10 +10,14 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 9,
-                "times_rerolled": 1,
-                "times_bought": 3,
-                "money_spent": 4
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -22,10 +26,14 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 7,
-                "times_rerolled": 2,
-                "times_bought": 5,
-                "money_spent": 8
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -34,10 +42,14 @@
             "country": "Korean",
             "rating": 1,
             "stats": {
-                "total_games": 1,
-                "times_rerolled": 0,
-                "times_bought": 1,
-                "money_spent": 0
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -46,10 +58,14 @@
             "country": "Japanese",
             "rating": 7,
             "stats": {
-                "total_games": 12,
-                "times_rerolled": 2,
-                "times_bought": 4,
-                "money_spent": 13
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -58,10 +74,14 @@
             "country": "Japanese",
             "rating": 6,
             "stats": {
-                "total_games": 11,
-                "times_rerolled": 1,
-                "times_bought": 6,
-                "money_spent": 15
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -70,10 +90,14 @@
             "country": "Japanese (Japanese-American at birth)",
             "rating": 6,
             "stats": {
-                "total_games": 6,
-                "times_rerolled": 0,
-                "times_bought": 5,
-                "money_spent": 18
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -82,10 +106,14 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 4,
-                "times_rerolled": 1,
-                "times_bought": 2,
-                "money_spent": 1
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -94,10 +122,14 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "total_games": 9,
-                "times_rerolled": 2,
-                "times_bought": 6,
-                "money_spent": 6
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -106,10 +138,14 @@
             "country": "Taiwanese",
             "rating": 6,
             "stats": {
-                "total_games": 4,
-                "times_rerolled": 0,
-                "times_bought": 3,
-                "money_spent": 4
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         }
     ]

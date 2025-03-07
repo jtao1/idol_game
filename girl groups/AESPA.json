@@ -10,10 +10,14 @@
             "country": "Korean",
             "rating": 8,
             "stats": {
-                "total_games": 14,
-                "times_rerolled": 0,
-                "times_bought": 10,
-                "money_spent": 37
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -22,10 +26,14 @@
             "country": "Japanese-Korean",
             "rating": 6,
             "stats": {
-                "total_games": 16,
-                "times_rerolled": 2,
-                "times_bought": 7,
-                "money_spent": 16
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -34,10 +42,14 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "total_games": 16,
-                "times_rerolled": 7,
-                "times_bought": 7,
-                "money_spent": 16
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         },
         {
@@ -46,10 +58,14 @@
             "country": "Chinese",
             "rating": 6,
             "stats": {
-                "total_games": 26,
-                "times_rerolled": 4,
-                "times_bought": 19,
-                "money_spent": 47
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
             }
         }
     ]

@@ -58,17 +58,13 @@ class Idol: # class to represent an idol
         self.wildcard = None
         self.winrate = 0 # bonus winrate if idol has GAMBLER variant
         self.protected = False # group rerolls, ult biases, and synergies protect idols
-        self.stats = {
+
+        self.stats = { # contains information to determine idol statistics
+            "win": False, # true if on winning team
             "price": None, # set to integer of price if idol is bought through bidding
-            "reroll": 0, # +1 if rerolled, group rerolled, deluxe rerolled, or replaced
-            "gr": False, # true if obtained through group reroll
-            "dr": False, # true if obtained through deluxe reroll
-            "upgrade": False, # true if obtained through upgrade
-            "switch": False, # true if used in a switch powerup
-            "stolen": False, # true if stolen during the game
-            "evolve": False, # true if obtained from an evolving idol
-            "letter": False, # true if obtained through letter synergy
-            "ult": False # true if chosen as ultimate bias
+            "reroll": 0, # +1 if rerolled, dr, replace, or upgrade
+            "opp reroll": 0, # +1 if opponent rerolled
+            "gr": 0, # +1 if group rerolled
         }
 
     def to_string(self): # string representation
@@ -95,38 +91,7 @@ class Idol: # class to represent an idol
         else:
             return self.rating - 3
         
-    def idol_stats(self): # comamnd to print out stats/information for an idol
-        groups = self.group.upper().split('/')
-        file_path = f'./girl groups/{groups[0]}.json'
-        with open(file_path, 'r') as f:
-            data = json.load(f)
-
-            for member in data["members"]:
-                if self.name == member["name"]:
-                    stats = member["stats"]
-
-        game_counter = [f for f in os.listdir('game files') if f.startswith('game_') and f.endswith(".txt")]
-        game_count = len(game_counter) # retrieve total amount of games
-
-        # average price of idol within games they are bought
-        avg_price = round(stats["money_spent"] / stats["times_bought"], 2) if stats["times_bought"] else 'N/A'
-        # reroll percentage per game they appear in
-        reroll_rate = stats["times_rerolled"] / stats["total_games"] * 100 if stats["total_games"] else 'N/A'
-        # percentage of total games that the idol appears in some form
-        game_presence = stats["total_games"] / game_count * 100 if game_count else 0
-
-        if avg_price != 'N/A':
-            if avg_price >= 0:
-                avg_price = f'{Idol.c_good}${avg_price:.2f}'
-            else:
-                avg_price = f'{Idol.c_bad}${avg_price:.2f}'
-
-        if reroll_rate != 'N/A':
-            if reroll_rate >= 50:
-                reroll_rate = f'{Idol.c_bad}{reroll_rate:.1f}%'
-            else:
-                reroll_rate = f'{Idol.c_good}{reroll_rate:.1f}%'
-
+    def idol_info(self): # command to print out information for an idol
         string = f"""
 ------------------------------------------
 Info for {Idol.RATINGS[self.rating][0]}{self.name}{Idol.c_reset}
@@ -135,10 +100,70 @@ Age: {Idol.c_info}{self.age}{Idol.c_reset}
 Nationality: {Idol.c_info}{self.country}{Idol.c_reset}
 Rating: {Idol.RATINGS[self.rating][0]}{Idol.RATINGS[self.rating][1]}{Idol.c_reset}
 ------------------------------------------
+""".strip()
+        print(string)
+        
+    def idol_stats(self): # command to print out statistics for an idol
+        with open("./info/game_stats.txt", 'r') as f:
+            lines = f.readlines()
+            game_count = int(lines[2].split(':')[1].strip()) # retrieve total amount of games
+
+        groups = self.group.upper().split('/')
+        file_path = f'./girl groups/{groups[0]}.json'
+        with open(file_path, 'r') as f: 
+            data = json.load(f)
+            for member in data["members"]: # retrieve stats of specified idol
+                if self.name == member["name"]:
+                    stats = member["stats"]
+        
+        no_stat = f'{Idol.c_info}N/A'
+
+        # percentage of total games that the idol appears in some form
+        game_presence = stats["games"] / game_count * 100 if game_count else 0
+        # winrate of idol
+        winrate = stats["wins"] / stats["games"] * 100 if stats["games"] else no_stat
+        # pickrate for ultimate bias
+        avg_price = round(stats["money spent"] / stats["times bought"], 2) if stats["times bought"] else no_stat
+        # reroll rate per game they appear in
+        reroll_rate = stats["reroll"] / stats["games"] * 100 if stats["games"] else no_stat
+        # opponent reroll rate per game they appear in
+        opp_rate = stats["opp reroll"] / stats["opp chances"] * 100 if stats["opp chances"] else no_stat
+        # group reroll rate per game they appear in
+        gr_rate = stats["gr"] / stats["games"] * 100 if stats["games"] else no_stat
+
+        # set color of number depending on whether stat is good or not
+        if avg_price != no_stat:
+            if avg_price >= 0:
+                avg_price = f'{Idol.c_good}${avg_price:.2f}'
+            else:
+                avg_price = f'{Idol.c_bad}${avg_price:.2f}'
+        if reroll_rate != no_stat:
+            if reroll_rate >= 50:
+                reroll_rate = f'{Idol.c_bad}{reroll_rate:.1f}%'
+            else:
+                reroll_rate = f'{Idol.c_good}{reroll_rate:.1f}%'
+        if winrate != no_stat:
+            if winrate >= 50:
+                winrate = f'{Idol.c_good}{winrate:.1f}%'
+            else:
+                winrate = f'{Idol.c_bad}{winrate:.1f}%'
+        if opp_rate != no_stat:
+            if opp_rate >= 50:
+                opp_rate = f'{Idol.c_good}{opp_rate:.1f}%'
+            else:
+                opp_rate = f'{Idol.c_bad}{opp_rate:.1f}%'
+        if gr_rate != no_stat:
+            gr_rate = f'{gr_rate:.1f}%'
+
+        string = f"""
+------------------------------------------
 Stats for {Idol.RATINGS[self.rating][0]}{self.name}{Idol.c_reset}
+Game Presence: {Idol.c_info}{game_presence:.1f}%{Idol.c_reset}
+Winrate: {winrate}{Idol.c_reset}
 Average Price: {avg_price}{Idol.c_reset}
 Reroll Rate: {reroll_rate}{Idol.c_reset}
-Game Presence: {Idol.c_info}{game_presence:.1f}%{Idol.c_reset}
+Opponent Reroll Rate: {opp_rate}{Idol.c_reset}
+Group Reroll Rate: {Idol.c_info}{gr_rate}{Idol.c_reset}
 ------------------------------------------
         """.strip()
         print(string)

@@ -1,86 +1,88 @@
 import os
-import glob
 import re
 from choose_idol import Idol
 import json
 
 class History:
-    folder_name = 'game files' # folder where all files are stored
+    game_stats = "./info/game_stats.txt" # file where game stats are stored
 
     def __init__(self):
-        self.history = [] # each element of the list is a line of the file, denoting one action during the game
-        self.overview = [] # contains information for overview board to show at top of history file
         self.all_idols = [] # contains a list of every idol that appeared in the game
-
-    def write(self, line: str): # function to add a line to history
-        self.history.append(line)
 
     def remove_ansi(self, text): # remove ansi codes from any string
         ansi_escape = re.compile(r'\033\[[0-9;]*m')
         return ansi_escape.sub('', text)
 
-    def create_overview(self, game): # creates overview board to display on top of a history file
-        self.overview.append(f'WINNER: {self.remove_ansi(game.winner.name)}') # display winner along with combat score/exodia
-        if game.p1.combat_score > 0 or game.p2.combat_score > 0:
-            self.overview.append(f'Score: {game.p1.combat_score} to {game.p2.combat_score}')
-        else: 
-            self.overview.append(f'Score: EXODIA ({game.exodia})')
-        self.overview.append('-' * 30) # divider
+    def update_game_stats(self, game): # updates total game stats and writes idol statistics
+        with open(self.game_stats, 'r') as f: 
+            # read data of game statistic file
+            lines = f.readlines()
+            data = {
+                "total games": int(lines[2].split(":")[1].strip()),
+                "sejun wins": int(lines[3].split(":")[1].split("-")[0].strip()),
+                "jason wins": int(lines[4].split(":")[1].split("-")[0].strip()),
+                "exodias": int(lines[6].split(":")[1].split("-")[0].strip()),
+                "exodia letters": {},
+                "synergies": 0, # retrieve later since line can vary
+                "letters": {}
+            }
+            exod = True
+            for line in lines[7:]:
+                if line.strip():
+                    if line.startswith("Letter"):
+                        data["synergies"] = int(line.split(":")[1].strip())
+                        exod = False
+                        continue
+                    if exod: # read variable-length list under exodia
+                        exodia_mark, count = line.strip().split(":")
+                        data["exodia letters"][exodia_mark.strip()] = int(count.split("-")[0].strip())
+                    else: # exodia reading finished, read variable length list under letter synergies
+                        letter, count = line.strip().split(":")
+                        data["letters"][letter.strip()] = int(count.split("-")[0].strip())
 
-        def eval_idols(player): # evaluates each idol in each player's roster for the overview
-            player_string = f'{self.remove_ansi(player.name)}: ${player.money}' # p1 info & roster
-            if game.flush == player:
-                player_string += ' (FLUSH)'
-            self.overview.append(player_string)
-            self.overview.append(f'Ult: {self.remove_ansi(player.ult.to_string())}\n')
-            for idol in player.roster:
-                if idol.stats["price"] is not None: # set marker for idol in overview
-                    marker = f'${idol.stats["price"]}'
-                elif idol.stats["gr"]:
-                    marker = '(GR)'
-                elif idol.stats["dr"]:
-                    marker = '(DR)'
-                elif idol.stats["letter"]:
-                    marker = '(Letter)'
-                elif idol.stats["evolve"]:
-                    marker = '(EVO)'
-                elif idol.stats["upgrade"]:
-                    marker = '(UP)'
-                else:
-                    marker = 'N/A'
-                if idol.stats["ult"]:
-                    marker += ' (ULT)'
-                if idol.stats["switch"]:
-                    marker += ' (SW)'
-                if idol.stats["stolen"]:
-                    marker += ' (STOLEN)'
-                self.overview.append(f'{marker} - {self.remove_ansi(idol.to_string())}')
-            self.overview.append('-' * 30) # divider
+            # update data
+            data["total games"] += 1
+            if "Sejun" in game.winner.name:
+                data["sejun wins"] += 1
+            else:
+                data["jason wins"] += 1
+            if game.exodia:
+                data["exodias"] += 1
+                data["exodia letters"][game.exodia] = data["exodia letters"].get(game.exodia, 0) + 1 # add exodia type
+            game.turn = game.p1
+            for _ in range(2):
+                for char in game.turn.synergies:
+                    if len(char) == 1: # if synergy is a letter
+                        data["synergies"] += 1
+                        data["letters"][char] = data["letters"].get(char, 0) + 1 # add specific letters of all hit synergies
+                game.switch_turns()
+
+        # data to write
+        new_data = []
+        new_data.append("IDOLS 3.5 GAME STATISTICS OVERVIEW\n\n")
+        new_data.append(f'Total Games: {data["total games"]}\n')
+        new_data.append(f'Sejun: {data["sejun wins"]} - ({round(data["sejun wins"] / data["total games"] * 100, 2)}%)\n')
+        new_data.append(f'Jason: {data["jason wins"]} - ({round(data["jason wins"] / data["total games"] * 100, 2)}%)\n\n')
+        new_data.append(f'Exodias: {data["exodias"]} - ({round(data["exodias"] / data["total games"] * 100, 2)}%)\n')
+        for key in data["exodia letters"]:
+            new_data.append(f'\t{key}: {data["exodia letters"][key]} - ({round(data["exodia letters"][key] / data["exodias"] * 100, 2)}%)\n')
+        new_data.append(f'\nLetter Synergies: {data["synergies"]}\n')
+        for key in data["letters"]:
+            new_data.append(f'\t{key}: {data["letters"][key]} - ({round(data["letters"][key] / data["synergies"] * 100, 2)}%)\n')
+
+        with open(self.game_stats, 'w') as f:
+            f.writelines(new_data) 
         
-        eval_idols(game.p1)
-        eval_idols(game.p2)
-        # end of overview creation function
-
-    def write_history(self, game): # writes the history file of the game
-        existing_files = [f for f in os.listdir(self.folder_name) if f.startswith('game_') and f.endswith(".txt")]
-        game_number = len(existing_files) + 1
-        filename = f'game_{game_number}.txt'
-        path = os.path.join(self.folder_name, filename)
-
-        self.write_idol_stats() # update idol stats
-        self.create_overview(game) # create overview for history file
-
-        with open(path, 'w') as f: # write overview to history file
-            f.writelines('\n'.join(self.overview))
-            f.writelines('\n'.join(self.history))
-        print(f'Wrote history of game #{game_number} to {filename}')
+        self.write_idol_stats()
+        print(f'Wrote game history and idol statistics')
 
     def print_idol(self, idol: Idol):
         print(f'{idol.to_string()} | Stats: {idol.stats}')
 
     def write_idol_stats(self): # uploads idol stats to json database
         for idol in self.all_idols:
-            # self.print_idol(idol)
+            self.print_idol(idol)
+        for idol in self.all_idols:
             groups = idol.group.upper().split('/') # for IZONE edge cases
             for group in groups:
                 file_path = f'./girl groups/{group}.json'
@@ -90,21 +92,21 @@ class History:
                     for member in data["members"]:
                         if idol.name == member["name"]:
                             stats = member["stats"]
-                            stats["total_games"] += 1 # total games stat
+                            stats["games"] += 1 # total games stat
+                            if idol.stats["win"]: # add to total wins
+                                stats["wins"] += 1
+                            stats["reroll"] += idol.stats["reroll"]
+                            stats["opp reroll"] += idol.stats["opp reroll"]
+                            stats["gr"] += idol.stats["gr"]
+                            
                             if idol.stats["price"] is not None:
-                                stats["times_bought"] += 1 # total games bought by bidding
-                                stats["money_spent"] += idol.stats["price"] # total money spent on bidding
-                            stats["times_rerolled"] += idol.stats["reroll"]
+                                stats["times bought"] += 1 # total games bought by bidding
+                                stats["money spent"] += idol.stats["price"] # total money spent on bidding
+                            
                 with open(file_path, 'w') as f:
                     json.dump(data, f, indent=4)
             
     def reset_stats(self): # resets all idol stats
-        files = glob.glob(os.path.join(self.folder_name, "*"))
-
-        for file in files:
-            if os.path.isfile(file):
-                os.remove(file)
-
         files = os.listdir('./girl groups')
         for file in files:
             file_name = f'./girl groups/{file}'
@@ -113,15 +115,32 @@ class History:
 
                 for member in data["members"]: # reset all stats
                     stats = member["stats"]
-                    stats["total_games"] = 0
-                    stats["times_rerolled"] = 0
-                    stats["times_bought"] = 0
-                    stats["money_spent"] = 0
+                    stats["games"] = 0
+                    stats["wins"] = 0
+                    stats["ults"] = 0
+                    stats["reroll"] = 0
+                    stats["opp reroll"] = 0
+                    stats["opp chances"] = 0
+                    stats["gr"] = 0
+                    stats["times bought"] = 0
+                    stats["money spent"] = 0
 
             with open(file_name, 'w') as f: # rewrite resetted stats to file
                 json.dump(data, f, indent=4)
+        
+        reset_string = """
+IDOLS 3.5 GAME STATISTICS OVERVIEW
+
+Total Games: 0
+Sejun: 0 - (0.0%)
+Jason: 0 - (0.0%)
+
+Exodias: 0 - (0.0%)
+
+Letter Synergies: 0
+    """.strip()
+        
+        with open(self.game_stats, 'w') as f:
+            f.write(reset_string)
 
         print("All stats and game history erased!")
-
-# history = History()
-# history.reset_stats()
