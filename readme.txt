@@ -3,12 +3,12 @@ TODO list:
 booster packs/collectible cards
 perks
 
---
+------
 
 Groups to add: Rocket Punch, QWER
 Potential: cignature, X:IN, weeekly
 
-LIST OF ALL IDOL stats
+All possible idol stats:
 - game presence
 - winrate
 - average price
@@ -16,12 +16,14 @@ LIST OF ALL IDOL stats
 - opponent reroll rate
 - group reroll rate
 
-Grand total file - Contains total amount of games, wins/losses in head-to-head
-exodia rate
-total amount of synergies
-letter/group synergy distribution
+game_statistics.txt: 
+- total amount of games, total wins for each player
+- exodia rate and type
+- synergies and synergy distribution
+- idol distribution for rating/letter
 
-card collection of both players
+all_idols.txt:
+- list of all idols, used for true random selection/distribution check
 
-Stats file - distribution of idols according to group, letter, age, nationality, etc.
-All idols file - Contains a list of every idol, used for true random selection
+card_collection.txt:
+- info on card collection of both players

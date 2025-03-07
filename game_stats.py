@@ -1,10 +1,12 @@
 import os
 import re
+import choose_idol as choose
 from choose_idol import Idol
 import json
 
-class History:
-    game_stats = "./info/game_stats.txt" # file where game stats are stored
+class Stats:
+    game_stats = "./info/game_statistics.txt" # file where game stats are stored
+    all_idol_file = "./info/all_idols.txt" # file where all idols are stored in a single list
 
     def __init__(self):
         self.all_idols = [] # contains a list of every idol that appeared in the game
@@ -12,6 +14,29 @@ class History:
     def remove_ansi(self, text): # remove ansi codes from any string
         ansi_escape = re.compile(r'\033\[[0-9;]*m')
         return ansi_escape.sub('', text)
+    
+    # sort - True for sorting alphabetically, False for sorting by group
+    def write_all_idols(self, sort: bool): # Writes all idols to a single file
+        search = './girl groups'
+        files = os.listdir(search)
+        with open(self.all_idol_file, 'w', encoding="utf-8") as output:
+            idols = []
+            for file in files:
+                print(file)
+                with open(f'{search}/{file}', 'r') as f:
+                    data = json.load(f)
+                    for i in range(len(data["members"])):
+                        name = data["members"][i]["name"]
+                        group = data["group"]["name"]
+                        age = data["members"][i]["age"]
+                        rating = data["members"][i]["rating"]
+                        country = data["members"][i]["country"]
+                        idol = Idol(name, group, age, rating, country)
+                        idols.append(choose.remove_ansi(f'{idol.to_string()} | {rating}\n'))
+            if sort:
+                idols.sort()
+            output.writelines(idols)
+        print(f'Wrote all idols from "{search}" to a single file')
 
     def update_game_stats(self, game): # updates total game stats and writes idol statistics
         with open(self.game_stats, 'r') as f: 
@@ -29,6 +54,8 @@ class History:
             exod = True
             for line in lines[7:]:
                 if line.strip():
+                    if line.startswith("Rating"): # stop reading file once exodia/synergy stats are finished
+                        break
                     if line.startswith("Letter"):
                         data["synergies"] = int(line.split(":")[1].strip())
                         exod = False
@@ -71,10 +98,31 @@ class History:
             new_data.append(f'\t{key}: {data["letters"][key]} - ({round(data["letters"][key] / data["synergies"] * 100, 2)}%)\n')
 
         with open(self.game_stats, 'w') as f:
-            f.writelines(new_data) 
+            f.writelines(new_data)
+            f.writelines(self.find_distribution()) 
         
         self.write_idol_stats()
         print(f'Wrote game history and idol statistics')
+
+    def find_distribution(self) -> list: # finds distribution info of entire idol pool
+        rating_counts, letter_counts = [0] * 8, [0] * 26
+        with open(self.all_idol_file, 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                rating_counts[int(line.strip()[-1]) - 1] += 1 # add to rating stats
+                letter_counts[ord(line[0].lower()) - ord('a')] += 1 # add to letter stats
+        idol_count = len(lines)
+        
+        rating_string, letter_string = '', ''
+        grand_string = f'\n\n{"-" * 30}'
+        grand_string += f'\nIDOL DISTRIBUTION INFORMATION\nTotal Idols: {idol_count}\n\nRATING DISTRIBUTION\n'
+        for i in range(len(rating_counts)):
+            rating_string += f'{Idol.RATINGS[i + 1][1]}: {rating_counts[i]} - ({round(rating_counts[i] / idol_count * 100, 2)}%)\n'
+        grand_string += f'{rating_string}\nLETTER DISTRIBUTION\n'
+        for i in range(len(letter_counts)):
+            letter_string += f'{chr(i + ord("a")).upper()}: {letter_counts[i]} - ({round(letter_counts[i] / idol_count * 100, 2)}%)\n'
+        grand_string += letter_string
+        return grand_string
 
     def print_idol(self, idol: Idol):
         print(f'{idol.to_string()} | Stats: {idol.stats}')
@@ -97,6 +145,7 @@ class History:
                                 stats["wins"] += 1
                             stats["reroll"] += idol.stats["reroll"]
                             stats["opp reroll"] += idol.stats["opp reroll"]
+                            stats["opp chances"] += idol.stats["opp chances"]
                             stats["gr"] += idol.stats["gr"]
                             
                             if idol.stats["price"] is not None:
@@ -142,5 +191,6 @@ Letter Synergies: 0
         
         with open(self.game_stats, 'w') as f:
             f.write(reset_string)
+            f.write(self.find_distribution())
 
         print("All stats and game history erased!")

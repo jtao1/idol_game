@@ -1,9 +1,9 @@
-Ahyeon (M) | BABYMONSTER | 6
+Ahyeon | BABYMONSTER | 6
 Aisha | EVERGLOW | 2
 Aran | FIFTY FIFTY | 3
 Arin | OH MY GIRL | 4
 Asa | BABYMONSTER | 5
-Athena (M) | FIFTY FIFTY | 3
+Athena | FIFTY FIFTY | 3
 BIBI | Soloist | 3
 BOL4 | Soloist | 4
 Bae | NMIXX | 3
@@ -12,14 +12,14 @@ Belle | KISS OF LIFE | 6
 Chaehyun | Kep1er | 3
 Chaejeong | ALICE | 2
 Chaeryeong | ITZY | 5
-Chaewon (M) | tripleS | 5
 Chaewon | IZONE | 7
 Chaewon | LE SSERAFIM | 7
+Chaewon | tripleS | 5
 Chaeyeon | IZONE | 2
 Chaeyeon | tripleS | 4
 Chaeyoung | TWICE | 5
 Chaeyoung | fromis_9 | 3
-Chiquita (M) | BABYMONSTER | 6
+Chiquita | BABYMONSTER | 6
 Choerry | LOONA | 4
 Chuu | LOONA | 3
 Dahyun | TWICE | 5
@@ -30,14 +30,14 @@ Dayeon | Kep1er | 3
 DoA | ALICE | 3
 E:U | EVERGLOW | 3
 EJ | ALICE | 3
-Elisia (M) | UNIS | 3
+Elisia | UNIS | 3
 Eunbi | IZONE | 7
 Eunchae | LE SSERAFIM | 6
 Eunha | GFRIEND | 3
 Gaeul | IVE | 5
 Gahyun | Dreamcatcher | 3
 Garam | LE SSERAFIM | 3
-Gehlee (M) | UNIS | 2
+Gehlee | UNIS | 2
 Giselle | aespa | 6
 GoWon | LOONA | 3
 Gyuri | fromis_9 | 3
@@ -48,22 +48,22 @@ Hana | FIFTY FIFTY | 3
 Handong | Dreamcatcher | 2
 Haneul | KISS OF LIFE | 6
 Hanni | NJZ | 5
-Hayeon (M) | tripleS | 5
+Hayeon | tripleS | 5
 Hayoung | fromis_9 | 4
 HeeJin | LOONA | 4
 Hikaru | Kep1er | 2
 Hitomi | IZONE | 3
 Hwasa | MAMAMOO | 1
 HyeJu | LOONA | 3
-Hyein (M) | NJZ | 5
+Hyein | NJZ | 5
 Hyeonju | UNIS | 3
-Hyerin (M) | tripleS | 3
+Hyerin | tripleS | 3
 Hyewon | IZONE | 5
 Hyojung | OH MY GIRL | 3
 HyunJin | LOONA | 3
 IU | Soloist | 7
 Irene | Red Velvet | 5
-Iroha (M) | ILLIT | 6
+Iroha | ILLIT | 6
 Isa | STAYC | 4
 J | STAYC | 3
 Jennie | BLACKPINK | 6
@@ -80,17 +80,17 @@ Jisun | fromis_9 | 4
 Jiwon | fromis_9 | 4
 Jiwoo | NMIXX | 4
 Jiwoo | tripleS | 4
-JooBin (M) | tripleS | 4
+JooBin | tripleS | 4
 Joy | Red Velvet | 5
 Julie | KISS OF LIFE | 8
+KIMSEJEONG | Soloist | 5
 Kaede | tripleS | 2
 Karin | ALICE | 3
 Karina | aespa | 8
 Kazuha | LE SSERAFIM | 6
 Keena | FIFTY FIFTY | 3
-Kim Sejeong | Soloist | 5
 KimLip | LOONA | 3
-Kotoko (M) | UNIS | 4
+Kotoko | UNIS | 4
 Kotone | tripleS | 4
 Kyujin | NMIXX | 4
 Leeseo | IVE | 5
@@ -118,19 +118,19 @@ Moonbyul | MAMAMOO | 2
 Nagyung | fromis_9 | 3
 NakYoung | tripleS | 3
 Nako | IZONE | 4
-Nana (M) | UNIS | 4
+Nana | UNIS | 4
 Nana | WOOAH | 7
 Natty | KISS OF LIFE | 6
 Nayeon | TWICE | 5
-Nientz’u | tripleS | 4
+Nientzu | tripleS | 3
 NingNing | aespa | 6
-ODD CHILD | Soloist | 1
+ODDCHILD | Soloist | 1
 Onda | EVERGLOW | 4
 Pharita | BABYMONSTER | 6
 Pirada | tripleS | 3
-Rami (M) | BABYMONSTER | 5
+Rami | BABYMONSTER | 5
 Rei | IVE | 5
-Rora (M) | BABYMONSTER | 6
+Rora | BABYMONSTER | 6
 Rose | BLACKPINK | 6
 Ruka | BABYMONSTER | 5
 Ryujin | ITZY | 6
@@ -140,8 +140,8 @@ Sakura | IZONE | 6
 Sakura | LE SSERAFIM | 6
 Sana | TWICE | 6
 Seeun | STAYC | 3
-SeoAh (M) | tripleS | 5
-Seowon (M) | UNIS | 3
+SeoAh | tripleS | 5
+Seowon | UNIS | 3
 Seoyeon | fromis_9 | 3
 Seoyeon | tripleS | 5
 Seulgi | Red Velvet | 4
@@ -159,7 +159,7 @@ Solar | MAMAMOO | 3
 Somi | Soloist | 6
 Songyee | WOOAH | 3
 Soojin | (G)I-DLE | 2
-Soomin (M) | tripleS | 3
+Soomin | tripleS | 3
 Sora | WOOAH | 3
 Sowon | GFRIEND | 3
 Soyeon | (G)I-DLE | 5
@@ -174,7 +174,7 @@ ViVi | LOONA | 3
 Wendy | Red Velvet | 4
 Wheein | MAMAMOO | 2
 Winter | aespa | 6
-Wonhee (M) | ILLIT | 6
+Wonhee | ILLIT | 6
 Wonyoung | IVE | 7
 Wonyoung | IZONE | 7
 Wooyeon | WOOAH | 5
@@ -184,7 +184,7 @@ Yeji | ITZY | 7
 Yena | IZONE | 6
 YeoJin | LOONA | 4
 Yeonje | ALICE | 3
-Yeonji (M) | tripleS | 3
+Yeonji | tripleS | 3
 Yeri | Red Velvet | 4
 Yerin | GFRIEND | 3
 Yeseo | Kep1er | 4
@@ -193,7 +193,7 @@ Yiren | EVERGLOW | 4
 YooA | OH MY GIRL | 4
 Yoohyeon | Dreamcatcher | 2
 Yoon | STAYC | 4
-Yoona (M) | UNIS | 4
+Yoona | UNIS | 4
 Yooyeon | tripleS | 4
 Youngeun | Kep1er | 3
 Yubin | OH MY GIRL | 3
@@ -205,42 +205,8 @@ Yuju | GFRIEND | 3
 Yukyung | ALICE | 2
 Yuna | ITZY | 8
 Yunah | ILLIT | 3
-Yunha (M) | UNIS | 4
+Yunha | UNIS | 4
 Yunjin | LE SSERAFIM | 6
 Yuqi | (G)I-DLE | 7
 Yuri | IZONE | 6
 Yves | LOONA | 3
-Dychas: 5
-Lower AD: 21
-Anthony Davis: 69
-Passion UA: 37
-Jason Taytum: 29
-Luka Doncic: 37
-910: 11
-The Big 3: 3
-a: 6
-b: 5
-c: 13
-d: 6
-e: 6
-f: 0
-g: 7
-h: 20
-i: 4
-j: 18
-k: 10
-l: 7
-m: 15
-n: 9
-o: 2
-p: 2
-q: 0
-r: 6
-s: 33
-t: 2
-u: 1
-v: 1
-w: 7
-x: 2
-y: 30
-z: 0

@@ -32,9 +32,9 @@ class Variants(Enum): # represents all the variants that idols can spawn in
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
         9: ["", "Hackclaw", 0], # secret rating
-        8: ["\033[38;2;255;0;116m", "The Big 3", 0.05],
-        7: ["\033[38;2;255;111;237m", "910", 0.1],
-        6: ["\033[38;2;169;53;255m", "Luka Doncic", 0.15],
+        8: ["\033[38;2;255;0;116m", "The Big 3", 0.01],
+        7: ["\033[38;2;255;111;237m", "910", 0.05],
+        6: ["\033[38;2;169;53;255m", "Luka Doncic", 0.10],
         5: ["\033[38;2;206;155;255m", "Jason Taytum", 0.2],
         4: ["\033[38;2;112;146;255m", "Passion UA", 0.35],
         3: ["\033[38;2;98;197;255m", "Anthony Davis", 0.5],
@@ -64,6 +64,7 @@ class Idol: # class to represent an idol
             "price": None, # set to integer of price if idol is bought through bidding
             "reroll": 0, # +1 if rerolled, dr, replace, or upgrade
             "opp reroll": 0, # +1 if opponent rerolled
+            "opp chances": 0, # number of chances for opponent to reroll
             "gr": 0, # +1 if group rerolled
         }
 
@@ -104,7 +105,7 @@ Rating: {Idol.RATINGS[self.rating][0]}{Idol.RATINGS[self.rating][1]}{Idol.c_rese
         print(string)
         
     def idol_stats(self): # command to print out statistics for an idol
-        with open("./info/game_stats.txt", 'r') as f:
+        with open("./info/game_statistics.txt", 'r') as f:
             lines = f.readlines()
             game_count = int(lines[2].split(':')[1].strip()) # retrieve total amount of games
 
@@ -330,40 +331,3 @@ def move_files(old: str, new: str): # Moves all group files to a different direc
         if data['group-type'] == determinant:
             shutil.move(path, os.path.join(new, file))
     print("Moved all group files")
-
-# sort - True for sorting alphabetically, False for sorting by group
-# name - Name of file to write all idols to
-def write_all_idols(sort: bool, name: str): # Writes all idols to a single file
-    search = './girl groups' # if type else './boy groups'
-    files = os.listdir(search)
-    rating_counts, letter_counts = [0] * 8, [0] * 26
-    with open(name, 'w', encoding="utf-8") as output:
-        idols = []
-        for file in files:
-            print(file)
-            with open(f'{search}/{file}', 'r') as f:
-                data = json.load(f)
-                for i in range(len(data["members"])):
-                    name = data["members"][i]["name"]
-                    group = data["group"]["name"]
-                    age = data["members"][i]["age"]
-                    rating = data["members"][i]["rating"]
-                    country = data["members"][i]["country"]
-                    idol = Idol(name, group, age, rating, country)
-                    rating_counts[idol.rating - 1] += 1 # add to rating stats
-                    letter_counts[ord(idol.name[0].lower()) - ord('a')] += 1 # add to letter stats
-                    idols.append(remove_ansi(f'{idol.to_string()} | {rating}\n'))
-        if sort:
-            idols.sort()
-
-        rating_string, letter_string = '', ''
-        for i in range(len(rating_counts)):
-            rating_string += f'{Idol.RATINGS[i + 1][1]}: {rating_counts[i]}\n'
-        for i in range(len(letter_counts)):
-            letter_string += f'{chr(i + ord("a"))}: {letter_counts[i]}\n'
-        idols.append(rating_string)
-        idols.append(letter_string)
-        output.writelines(idols)
-    print(f'Wrote all idols from "{search}" to a single file')
-
-# write_all_idols(True, "all female idols.txt")
