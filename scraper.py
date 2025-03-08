@@ -48,8 +48,10 @@ def get_ages(soup: BeautifulSoup) -> dict:
         nationalities = ["Korean", "Japanese", "Korean", "Korean", "Korean", "Korean", "Korean", "Japanese", "Japanese", "Korean", "Korean", "Korean"]
     elif group == "GFRIEND":
         nationalities = ["Korean"] * 6 
-    elif group == "OH MY GIRL":
+    elif group == "OH MY GIRL" or group == "cignature":
         nationalities = ["Korean"] * 8
+    elif group == "Weeekly":
+        nationalities = ["Korean"] * 7
     else:
         nationalities = soup.find_all('span', string=lambda text: text and text.strip() in ["Nationality:"])
 
@@ -65,7 +67,8 @@ def get_ages(soup: BeautifulSoup) -> dict:
         if group == "TWICE":
             names = [span for span in names if not span.find_parent('span')]
     birthdays = soup.find_all('span', string=lambda text: text and text.strip() in ["Birthdate:", "Birthday:"])
-    
+    print(f'names: {len(names)}')
+    print(f'nationalities: {len(nationalities)}')
     for i in range(len(names)):
         real_name = names[i].find_next(string=True).find_next(string=True).strip()
         real_name = real_name.split('(')[0].replace("-", "").strip()
@@ -74,22 +77,23 @@ def get_ages(soup: BeautifulSoup) -> dict:
         real_name = real_name.replace(" ", "")
         real_name = ''.join(c for c in unicodedata.normalize('NFKD', real_name) if not unicodedata.combining(c))
         bday = birthdays[i].find_next(string=True).find_next(string=True).strip()
-        
-        if group in ['BLACKPINK', 'ITZY', 'Red Velvet', 'WOOAH', 'IZONE', 'GFRIEND', 'OH MY GIRL']:
+        if group in ['BLACKPINK', 'ITZY', 'Red Velvet', 'WOOAH', 'IZONE', 'GFRIEND', 'OH MY GIRL', 'cignature', 'Weeekly']:
             nationality = nationalities[i]
         else:
             nationality = nationalities[i].find_next(string=True).find_next(string=True).strip()
 
-        # if "Japanese" in nationality:
-        #     nationality = "JPN"
-        # elif "American" in nationality or "Australian" in nationality:
-        #     nationality = "ENG"
+        if "Japanese" in nationality:
+            nationality = "Japanese"
+        elif "American" in nationality or "Australian" in nationality:
+            nationality = "English"
         # elif "Chinese" in nationality or "Taiwanese" in nationality or "Hongkongese" in nationality:
         #     nationality = "CHN"
         # elif "Thai" in nationality or "Filipina" in nationality:
         #     nationality = "THA"
         # else:
         #     nationality = "KOR"
+        if i == 5 and group == "cignature":
+            real_name = "Hyeonju"
 
         if i == 3 and group == "NMIXX":
             bday = "December 28th, 2004"

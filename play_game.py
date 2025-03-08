@@ -1,7 +1,7 @@
 import choose_idol as choose
+import game_stats as stats
 from choose_idol import Idol
 from choose_idol import Variants
-from game_stats import Stats
 from media.audio import on_win
 import media.video_player
 
@@ -30,7 +30,7 @@ class Game:
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
         "up": 2, # upgrade price
-        "size": 5, # max roster size
+        "size": 3, # max roster size
         "div": 110, # '-' divider width
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
@@ -50,7 +50,7 @@ class Game:
         self.winner = None
         self.flush = None
         self.exodia = None # whether game was won by exodia or not (and what kind)
-        self.statistics = Stats()
+        self.all_idols = [] # stores every idol present in game for statistics
 
     @property
     def opponent(self): # holds player object who is currently not their turn
@@ -141,7 +141,6 @@ class Game:
 
         left_name = self.format_text(left_name, width)
         right_name = self.format_text(right_name, width)
-        print("-" * (Game.CONST["div"] + 2)) # divider
         print(f'{left_name}||{right_name}')
         print("-" * (width * 2 + 2))
 
@@ -178,7 +177,7 @@ All Commands:
             if ans in ['e', 'exit']: # command to exit the game
                 sys.exit()
             elif ans == 'reset stats': # resets all idol stats and removes all game history files
-                self.statistics.reset_stats()
+                stats.reset_stats()
             elif ans in ['c', 'clear']: # command to clear terminal
                 os.system('cls')
             elif ans in ['h', 'help']: # TODO: create total command list
@@ -809,10 +808,10 @@ All Commands:
         self.show_game_info()
 
         if Game.CONST["testing"]: # if testing, don't write history/stats but print out idol stats for debugging
-            for idol in self.statistics.all_idols:
-                self.statistics.print_idol(idol)
+            for idol in self.all_idols:
+                stats.print_idol(idol)
         else:
-            self.statistics.update_game_stats(self) # writes game history to a file and updates idol stats
+            stats.update_game_stats(self) # writes game history to a file and updates idol stats
         sys.exit()
 
     def play_turn(self): # main game function to play out a turn
@@ -828,7 +827,7 @@ All Commands:
                 print(self.format_text("Rolling idol...", Game.CONST["div"] + 2))
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
-            cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
+            cur_idol = choose.random_idol('cignature', 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
@@ -879,6 +878,7 @@ All Commands:
         
         self.variant_check() # try variant conditions
 
+        print("-" * (Game.CONST["div"] + 2)) # divider
         # show info and switch players for next turn
         self.show_game_info()
         self.switch_turns()
@@ -886,7 +886,7 @@ All Commands:
     def edit_stats(self, cur_idol: Idol, stat: str, price: int): # edits stats of idols
         edit_idol = cur_idol
         duplicate = False
-        for idol in self.statistics.all_idols: # check if cur_idol already in list
+        for idol in self.all_idols: # check if cur_idol already in list
             if cur_idol.equals(idol): # edit the info of the idol in the list instead of appending a new one
                 edit_idol = idol
                 duplicate = True
@@ -902,7 +902,7 @@ All Commands:
             edit_idol.stats[stat] = True
 
         if not duplicate: # append idol if not in history already
-            self.statistics.all_idols.append(edit_idol)
+            self.all_idols.append(edit_idol)
 
     def play_game(self): # function that runs entire game
         # start game

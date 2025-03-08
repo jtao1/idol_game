@@ -1,11 +1,27 @@
 {
     "group": {
-        "name": "UNIS",
+        "name": "Rocket Punch",
         "type": "gg"
     },
     "members": [
         {
-            "name": "Hyeonju",
+            "name": "Yeonhee",
+            "age": 24,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Suyun",
             "age": 23,
             "country": "Korean",
             "rating": 3,
@@ -21,73 +37,9 @@
             }
         },
         {
-            "name": "Nana",
-            "age": 17,
-            "country": "Japanese",
-            "rating": 4,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Gehlee",
-            "age": 17,
-            "country": "Filipina",
-            "rating": 2,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Kotoko",
-            "age": 17,
-            "country": "Japanese",
-            "rating": 4,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Yunha",
-            "age": 16,
+            "name": "Yunkyoung",
+            "age": 23,
             "country": "Korean",
-            "rating": 4,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Elisia",
-            "age": 15,
-            "country": "Filipina",
             "rating": 3,
             "stats": {
                 "games": 0,
@@ -101,10 +53,10 @@
             }
         },
         {
-            "name": "Yoona",
-            "age": 15,
+            "name": "Sohee",
+            "age": 21,
             "country": "Korean",
-            "rating": 4,
+            "rating": 3,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -117,9 +69,25 @@
             }
         },
         {
-            "name": "Seowon",
-            "age": 14,
+            "name": "Dahyun",
+            "age": 19,
             "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Juri",
+            "age": 27,
+            "country": "Japanese",
             "rating": 3,
             "stats": {
                 "games": 0,

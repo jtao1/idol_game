@@ -1,11 +1,11 @@
 {
     "group": {
-        "name": "UNIS",
+        "name": "Weeekly",
         "type": "gg"
     },
     "members": [
         {
-            "name": "Hyeonju",
+            "name": "Soojin",
             "age": 23,
             "country": "Korean",
             "rating": 3,
@@ -21,73 +21,9 @@
             }
         },
         {
-            "name": "Nana",
-            "age": 17,
-            "country": "Japanese",
-            "rating": 4,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Gehlee",
-            "age": 17,
-            "country": "Filipina",
-            "rating": 2,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Kotoko",
-            "age": 17,
-            "country": "Japanese",
-            "rating": 4,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Yunha",
-            "age": 16,
+            "name": "Monday",
+            "age": 22,
             "country": "Korean",
-            "rating": 4,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Elisia",
-            "age": 15,
-            "country": "Filipina",
             "rating": 3,
             "stats": {
                 "games": 0,
@@ -101,10 +37,10 @@
             }
         },
         {
-            "name": "Yoona",
-            "age": 15,
+            "name": "Soeun",
+            "age": 22,
             "country": "Korean",
-            "rating": 4,
+            "rating": 3,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -117,8 +53,56 @@
             }
         },
         {
-            "name": "Seowon",
-            "age": 14,
+            "name": "Jaehee",
+            "age": 20,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Jihan",
+            "age": 20,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Zoa",
+            "age": 19,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Jiyoon",
+            "age": 23,
             "country": "Korean",
             "rating": 3,
             "stats": {

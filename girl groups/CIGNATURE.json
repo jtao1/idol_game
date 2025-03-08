@@ -1,141 +1,13 @@
 {
     "group": {
-        "name": "IZONE",
+        "name": "cignature",
         "type": "gg"
     },
     "members": [
         {
-            "name": "Eunbi",
-            "age": 29,
-            "country": "Korean",
-            "rating": 7,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Sakura",
+            "name": "Chaesol",
             "age": 26,
-            "country": "Japanese",
-            "rating": 6,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Hyewon",
-            "age": 25,
             "country": "Korean",
-            "rating": 5,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Yena",
-            "age": 25,
-            "country": "Korean",
-            "rating": 6,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Chaeyeon",
-            "age": 25,
-            "country": "Korean",
-            "rating": 2,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Chaewon",
-            "age": 24,
-            "country": "Korean",
-            "rating": 7,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Minju",
-            "age": 24,
-            "country": "Korean",
-            "rating": 5,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Nako",
-            "age": 23,
-            "country": "Japanese",
-            "rating": 4,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Hitomi",
-            "age": 23,
-            "country": "Japanese",
             "rating": 3,
             "stats": {
                 "games": 0,
@@ -149,10 +21,74 @@
             }
         },
         {
-            "name": "Yuri",
+            "name": "Jeewon",
+            "age": 25,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Seline",
+            "age": 24,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Semi",
+            "age": 22,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Dohee",
+            "age": 22,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Hyeonju",
             "age": 23,
             "country": "Korean",
-            "rating": 6,
+            "rating": 3,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -165,10 +101,10 @@
             }
         },
         {
-            "name": "Yujin",
-            "age": 21,
+            "name": "YeAh",
+            "age": 25,
             "country": "Korean",
-            "rating": 6,
+            "rating": 3,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -181,10 +117,10 @@
             }
         },
         {
-            "name": "Wonyoung",
-            "age": 20,
+            "name": "Chloe",
+            "age": 25,
             "country": "Korean",
-            "rating": 7,
+            "rating": 3,
             "stats": {
                 "games": 0,
                 "wins": 0,

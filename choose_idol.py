@@ -184,6 +184,8 @@ def multigroup(idol: Idol): # function to handle idols with multiple groups (mai
             idol.group = "LE SSERAFIM/IZONE"
         elif any(sub in idol.to_string() for sub in ["Wonyoung", "Yujin | IVE", "Yujin | IZONE"]):
             idol.group = "IVE/IZONE"
+        elif idol.name == "Hyeonju":
+            idol.group = "UNIS/cignature"
 
 def find_idol(name: str, group: str) -> Idol: # find a specific idol and create an Idol object for it
 
@@ -240,6 +242,7 @@ def find_idol(name: str, group: str) -> Idol: # find a specific idol and create 
 # group - specifies a specific group to pick a random idol for, used for group rerolls
 # times - specifies amount of idols to roll, used for deluxe rerolls
 # duplicate - list of idols that rolled idols cannot be a duplicate of
+# target_rating - specific rating to be rolled if desired
 def random_idol(group: str, times: int, duplicate: list[Idol], target_rating: int) -> list[Idol]: 
     directory = './girl groups' # if type else './boy groups'
     files = os.listdir(directory)
@@ -284,50 +287,14 @@ def true_random() -> str:
     if int(line[line.rfind("{")+1:line.rfind("}")]) < 18:
         line = line[:line.rfind("|")] + "(M) " + line[line.rfind("|"):]
     return line[:line.rfind('{')-1].strip()
-
-# # Main function to play the game and input game commands
-# def manual_game():
-#     os.system('cls')
-#     res = None
-#     while True:
-#         command = input("--------->>>  ")
-#         command = command.lower().strip()
-
-#         if res and len(res) > 1: # last roll was a DR, no group set for GR
-#                 res = None
-#                 cur_idol = None
-#         else:
-#             cur_idol = next(iter(res)) if res is not None else None
-
-#         commands = {
-#             "r": lambda: random_idol(None, 1, 1, []),
-#             "gr": lambda: random_idol(cur_idol.group if cur_idol else None, 1, 1, [cur_idol] if cur_idol else None),
-#             "dr": lambda: random_idol(None, 3, 1, []),
-#             "tr": lambda: true_random(),
-#             "c": lambda: os.system('cls') or "Invalid",
-#             "e": exit,
-#             "h": lambda: print("""List of commands:
-#             r: reroll
-#             gr: group reroll last rolled group
-#             dr: deluxe reroll
-#             tr: true random reroll
-#             c: clear console
-#             e: quit game"""),
-#         }
-
-#         res = commands.get(command, lambda: res)()
-#         if command in ["r", "gr", "dr", "tr"]:
-#             print("\n".join([idol.to_string() for idol in res]))
-
-# old - Old directory of all group files
-# new - New directory of all group files         
-def move_files(old: str, new: str): # Moves all group files to a different directory
-    files = os.listdir(old)
+     
+def move_files(old_dir: str, new_dir: str): # Moves all group files to a different directory
+    files = os.listdir(old_dir)
     for file in files:
-        path = os.path.join(old, file)
+        path = os.path.join(old_dir, file)
         with open(path, 'r') as f:
             data = json.load(f)
         determinant = 'gg' # if type else 'bg'
         if data['group-type'] == determinant:
-            shutil.move(path, os.path.join(new, file))
+            shutil.move(path, os.path.join(new_dir, file))
     print("Moved all group files")

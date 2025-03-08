@@ -1,14 +1,14 @@
 {
     "group": {
-        "name": "BLACKPINK",
+        "name": "QWER",
         "type": "gg"
     },
     "members": [
         {
-            "name": "Jisoo",
-            "age": 30,
+            "name": "Chodan",
+            "age": 26,
             "country": "Korean",
-            "rating": 6,
+            "rating": 3,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -21,42 +21,42 @@
             }
         },
         {
-            "name": "Jennie",
-            "age": 29,
-            "country": "Korean",
-            "rating": 6,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Rose",
-            "age": 28,
-            "country": "English",
-            "rating": 6,
-            "stats": {
-                "games": 0,
-                "wins": 0,
-                "reroll": 0,
-                "opp reroll": 0,
-                "opp chances": 0,
-                "gr": 0,
-                "times bought": 0,
-                "money spent": 0
-            }
-        },
-        {
-            "name": "Lisa",
+            "name": "Magenta",
             "age": 27,
-            "country": "Thai",
-            "rating": 6,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Siyeon",
+            "age": 24,
+            "country": "Korean",
+            "rating": 3,
+            "stats": {
+                "games": 0,
+                "wins": 0,
+                "reroll": 0,
+                "opp reroll": 0,
+                "opp chances": 0,
+                "gr": 0,
+                "times bought": 0,
+                "money spent": 0
+            }
+        },
+        {
+            "name": "Hina",
+            "age": 24,
+            "country": "Korean",
+            "rating": 3,
             "stats": {
                 "games": 0,
                 "wins": 0,

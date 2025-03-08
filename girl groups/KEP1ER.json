@@ -17,8 +17,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -34,8 +33,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -51,8 +49,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -68,8 +65,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -85,14 +81,13 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
             "name": "Bahiyyih",
             "age": 20,
-            "country": "Korean-American",
+            "country": "English",
             "rating": 2,
             "stats": {
                 "games": 0,
@@ -102,14 +97,13 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
             "name": "Youngeun",
             "age": 20,
-            "country": "Korean-American",
+            "country": "English",
             "rating": 3,
             "stats": {
                 "games": 0,
@@ -119,8 +113,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -136,8 +129,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -153,8 +145,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         }
     ]

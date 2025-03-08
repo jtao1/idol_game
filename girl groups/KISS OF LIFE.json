@@ -7,7 +7,7 @@
         {
             "name": "Julie",
             "age": 24,
-            "country": "American",
+            "country": "English",
             "rating": 8,
             "stats": {
                 "games": 0,
@@ -17,8 +17,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -34,14 +33,13 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
             "name": "Belle",
             "age": 20,
-            "country": "Korean-American",
+            "country": "English",
             "rating": 6,
             "stats": {
                 "games": 0,
@@ -51,8 +49,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -68,8 +65,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         }
     ]

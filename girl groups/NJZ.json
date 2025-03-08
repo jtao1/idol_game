@@ -17,14 +17,13 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
             "name": "Hanni",
             "age": 20,
-            "country": "Vietnamese-Australian",
+            "country": "English",
             "rating": 5,
             "stats": {
                 "games": 0,
@@ -34,14 +33,13 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
             "name": "Danielle",
             "age": 19,
-            "country": "Korean-Australian",
+            "country": "English",
             "rating": 5,
             "stats": {
                 "games": 0,
@@ -51,8 +49,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -68,8 +65,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         },
         {
@@ -85,8 +81,7 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0,
-                "ults": 0
+                "money spent": 0
             }
         }
     ]
