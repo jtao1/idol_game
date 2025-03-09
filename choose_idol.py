@@ -28,6 +28,7 @@ class Variants(Enum): # represents all the variants that idols can spawn in
     EVOLVING = "\033[1;38;2;0;255;81m(Evolving)"
     BULLY = "\033[1;38;2;165;100;0m(Bully)"
     WILDCARD = rainbow_text("(WILDCARD)")
+    COLLECTIBLE = "\033[1;38;2;0;255;218m(Collectible)"
 
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
@@ -81,6 +82,8 @@ class Idol: # class to represent an idol
         return f'{Idol.RATINGS[self.rating][0]}{string}{Idol.c_reset}'
     
     def clean_name(self): # prints out clean name of idol without any tags
+        if self.rating == 9:
+            return rainbow_text(f'{self.name} | {self.group}')
         return f'{Idol.RATINGS[self.rating][0]}{self.name} | {self.group}{Idol.c_reset}'
 
     def equals(self, compare: "Idol") -> bool: # custom equals command
@@ -283,9 +286,10 @@ def true_random(duplicate: list[Idol]) -> Idol: # rolls a truly random idol from
         lines = f.readlines()
     while True:
         line = random.choice(lines).strip()
-        idol = find_idol(line.split('|')[0].strip(), line.split('|')[1].split('/')[0].strip())
-        if not duplicate or not any(idol.equals(compare) for compare in duplicate):
-            return idol
+        if line:
+            idol = find_idol(line.split('|')[0].strip(), line.split('|')[1].strip())
+            if not duplicate or not any(idol.equals(compare) for compare in duplicate):
+                return idol
 
 def move_files(old_dir: str, new_dir: str): # Moves all group files to a different directory
     files = os.listdir(old_dir)

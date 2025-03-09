@@ -37,14 +37,14 @@ class Booster:
         "Standard": lambda idol: True, # can contain any idol
         "Minor": lambda idol: idol.age < 18,
         "Foreigner": lambda idol: idol.country != "Korean",
-        "3rd Gen": lambda idol: any(group.upper() in idol.group for group in ["BLACKPINK", "TWICE", "RED VELVET", "GFRIEND", "MAMAMOO", "OH MY GIRL"]),
-        "5th Gen": lambda idol: any(group.upper() in idol.group for group in ["BABYMONSTER", "ILLIT", "KISS OF LIFE", "TRIPLES", "UNIS", "QWER", "FIFTY FIFTY"]),
-        "HYBE": lambda idol: any(group.upper() in idol.group for group in ["ILLIT", "NJZ", "LE SSERAFIM", "GFRIEND", "FROMIS_9"]),
-        "JYP": lambda idol: any(group.upper() in idol.group for group in ["TWICE", "ITZY", "NMIXX"]),
-        "SM": lambda idol: any(group.upper() in idol.group for group in ["RED VELVET", "AESPA"]),
-        "YG": lambda idol: any(group.upper() in idol.group for group in ["BLACKPINK", "BABYMONSTER"]),
-        "Nugu": lambda idol: any(group.upper() in idol.group for group in ["ALICE", "CIGNATURE", "QWER", "WEEEKLY", "WOOAH", "UNIS", "ROCKET PUNCH"]),
-        "10 Million+": lambda idol: any(group.upper() in idol.group for group in ["AESPA", "LE SSERAFIM", "TWICE", "BLACKPINK", "NJZ"]),
+        "3rd Gen": lambda idol: any(group in idol.group.upper() for group in ["BLACKPINK", "TWICE", "RED VELVET", "GFRIEND", "MAMAMOO", "OH MY GIRL"]),
+        "5th Gen": lambda idol: any(group in idol.group.upper() for group in ["BABYMONSTER", "ILLIT", "KISS OF LIFE", "TRIPLES", "UNIS", "QWER", "FIFTY FIFTY"]),
+        "HYBE": lambda idol: any(group in idol.group.upper() for group in ["ILLIT", "NJZ", "LE SSERAFIM", "GFRIEND", "FROMIS_9"]),
+        "JYP": lambda idol: any(group in idol.group.upper() for group in ["TWICE", "ITZY", "NMIXX"]),
+        "SM": lambda idol: any(group in idol.group.upper() for group in ["RED VELVET", "AESPA"]),
+        "YG": lambda idol: any(group in idol.group.upper() for group in ["BLACKPINK", "BABYMONSTER"]),
+        "Nugu": lambda idol: any(group in idol.group.upper() for group in ["ALICE", "CIGNATURE", "QWER", "WEEEKLY", "WOOAH", "UNIS", "ROCKET PUNCH"]),
+        "10 Million+": lambda idol: any(group in idol.group.upper() for group in ["AESPA", "LE SSERAFIM", "TWICE", "BLACKPINK", "NJZ"]),
         "Dycha": lambda idol: idol.rating == 1,
         "Lower AD": lambda idol: idol.rating == 2,
         "Anthony Davis": lambda idol: idol.rating == 3,
@@ -104,24 +104,26 @@ def choose_boosters() -> list[Booster]: # function to retrieve booster pack sele
     boosters = [Booster("Standard", rarities.STANDARD)] # every selection has a standard pack
 
     for _ in range(2):
-        rarity = determine_rarity(0.6, 0.9, 0.99)
-        if rarity == rarities.COMMON:
-            booster_type = random.choice(["Nugu", "Minor", "Foreigner", "Dycha", "Lower AD", "Anthony Davis", "Passion UA"])
-        elif rarity == rarities.UNCOMMON:
-            booster_type = random.choice(["Your Roster", "3rd Gen", "5th Gen", "HYBE", "SM", "Jason Taytum"])
-        elif rarity == rarities.RARE:
-            booster_type = random.choice(["10 Million+", "YG", "JYP", "Luka Doncic", "910"])
-        else:
-            booster_type = "Big 3"
-        add_booster = Booster(booster_type, rarity)
-        if not any(add_booster.equals(boost) for boost in boosters): # prevent duplicate booster packs
-            boosters.append(add_booster)
+        while True:
+            rarity = determine_rarity(0.6, 0.9, 0.99)
+            if rarity == rarities.COMMON:
+                booster_type = random.choice(["Nugu", "Minor", "Foreigner", "Dycha", "Lower AD", "Anthony Davis", "Passion UA"])
+            elif rarity == rarities.UNCOMMON:
+                booster_type = random.choice(["Your Roster", "3rd Gen", "5th Gen", "HYBE", "SM", "Jason Taytum"])
+            elif rarity == rarities.RARE:
+                booster_type = random.choice(["10 Million+", "YG", "JYP", "Luka Doncic", "910"])
+            else:
+                booster_type = "Big 3"
+            add_booster = Booster(booster_type, rarity)
+            if not any(add_booster.equals(boost) for boost in boosters): # prevent duplicate booster packs
+                boosters.append(add_booster)
+                break
     return boosters
 
 def open_pack(player, pack: Booster): # function to open a booster pack
     dupes = [] # list of dupes so same idol is not pulled multiple times in a pack
     cards = [] # list of cards objects to add
-    amount = 5 if pack.type == "Standard" else len(player.roster) if pack.type == "Your Roster" else 4
+    amount = 5 if pack.type == "Standard" else len(player.roster) if pack.type == "Your Roster" else 3 if pack.type == "Big 3" else 4
     if pack.type == "Your Roster":
         random.shuffle(player.roster)
     for i in range(amount):
@@ -157,10 +159,10 @@ def open_pack(player, pack: Booster): # function to open a booster pack
 def collection_info(player, idol: Idol): # display card collection info of a specific idol
     with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
         data = json.load(f)
-    common_count = data[idol.group.split('/')[0]][idol.name]["COMMON"]
-    uncommon_count = data[idol.group.split('/')[0]][idol.name]["UNCOMMON"]
-    rare_count = data[idol.group.split('/')[0]][idol.name]["RARE"]
-    legendary_count = data[idol.group.split('/')[0]][idol.name]["LEGENDARY"]
+    common_count = data[idol.group.upper().split('/')[0]][idol.name]["COMMON"]
+    uncommon_count = data[idol.group.upper().split('/')[0]][idol.name]["UNCOMMON"]
+    rare_count = data[idol.group.upper().split('/')[0]][idol.name]["RARE"]
+    legendary_count = data[idol.group.upper().split('/')[0]][idol.name]["LEGENDARY"]
     string = f"""
 ------------------------------------------
 Collection info for {idol.clean_name()}
@@ -192,20 +194,29 @@ def common_check(player: str) -> Idol: # function to check entire common card in
     weight.append(total_weight)
     return random.choices(choices, weights = weight, k = 1)[0]
 
-def uncommon_check(player: str, idol: Idol) -> int: # function to check uncommon card info for certain idol for player
+def uncommon_check(player: str, idol: Idol) -> float: # function to check uncommon card info for certain idol for player
     with open(f'./info/{player}_cards.json', 'r') as f:
         data = json.load(f)
-    return 2 * data[idol.group.upper().split('/')[0]][idol.name]["UNCOMMON"]
+    return 0.02 * data[idol.group.upper().split('/')[0]][idol.name]["UNCOMMON"]
 
 def rare_check(player: str, idol: Idol) -> int: # function to check rare card info for certain idol for player
     with open(f'./info/{player}_cards.json', 'r') as f:
         data = json.load(f)
-    return 3 * data[idol.group.upper().split('/')[0]][idol.name]["RARE"]
+    return 0.03 * data[idol.group.upper().split('/')[0]][idol.name]["RARE"]
 
 def legendary_check(player: str, idol: Idol) -> bool: # function to check legendary card info for certain idol for player
     with open(f'./info/{player}_cards.json', 'r') as f:
         data = json.load(f)
     return True if data[idol.group.upper().split('/')[0]][idol.name]["LEGENDARY"] > 0 else False
+
+def discount_check(player: str, idol: Idol) -> bool: # function that checks if all 4 rarities of cards collected for an idol
+    with open(f'./info/{player}_cards.json', 'r') as f:
+        data = json.load(f)
+    check = data[idol.group.upper().split('/')[0]][idol.name]
+    if check["COMMON"] + check["UNCOMMON"] + check["RARE"] + check["LEGENDARY"] >= 4:
+        return True
+    else:
+        return False
         
 def create_card_collection(): # function to create the json file that stores all card collection info (also functions as reset)
     names = ["sejun", "jason"]

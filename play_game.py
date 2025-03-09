@@ -35,7 +35,7 @@ class Game:
         "div": 110, # '-' divider width
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
-        "testing": False, # whether game is being played in a test state or not
+        "testing": True, # whether game is being played in a test state or not
         "media": False, # whether to add sound/video effects to game
         "crazy": False # whether to change game settings to crazy mode
     }
@@ -440,6 +440,9 @@ All Commands:
             ans = self.input_command("yon", ult_player)
             if ans == 'y':
                 ult_player.money -= ult_value
+                if card.discount_check(choose.remove_ansi(ult_player.name), idol): # if player has all card types for idol
+                    ult_player.money += 1
+                    print(f'{ult_player.name}{Game.c_reset} receives $1 cashback for {idol.to_string()} through cards!')
                 idol.protected = True
                 self.edit_stats(idol, None, ult_value)
                 self.add_idol(ult_player, idol, None)
@@ -480,6 +483,9 @@ All Commands:
                             print("Bid must be more than your opponent.")
                             continue
                     self.opponent.money -= abs(counter_bid)
+                    if card.discount_check(choose.remove_ansi(self.opponent.name), cur_idol): # if player has all cards, give $1 cashback
+                        self.opponent.money += 1
+                        print(f'{self.opponent.name}{Game.c_reset} receives $1 cashback for {cur_idol.to_string()} through cards!')
                     opponent_win = True
                     self.edit_stats(cur_idol, None, counter_bid)
         if not opponent_win: # turn player wins bid
@@ -489,6 +495,9 @@ All Commands:
             else:
                 self.add_idol(self.opponent, cur_idol, None)
             self.turn.money -= abs(bid)
+            if card.discount_check(choose.remove_ansi(self.turn.name), cur_idol): # if player has all cards, give $1 cashback
+                self.turn.money += 1
+                print(f'{self.turn.name}{Game.c_reset} receives $1 cashback for {cur_idol.to_string()} through cards!')
 
     def group_reroll(self, dup_idol: Idol): # function for handling group reroll process
         cur_idol = dup_idol
@@ -608,7 +617,7 @@ All Commands:
                                 print("Unable to upgrade this idol!") # 910 idol cannot be upgraded by exactly 1 tier if all big 3 exist
                                 continue 
                             chance = 0.5 ** ans
-                            chance = min(chance + card.rare_check(choose.remove_ansi(self.turn.name), upgrade_idol) / 100, 1)
+                            chance = min(chance + card.rare_check(choose.remove_ansi(self.turn.name), upgrade_idol), 1)
                             print(f'Upgrade chance: {Game.c_money}{round(chance * 100, 2)}%{Game.c_reset}')
                             print("Upgrading...")
                             time.sleep(1) # suspense
@@ -656,15 +665,18 @@ All Commands:
         return True # all big three exist in the game, return true
 
     def gambler_check(self, add_winrate: int): # updates bonus winrate of all gambler variant idols
+        update = False
         for _ in range(2):
             for idol in self.turn.roster:
                 if idol.variant == Variants.GAMBLER:
+                    update = True
                     # added winrate is equal to dollar cost of reroll, plus additional scaling based off rating
                     real_add = (add_winrate / 100) + (idol.rating / 1000)
                     idol.winrate += round(real_add, 3)
                     print(f'{idol.to_string()}{Game.c_reset} gained {Game.c_money}{round(real_add * 100, 1)}%{Game.c_reset} bonus winrate! (Currently: {Game.c_money}{round(idol.winrate * 100, 1)}%{Game.c_reset})')
             self.switch_turns()
-        print() # print empty newline
+        if update:
+            print() # print empty line
     
     def variant_check(self): # function to check all variants that take action at the end of a turn
         for _ in range(2):
@@ -772,7 +784,9 @@ All Commands:
             print(f'{p1_text} {p1_percent} || {p2_percent} {p2_text}')
 
             # add suspense before each matchup, extra if game is tied at last matchup
-            if i == (len(sorted_p1) - 1) and self.p1.combat_score == self.p2.combat_score:
+            if Game.CONST["testing"]:
+                wait = 0
+            elif i == (len(sorted_p1) - 1) and self.p1.combat_score == self.p2.combat_score:
                 wait = 5
             # speed up combat if one player is already guaranteed to win, or combat percentages of particular match up is 100-0
             elif self.p1.combat_score >= (math.ceil(len(sorted_p1) / 2)) or self.p2.combat_score >= (math.ceil(len(sorted_p1) / 2)) or p1_prob == 1 or p2_prob == 1:
@@ -842,6 +856,8 @@ All Commands:
             cur_idol = card.common_check(choose.remove_ansi(self.turn.name)) # evaluate boosted roll rates from common cards
             if cur_idol is None: # choose random idol if no idol rolled from common cards
                 cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
+            else:
+                print(f'{cur_idol.to_string()} rolled from card bonus!')
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
@@ -867,9 +883,13 @@ All Commands:
                 else:
                     self.edit_stats(cur_idol, "opp chances", None)
 
-            if len(self.opponent.roster) >= Game.CONST["size"] and self.turn.money <= 0: # opponent roster is full and turn player has no options, automatically add idol
-                self.edit_stats(cur_idol, None, 0)
-                self.add_idol(self.turn, cur_idol, None)
+            if self.turn.money <= 0: # turn player has no money
+                if len(self.opponent.roster) >= Game.CONST["size"]: # opponent can't steal, automatically add to turn player roster
+                    self.edit_stats(cur_idol, None, 0)
+                    self.add_idol(self.turn, cur_idol, None)
+                else: # opponent has choice to steal
+                    print(f'{self.turn.name}{Game.c_reset} bids $0 for {cur_idol.to_string()}')
+                    self.bid_process(0, cur_idol)
                 break
             
             ans = self.input_command("bid turn", self.turn) # turn player chooses action for rolled idol
@@ -937,6 +957,9 @@ All Commands:
         for _ in range(2): # pulling individual cards
             if len(self.turn.roster) > 0: # if player has idols on their roster
                 print("-" * (Game.CONST["div"] + 2)) # divider
+                for idol in self.turn.roster:
+                    if idol.variant == choose.Variants.COLLECTIBLE: # if idol is collectible, pull a card
+                        card.single_card(self.turn.name, idol)
                 print("Choose an idol to receive a card for:")
                 for i in range(len(self.turn.roster)):
                     print(f'{i + 1}. {self.turn.roster[i].to_string()}')

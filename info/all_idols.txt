@@ -1,7 +1,7 @@
 Ahyeon | BABYMONSTER | 6
 Aisha | EVERGLOW | 2
 Aran | FIFTY FIFTY | 3
-Arin | OH MY GIRL | 4
+Arin | OH MY GIRL | 5
 Asa | BABYMONSTER | 5
 Athena | FIFTY FIFTY | 3
 BIBI | Soloist | 3
@@ -21,11 +21,10 @@ Chaeyeon | tripleS | 4
 Chaeyoung | TWICE | 5
 Chaeyoung | fromis_9 | 3
 Chiquita | BABYMONSTER | 6
-Chloe | cignature | 3
-Chodan | QWER | 3
+Chloe | cignature | 5
+Chodan | QWER | 5
 Choerry | LOONA | 4
 Chuu | LOONA | 3
-Dahyun | Rocket Punch | 3
 Dahyun | TWICE | 5
 Dahyun | tripleS | 3
 Dami | Dreamcatcher | 1
@@ -57,7 +56,7 @@ Hayeon | tripleS | 5
 Hayoung | fromis_9 | 4
 HeeJin | LOONA | 4
 Hikaru | Kep1er | 2
-Hina | QWER | 3
+Hina | QWER | 6
 Hitomi | IZONE | 3
 Hwasa | MAMAMOO | 1
 HyeJu | LOONA | 3
@@ -74,7 +73,7 @@ Iroha | ILLIT | 6
 Isa | STAYC | 4
 J | STAYC | 3
 Jaehee | Weeekly | 3
-Jeewon | cignature | 3
+Jeewon | cignature | 6
 Jennie | BLACKPINK | 6
 Jeongyeon | TWICE | 1
 JiU | Dreamcatcher | 3
@@ -90,11 +89,10 @@ Jisun | fromis_9 | 4
 Jiwon | fromis_9 | 4
 Jiwoo | NMIXX | 4
 Jiwoo | tripleS | 4
-Jiyoon | Weeekly | 3
+Jiyoon | Weeekly | 2
 JooBin | tripleS | 4
 Joy | Red Velvet | 5
 Julie | KISS OF LIFE | 8
-Juri | Rocket Punch | 3
 KIMSEJEONG | Soloist | 5
 Kaede | tripleS | 2
 Karin | ALICE | 3
@@ -109,15 +107,18 @@ Leeseo | IVE | 5
 Lia | ITZY | 5
 Lily | NMIXX | 3
 Lisa | BLACKPINK | 6
+Liv | RESCENE | 4
 Liz | IVE | 5
 Lucy | WOOAH | 3
 Lynn | tripleS | 3
-Magenta | QWER | 3
+Magenta | QWER | 4
 Mashiro | Kep1er | 3
+May | RESCENE | 4
 Mayu | tripleS | 3
 Mia | EVERGLOW | 1
 Mimi | OH MY GIRL | 2
 Mina | TWICE | 6
+Minami | RESCENE | 3
 Minji | NJZ | 6
 Minju | ILLIT | 5
 Minju | IZONE | 5
@@ -126,7 +127,7 @@ Minseo | WOOAH | 6
 Miyeon | (G)I-DLE | 6
 Moka | ILLIT | 5
 Momo | TWICE | 7
-Monday | Weeekly | 3
+Monday | Weeekly | 4
 Moon | FIFTY FIFTY | 2
 Moonbyul | MAMAMOO | 2
 Nagyung | fromis_9 | 3
@@ -155,7 +156,7 @@ Sakura | LE SSERAFIM | 6
 Sana | TWICE | 6
 Seeun | STAYC | 3
 Seline | cignature | 3
-Semi | cignature | 3
+Semi | cignature | 2
 SeoAh | tripleS | 5
 Seowon | UNIS | 3
 Seoyeon | fromis_9 | 3
@@ -170,15 +171,14 @@ SinB | GFRIEND | 2
 Sio | FIFTY FIFTY | 2
 Siyeon | Dreamcatcher | 2
 Siyeon | QWER | 3
-Soeun | Weeekly | 3
+Soeun | Weeekly | 2
 Sohee | ALICE | 6
-Sohee | Rocket Punch | 3
 Sohyun | tripleS | 2
 Solar | MAMAMOO | 3
 Somi | Soloist | 6
 Songyee | WOOAH | 3
 Soojin | (G)I-DLE | 2
-Soojin | Weeekly | 3
+Soojin | Weeekly | 4
 Soomin | tripleS | 3
 Sora | WOOAH | 3
 Sowon | GFRIEND | 3
@@ -187,7 +187,6 @@ SuA | Dreamcatcher | 3
 Suhyeon | tripleS | 3
 Sullyoon | NMIXX | 7
 Sumin | STAYC | 4
-Suyun | Rocket Punch | 3
 Taeyeon | Soloist | 3
 Tzuyu | TWICE | 6
 Umji | GFRIEND | 3
@@ -196,6 +195,7 @@ Wendy | Red Velvet | 4
 Wheein | MAMAMOO | 2
 Winter | aespa | 6
 Wonhee | ILLIT | 6
+Woni | RESCENE | 5
 Wonyoung | IVE | 7
 Wonyoung | IZONE | 7
 Wooyeon | WOOAH | 5
@@ -205,7 +205,6 @@ YeAh | cignature | 3
 Yeji | ITZY | 7
 Yena | IZONE | 6
 YeoJin | LOONA | 4
-Yeonhee | Rocket Punch | 3
 Yeonje | ALICE | 3
 Yeonji | tripleS | 3
 Yeri | Red Velvet | 4
@@ -230,8 +229,8 @@ Yuna | ITZY | 8
 Yunah | ILLIT | 3
 Yunha | UNIS | 4
 Yunjin | LE SSERAFIM | 6
-Yunkyoung | Rocket Punch | 3
 Yuqi | (G)I-DLE | 7
 Yuri | IZONE | 6
 Yves | LOONA | 3
-Zoa | Weeekly | 3
+Zena | RESCENE | 4
+Zoa | Weeekly | 4

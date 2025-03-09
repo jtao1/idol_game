@@ -8,7 +8,7 @@
             "name": "Soojin",
             "age": 23,
             "country": "Korean",
-            "rating": 3,
+            "rating": 4,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -25,7 +25,7 @@
             "name": "Monday",
             "age": 22,
             "country": "Korean",
-            "rating": 3,
+            "rating": 4,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -42,7 +42,7 @@
             "name": "Soeun",
             "age": 22,
             "country": "Korean",
-            "rating": 3,
+            "rating": 2,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -93,7 +93,7 @@
             "name": "Zoa",
             "age": 19,
             "country": "Korean",
-            "rating": 3,
+            "rating": 4,
             "stats": {
                 "games": 0,
                 "wins": 0,
@@ -110,7 +110,7 @@
             "name": "Jiyoon",
             "age": 23,
             "country": "Korean",
-            "rating": 3,
+            "rating": 2,
             "stats": {
                 "games": 0,
                 "wins": 0,

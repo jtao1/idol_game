@@ -5,8 +5,6 @@ perks
 
 ------
 
-Groups to add: Rocket Punch, QWER, cignature, weeekly,
-
 All possible idol stats:
 - game presence
 - winrate

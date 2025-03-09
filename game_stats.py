@@ -188,7 +188,7 @@ def reset_stats(): # resets all idol stats
 
         with open(file_name, 'w') as f: # rewrite resetted stats to file
             json.dump(data, f, indent=4)
-    
+    write_all_idols(True)
     reset_string = """IDOLS 3.5 GAME STATISTICS OVERVIEW
 
 Total Games: 0
