@@ -1,0 +1,1490 @@
+{
+    "(G)I-DLE": {
+        "Soyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Miyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Minnie": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yuqi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Shuhua": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Soojin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "AESPA": {
+        "Karina": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Giselle": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Winter": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "NingNing": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "ALICE": {
+        "Chaejeong": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "EJ": {
+            "COMMON": 0,
+            "UNCOMMON": 1,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "DoA": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yeonje": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yukyung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sohee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Karin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "BABYMONSTER": {
+        "Ruka": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 1,
+            "LEGENDARY": 0
+        },
+        "Pharita": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 1
+        },
+        "Asa": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Ahyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Rami": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Rora": {
+            "COMMON": 1,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chiquita": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 1,
+            "LEGENDARY": 0
+        }
+    },
+    "BLACKPINK": {
+        "Jisoo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jennie": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Rose": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Lisa": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "CIGNATURE": {
+        "Chaesol": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jeewon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Seline": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Semi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Dohee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hyeonju": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "YeAh": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chloe": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "DREAMCATCHER": {
+        "JiU": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "SuA": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Siyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Handong": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yoohyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Dami": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Gahyun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "EVERGLOW": {
+        "Sihyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "E:U": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Mia": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Onda": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Aisha": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yiren": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "FIFTY FIFTY": {
+        "Keena": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Moon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yewon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hana": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Athena": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Saena": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sio": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Aran": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "FROMIS_9": {
+        "Hayoung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jiwon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaeyoung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Nagyung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jiheon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Saerom": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Gyuri": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jisun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Seoyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "GFRIEND": {
+        "Sowon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yerin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Eunha": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yuju": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "SinB": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Umji": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "ILLIT": {
+        "Yunah": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Minju": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Moka": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Wonhee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Iroha": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "ITZY": {
+        "Yeji": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Lia": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 1,
+            "LEGENDARY": 0
+        },
+        "Ryujin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaeryeong": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yuna": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "IVE": {
+        "Yujin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Gaeul": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Rei": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Wonyoung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Liz": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Leeseo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "IZONE": {
+        "Eunbi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sakura": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hyewon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yena": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaeyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaewon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Minju": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Nako": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hitomi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yuri": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yujin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Wonyoung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "KEP1ER": {
+        "Yujin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Xiaoting": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaehyun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Dayeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hikaru": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Bahiyyih": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Youngeun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Mashiro": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yeseo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "KISS OF LIFE": {
+        "Julie": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Natty": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Belle": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Haneul": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "LE SSERAFIM": {
+        "Chaewon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sakura": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yunjin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Kazuha": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 1,
+            "LEGENDARY": 0
+        },
+        "Eunchae": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Garam": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "LOONA": {
+        "HaSeul": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "ViVi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yves": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "JinSoul": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "KimLip": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "HeeJin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "HyunJin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "GoWon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Choerry": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "HyeJu": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "YeoJin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chuu": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "MAMAMOO": {
+        "Solar": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 1,
+            "LEGENDARY": 0
+        },
+        "Moonbyul": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Wheein": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hwasa": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "NJZ": {
+        "Minji": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hanni": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Danielle": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Haerin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hyein": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "NMIXX": {
+        "Haewon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Lily": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sullyoon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Bae": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jiwoo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Kyujin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jinni": {
+            "COMMON": 1,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "OH MY GIRL": {
+        "Hyojung": {
+            "COMMON": 1,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Mimi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "YooA": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Seunghee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yubin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Arin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "JinE": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jiho": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "QWER": {
+        "Chodan": {
+            "COMMON": 1,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Magenta": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Siyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hina": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 1,
+            "LEGENDARY": 0
+        }
+    },
+    "RED VELVET": {
+        "Irene": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Seulgi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Wendy": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Joy": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yeri": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "ROCKET PUNCH": {
+        "Yeonhee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Suyun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yunkyoung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sohee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Dahyun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Juri": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "SOLOIST": {
+        "IU": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Taeyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Somi": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "ODDCHILD": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "BOL4": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "KIMSEJEONG": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "BIBI": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "STAYC": {
+        "Sumin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sieun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Isa": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Seeun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yoon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "J": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "TRIPLES": {
+        "Yooyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Mayu": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "XinYu": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "NakYoung": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sohyun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Dahyun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Nientzu": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Seoyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Suhyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Kotone": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaeyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yubin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jiwoo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Kaede": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Shion": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Lynn": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Pirada": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hyerin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaewon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Hayeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Soomin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yeonji": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "JooBin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "SeoAh": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "TWICE": {
+        "Jihyo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Nayeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 1,
+            "LEGENDARY": 0
+        },
+        "Jeongyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 1,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Momo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sana": {
+            "COMMON": 1,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Mina": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Dahyun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Chaeyoung": {
+            "COMMON": 1,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Tzuyu": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "UNIS": {
+        "Hyeonju": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Nana": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Gehlee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Kotoko": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yunha": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Elisia": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Yoona": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Seowon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "WEEEKLY": {
+        "Soojin": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Monday": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Soeun": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jaehee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jihan": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Zoa": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Jiyoon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    },
+    "WOOAH": {
+        "Nana": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Wooyeon": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Sora": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Lucy": {
+            "COMMON": 1,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Minseo": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        },
+        "Songyee": {
+            "COMMON": 0,
+            "UNCOMMON": 0,
+            "RARE": 0,
+            "LEGENDARY": 0
+        }
+    }
+}

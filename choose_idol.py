@@ -1,9 +1,9 @@
 import os
-import random
-from random import randint
 import json
 import shutil
 import re
+import random
+from random import randint
 from enum import Enum
 
 def rainbow_text(text): # function to make text rainbow
@@ -185,7 +185,7 @@ def multigroup(idol: Idol): # function to handle idols with multiple groups (mai
         elif any(sub in idol.to_string() for sub in ["Wonyoung", "Yujin | IVE", "Yujin | IZONE"]):
             idol.group = "IVE/IZONE"
         elif idol.name == "Hyeonju":
-            idol.group = "UNIS/cignature"
+            idol.group = "UNIS/CIGNATURE"
 
 def find_idol(name: str, group: str) -> Idol: # find a specific idol and create an Idol object for it
 
@@ -276,18 +276,17 @@ def random_idol(group: str, times: int, duplicate: list[Idol], target_rating: in
                         results.append(idol)
                         break
     return results
-
-# Rolls a random idol from the list of all idols. This gives every single idol an equal chance of
-# being chosen, rather than choosing a random group first like random_idol() does.    
-def true_random() -> str:
-    file = './all female idols.txt'
+ 
+def true_random(duplicate: list[Idol]) -> Idol: # rolls a truly random idol from the pool without picking group first
+    file = './info/all_idols.txt'
     with open(file, 'r', encoding='utf-8') as f:
         lines = f.readlines()
-    line = random.choice(lines).strip()
-    if int(line[line.rfind("{")+1:line.rfind("}")]) < 18:
-        line = line[:line.rfind("|")] + "(M) " + line[line.rfind("|"):]
-    return line[:line.rfind('{')-1].strip()
-     
+    while True:
+        line = random.choice(lines).strip()
+        idol = find_idol(line.split('|')[0].strip(), line.split('|')[1].split('/')[0].strip())
+        if not duplicate or not any(idol.equals(compare) for compare in duplicate):
+            return idol
+
 def move_files(old_dir: str, new_dir: str): # Moves all group files to a different directory
     files = os.listdir(old_dir)
     for file in files:

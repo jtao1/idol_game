@@ -1,5 +1,6 @@
 import choose_idol as choose
 import game_stats as stats
+import card_collector as card
 from choose_idol import Idol
 from choose_idol import Variants
 from media.audio import on_win
@@ -30,7 +31,7 @@ class Game:
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
         "up": 2, # upgrade price
-        "size": 3, # max roster size
+        "size": 1, # max roster size
         "div": 110, # '-' divider width
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
@@ -176,7 +177,7 @@ All Commands:
             # UTILITY COMMANDS - Available at any point in the game, do not affect game state
             if ans in ['e', 'exit']: # command to exit the game
                 sys.exit()
-            elif ans == 'reset stats': # resets all idol stats and removes all game history files
+            elif ans == 'reset': # resets all idol stats and removes all game history files
                 stats.reset_stats()
             elif ans in ['c', 'clear']: # command to clear terminal
                 os.system('cls')
@@ -260,7 +261,7 @@ All Commands:
                             return 'gr'
                         print("You don't have enough money for a group reroll! ")
                         continue
-                print("Invalid command!") # all commands checked, invalid command
+                print("Invalid input!") # all commands checked, invalid command
 
     def add_idol(self, player: Player, add: Idol, index: int) -> int: # add idol to a roster, potentially check synergies (might make new func for that)
         if index is not None:
@@ -798,6 +799,7 @@ All Commands:
         final_score = f'{self.winner.name}{Game.c_reset} wins the game {self.p1.color}{self.p1.combat_score}{Game.c_reset} to {self.p2.color}{self.p2.combat_score}{Game.c_reset}!'
 
         print(f'{self.format_text(final_score, (Game.CONST["div"] + 2))}')
+        print("-" * (Game.CONST["div"] + 2)) # divider
 
     def final_screen(self): # closes the game, uploads data
         if "Jason" in self.winner.name and Game.CONST["media"]: # video/sound effects for win
@@ -812,7 +814,9 @@ All Commands:
                 stats.print_idol(idol)
         else:
             stats.update_game_stats(self) # writes game history to a file and updates idol stats
-        sys.exit()
+            self.booster_packs()
+        
+        sys.exit() # end python instance
 
     def play_turn(self): # main game function to play out a turn
         if len(self.turn.roster) >= Game.CONST["size"]: # switch turn if one player's roster is full
@@ -827,7 +831,7 @@ All Commands:
                 print(self.format_text("Rolling idol...", Game.CONST["div"] + 2))
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
-            cur_idol = choose.random_idol('cignature', 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
+            cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
@@ -917,6 +921,38 @@ All Commands:
         self.upgrade_idol()
         self.combat()
         self.final_screen()
+
+    def booster_packs(self): # function to simulate booster pack process
+        self.turn = self.p1
+        for _ in range(2): # pulling individual cards
+            if len(self.turn.roster) > 0: # if player has idols on their roster
+                print("-" * (Game.CONST["div"] + 2)) # divider
+                print("Choose an idol to receive a card for:")
+                for i in range(len(self.turn.roster)):
+                    print(f'{i + 1}. {self.turn.roster[i].to_string()}')
+                while True:
+                    ans = self.input_command("number", self.turn)
+                    if 1 <= ans <= len(self.turn.roster):
+                        card.single_card(self.turn.name, self.turn.roster[ans - 1])
+                        break
+                    else:
+                        print("Invalid input!")
+                time.sleep(1)
+            self.switch_turns()
+
+        # booster pack for winner
+        print("-" * (Game.CONST["div"] + 2)) # divider
+        print("Choose a booster pack to open:")
+        packs = card.choose_boosters()
+        for i in range(len(packs)):
+            print(f'{i + 1}. {packs[i].to_string()}')
+        while True:
+            ans = self.input_command("number", self.winner)
+            if 1 <= ans <= 3:
+                card.open_pack(self.winner.name, packs[ans - 1])
+                break
+            else:
+                print("Invalid input!")
 
 new_game = Game()
 new_game.play_game()

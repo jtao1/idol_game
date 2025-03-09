@@ -1,7 +1,7 @@
-import requests
-from bs4 import BeautifulSoup
-import json
 from datetime import datetime
+from bs4 import BeautifulSoup
+import requests
+import json
 import re
 import unicodedata
 import os

@@ -1,6 +1,7 @@
 import os
 import re
 import choose_idol as choose
+import card_collector as card
 from choose_idol import Idol
 import json
 
@@ -116,7 +117,6 @@ def update_game_stats(game): # updates total game stats and writes idol statisti
         f.writelines(find_distribution()) 
     
     write_idol_stats(game)
-    print(f'Wrote game history and idol statistics')
 
 def find_distribution() -> list: # finds distribution info of entire idol pool
     rating_counts, letter_counts = [0] * 8, [0] * 26
@@ -143,7 +143,6 @@ def print_idol(idol: Idol):
 
 def write_idol_stats(game): # uploads idol stats to json database
     for idol in game.all_idols:
-        print_idol(idol)
         groups = idol.group.upper().split('/') # for IZONE edge cases
         for group in groups:
             file_path = f'./girl groups/{group}.json'
@@ -207,4 +206,5 @@ Letter Synergies: 0
         f.write(reset_string)
         f.write(find_distribution())
 
+    card.create_card_collection()
     print("All statistics reset!")

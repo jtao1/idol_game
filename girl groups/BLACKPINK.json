@@ -17,7 +17,8 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0
+                "money spent": 0,
+                "ults": 0
             }
         },
         {
@@ -33,7 +34,8 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0
+                "money spent": 0,
+                "ults": 0
             }
         },
         {
@@ -49,7 +51,8 @@
                 "opp chances": 0,
                 "gr": 0,
                 "times bought": 0,
-                "money spent": 0
+                "money spent": 0,
+                "ults": 0
             }
         },
         {
@@ -58,14 +61,15 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "games": 0,
-                "wins": 0,
+                "games": 1,
+                "wins": 1,
                 "reroll": 0,
                 "opp reroll": 0,
                 "opp chances": 0,
                 "gr": 0,
-                "times bought": 0,
-                "money spent": 0
+                "times bought": 1,
+                "money spent": 0,
+                "ults": 0
             }
         }
     ]
