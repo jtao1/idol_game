@@ -72,7 +72,7 @@
         },
         "EJ": {
             "COMMON": 0,
-            "UNCOMMON": 1,
+            "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -111,14 +111,14 @@
         "Ruka": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 1,
+            "RARE": 0,
             "LEGENDARY": 0
         },
         "Pharita": {
             "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
-            "LEGENDARY": 1
+            "LEGENDARY": 0
         },
         "Asa": {
             "COMMON": 0,
@@ -139,7 +139,7 @@
             "LEGENDARY": 0
         },
         "Rora": {
-            "COMMON": 1,
+            "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -147,7 +147,7 @@
         "Chiquita": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 1,
+            "RARE": 0,
             "LEGENDARY": 0
         }
     },
@@ -495,7 +495,7 @@
         "Lia": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 1,
+            "RARE": 0,
             "LEGENDARY": 0
         },
         "Ryujin": {
@@ -733,7 +733,7 @@
         "Kazuha": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 1,
+            "RARE": 0,
             "LEGENDARY": 0
         },
         "Eunchae": {
@@ -827,7 +827,7 @@
         "Solar": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 1,
+            "RARE": 0,
             "LEGENDARY": 0
         },
         "Moonbyul": {
@@ -919,7 +919,7 @@
             "LEGENDARY": 0
         },
         "Jinni": {
-            "COMMON": 1,
+            "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -927,7 +927,7 @@
     },
     "OH MY GIRL": {
         "Hyojung": {
-            "COMMON": 1,
+            "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -977,7 +977,7 @@
     },
     "QWER": {
         "Chodan": {
-            "COMMON": 1,
+            "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -997,7 +997,7 @@
         "Hina": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 1,
+            "RARE": 0,
             "LEGENDARY": 0
         }
     },
@@ -1309,12 +1309,12 @@
         "Nayeon": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 1,
+            "RARE": 0,
             "LEGENDARY": 0
         },
         "Jeongyeon": {
             "COMMON": 0,
-            "UNCOMMON": 1,
+            "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -1325,7 +1325,7 @@
             "LEGENDARY": 0
         },
         "Sana": {
-            "COMMON": 1,
+            "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1343,7 +1343,7 @@
             "LEGENDARY": 0
         },
         "Chaeyoung": {
-            "COMMON": 1,
+            "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1469,7 +1469,7 @@
             "LEGENDARY": 0
         },
         "Lucy": {
-            "COMMON": 1,
+            "COMMON": 0,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0

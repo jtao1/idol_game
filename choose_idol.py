@@ -95,7 +95,7 @@ class Idol: # class to represent an idol
     def idol_info(self): # command to print out information for an idol
         string = f"""
 ------------------------------------------
-Info for {Idol.RATINGS[self.rating][0]}{self.name}{Idol.c_reset}
+Info for {self.clean_name()}
 Group: {Idol.c_info}{self.group}{Idol.c_reset}
 Age: {Idol.c_info}{self.age}{Idol.c_reset}
 Nationality: {Idol.c_info}{self.country}{Idol.c_reset}
@@ -158,7 +158,7 @@ Rating: {Idol.RATINGS[self.rating][0]}{Idol.RATINGS[self.rating][1]}{Idol.c_rese
 
         string = f"""
 ------------------------------------------
-Stats for {Idol.RATINGS[self.rating][0]}{self.name}{Idol.c_reset}
+Stats for {self.clean_name()}
 Game Presence: {Idol.c_info}{game_presence:.1f}%{Idol.c_reset}
 Winrate: {winrate}{Idol.c_reset}
 Average Price: {avg_price}{Idol.c_reset}

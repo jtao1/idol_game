@@ -31,7 +31,7 @@ class Game:
         "gr": 5, # group reroll price
         "dr": 6, # deluxe reroll price
         "up": 2, # upgrade price
-        "size": 1, # max roster size
+        "size": 5, # max roster size
         "div": 110, # '-' divider width
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
@@ -193,7 +193,7 @@ All Commands:
                     print(f'{self.p2.name}\'s{Game.c_reset} ultimate bias: {self.p2.ult.to_string()}')
                 else:
                     print("Not all ultimate biases chosen yet!")
-            elif ans.startswith(("in ", "info ", "st ", "stats ")): # searching up info/statistics on an idol
+            elif ans.startswith(("in ", "info ", "st ", "stats ", "c ", "card ")): # searching up info/statistics on an idol
                 answer = ans.split(" ", 2)
                 search = None
                 if len(answer) >= 3: # group specified
@@ -203,6 +203,8 @@ All Commands:
                 if search:
                     if ans.startswith(("in ", "info ")): # searching up idol info
                         search.idol_info()
+                    elif ans.startswith(("c ", "card ")): # searching up collectiong info
+                        card.collection_info(cur_player, search)
                     else: # searching up idol stats
                         search.idol_stats()
                     continue
@@ -606,6 +608,7 @@ All Commands:
                                 print("Unable to upgrade this idol!") # 910 idol cannot be upgraded by exactly 1 tier if all big 3 exist
                                 continue 
                             chance = 0.5 ** ans
+                            chance = min(chance + card.rare_check(choose.remove_ansi(self.turn.name), upgrade_idol) / 100, 1)
                             print(f'Upgrade chance: {Game.c_money}{round(chance * 100, 2)}%{Game.c_reset}')
                             print("Upgrading...")
                             time.sleep(1) # suspense
@@ -751,7 +754,10 @@ All Commands:
                     p2_prob = min(p2_prob + ((1 - p2_prob) ** 4) * 0.6 + 0.02, 1)
                     p1_prob = 1 - p2_prob
 
-                bonus = sorted_p1[i].winrate - sorted_p2[i].winrate # add bonus winrates from gambler variants
+                # add bonus winrates from gambler variants and card bonuses
+                p1_bonus = sorted_p1[i].winrate + card.uncommon_check(choose.remove_ansi(self.p1.name), sorted_p1[i])
+                p2_bonus = sorted_p2[i].winrate + card.uncommon_check(choose.remove_ansi(self.p2.name), sorted_p2[i])
+                bonus = p1_bonus - p2_bonus
                 if bonus > 0:
                     p1_prob = min(p1_prob + bonus, 1)
                     p2_prob = 1 - p1_prob
@@ -831,7 +837,11 @@ All Commands:
                 print(self.format_text("Rolling idol...", Game.CONST["div"] + 2))
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
-            cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
+            if not any(self.turn.ult.equals(dupe) for dupe in dupes) and card.legendary_check(choose.remove_ansi(self.turn.name), self.turn.ult):
+                cur_idol = choose.find_idol(self.turn.ult.name, self.turn.ult.group) # turn player has legendary card for ultimate bias, guaranteed roll
+            cur_idol = card.common_check(choose.remove_ansi(self.turn.name)) # evaluate boosted roll rates from common cards
+            if cur_idol is None: # choose random idol if no idol rolled from common cards
+                cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
@@ -949,7 +959,7 @@ All Commands:
         while True:
             ans = self.input_command("number", self.winner)
             if 1 <= ans <= 3:
-                card.open_pack(self.winner.name, packs[ans - 1])
+                card.open_pack(self.winner, packs[ans - 1])
                 break
             else:
                 print("Invalid input!")

@@ -16,16 +16,18 @@ class rarities(Enum):
 
 class Card:
     reset = "\033[0m"
+    stat = "\033[38;2;255;250;0m"
+    colors = {
+        rarities.COMMON: "\033[1;38;2;0;134;65m",
+        rarities.UNCOMMON: "\033[1;38;2;0;109;168m",
+        rarities.RARE: "\033[1;38;2;189;141;0m",
+        rarities.LEGENDARY: "\033[1;38;2;194;40;40m"
+    }
 
     def __init__(self, idol: Idol, rarity: rarities):
         self.idol = idol
         self.rarity = rarity
-        self.color = {
-            rarities.COMMON: "\033[1;38;2;0;134;65m",
-            rarities.UNCOMMON: "\033[1;38;2;0;109;168m",
-            rarities.RARE: "\033[1;38;2;189;141;0m",
-            rarities.LEGENDARY: "\033[1;38;2;194;40;40m"
-        }[rarity]
+        self.color = self.colors[rarity]
 
     def to_string(self):
         return f'{self.idol.clean_name()} - {self.color}{self.rarity.value}{self.reset}'
@@ -56,13 +58,7 @@ class Booster:
     def __init__(self, type, rarity):
         self.type = type
         self.rarity = rarity
-        self.color = {
-            rarities.COMMON: "\033[38;2;0;134;65m",
-            rarities.UNCOMMON: "\033[38;2;0;109;168m",
-            rarities.RARE: "\033[38;2;189;141;0m",
-            rarities.LEGENDARY: "\033[38;2;194;40;40m",
-            rarities.STANDARD: Card.reset
-        }[rarity]
+        self.color = Card.reset if rarity == rarities.STANDARD else Card.colors[rarity]
 
     def to_string(self):
         return f'{self.color}{self.type} Pack \033[1m({self.rarity.value}){Card.reset}'
@@ -112,7 +108,7 @@ def choose_boosters() -> list[Booster]: # function to retrieve booster pack sele
         if rarity == rarities.COMMON:
             booster_type = random.choice(["Nugu", "Minor", "Foreigner", "Dycha", "Lower AD", "Anthony Davis", "Passion UA"])
         elif rarity == rarities.UNCOMMON:
-            booster_type = random.choice(["3rd Gen", "5th Gen", "HYBE", "SM", "Jason Taytum"])
+            booster_type = random.choice(["Your Roster", "3rd Gen", "5th Gen", "HYBE", "SM", "Jason Taytum"])
         elif rarity == rarities.RARE:
             booster_type = random.choice(["10 Million+", "YG", "JYP", "Luka Doncic", "910"])
         else:
@@ -122,17 +118,23 @@ def choose_boosters() -> list[Booster]: # function to retrieve booster pack sele
             boosters.append(add_booster)
     return boosters
 
-def open_pack(player: str, pack: Booster): # function to open a booster pack
+def open_pack(player, pack: Booster): # function to open a booster pack
     dupes = [] # list of dupes so same idol is not pulled multiple times in a pack
     cards = [] # list of cards objects to add
-    amount = 5 if pack.type == "Standard" else 4
+    amount = 5 if pack.type == "Standard" else len(player.roster) if pack.type == "Your Roster" else 4
+    if pack.type == "Your Roster":
+        random.shuffle(player.roster)
     for i in range(amount):
         while True:
-            idol = choose.true_random(dupes)
-            if Booster.booster_filters[pack.type](idol):
-                break # if idol fits booster pack criteria
+            if pack.type == "Your Roster":
+                idol = player.roster[i]
+                break
+            else:
+                idol = choose.true_random(dupes)
+                if Booster.booster_filters[pack.type](idol):
+                    break # if idol fits booster pack criteria
             
-        if i == 3: # if last card of pack, guarantee rare
+        if i == amount - 1: # if last card of pack, guarantee rare
             rarity = determine_rarity(0, 0, 0.9)
         else:
             rarity = determine_rarity(0.55, 0.85, 0.98)
@@ -150,7 +152,60 @@ def open_pack(player: str, pack: Booster): # function to open a booster pack
         print("\033[F\033[K", end="")
         print(card.to_string())
 
-    update_card(choose.remove_ansi(player), cards)
+    update_card(choose.remove_ansi(player.name), cards)
+
+def collection_info(player, idol: Idol): # display card collection info of a specific idol
+    with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
+        data = json.load(f)
+    common_count = data[idol.group.split('/')[0]][idol.name]["COMMON"]
+    uncommon_count = data[idol.group.split('/')[0]][idol.name]["UNCOMMON"]
+    rare_count = data[idol.group.split('/')[0]][idol.name]["RARE"]
+    legendary_count = data[idol.group.split('/')[0]][idol.name]["LEGENDARY"]
+    string = f"""
+------------------------------------------
+Collection info for {idol.clean_name()}
+{Card.colors[rarities.COMMON]}Common:{Card.reset} {Card.stat}{common_count}{Card.reset}
+{Card.stat}{common_count * 0.1}%{Card.reset} increased roll rate
+{Card.colors[rarities.UNCOMMON]}Uncommon:{Card.reset} {Card.stat}{uncommon_count}{Card.reset}
+{Card.stat}{uncommon_count * 2}%{Card.reset} increased combat winrate
+{Card.colors[rarities.RARE]}Rare:{Card.reset} {Card.stat}{rare_count}{Card.reset}
+{Card.stat}{rare_count * 3}%{Card.reset} increased upgrade rate
+{Card.colors[rarities.LEGENDARY]}Legendary:{Card.reset} {Card.stat}{legendary_count}{Card.reset}
+{"G" if legendary_count else "Not g"}uaranteed to roll if chosen as ultimate bias
+------------------------------------------
+    """.strip()
+    print(string)
+
+def common_check(player: str) -> Idol: # function to check entire common card info for a player
+    with open(f'./info/{player}_cards.json', 'r') as f:
+        data = json.load(f)
+    choices = []
+    weight = []
+    total_weight = 100
+    for group in data:
+        for member in data[group]:
+            if data[group][member]["COMMON"] > 0:
+                choices.append(choose.find_idol(member, group))
+                weight.append(data[group][member]["COMMON"] * 0.1)
+                total_weight -= data[group][member]["COMMON"] * 0.1
+    choices.append(None)
+    weight.append(total_weight)
+    return random.choices(choices, weights = weight, k = 1)[0]
+
+def uncommon_check(player: str, idol: Idol) -> int: # function to check uncommon card info for certain idol for player
+    with open(f'./info/{player}_cards.json', 'r') as f:
+        data = json.load(f)
+    return 2 * data[idol.group.upper().split('/')[0]][idol.name]["UNCOMMON"]
+
+def rare_check(player: str, idol: Idol) -> int: # function to check rare card info for certain idol for player
+    with open(f'./info/{player}_cards.json', 'r') as f:
+        data = json.load(f)
+    return 3 * data[idol.group.upper().split('/')[0]][idol.name]["RARE"]
+
+def legendary_check(player: str, idol: Idol) -> bool: # function to check legendary card info for certain idol for player
+    with open(f'./info/{player}_cards.json', 'r') as f:
+        data = json.load(f)
+    return True if data[idol.group.upper().split('/')[0]][idol.name]["LEGENDARY"] > 0 else False
         
 def create_card_collection(): # function to create the json file that stores all card collection info (also functions as reset)
     names = ["sejun", "jason"]

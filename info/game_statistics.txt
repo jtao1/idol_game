@@ -1,22 +1,10 @@
 IDOLS 3.5 GAME STATISTICS OVERVIEW
 
-Total Games: 12
-Sejun: 7 - (58.33%)
-Jason: 5 - (41.67%)
+Total Games: 0
+Sejun: 0 - (0.0%)
+Jason: 0 - (0.0%)
 
-Exodias: 12 - (100.0%)
-	ITZY: 1 - (8.33%)
-	Rocket Punch: 1 - (8.33%)
-	aespa: 1 - (8.33%)
-	fromis_9: 1 - (8.33%)
-	MAMAMOO: 1 - (8.33%)
-	Dreamcatcher: 1 - (8.33%)
-	LE SSERAFIM: 1 - (8.33%)
-	UNIS: 1 - (8.33%)
-	TWICE: 1 - (8.33%)
-	BLACKPINK: 1 - (8.33%)
-	ALICE: 1 - (8.33%)
-	STAYC: 1 - (8.33%)
+Exodias: 0 - (0.0%)
 
 Flushes: 0 - (0.0%)
 
