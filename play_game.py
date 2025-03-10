@@ -436,13 +436,13 @@ All Commands:
         elif idol.equals(self.p2.ult):
             ult_player = self.p2
         if ult_player and ult_player.money >= ult_value and len(ult_player.roster) < Game.CONST["size"]:
-            print(f'{idol.to_string()} is {ult_player.name}\'s{Game.c_reset} ultimate bias! Would you like to instantly add them to your roster for {Game.c_money}${ult_value}{Game.c_reset}?')
+            print(f'{idol.clean_name()} is {ult_player.name}\'s{Game.c_reset} ultimate bias! Would you like to instantly add them to your roster for {Game.c_money}${ult_value}{Game.c_reset}?')
             ans = self.input_command("yon", ult_player)
             if ans == 'y':
                 ult_player.money -= ult_value
                 if card.discount_check(choose.remove_ansi(ult_player.name), idol): # if player has all card types for idol
                     ult_player.money += 1
-                    print(f'{ult_player.name}{Game.c_reset} receives $1 cashback for {idol.to_string()} through cards!')
+                    print(f'{ult_player.name}{Game.c_reset} receives {Game.c_money}$1{Game.c_reset} cashback for {idol.to_string()} through cards!')
                 idol.protected = True
                 self.edit_stats(idol, None, ult_value)
                 self.add_idol(ult_player, idol, None)
@@ -485,7 +485,7 @@ All Commands:
                     self.opponent.money -= abs(counter_bid)
                     if card.discount_check(choose.remove_ansi(self.opponent.name), cur_idol): # if player has all cards, give $1 cashback
                         self.opponent.money += 1
-                        print(f'{self.opponent.name}{Game.c_reset} receives $1 cashback for {cur_idol.to_string()} through cards!')
+                        print(f'{self.opponent.name}{Game.c_reset} receives {Game.c_money}$1{Game.c_reset} cashback for {cur_idol.to_string()} through cards!')
                     opponent_win = True
                     self.edit_stats(cur_idol, None, counter_bid)
         if not opponent_win: # turn player wins bid
@@ -497,7 +497,7 @@ All Commands:
             self.turn.money -= abs(bid)
             if card.discount_check(choose.remove_ansi(self.turn.name), cur_idol): # if player has all cards, give $1 cashback
                 self.turn.money += 1
-                print(f'{self.turn.name}{Game.c_reset} receives $1 cashback for {cur_idol.to_string()} through cards!')
+                print(f'{self.turn.name}{Game.c_reset} receives {Game.c_money}$1{Game.c_reset} cashback for {cur_idol.to_string()} through cards!')
 
     def group_reroll(self, dup_idol: Idol): # function for handling group reroll process
         cur_idol = dup_idol
@@ -540,7 +540,7 @@ All Commands:
                 self.turn.done = True
             elif self.turn.money >= Game.CONST["dr"]: # if they have money for deluxe reroll
                 print("-" * (Game.CONST["div"] + 2)) # divider
-                print(f'{self.turn.name}{Game.c_reset}, would you like to deluxe reroll for ${Game.CONST["dr"]}?')
+                print(f'{self.turn.name}{Game.c_reset}, would you like to deluxe reroll for {Game.c_money}${Game.CONST["dr"]}{Game.c_reset}?')
                 if self.input_command("yon", self.turn) == 'y': # dr if yes, else break and move to next player
                     removed = self.replace_idol(self.turn) # index and object of removed idol
                     if removed is None:
@@ -617,7 +617,7 @@ All Commands:
                                 print("Unable to upgrade this idol!") # 910 idol cannot be upgraded by exactly 1 tier if all big 3 exist
                                 continue 
                             chance = 0.5 ** ans
-                            chance = min(chance + card.rare_check(choose.remove_ansi(self.turn.name), upgrade_idol), 1)
+                            chance = min(chance + card.uncommon_check(choose.remove_ansi(self.turn.name), upgrade_idol), 1)
                             print(f'Upgrade chance: {Game.c_money}{round(chance * 100, 2)}%{Game.c_reset}')
                             print("Upgrading...")
                             time.sleep(1) # suspense
@@ -767,8 +767,8 @@ All Commands:
                     p1_prob = 1 - p2_prob
 
                 # add bonus winrates from gambler variants and card bonuses
-                p1_bonus = sorted_p1[i].winrate + card.uncommon_check(choose.remove_ansi(self.p1.name), sorted_p1[i])
-                p2_bonus = sorted_p2[i].winrate + card.uncommon_check(choose.remove_ansi(self.p2.name), sorted_p2[i])
+                p1_bonus = sorted_p1[i].winrate + card.rare_check(choose.remove_ansi(self.p1.name), sorted_p1[i])
+                p2_bonus = sorted_p2[i].winrate + card.rare_check(choose.remove_ansi(self.p2.name), sorted_p2[i])
                 bonus = p1_bonus - p2_bonus
                 if bonus > 0:
                     p1_prob = min(p1_prob + bonus, 1)
@@ -828,13 +828,13 @@ All Commands:
         for idol in self.winner.roster: # edit win stat of idols in winning roster
             self.edit_stats(idol, "win", None)
         self.show_game_info()
-
+        self.booster_packs()
+        
         if Game.CONST["testing"]: # if testing, don't write history/stats but print out idol stats for debugging
             for idol in self.all_idols:
                 stats.print_idol(idol)
         else:
             stats.update_game_stats(self) # writes game history to a file and updates idol stats
-            self.booster_packs()
         
         sys.exit() # end python instance
 
@@ -851,13 +851,16 @@ All Commands:
                 print(self.format_text("Rolling idol...", Game.CONST["div"] + 2))
                 time.sleep(1) # suspense
                 print("\033[F\033[K", end="") # deletes previous line to replace with rolled idol
-            if not any(self.turn.ult.equals(dupe) for dupe in dupes) and card.legendary_check(choose.remove_ansi(self.turn.name), self.turn.ult):
+            if not any(self.turn.ult.equals(dupe) for dupe in dupes + self.turn.roster + self.opponent.roster) and card.legendary_check(choose.remove_ansi(self.turn.name), self.turn.ult):
                 cur_idol = choose.find_idol(self.turn.ult.name, self.turn.ult.group) # turn player has legendary card for ultimate bias, guaranteed roll
-            cur_idol = card.common_check(choose.remove_ansi(self.turn.name)) # evaluate boosted roll rates from common cards
-            if cur_idol is None: # choose random idol if no idol rolled from common cards
-                cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
+                message = f'{cur_idol.to_string()} rolled from legendary card bonus!'
             else:
-                print(f'{cur_idol.to_string()} rolled from card bonus!')
+                cur_idol = card.common_check(choose.remove_ansi(self.turn.name)) # evaluate boosted roll rates from common cards
+                if cur_idol is None: # choose random idol if no idol rolled from common cards
+                    cur_idol = choose.random_idol(None, 1, self.turn.roster + dupes, None)[0] # CHANGE TESTING HERE
+                    message = None
+                else:
+                    message = f'{cur_idol.to_string()} rolled from common card bonus!'
 
             dup_check = self.duplicate_check(cur_idol) # check for duplicates
             if dup_check == 1: # duplicate was stolen
@@ -867,7 +870,9 @@ All Commands:
                 continue
 
             choose.determine_variant(cur_idol, Game.CONST["variant"]) # determine variant of rolled idol after stealing is checked
-            print(self.format_text(cur_idol.to_string(), Game.CONST["div"] + 2))
+            print(self.format_text(cur_idol.to_string(), Game.CONST["div"] + 2)) # print rolled idol
+            if message:
+                print(self.format_text(message, Game.CONST["div"] + 2)) # print message for card bonuses
             
             if self.ultimate_bias(cur_idol): # check for ultimate bias
                 break # end turn if ultimate bias was bought
@@ -888,7 +893,7 @@ All Commands:
                     self.edit_stats(cur_idol, None, 0)
                     self.add_idol(self.turn, cur_idol, None)
                 else: # opponent has choice to steal
-                    print(f'{self.turn.name}{Game.c_reset} bids $0 for {cur_idol.to_string()}')
+                    print(f'{self.turn.name}{Game.c_reset} bids {Game.c_money}$0{Game.c_reset} for {cur_idol.to_string()}')
                     self.bid_process(0, cur_idol)
                 break
             
@@ -959,14 +964,17 @@ All Commands:
                 print("-" * (Game.CONST["div"] + 2)) # divider
                 for idol in self.turn.roster:
                     if idol.variant == choose.Variants.COLLECTIBLE: # if idol is collectible, pull a card
-                        card.single_card(self.turn.name, idol)
+                        card.single_card(self.turn.name, idol, Game.CONST["testing"])
                 print("Choose an idol to receive a card for:")
+                print("0. Cancel")
                 for i in range(len(self.turn.roster)):
                     print(f'{i + 1}. {self.turn.roster[i].to_string()}')
                 while True:
                     ans = self.input_command("number", self.turn)
+                    if ans == 0:
+                        break # player gives up card
                     if 1 <= ans <= len(self.turn.roster):
-                        card.single_card(self.turn.name, self.turn.roster[ans - 1])
+                        card.single_card(self.turn.name, self.turn.roster[ans - 1], Game.CONST["testing"])
                         break
                     else:
                         print("Invalid input!")
@@ -977,12 +985,20 @@ All Commands:
         print("-" * (Game.CONST["div"] + 2)) # divider
         print("Choose a booster pack to open:")
         packs = card.choose_boosters()
+        print("0. Cancel")
         for i in range(len(packs)):
             print(f'{i + 1}. {packs[i].to_string()}')
         while True:
             ans = self.input_command("number", self.winner)
-            if 1 <= ans <= 3:
-                card.open_pack(self.winner, packs[ans - 1])
+            if ans == 0:
+                break # player gives up booster pack
+            if 1 <= ans <= 4:
+                chosen = packs[ans - 1]
+                if chosen.type == "Your Choice":
+                    print("Choose an idol for your booster pack:")
+                    ans = self.input_command("idol", self.winner)
+                    chosen.idol = ans
+                card.open_pack(self.winner, chosen, Game.CONST["testing"])
                 break
             else:
                 print("Invalid input!")

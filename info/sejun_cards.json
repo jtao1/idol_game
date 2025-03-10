@@ -85,7 +85,7 @@
         "Yeonje": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Yukyung": {
@@ -499,7 +499,7 @@
             "LEGENDARY": 0
         },
         "Ryujin": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -511,7 +511,7 @@
             "LEGENDARY": 0
         },
         "Yuna": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
@@ -525,7 +525,7 @@
             "LEGENDARY": 0
         },
         "Gaeul": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -587,7 +587,7 @@
             "LEGENDARY": 0
         },
         "Chaewon": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -688,9 +688,9 @@
     "KISS OF LIFE": {
         "Julie": {
             "COMMON": 1,
-            "UNCOMMON": 1,
-            "RARE": 0,
-            "LEGENDARY": 0
+            "UNCOMMON": 2,
+            "RARE": 1,
+            "LEGENDARY": 1
         },
         "Natty": {
             "COMMON": 0,
@@ -700,7 +700,7 @@
         },
         "Belle": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -713,7 +713,7 @@
     },
     "LE SSERAFIM": {
         "Chaewon": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -989,13 +989,13 @@
             "LEGENDARY": 0
         },
         "Siyeon": {
-            "COMMON": 1,
+            "COMMON": 2,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
         },
         "Hina": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1359,7 +1359,7 @@
         "Nana": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Gehlee": {
@@ -1381,7 +1381,7 @@
             "LEGENDARY": 0
         },
         "Elisia": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1465,7 +1465,7 @@
         "Lucy": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Minseo": {
@@ -1477,7 +1477,7 @@
         "Songyee": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         }
     }

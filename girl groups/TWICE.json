@@ -95,9 +95,9 @@
             "country": "Japanese",
             "rating": 6,
             "stats": {
-                "games": 1,
+                "games": 2,
                 "wins": 0,
-                "reroll": 0,
+                "reroll": 1,
                 "opp reroll": 0,
                 "opp chances": 0,
                 "gr": 0,
@@ -112,12 +112,12 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "games": 1,
+                "games": 2,
                 "wins": 1,
                 "reroll": 0,
                 "opp reroll": 0,
                 "opp chances": 0,
-                "gr": 0,
+                "gr": 1,
                 "times bought": 1,
                 "money spent": 2,
                 "ults": 0

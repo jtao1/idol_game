@@ -28,7 +28,7 @@ class Variants(Enum): # represents all the variants that idols can spawn in
     EVOLVING = "\033[1;38;2;0;255;81m(Evolving)"
     BULLY = "\033[1;38;2;165;100;0m(Bully)"
     WILDCARD = rainbow_text("(WILDCARD)")
-    COLLECTIBLE = "\033[1;38;2;0;255;218m(Collectible)"
+    COLLECTIBLE = "\033[1;38;2;0;255;218m(TCG)"
 
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
@@ -287,7 +287,7 @@ def true_random(duplicate: list[Idol]) -> Idol: # rolls a truly random idol from
     while True:
         line = random.choice(lines).strip()
         if line:
-            idol = find_idol(line.split('|')[0].strip(), line.split('|')[1].strip())
+            idol = find_idol(line.split('|')[0].strip(), line.split('|')[1].split('/')[0].strip())
             if not duplicate or not any(idol.equals(compare) for compare in duplicate):
                 return idol
 

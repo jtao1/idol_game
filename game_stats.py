@@ -29,7 +29,9 @@ def write_all_idols(sort: bool): # Writes all idols to a single file
                     rating = data["members"][i]["rating"]
                     country = data["members"][i]["country"]
                     idol = Idol(name, group, age, rating, country)
-                    idols.append(choose.remove_ansi(f'{idol.to_string()} | {rating}\n'))
+                    choose.multigroup(idol)
+                    if not any(idol.equals(compare) for compare in idols): # avoid double group duplicates
+                        idols.append(choose.remove_ansi(f'{idol.to_string()} | {rating}\n'))
         if sort:
             idols.sort()
         output.writelines(idols)
@@ -118,7 +120,7 @@ def update_game_stats(game): # updates total game stats and writes idol statisti
     
     write_idol_stats(game)
 
-def find_distribution() -> list: # finds distribution info of entire idol pool
+def find_distribution() -> str: # finds distribution info of entire idol pool
     rating_counts, letter_counts = [0] * 8, [0] * 26
     with open(all_idol_file, 'r') as f:
         lines = f.readlines()

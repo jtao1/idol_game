@@ -141,7 +141,7 @@
         "Rora": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Chiquita": {
@@ -417,13 +417,13 @@
     },
     "GFRIEND": {
         "Sowon": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         },
         "Yerin": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -437,7 +437,7 @@
         "Yuju": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "SinB": {
@@ -505,13 +505,13 @@
             "LEGENDARY": 0
         },
         "Chaeryeong": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
         },
         "Yuna": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -532,7 +532,7 @@
         },
         "Rei": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -706,7 +706,7 @@
         },
         "Haneul": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         }
@@ -863,7 +863,7 @@
             "LEGENDARY": 0
         },
         "Danielle": {
-            "COMMON": 1,
+            "COMMON": 2,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -902,7 +902,7 @@
         },
         "Bae": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -1327,7 +1327,7 @@
         "Mina": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Dahyun": {
@@ -1445,7 +1445,7 @@
     },
     "WOOAH": {
         "Nana": {
-            "COMMON": 1,
+            "COMMON": 2,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1457,7 +1457,7 @@
             "LEGENDARY": 0
         },
         "Sora": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1470,7 +1470,7 @@
         },
         "Minseo": {
             "COMMON": 2,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         },
