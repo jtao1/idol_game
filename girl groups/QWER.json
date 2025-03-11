@@ -44,9 +44,9 @@
             "country": "Korean",
             "rating": 3,
             "stats": {
-                "games": 2,
+                "games": 3,
                 "wins": 0,
-                "reroll": 0,
+                "reroll": 1,
                 "opp reroll": 0,
                 "opp chances": 0,
                 "gr": 0,
@@ -61,8 +61,8 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "games": 2,
-                "wins": 0,
+                "games": 3,
+                "wins": 1,
                 "reroll": 0,
                 "opp reroll": 0,
                 "opp chances": 1,

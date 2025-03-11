@@ -1,6 +1,5 @@
 TODO list:
 
-booster packs/collectible cards
 perks
 
 ------

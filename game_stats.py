@@ -31,10 +31,13 @@ def write_all_idols(sort: bool): # Writes all idols to a single file
                     idol = Idol(name, group, age, rating, country)
                     choose.multigroup(idol)
                     if not any(idol.equals(compare) for compare in idols): # avoid double group duplicates
-                        idols.append(choose.remove_ansi(f'{idol.to_string()} | {rating}\n'))
+                        idols.append(idol)
+        idol_strings = []
+        for idol in idols:
+            idol_strings.append(choose.remove_ansi(f'{idol.to_string()} | {idol.rating}\n'))
         if sort:
-            idols.sort()
-        output.writelines(idols)
+            idol_strings.sort()
+        output.writelines(idol_strings)
     print(f'Wrote all idols from "{search}" to a single file')
 
 def update_game_stats(game): # updates total game stats and writes idol statistics

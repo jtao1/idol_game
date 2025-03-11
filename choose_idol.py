@@ -91,9 +91,9 @@ class Idol: # class to represent an idol
     
     def ult_value(self): # return value for when chosen as ultimate bias
         if self.rating <= 5:
-            return self.rating - 4
+            return self.rating - 5
         else:
-            return self.rating - 3
+            return self.rating - 4
         
     def idol_info(self): # command to print out information for an idol
         string = f"""

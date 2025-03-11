@@ -14,7 +14,6 @@ Chaejeong | ALICE | 2
 Chaeryeong | ITZY | 5
 Chaesol | cignature | 3
 Chaewon | LE SSERAFIM/IZONE | 7
-Chaewon | LE SSERAFIM/IZONE | 7
 Chaewon | tripleS | 5
 Chaeyeon | IZONE | 2
 Chaeyeon | tripleS | 4
@@ -61,7 +60,6 @@ Hitomi | IZONE | 3
 Hwasa | MAMAMOO | 1
 HyeJu | LOONA | 3
 Hyein | NJZ | 5
-Hyeonju | UNIS/CIGNATURE | 3
 Hyeonju | UNIS/CIGNATURE | 3
 Hyerin | tripleS | 3
 Hyewon | IZONE | 5
@@ -152,7 +150,6 @@ Ryujin | ITZY | 6
 Saena | FIFTY FIFTY | 3
 Saerom | fromis_9 | 3
 Sakura | LE SSERAFIM/IZONE | 6
-Sakura | LE SSERAFIM/IZONE | 6
 Sana | TWICE | 6
 Seeun | STAYC | 3
 Seline | cignature | 3
@@ -197,7 +194,6 @@ Winter | aespa | 6
 Wonhee | ILLIT | 6
 Woni | RESCENE | 5
 Wonyoung | IVE/IZONE | 7
-Wonyoung | IVE/IZONE | 7
 Wooyeon | WOOAH | 5
 Xiaoting | Kep1er | 4
 XinYu | tripleS | 4
@@ -220,7 +216,6 @@ Yooyeon | tripleS | 4
 Youngeun | Kep1er | 3
 Yubin | OH MY GIRL | 3
 Yubin | tripleS | 4
-Yujin | IVE/IZONE | 6
 Yujin | IVE/IZONE | 6
 Yujin | Kep1er | 3
 Yuju | GFRIEND | 3

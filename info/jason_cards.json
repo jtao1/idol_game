@@ -319,7 +319,7 @@
         "Moon": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Yewon": {
@@ -520,7 +520,7 @@
     "IVE": {
         "Yujin": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 2,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -618,7 +618,7 @@
         },
         "Yujin": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 2,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -1131,7 +1131,7 @@
         "Seeun": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Yoon": {
@@ -1464,7 +1464,7 @@
         },
         "Lucy": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 2,
             "RARE": 0,
             "LEGENDARY": 0
         },

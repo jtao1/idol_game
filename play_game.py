@@ -12,7 +12,15 @@ import re
 import time
 import random
 import math
+from enum import Enum
 from collections import Counter
+
+class Perks(Enum):
+    SPENDER = "Spending Spree"
+    GAMBLER = "Degenerate Gambler"
+    COLLECTOR = "TCG Collector"
+    SYNERGY = "Synergizer"
+    WARLORD = "Warlord"
 
 class Player: # class to reprsent a player
     def __init__(self, name, color):
@@ -21,6 +29,7 @@ class Player: # class to reprsent a player
         self.money = 15
         self.color = color # color for their text
         self.ult = None # ultimate bias
+        self.perk = None # perk chosen at start of game
         self.combat_score = 0 # combat score of this game
         self.done = False # tracks whether they are finished with deluxe rerolls/upgrades
         self.synergies = set() # keeps track of used synergies
@@ -35,7 +44,7 @@ class Game:
         "div": 110, # '-' divider width
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
-        "testing": True, # whether game is being played in a test state or not
+        "testing": False, # whether game is being played in a test state or not
         "media": False, # whether to add sound/video effects to game
         "crazy": False # whether to change game settings to crazy mode
     }
@@ -175,17 +184,17 @@ All Commands:
                 if len(ans) == 1 and ans.isalpha():
                     return ans
             # UTILITY COMMANDS - Available at any point in the game, do not affect game state
-            if ans in ['e', 'exit']: # command to exit the game
+            if ans == 'exit': # command to exit the game
                 sys.exit()
             elif ans == 'reset': # resets all idol stats and removes all game history files
                 stats.reset_stats()
-            elif ans in ['c', 'clear']: # command to clear terminal
+            elif ans == 'cl': # command to clear terminal
                 os.system('cls')
             elif ans in ['h', 'help']: # TODO: create total command list
                 self.help_command()
-            elif ans in ['i', 'in', 'info']: # command to print out money and roster information
+            elif ans in ['i', 'in']: # command to print out money and roster information
                 self.show_game_info()
-            elif ans in ['m', 'mo', 'money']: # command to print out only money information
+            elif ans == 'm': # command to print out only money information
                 self.show_money()
             elif ans in ['u', 'ult']: # command to show ultimate biases
                 if self.p1.ult and self.p2.ult:
@@ -193,7 +202,7 @@ All Commands:
                     print(f'{self.p2.name}\'s{Game.c_reset} ultimate bias: {self.p2.ult.to_string()}')
                 else:
                     print("Not all ultimate biases chosen yet!")
-            elif ans.startswith(("in ", "info ", "st ", "stats ", "c ", "card ")): # searching up info/statistics on an idol
+            elif ans.startswith(("i ", "in ", "s ", "st ", "c ", "cs ", "cj ")): # searching up info/statistics on an idol
                 answer = ans.split(" ", 2)
                 search = None
                 if len(answer) >= 3: # group specified
@@ -203,8 +212,15 @@ All Commands:
                 if search:
                     if ans.startswith(("in ", "info ")): # searching up idol info
                         search.idol_info()
-                    elif ans.startswith(("c ", "card ")): # searching up collectiong info
-                        card.collection_info(cur_player, search)
+                    elif ans.startswith(("c ", "cs ", "cj ")): # searching up collectiong info
+                        sejun = self.p1 if "Sejun" in self.p1.name else self.p2
+                        jason = self.p1 if "Jason" in self.p1.name else self.p2
+                        if ans.startswith("cs "):
+                            card.collection_info(sejun, search)
+                        elif ans.startswith("cj "):
+                            card.collection_info(jason, search)
+                        else:
+                            card.collection_info(cur_player, search)
                     else: # searching up idol stats
                         search.idol_stats()
                     continue
@@ -444,6 +460,7 @@ All Commands:
                     ult_player.money += 1
                     print(f'{ult_player.name}{Game.c_reset} receives {Game.c_money}$1{Game.c_reset} cashback for {idol.to_string()} through cards!')
                 idol.protected = True
+                idol.winrate += 0.05
                 self.edit_stats(idol, None, ult_value)
                 self.add_idol(ult_player, idol, None)
                 return True
@@ -749,9 +766,9 @@ All Commands:
             print(self.format_text(f'Matchup #{i+1}:', (Game.CONST["div"] + 2)))
             p1_prob, p2_prob = 0, 0
 
-            if sorted_p1[i].rating == 9:
+            if sorted_p1[i].rating == 9 and sorted_p2[i].rating != 9:
                 p1_prob = 1
-            elif sorted_p2[i].rating == 9:
+            elif sorted_p2[i].rating == 9 and sorted_p1[i].rating != 9:
                 p2_prob = 1
             else:
                 p1_prob = 0.5 ** (abs(sorted_p1[i].rating - sorted_p2[i].rating) + 1) # probability calculation
@@ -947,6 +964,7 @@ All Commands:
         # start game
         self.game_start()
 
+        self.show_money()
         # playing out all turns until rosters are full
         while len(self.p1.roster) < Game.CONST["size"] or len(self.p2.roster) < Game.CONST["size"]:
             self.play_turn()
@@ -964,21 +982,32 @@ All Commands:
                 print("-" * (Game.CONST["div"] + 2)) # divider
                 for idol in self.turn.roster:
                     if idol.variant == choose.Variants.COLLECTIBLE: # if idol is collectible, pull a card
-                        card.single_card(self.turn.name, idol, Game.CONST["testing"])
+                        print(f'Choose a card rarity to receive for {idol.to_string()}')
+                        print("0. Cancel")
+                        numbers = list(enumerate(card.rarities))
+                        for i, rarity in numbers:
+                            print(f'{i + 1}. {card.Card.colors[rarity]}{rarity.value}{Game.c_reset}')
+                        while True:
+                            ans = self.input_command("number", self.turn)
+                            if 0 <= ans <= len(numbers):
+                                if ans != 0: # player doesn't cancel
+                                    _, chosen_rarity = numbers[ans - 1]
+                                    card.single_card(self.turn.name, idol, Game.CONST["testing"], chosen_rarity)
+                                    time.sleep(1)
+                                break 
+                            print("Invalid input!")
                 print("Choose an idol to receive a card for:")
                 print("0. Cancel")
                 for i in range(len(self.turn.roster)):
                     print(f'{i + 1}. {self.turn.roster[i].to_string()}')
                 while True:
                     ans = self.input_command("number", self.turn)
-                    if ans == 0:
-                        break # player gives up card
-                    if 1 <= ans <= len(self.turn.roster):
-                        card.single_card(self.turn.name, self.turn.roster[ans - 1], Game.CONST["testing"])
+                    if 0 <= ans <= len(self.turn.roster):
+                        if ans != 0: # player doesn't cancel
+                            card.single_card(self.turn.name, self.turn.roster[ans - 1], Game.CONST["testing"], None)
+                            time.sleep(1)
                         break
-                    else:
-                        print("Invalid input!")
-                time.sleep(1)
+                    print("Invalid input!")
             self.switch_turns()
 
         # booster pack for winner
@@ -990,18 +1019,16 @@ All Commands:
             print(f'{i + 1}. {packs[i].to_string()}')
         while True:
             ans = self.input_command("number", self.winner)
-            if ans == 0:
-                break # player gives up booster pack
-            if 1 <= ans <= 4:
-                chosen = packs[ans - 1]
-                if chosen.type == "Your Choice":
-                    print("Choose an idol for your booster pack:")
-                    ans = self.input_command("idol", self.winner)
-                    chosen.idol = ans
-                card.open_pack(self.winner, chosen, Game.CONST["testing"])
+            if 0 <= ans <= 4:
+                if ans != 0:
+                    chosen = packs[ans - 1]
+                    if chosen.type == "Your Choice":
+                        print("Choose an idol for your booster pack:")
+                        ans = self.input_command("idol", self.winner)
+                        chosen.idol = ans
+                    card.open_pack(self.winner, chosen, Game.CONST["testing"])
                 break
-            else:
-                print("Invalid input!")
+            print("Invalid input!")
 
 new_game = Game()
 new_game.play_game()
