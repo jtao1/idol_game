@@ -183,6 +183,51 @@ def collection_info(player, idol: Idol): # display card collection info of a spe
     """.strip()
     print(string)
 
+def total_collection(player): # display overall collection info for a player
+    common, uncommon, rare, legendary = [], [], [], []
+    with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
+        data = json.load(f)
+    for group in data:
+        for member in data[group]:
+            if not any(member == comp[0].name for comp in common + uncommon + rare + legendary): # avoid multigroup duplicates
+                if data[group][member]["COMMON"] > 0:
+                    common.append([choose.find_idol(member, group), data[group][member]["COMMON"]])
+                if data[group][member]["UNCOMMON"] > 0:
+                    uncommon.append([choose.find_idol(member, group), data[group][member]["UNCOMMON"]])
+                if data[group][member]["RARE"] > 0:
+                    rare.append([choose.find_idol(member, group), data[group][member]["RARE"]])
+                if data[group][member]["LEGENDARY"] > 0:
+                    legendary.append([choose.find_idol(member, group), data[group][member]["LEGENDARY"]])
+    common.sort(key=lambda x: x[1], reverse=True)
+    uncommon.sort(key=lambda x: x[1], reverse=True)
+    rare.sort(key=lambda x: x[1], reverse=True)
+    legendary.sort(key=lambda x: x[1], reverse=True)
+
+    common_info = '\n'.join(f'{idol.to_string()}: {Card.colors[rarities.COMMON]}{num}{Card.reset}' for idol, num in common[:4])
+    uncommon_info = '\n'.join(f'{idol.to_string()}: {Card.colors[rarities.UNCOMMON]}{num}{Card.reset}' for idol, num in uncommon[:4])
+    rare_info = '\n'.join(f'{idol.to_string()}: {Card.colors[rarities.RARE]}{num}{Card.reset}' for idol, num in rare[:4])
+    legendary_info = '\n'.join(f'{idol.to_string()}: {Card.colors[rarities.LEGENDARY]}{num}{Card.reset}' for idol, num in legendary[:4])
+    string = f"""
+------------------------------------------
+Overall top collection info for {player.name}{Card.reset}
+
+{Card.colors[rarities.COMMON]}{rarities.COMMON.value}{Card.reset}
+{common_info}
+
+{Card.colors[rarities.UNCOMMON]}{rarities.UNCOMMON.value}{Card.reset}
+{uncommon_info}
+
+{Card.colors[rarities.RARE]}{rarities.RARE.value}{Card.reset}
+{rare_info}
+
+{Card.colors[rarities.LEGENDARY]}{rarities.LEGENDARY.value}{Card.reset}
+{legendary_info}
+------------------------------------------
+    """.strip()
+
+    print(string)
+            
+
 def common_check(player: str) -> Idol: # function to check entire common card info for a player
     with open(f'./info/{player}_cards.json', 'r') as f:
         data = json.load(f)

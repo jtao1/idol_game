@@ -190,6 +190,18 @@ def multigroup(idol: Idol): # function to handle idols with multiple groups (mai
         elif idol.name == "Hyeonju":
             idol.group = "UNIS/CIGNATURE"
 
+def letter_check(char: str, rosters: list[Idol]) -> bool: # check if all idols for a certain letter are already taken
+    idols = []
+    with open('./info/all_idols.txt', 'r') as f:
+        lines = f.readlines()
+        for line in lines:
+            if line.startswith(char):
+                idols.append(find_idol(line.split('|')[0].strip(), line.split('|')[1].split('/')[0].strip()))
+    for idol in idols:
+        if not any(idol.equals(comp) for comp in rosters):
+            return False
+    return True
+
 def find_idol(name: str, group: str) -> Idol: # find a specific idol and create an Idol object for it
 
     def find_member(file: str, name: str): # helper function to search for a member in a group file

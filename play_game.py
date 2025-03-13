@@ -202,6 +202,13 @@ All Commands:
                     print(f'{self.p2.name}\'s{Game.c_reset} ultimate bias: {self.p2.ult.to_string()}')
                 else:
                     print("Not all ultimate biases chosen yet!")
+            elif ans in ['cs', 'cj']: # command to search up overall card collection info for a certain player
+                sejun = self.p1 if "Sejun" in self.p1.name else self.p2
+                jason = self.p1 if "Jason" in self.p1.name else self.p2
+                if ans == 'cs':
+                    card.total_collection(sejun)
+                else:
+                    card.total_collection(jason)
             elif ans.startswith(("i ", "in ", "s ", "st ", "c ", "cs ", "cj ")): # searching up info/statistics on an idol
                 answer = ans.split(" ", 2)
                 search = None
@@ -349,6 +356,8 @@ All Commands:
                 if len(syn) > 1: # group synergy (SWITCH))
                     print(f'{player.name}{Game.c_reset} hit a group synergy for {Game.c_money}{syn}{Game.c_reset}! They receive a switch powerup.')
                     if all(check.variant == Variants.ELIGE for check in player.roster):
+                        print(f'{player.name}\'s{Game.c_reset} roster is completely Eliged, so you can\'t use the switch!')
+                    if all(check.variant == Variants.ELIGE for check in opp.roster):
                         print(f'{opp.name}\'s{Game.c_reset} roster is completely Eliged, so you can\'t use the switch!')
                     elif len(opp.roster) != 0:
                         turn_ind = self.replace_idol(player)
@@ -356,6 +365,7 @@ All Commands:
                             continue
                         opp_ind = self.replace_idol(opp)
                         if opp_ind is None:
+                            player.roster.insert(turn_ind[0], turn_ind[1]) # add back removed idol from earlier
                             continue # cancelled switch
 
                         self.add_idol(player, opp_ind[1], turn_ind[0])
@@ -365,6 +375,9 @@ All Commands:
                 else: # letter synergy (ADD/REPLACE))
                     ind = None
                     print(f'{player.name}{Game.c_reset} hit a letter synergy for {Game.c_money}{syn}{Game.c_reset}! They get to add/replace an idol.')
+                    if choose.letter_check(syn, self.p1.roster + self.p2.roster): # check if all idols for current letter are already in the roster
+                        print(f'All idols that start with {Game.c_money}{syn}{Game.c_reset} are taken! Cannot use synergy.')
+                        continue
                     if len(player.roster) >= Game.CONST["size"]: # player roster is full, must replace instead of adding
                         if all(check.variant == Variants.ELIGE for check in player.roster):
                             print("Your roster is completely Eliged, cannot use synergy!")
