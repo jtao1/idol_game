@@ -1,22 +1,23 @@
 IDOLS 3.5 GAME STATISTICS OVERVIEW
 
-Total Games: 22
-Sejun: 12 - (54.55%)
-Jason: 10 - (45.45%)
+Total Games: 30
+Sejun: 17 - (54.84%)
+Jason: 13 - (45.16%)
 
-Exodias: 1 - (4.55%)
+Exodias: 1 - (3.23%)
 	S: 1 - (100.0%)
 
-Flushes: 2 - (9.09%)
-	Passion UA: 1 - (50.0%)
-	Anthony Davis: 1 - (50.0%)
+Flushes: 3 - (12.9%)
+Flush Winrate: 1 - (33.33%)
+	Passion UA: 1 - (33.33%)
+	Anthony Davis: 2 - (66.67%)
 
-Letter Synergies: 8
-	S: 2 - (25.0%)
-	J: 2 - (25.0%)
-	M: 2 - (25.0%)
-	Y: 1 - (12.5%)
-	H: 1 - (12.5%)
+Letter Synergies: 11
+	S: 3 - (27.27%)
+	J: 2 - (18.18%)
+	M: 2 - (18.18%)
+	Y: 3 - (27.27%)
+	H: 1 - (9.09%)
 
 ------------------------------
 IDOL DISTRIBUTION INFORMATION

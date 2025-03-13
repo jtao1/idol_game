@@ -233,11 +233,12 @@ def find_idol(name: str, group: str) -> Idol: # find a specific idol and create 
                 print(f'{i+1}. {groups[i]}')
             while True:
                 ans = input("Enter group number: ")
-                if 1 <= int(ans) <= (len(groups) + 1):
+                if ans.isdigit() and 1 <= int(ans) <= (len(groups) + 1):
                     file = f'./girl groups/{groups[int(ans)-1].upper()}.json'
                     idol = Idol(**find_member(file, name))
                     multigroup(idol)
                     return idol
+                print("Invalid input!")
         else:
             return idol
 

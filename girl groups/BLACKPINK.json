@@ -10,8 +10,8 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "games": 3,
-                "wins": 0,
+                "games": 4,
+                "wins": 1,
                 "reroll": 0,
                 "opp reroll": 0,
                 "opp chances": 0,
@@ -27,14 +27,14 @@
             "country": "Korean",
             "rating": 6,
             "stats": {
-                "games": 1,
+                "games": 4,
                 "wins": 1,
                 "reroll": 1,
                 "opp reroll": 0,
-                "opp chances": 1,
+                "opp chances": 2,
                 "gr": 0,
-                "times bought": 0,
-                "money spent": 0,
+                "times bought": 2,
+                "money spent": 3,
                 "ults": 0
             }
         },
@@ -44,14 +44,14 @@
             "country": "English",
             "rating": 6,
             "stats": {
-                "games": 1,
+                "games": 2,
                 "wins": 0,
                 "reroll": 1,
                 "opp reroll": 0,
                 "opp chances": 0,
                 "gr": 0,
-                "times bought": 0,
-                "money spent": 0,
+                "times bought": 1,
+                "money spent": 3,
                 "ults": 0
             }
         },
@@ -61,7 +61,7 @@
             "country": "Thai",
             "rating": 6,
             "stats": {
-                "games": 3,
+                "games": 4,
                 "wins": 1,
                 "reroll": 0,
                 "opp reroll": 0,

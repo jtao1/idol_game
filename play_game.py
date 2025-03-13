@@ -618,21 +618,21 @@ All Commands:
                             if upgrade_idol.variant == Variants.ELIGE: # idol is eliged, cannot upgrade
                                 print(f'{upgrade_idol.to_string()} is Eliged!')
                                 continue
+                            if upgrade_idol.rating == 9: # idol is max rating, cannot be upgraded any further
+                                print(f'{upgrade_idol.to_string()} cannot be upgraded any further!')
+                                continue
                             else:
                                 break # choice is valid
                         print(f'Invalid selection. Please choose a number between 1 and {Game.CONST["size"]}.')
 
-                    if ind == 0:
+                    if ind == 0: # upgrade cancelled
                         self.turn.done = True
-                        continue # cancel upgrade
+                        continue
 
                     print("Please enter the number of tiers you would like to upgrade your idol.")
                     while True:
                         ans = self.input_command("number", self.turn) 
                         if 1 <= ans <= 8 and upgrade_idol.rating + ans <= 9:
-                            if upgrade_idol.rating == 7 and ans == 1 and self.big_three_check(): 
-                                print("Unable to upgrade this idol!") # 910 idol cannot be upgraded by exactly 1 tier if all big 3 exist
-                                continue 
                             chance = 0.5 ** ans
                             chance = min(chance + card.uncommon_check(choose.remove_ansi(self.turn.name), upgrade_idol), 1)
                             print(f'Upgrade chance: {Game.c_money}{round(chance * 100, 2)}%{Game.c_reset}')
@@ -646,6 +646,11 @@ All Commands:
                                     print(f'{upgrade_idol.to_string()} upgraded into their {Idol.RATINGS[9][1]} form, ', end="")
                                     upgrade_idol.rating += ans
                                     print(f'{upgrade_idol.to_string()}!')
+                                    break
+                                if upgrade_idol.rating == 7 and ans == 1 and self.big_three_check(): # when all big 3 already exist, simply upgrade rating of 910 idol
+                                    print(f'{upgrade_idol.to_string()} upgraded their rating and is now ', end="")
+                                    upgrade_idol.rating += ans
+                                    print(f'{upgrade_idol.to_string()}!') 
                                     break
                                 self.edit_stats(upgrade_idol, "reroll", None) # add to reroll stat of upgraded idol
                                 self.turn.roster.remove(upgrade_idol)
@@ -845,14 +850,13 @@ All Commands:
         for idol in self.winner.roster: # edit win stat of idols in winning roster
             self.edit_stats(idol, "win", None)
         self.show_game_info()
-        self.booster_packs()
         
         if Game.CONST["testing"]: # if testing, don't write history/stats but print out idol stats for debugging
             for idol in self.all_idols:
                 stats.print_idol(idol)
         else:
             stats.update_game_stats(self) # writes game history to a file and updates idol stats
-        
+        self.booster_packs()
         sys.exit() # end python instance
 
     def play_turn(self): # main game function to play out a turn

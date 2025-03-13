@@ -10,13 +10,13 @@
             "country": "Korean",
             "rating": 7,
             "stats": {
-                "games": 1,
-                "wins": 0,
+                "games": 3,
+                "wins": 2,
                 "reroll": 0,
                 "opp reroll": 0,
-                "opp chances": 0,
+                "opp chances": 1,
                 "gr": 0,
-                "times bought": 0,
+                "times bought": 1,
                 "money spent": 0,
                 "ults": 0
             }
@@ -78,8 +78,8 @@
             "country": "Korean",
             "rating": 8,
             "stats": {
-                "games": 2,
-                "wins": 2,
+                "games": 4,
+                "wins": 3,
                 "reroll": 0,
                 "opp reroll": 0,
                 "opp chances": 0,
