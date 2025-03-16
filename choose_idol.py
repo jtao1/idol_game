@@ -30,6 +30,13 @@ class Variants(Enum): # represents all the variants that idols can spawn in
     WILDCARD = rainbow_text("(WILDCARD)")
     COLLECTIBLE = "\033[1;38;2;0;255;218m(TCG)"
 
+class Perks(Enum): # represents all possible perks a player can choose from
+    SPENDER = "\033[1;38;2;255;190;0mSpending Spree\033[0m - Gain an extra $4, but you must use it within the first two turns."
+    GAMBLER = "\033[1;38;2;133;187;101mDegenerate Gambler\033[0m - Rerolls and upgrades cost only $1, but you can no longer deluxe reroll."
+    COLLECTOR = "\033[1;38;2;0;255;218mTCG Collector\033[0m - Double all bonuses received from cards."
+    SYNERGY = "\033[1;94mSynergizer\033[0m - Choose an idol to turn into a wildcard variant at the end of the game."
+    WARLORD = "\033[1;38;2;255;67;67mWarlord\033[0m - Gain 10% bonus winrate in every combat matchup."
+
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
         9: ["", "Hackclaw", 0], # secret rating
@@ -202,6 +209,24 @@ def letter_check(char: str, rosters: list[Idol]) -> bool: # check if all idols f
             return False
     return True
 
+def group_full_check(group: str, dupes: list[Idol]) -> bool: # check if all members of a group already exist
+    group_members = []
+    with open(f'./girl groups/{group.upper()}.json', 'r') as f:
+        data = json.load(f)
+        for i in range(len(data["members"])):
+            name = data["members"][i]["name"]
+            group_name = data["group"]["name"]
+            age = data["members"][i]["age"]
+            rating = data["members"][i]["rating"]
+            country = data["members"][i]["country"]
+            idol = Idol(name, group_name, age, rating, country)
+            multigroup(idol)
+            group_members.append(idol)
+    for member in group_members:
+        if not any(member.equals(comp) for comp in dupes):
+            return False
+    return True
+
 def find_idol(name: str, group: str) -> Idol: # find a specific idol and create an Idol object for it
 
     def find_member(file: str, name: str): # helper function to search for a member in a group file
@@ -286,7 +311,7 @@ def random_idol(group: str, times: int, duplicate: list[Idol], target_rating: in
                 
                 if target_rating and idol.rating != target_rating: # make sure idol is of specified rating
                     continue
-                multigroup(idol) # handle izone edge cases
+                multigroup(idol) # handle multiple group edge cases
                 if not duplicate or not any(idol.equals(compare) for compare in duplicate): # check if in duplicate loop
                     if not any(idol.equals(comp) for comp in results):
                         results.append(idol)

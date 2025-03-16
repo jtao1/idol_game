@@ -6,6 +6,7 @@ from enum import Enum
 
 import choose_idol as choose
 from choose_idol import Idol
+from choose_idol import Perks
 
 class rarities(Enum):
     COMMON = "COMMON"
@@ -189,19 +190,20 @@ def total_collection(player): # display overall collection info for a player
         data = json.load(f)
     for group in data:
         for member in data[group]:
-            if not any(member == comp[0].name for comp in common + uncommon + rare + legendary): # avoid multigroup duplicates
+            idol = choose.find_idol(member, group)
+            if not any(idol.equals(comp[0]) for comp in common + uncommon + rare + legendary): # avoid multigroup duplicates
                 if data[group][member]["COMMON"] > 0:
-                    common.append([choose.find_idol(member, group), data[group][member]["COMMON"]])
+                    common.append([idol, data[group][member]["COMMON"]])
                 if data[group][member]["UNCOMMON"] > 0:
-                    uncommon.append([choose.find_idol(member, group), data[group][member]["UNCOMMON"]])
+                    uncommon.append([idol, data[group][member]["UNCOMMON"]])
                 if data[group][member]["RARE"] > 0:
-                    rare.append([choose.find_idol(member, group), data[group][member]["RARE"]])
+                    rare.append([idol, data[group][member]["RARE"]])
                 if data[group][member]["LEGENDARY"] > 0:
-                    legendary.append([choose.find_idol(member, group), data[group][member]["LEGENDARY"]])
-    common.sort(key=lambda x: x[1], reverse=True)
-    uncommon.sort(key=lambda x: x[1], reverse=True)
-    rare.sort(key=lambda x: x[1], reverse=True)
-    legendary.sort(key=lambda x: x[1], reverse=True)
+                    legendary.append([idol, data[group][member]["LEGENDARY"]])
+    common.sort(key=lambda x: (x[1], x[0].rating), reverse=True) # sort by card amount, then by rating
+    uncommon.sort(key=lambda x: (x[1], x[0].rating), reverse=True)
+    rare.sort(key=lambda x: (x[1], x[0].rating), reverse=True)
+    legendary.sort(key=lambda x: (x[1], x[0].rating), reverse=True)
 
     common_info = '\n'.join(f'{idol.to_string()}: {Card.colors[rarities.COMMON]}{num}{Card.reset}' for idol, num in common[:4])
     uncommon_info = '\n'.join(f'{idol.to_string()}: {Card.colors[rarities.UNCOMMON]}{num}{Card.reset}' for idol, num in uncommon[:4])
@@ -228,8 +230,8 @@ Overall top collection info for {player.name}{Card.reset}
     print(string)
             
 
-def common_check(player: str) -> Idol: # function to check entire common card info for a player
-    with open(f'./info/{player}_cards.json', 'r') as f:
+def common_check(player) -> Idol: # function to check entire common card info for a player
+    with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
         data = json.load(f)
     choices = []
     weight = []
@@ -238,27 +240,31 @@ def common_check(player: str) -> Idol: # function to check entire common card in
         for member in data[group]:
             if data[group][member]["COMMON"] > 0:
                 choices.append(choose.find_idol(member, group))
-                chance = round(data[group][member]["COMMON"] * 0.1, 1)
+                bonus = 0.1 if player.perk == Perks.COLLECTOR else 0.2 # double bonus from card if collector perk
+                chance = round(data[group][member]["COMMON"] * bonus, 1)
                 weight.append(chance)
                 total_weight -= chance
     choices.append(None)
     weight.append(round(total_weight, 1))
     return random.choices(choices, weights = weight, k = 1)[0]
 
-def uncommon_check(player: str, idol: Idol) -> float: # function to check uncommon card info for certain idol for player
-    with open(f'./info/{player}_cards.json', 'r') as f:
+def uncommon_check(player, idol: Idol) -> float: # function to check uncommon card info for certain idol for player
+    with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
         data = json.load(f)
-    return min(0.02 * data[idol.group.upper().split('/')[0]][idol.name]["UNCOMMON"], 1)
+    bonus = 0.04 if player.perk == Perks.COLLECTOR else 0.02 # double bonus from card if collector perk
+    return min(bonus * data[idol.group.upper().split('/')[0]][idol.name]["UNCOMMON"], 1)
 
-def rare_check(player: str, idol: Idol) -> int: # function to check rare card info for certain idol for player
-    with open(f'./info/{player}_cards.json', 'r') as f:
+def rare_check(player, idol: Idol) -> int: # function to check rare card info for certain idol for player
+    with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
         data = json.load(f)
-    return min(0.03 * data[idol.group.upper().split('/')[0]][idol.name]["RARE"], 1)
+    bonus = 0.06 if player.perk == Perks.COLLECTOR else 0.03 # double bonus from card if collector perk
+    return min(bonus * data[idol.group.upper().split('/')[0]][idol.name]["RARE"], 1)
 
-def legendary_check(player: str, idol: Idol) -> bool: # function to check legendary card info for certain idol for player
-    with open(f'./info/{player}_cards.json', 'r') as f:
+def legendary_check(player, idol: Idol) -> bool: # function to check legendary card info for certain idol for player
+    with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
         data = json.load(f)
-    if random.random() < data[idol.group.upper().split('/')[0]][idol.name]["LEGENDARY"] * 0.1: # amount of legendary cards times 10%
+    bonus = 0.2 if player.perk == Perks.COLLECTOR else 0.1 # double bonus from card if collector perk
+    if random.random() < data[idol.group.upper().split('/')[0]][idol.name]["LEGENDARY"] * bonus: # amount of legendary cards times 10%
         return True
     else:
         return False
@@ -270,6 +276,15 @@ def discount_check(player: str, idol: Idol) -> bool: # function that checks if a
     for key in check:
         if check[key] == 0:
             return False
+    return True
+
+def group_check(player: str, group: str) -> bool: # function that checks if all members of a group are fully collected for group reroll discount
+    with open(f'./info/{player}_cards.json', 'r') as f:
+        data = json.load(f)
+        check = data[group.upper()]
+        for member in check:
+            if not discount_check(player, choose.find_idol(member, group)):
+                return False
     return True
         
 def create_card_collection(): # function to create the json file that stores all card collection info (also functions as reset)

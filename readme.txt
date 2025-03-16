@@ -1,9 +1,3 @@
-TODO list:
-
-perks
-
-------
-
 All possible idol stats:
 - game presence
 - winrate
@@ -23,3 +17,8 @@ all_idols.txt:
 
 card_collection.txt:
 - info on card collection of both players
+
+----
+
+default value refactoring
+group rerolling when all possible idols are in dupe list/already exist
