@@ -50,8 +50,8 @@ class Game:
         "div": 110, # '-' divider width
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
-        "perks": False, # whether game should use perks or not
-        "testing": True, # whether game is being played in a test state or not
+        "perks": True, # whether game should use perks or not
+        "testing": False, # whether game is being played in a test state or not
         "media": False, # whether to add sound/video effects to game
         "crazy": False # whether to change game settings to crazy mode
     }
@@ -521,6 +521,7 @@ All Commands:
                         if self.opponent.money >= amount:
                             self.opponent.update_money(amount)
                             if self.group_reroll(self.opponent, cur_idol):
+                                self.edit_stats(cur_idol, "gr", None)
                                 return
                             else:
                                 self.opponent.money += amount
@@ -579,10 +580,10 @@ All Commands:
             if group in idol.group.split('/'):
                 dupes.append(idol)
         
-        while True:
-            if choose.group_full_check(group, dupes):
+        if choose.group_full_check(group, dupes): # if no more possible idols, refund and cancel group reroll
                 print(f'No more possible idols left for {group}!')
                 return False
+        while True:
             if not Game.CONST["testing"]:
                 print("Rolling idol...")
                 time.sleep(1) # suspense
@@ -991,25 +992,30 @@ All Commands:
                     self.bid_process(0, cur_idol)
                 break
             
-            ans = self.input_command("bid turn", self.turn) # turn player chooses action for rolled idol
-            if isinstance(ans, int): # bid/give
-                self.bid_process(ans, cur_idol)
+            while True:
+                ans = self.input_command("bid turn", self.turn) # turn player chooses action for rolled idol
+                if isinstance(ans, int): # bid/give
+                    self.bid_process(ans, cur_idol)
+                    done = True
+                elif ans == 'r': # reroll
+                    self.turn.update_money(Game.CONST["r"]) # deduct money
+                    dupes.append(cur_idol) # add idol to dupe list and reroll idol
+                    self.edit_stats(cur_idol, "reroll", None) # add to reroll stat of rerolled idol
+                    self.gambler_check(Game.CONST["r"]) # update gambler variant idols
+                    Game.CONST["r"] = 2
+                    self.show_money()
+                    done = False
+                elif ans == 'gr': # group reroll
+                    self.turn.update_money(Game.CONST["gr"]) # deduct money
+                    if not self.group_reroll(self.turn, cur_idol):
+                        self.turn.money += Game.CONST["gr"]
+                        done = False
+                        continue
+                    self.edit_stats(cur_idol, "gr", None) # add to gr stat of gr'd idol
+                    self.gambler_check(Game.CONST["gr"]) # update gambler variant idols
+                    done = True
                 break
-            elif ans == 'r': # reroll
-                self.turn.update_money(Game.CONST["r"]) # deduct money
-                dupes.append(cur_idol) # add idol to dupe list and reroll idol
-                self.edit_stats(cur_idol, "reroll", None) # add to reroll stat of rerolled idol
-                self.gambler_check(Game.CONST["r"]) # update gambler variant idols
-                Game.CONST["r"] = 2
-                self.show_money()
-                continue 
-            elif ans == 'gr': # group reroll
-                self.turn.update_money(Game.CONST["gr"]) # deduct money
-                self.edit_stats(cur_idol, "gr", None) # add to gr stat of gr'd idol
-                self.gambler_check(Game.CONST["gr"]) # update gambler variant idols
-                if not self.group_reroll(self.turn, cur_idol):
-                    self.turn.money += Game.CONST["gr"]
-                    continue
+            if done:
                 break
         
         self.variant_check() # try variant conditions
