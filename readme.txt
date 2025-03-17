@@ -21,4 +21,3 @@ card_collection.txt:
 ----
 
 default value refactoring
-group rerolling when all possible idols are in dupe list/already exist

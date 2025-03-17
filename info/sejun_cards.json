@@ -3,7 +3,7 @@
         "Soyeon": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Miyeon": {
@@ -84,7 +84,7 @@
         },
         "Yeonje": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 2,
             "LEGENDARY": 0
         },
@@ -101,7 +101,7 @@
             "LEGENDARY": 0
         },
         "Karin": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -292,7 +292,7 @@
         },
         "Onda": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -425,7 +425,7 @@
         "Yerin": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Eunha": {
@@ -447,7 +447,7 @@
             "LEGENDARY": 0
         },
         "Umji": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -505,7 +505,7 @@
             "LEGENDARY": 0
         },
         "Chaeryeong": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -537,7 +537,7 @@
             "LEGENDARY": 0
         },
         "Wonyoung": {
-            "COMMON": 0,
+            "COMMON": 3,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -623,7 +623,7 @@
             "LEGENDARY": 0
         },
         "Wonyoung": {
-            "COMMON": 0,
+            "COMMON": 3,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -689,7 +689,7 @@
         "Julie": {
             "COMMON": 2,
             "UNCOMMON": 2,
-            "RARE": 1,
+            "RARE": 2,
             "LEGENDARY": 1
         },
         "Natty": {
@@ -725,7 +725,7 @@
             "LEGENDARY": 0
         },
         "Yunjin": {
-            "COMMON": 1,
+            "COMMON": 2,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -733,7 +733,7 @@
         "Kazuha": {
             "COMMON": 0,
             "UNCOMMON": 1,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Eunchae": {
@@ -869,7 +869,7 @@
             "LEGENDARY": 0
         },
         "Haerin": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 1
@@ -895,8 +895,8 @@
             "LEGENDARY": 0
         },
         "Sullyoon": {
-            "COMMON": 1,
-            "UNCOMMON": 0,
+            "COMMON": 3,
+            "UNCOMMON": 1,
             "RARE": 0,
             "LEGENDARY": 0
         },
@@ -1037,11 +1037,11 @@
         "Woni": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
-            "LEGENDARY": 0
+            "RARE": 1,
+            "LEGENDARY": 1
         },
         "Liv": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1117,13 +1117,13 @@
             "LEGENDARY": 0
         },
         "Sieun": {
-            "COMMON": 0,
+            "COMMON": 2,
             "UNCOMMON": 0,
             "RARE": 0,
-            "LEGENDARY": 0
+            "LEGENDARY": 1
         },
         "Isa": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1371,7 +1371,7 @@
         "Kotoko": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Yunha": {
@@ -1469,7 +1469,7 @@
             "LEGENDARY": 0
         },
         "Minseo": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0

@@ -154,8 +154,8 @@
     "BLACKPINK": {
         "Jisoo": {
             "COMMON": 0,
-            "UNCOMMON": 0,
-            "RARE": 0,
+            "UNCOMMON": 1,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Jennie": {
@@ -688,8 +688,8 @@
     "KISS OF LIFE": {
         "Julie": {
             "COMMON": 0,
-            "UNCOMMON": 0,
-            "RARE": 0,
+            "UNCOMMON": 1,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Natty": {
@@ -990,15 +990,15 @@
         },
         "Siyeon": {
             "COMMON": 0,
-            "UNCOMMON": 0,
+            "UNCOMMON": 1,
             "RARE": 1,
             "LEGENDARY": 0
         },
         "Hina": {
-            "COMMON": 1,
-            "UNCOMMON": 0,
+            "COMMON": 2,
+            "UNCOMMON": 1,
             "RARE": 0,
-            "LEGENDARY": 0
+            "LEGENDARY": 1
         }
     },
     "RED VELVET": {
@@ -1339,7 +1339,7 @@
         "Chaeyoung": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Tzuyu": {
@@ -1369,10 +1369,10 @@
             "LEGENDARY": 0
         },
         "Kotoko": {
-            "COMMON": 0,
+            "COMMON": 1,
             "UNCOMMON": 0,
             "RARE": 0,
-            "LEGENDARY": 0
+            "LEGENDARY": 1
         },
         "Yunha": {
             "COMMON": 1,
@@ -1389,7 +1389,7 @@
         "Yoona": {
             "COMMON": 0,
             "UNCOMMON": 0,
-            "RARE": 0,
+            "RARE": 1,
             "LEGENDARY": 0
         },
         "Seowon": {
@@ -1445,7 +1445,7 @@
     },
     "WOOAH": {
         "Nana": {
-            "COMMON": 2,
+            "COMMON": 4,
             "UNCOMMON": 0,
             "RARE": 0,
             "LEGENDARY": 0
@@ -1469,7 +1469,7 @@
             "LEGENDARY": 0
         },
         "Minseo": {
-            "COMMON": 2,
+            "COMMON": 3,
             "UNCOMMON": 1,
             "RARE": 1,
             "LEGENDARY": 0

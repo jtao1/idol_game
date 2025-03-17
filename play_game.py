@@ -51,7 +51,7 @@ class Game:
         "variant": 0.35, # default chance for idol to spawn with variant
         "synergies": 3, # number of idols needed to hit a synergy
         "perks": True, # whether game should use perks or not
-        "testing": False, # whether game is being played in a test state or not
+        "testing": True, # whether game is being played in a test state or not
         "media": False, # whether to add sound/video effects to game
         "crazy": False # whether to change game settings to crazy mode
     }
@@ -302,14 +302,19 @@ All Commands:
                 elif "turn" in input_type: # for turn based actions (bid, reroll)
                     if ans in ['r', 'rr', 'reroll']: # reroll
                         if cur_player.perk == Perks.GAMBLER:
-                            Game.CONST["r"] = 1
+                            Game.CONST["r"] -= 1
                         if cur_player.money >= Game.CONST["r"]:
+                            if cur_player.perk == Perks.GAMBLER:
+                                Game.CONST["r"] += 1
                             return 'r'
                         print("You don't have enough money for a reroll! ")
-                        Game.CONST["r"] = 2
                         continue
                     elif ans in ['gr', 'group reroll']: # group reroll
+                        if cur_player.perk == Perks.GAMBLER:
+                            Game.CONST["gr"] -= 1
                         if cur_player.money >= Game.CONST["gr"]:
+                            if cur_player.perk == Perks.GAMBLER:
+                                Game.CONST["gr"] += 1
                             return 'gr'
                         print("You don't have enough money for a group reroll! ")
                         continue
@@ -519,12 +524,8 @@ All Commands:
                         if bid >= 0:
                             amount += bid + 1 # must have enough money to both buy and group reroll
                         if self.opponent.money >= amount:
-                            self.opponent.update_money(amount)
                             if self.group_reroll(self.opponent, cur_idol):
-                                self.edit_stats(cur_idol, "gr", None)
                                 return
-                            else:
-                                self.opponent.money += amount
                             continue
                         else:
                             print("You do not have enough money to bid and group reroll!")
@@ -542,7 +543,7 @@ All Commands:
                             print("Bid must be more than your opponent.")
                             continue
                     if card.discount_check(choose.remove_ansi(self.opponent.name), cur_idol): # if player has all cards, give $1 cashback
-                        counter_bid -= 1
+                        counter_bid = abs(counter_bid) - 1
                         print(f'{self.opponent.name}{Game.c_reset} receives {Game.c_money}$1{Game.c_reset} cashback for {cur_idol.to_string()} through cards!')
                     self.opponent.update_money(counter_bid)
                     opponent_win = True
@@ -581,9 +582,18 @@ All Commands:
                 dupes.append(idol)
         
         if choose.group_full_check(group, dupes): # if no more possible idols, refund and cancel group reroll
-                print(f'No more possible idols left for {group}!')
-                return False
+            print(f'No more possible idols left for {group}!')
+            return False
+        self.edit_stats(dup_idol, "gr", None)
+    
+        if player.perk == Perks.GAMBLER: # if player has gambler perk, give $1 discount
+            Game.CONST["gr"] -= 1
+        if card.group_check(choose.remove_ansi(player.name), group): # if player has all cards collected of group, give discount
+            player.money += 1
+            print(f'{player.name}{Game.c_reset} receives {Game.c_money}$1{Game.c_reset} cashback for collecting every card for {group}!')
+        
         while True:
+            self.turn.update_money(Game.CONST["gr"]) # deduct money
             if not Game.CONST["testing"]:
                 print("Rolling idol...")
                 time.sleep(1) # suspense
@@ -592,17 +602,15 @@ All Commands:
             cur_idol.variant = dup_idol.variant
             cur_idol.protected = True # idols from group rerolls are protected
             dupes.append(cur_idol)
-            if card.group_check(choose.remove_ansi(player.name), group): # if player has all cards collected of group, give discount
-                player.money += 1
-                print(f'{player.name}{Game.c_reset} receives {Game.c_money}$1{Game.c_reset} cashback for collecting every card for {group}!')
             if player.money >= Game.CONST["gr"] and not choose.group_full_check(group, dupes): # group reroll again
                 print(cur_idol.to_string())
                 print("Would you like to group reroll again? ",)
                 if self.input_command("yon", player) == 'y': # if answer is yes
-                    player.update_money(Game.CONST["gr"])
                     self.edit_stats(cur_idol, "gr", None)
                     continue
             break
+        if player.perk == Perks.GAMBLER:
+            Game.CONST["gr"] += 1
         self.edit_stats(cur_idol, None, None)
         self.add_idol(player, cur_idol, None)
         return True
@@ -611,6 +619,7 @@ All Commands:
         self.turn = self.p1
         while not self.p1.done or not self.p2.done:
             if self.turn.perk == Perks.GAMBLER: # gambler perk not allowed to deluxe reroll
+                print(f'A {choose.Perks.GAMBLER.value.split("-")[0].strip()} is not allowed to group reroll!')
                 self.turn.done = True
             if self.turn.done: # if current player is done with deluxe rerolls, switch to next player
                 self.switch_turns()
@@ -665,6 +674,8 @@ All Commands:
                 print("-" * (Game.CONST["div"] + 2)) # divider
                 print(f'{self.turn.name}\'s{Game.c_reset} roster is all Eliges and cannot be upgraded!')
                 self.turn.done = True
+            elif self.turn.perk == Perks.GAMBLER:
+                Game.CONST["up"] -= 1
             elif self.turn.money >= Game.CONST["up"]: # if they have money for an upgrade
                 print("-" * (Game.CONST["div"] + 2)) # divider
                 print(f'{self.turn.name}{Game.c_reset}, would you like to upgrade for ${Game.CONST["up"]}?')
@@ -738,6 +749,8 @@ All Commands:
                     self.turn.done = True
             else: # player does not have enough money for deluxe reroll
                 self.turn.done = True
+            if self.turn.perk == Perks.GAMBLER: # reset upgrade price at end of iteration
+                Game.CONST["up"] += 1
         self.p1.done, self.p2.done = False, False # reset variables
 
     def big_three_check(self) -> bool: # function to check if all of the big 3 are already in a roster
@@ -772,8 +785,9 @@ All Commands:
                         if idol.rating == 7 and self.big_three_check():
                             continue # idol is a 910 and all big 3 already exist, cancel evolve
                         elif idol.rating == 8:
+                            print(f'{idol.to_string()} evolved into their {Idol.RATINGS[9][1]} form, ', end="")
                             idol.rating = 9
-                            print(f'{idol.to_string()} evolved into their {Idol.RATINGS[9][1]} form, {new_idol.to_string()}!')
+                            print(f'{idol.to_string()}!')
                             continue
                         new_idol = choose.random_idol(None, 1, self.turn.roster + self.opponent.roster, idol.rating + 1)[0] # create new idol one tier above
                         new_idol.variant = Variants.EVOLVING
@@ -970,7 +984,7 @@ All Commands:
                 break # end turn if ultimate bias was bought
             
             if self.opponent.perk == Perks.GAMBLER:
-                Game.CONST["r"] = 1
+                Game.CONST["r"] -= 1
             if len(self.opponent.roster) >= Game.CONST["size"] and self.opponent.money >= Game.CONST["r"]: # opponent reroll
                 print(f'{self.opponent.name},{Game.c_reset} would you like to reroll {self.turn.name}\'s{Game.c_reset} idol for ${Game.CONST["r"]}? ')
                 if self.input_command("yon", self.opponent) == 'y': # if answer is yes
@@ -981,7 +995,8 @@ All Commands:
                     continue
                 else:
                     self.edit_stats(cur_idol, "opp chances", None)
-            Game.CONST["r"] = 2
+            if self.opponent.perk == Perks.GAMBLER:
+                Game.CONST["r"] += 1
 
             if self.turn.money <= 0: # turn player has no money
                 if len(self.opponent.roster) >= Game.CONST["size"]: # opponent can't steal, automatically add to turn player roster
@@ -998,17 +1013,19 @@ All Commands:
                     self.bid_process(ans, cur_idol)
                     done = True
                 elif ans == 'r': # reroll
+                    if self.opponent.perk == Perks.GAMBLER:
+                        Game.CONST["r"] -= 1
                     self.turn.update_money(Game.CONST["r"]) # deduct money
                     dupes.append(cur_idol) # add idol to dupe list and reroll idol
                     self.edit_stats(cur_idol, "reroll", None) # add to reroll stat of rerolled idol
                     self.gambler_check(Game.CONST["r"]) # update gambler variant idols
-                    Game.CONST["r"] = 2
+                    if self.opponent.perk == Perks.GAMBLER:
+                        Game.CONST["r"] += 1
                     self.show_money()
+                    
                     done = False
                 elif ans == 'gr': # group reroll
-                    self.turn.update_money(Game.CONST["gr"]) # deduct money
                     if not self.group_reroll(self.turn, cur_idol):
-                        self.turn.money += Game.CONST["gr"]
                         done = False
                         continue
                     self.edit_stats(cur_idol, "gr", None) # add to gr stat of gr'd idol
@@ -1070,7 +1087,7 @@ All Commands:
     def synergy_perk(self): # function to apply synergy perk bonuses
         self.turn = self.p1
         for _ in range(2):
-            if self.p1.perk == Perks.SYNERGY:
+            if self.turn.perk == Perks.SYNERGY:
                 print(f'\nPick an idol on {self.turn.name}\'s{Game.c_reset} roster to make Wildcard.')
                 print("0. Cancel")
                 for i in range(len(self.turn.roster)):
