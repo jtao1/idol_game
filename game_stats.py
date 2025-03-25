@@ -64,7 +64,7 @@ def update_game_stats(game): # updates total game stats and writes idol statisti
                 if line.startswith("Flushes:"):
                     data["flushes"] = int(line.split(":")[1].split("-")[0].strip())
                     continue
-                if line.startswith("Flush Winrate:"):
+                if line.startswith("Flush Wins:"):
                     data["flush wins"] = int(line.split(":")[1].split("-")[0].strip())
                     eval = "flush"
                     continue
@@ -115,7 +115,7 @@ def update_game_stats(game): # updates total game stats and writes idol statisti
         exodia_percentage = round(data["exodia letters"][exodia_key] / data["exodias"] * 100, 2) if data["exodias"] != 0 else 0.0
         new_data.append(f'\t{exodia_key}: {data["exodia letters"][exodia_key]} - ({exodia_percentage}%)\n')
     new_data.append(f'\nFlushes: {data["flushes"]} - ({round(data["flushes"] / data["total games"] * 100, 2)}%)')
-    new_data.append(f'\nFlush Winrate: {data["flush wins"]} - ({round(data["flush wins"] / data["flushes"] * 100, 2)}%)\n')
+    new_data.append(f'\nFlush Wins: {data["flush wins"]} - ({round(data["flush wins"] / data["flushes"] * 100, 2)}%)\n')
     for flush_key in data["flush ratings"]:
         flush_percentage = round(data["flush ratings"][flush_key] / data["flushes"] * 100, 2) if data["flushes"] != 0 else 0.0
         new_data.append(f'\t{flush_key}: {data["flush ratings"][flush_key]} - ({flush_percentage}%)\n')

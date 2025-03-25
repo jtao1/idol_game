@@ -260,11 +260,11 @@ def rare_check(player, idol: Idol) -> int: # function to check rare card info fo
     bonus = 0.06 if player.perk == Perks.COLLECTOR else 0.03 # double bonus from card if collector perk
     return min(bonus * data[idol.group.upper().split('/')[0]][idol.name]["RARE"], 1)
 
-def legendary_check(player, idol: Idol) -> bool: # function to check legendary card info for certain idol for player
+def legendary_check(player) -> bool: # function to check legendary card info for certain idol for player
     with open(f'./info/{choose.remove_ansi(player.name)}_cards.json', 'r') as f:
         data = json.load(f)
     bonus = 0.2 if player.perk == Perks.COLLECTOR else 0.1 # double bonus from card if collector perk
-    if random.random() < data[idol.group.upper().split('/')[0]][idol.name]["LEGENDARY"] * bonus: # amount of legendary cards times 10%
+    if random.random() < data[player.ult[0].group.upper().split('/')[0]][player.ult[0].name]["LEGENDARY"] * bonus: # amount of legendary cards times 10%
         return True
     else:
         return False

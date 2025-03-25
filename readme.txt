@@ -21,3 +21,5 @@ card_collection.txt:
 ----
 
 default value refactoring
+
+more stats (perk pickrates)

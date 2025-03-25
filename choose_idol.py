@@ -31,11 +31,12 @@ class Variants(Enum): # represents all the variants that idols can spawn in
     COLLECTIBLE = "\033[1;38;2;0;255;218m(TCG)"
 
 class Perks(Enum): # represents all possible perks a player can choose from
-    SPENDER = "\033[1;38;2;255;190;0mSpending Spree\033[0m - Gain an extra $4, but you must use it within the first two turns."
-    GAMBLER = "\033[1;38;2;133;187;101mDegenerate Gambler\033[0m - Rerolls and upgrades cost only $1, but you can no longer deluxe reroll."
-    COLLECTOR = "\033[1;38;2;0;255;218mTCG Collector\033[0m - Double all bonuses received from cards."
-    SYNERGY = "\033[1;94mSynergizer\033[0m - Choose an idol to turn into a wildcard variant at the end of the game."
-    WARLORD = "\033[1;38;2;255;67;67mWarlord\033[0m - Gain 10% bonus winrate in every combat matchup."
+    SPENDER = "\033[1;38;2;255;190;0mSpending Spree\033[0m - Gain an extra $5, but you must use it within the first two turns."
+    GAMBLER = "\033[1;38;2;133;187;101mDegenerate Gambler\033[0m - All rerolls and upgrades are $1 cheaper. Gain a Gambler variant of your choice during endgame."
+    COLLECTOR = "\033[1;38;2;0;255;218mTCG Collector\033[0m - Double all bonuses received from cards. Gain a TCG variant of your choice during endgame."
+    SYNERGY = "\033[1;94mSynergizer\033[0m - Gain a Wildcard variant of your choice during endgame."
+    WARLORD = "\033[1;38;2;255;67;67mWarlord\033[0m - Combat matchups where your idol's tier is higher is an instant win. Gain 10% bonus winrate in even matchups."
+    # FAN = "\033[1;38;2;255;127;0mHardcore Fan\033[0m - Choose an ultimate group instead of ultimate bias, and receive a $1 discount if you buy them as ultimate biases."
 
 class Idol: # class to represent an idol
     RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
