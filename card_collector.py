@@ -45,7 +45,7 @@ class Booster:
         "YG": lambda idol: any(group in idol.group.upper() for group in ["BLACKPINK", "BABYMONSTER"]),
         "Nugu": lambda idol: any(group in idol.group.upper() for group in ["ALICE", "CIGNATURE", "QWER", "WOOAH", "UNIS"]),
         "10 Million+": lambda idol: any(group in idol.group.upper() for group in ["AESPA", "LE SSERAFIM", "TWICE", "BLACKPINK", "NJZ"]),
-        "Passion UA": lambda idol: idol.rating == 4,
+        # "Passion UA": lambda idol: idol.rating == 4,
         "Jason Taytum": lambda idol: idol.rating == 5,
         "Luka Doncic": lambda idol: idol.rating == 6,
         "910": lambda idol: idol.rating == 7,
@@ -82,7 +82,7 @@ def update_card(player: str, add_card: list[Card]): # function to add a specific
         data = json.load(f)
         for card in add_card:
             for group in data:
-                if group in card.idol.group.split('/'):
+                if group in card.idol.group.upper().split('/'):
                     for member in data[group]:
                         if member == card.idol.name:
                             data[group][member][card.rarity.value] += 1
@@ -109,11 +109,11 @@ def choose_boosters() -> list[Booster]: # function to retrieve booster pack sele
         while True:
             rarity = determine_rarity(0.55, 0.85, 0.97)
             if rarity == rarities.COMMON:
-                booster_type = random.choice(["Nugu", "Minor", "Foreigner", "3rd Gen", "5th Gen", "Passion UA"])
+                booster_type = random.choice(["Nugu", "Minor", "Foreigner", "3rd Gen", "5th Gen"])
             elif rarity == rarities.UNCOMMON:
-                booster_type = random.choice(["Your Roster", "HYBE", "SM", "JYP", "YG", "Jason Taytum"])
+                booster_type = random.choice(["HYBE", "SM", "JYP", "YG", "JT"])
             elif rarity == rarities.RARE:
-                booster_type = random.choice(["10 Million+", "Luka Doncic", "910"])
+                booster_type = random.choice(["10 Million+", "LD", "910", "Your Roster"])
             else:
                 booster_type = random.choice(["Big 3", "Your Choice"])
             add_booster = Booster(booster_type, rarity)
@@ -125,7 +125,7 @@ def choose_boosters() -> list[Booster]: # function to retrieve booster pack sele
 def open_pack(player, pack: Booster, testing: bool): # function to open a booster pack
     dupes = [] # list of dupes so same idol is not pulled multiple times in a pack
     cards = [] # list of cards objects to add
-    amount = 5 if pack.type == "Standard" else len(player.roster) if pack.type == "Your Roster" else 3 if pack.type == "Big 3" else 4
+    amount = len(player.roster) if pack.type == "Your Roster" else 3 if pack.type == "Big 3" else 4 if pack.rarity == rarities.UNCOMMON or pack.rarity == rarities.RARE else 5
     if pack.type == "Your Roster":
         random.shuffle(player.roster)
     for i in range(amount):
@@ -169,9 +169,10 @@ def collection_info(player, idol: Idol): # display card collection info of a spe
     uncommon_count = data[idol.group.upper().split('/')[0]][idol.name]["UNCOMMON"]
     rare_count = data[idol.group.upper().split('/')[0]][idol.name]["RARE"]
     legendary_count = data[idol.group.upper().split('/')[0]][idol.name]["LEGENDARY"]
+    completed = "\033[1;38;2;255;250;0m(COMPLETED)" if discount_check(choose.remove_ansi(player.name), idol) else ""
     string = f"""
 ------------------------------------------
-{player.name}'s{Card.reset} collection info for {idol.clean_name()}
+{player.name}'s{Card.reset} collection info for {idol.clean_name()} {completed}{Card.reset}
 {Card.colors[rarities.COMMON]}Common:{Card.reset} {Card.stat}{common_count}{Card.reset}
 {Card.stat}{round(common_count * 0.1, 1)}%{Card.reset} increased roll rate
 {Card.colors[rarities.UNCOMMON]}Uncommon:{Card.reset} {Card.stat}{uncommon_count}{Card.reset}
@@ -179,7 +180,7 @@ def collection_info(player, idol: Idol): # display card collection info of a spe
 {Card.colors[rarities.RARE]}Rare:{Card.reset} {Card.stat}{rare_count}{Card.reset}
 {Card.stat}{rare_count * 3}%{Card.reset} increased combat rate
 {Card.colors[rarities.LEGENDARY]}Legendary:{Card.reset} {Card.stat}{legendary_count}{Card.reset}
-{Card.stat}{legendary_count * 10}%{Card.reset} chance to roll when chosen as ultimate bias
+{Card.stat}{legendary_count * 10}%{Card.reset} chance to roll on first turn when chosen as ultimate bias
 ------------------------------------------
     """.strip()
     print(string)

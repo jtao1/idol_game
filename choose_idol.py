@@ -31,24 +31,24 @@ class Variants(Enum): # represents all the variants that idols can spawn in
     COLLECTIBLE = "\033[1;38;2;0;255;218m(TCG)"
 
 class Perks(Enum): # represents all possible perks a player can choose from
-    SPENDER = "\033[1;38;2;255;190;0mSpending Spree\033[0m - Gain an extra $5, but you must use it within the first two turns."
+    SPENDER = "\033[1;38;2;255;190;0mSpending Spree\033[0m - Gain an extra $4, but you must use it within the first two turns."
     GAMBLER = "\033[1;38;2;133;187;101mDegenerate Gambler\033[0m - All rerolls and upgrades are $1 cheaper. Gain a Gambler variant of your choice during endgame."
-    COLLECTOR = "\033[1;38;2;0;255;218mTCG Collector\033[0m - Double all bonuses received from cards. Gain a TCG variant of your choice during endgame."
+    COLLECTOR = "\033[1;38;2;0;255;218mTCG Collector\033[0m - Double all bonuses received from cards. Select one extra idol to receive a card of at the end of the game."
     SYNERGY = "\033[1;94mSynergizer\033[0m - Gain a Wildcard variant of your choice during endgame."
-    WARLORD = "\033[1;38;2;255;67;67mWarlord\033[0m - Combat matchups where your idol's tier is higher is an instant win. Gain 10% bonus winrate in even matchups."
+    WARLORD = "\033[1;38;2;255;67;67mWarlord\033[0m - Combat matchups where your idol's tier is higher is an instant win. Gain 15% bonus winrate in all other matchups"
     # FAN = "\033[1;38;2;255;127;0mHardcore Fan\033[0m - Choose an ultimate group instead of ultimate bias, and receive a $1 discount if you buy them as ultimate biases."
 
 class Idol: # class to represent an idol
-    RATINGS = { # dictionary for all possible ratings of all idol [color, rating name]
-        9: ["", "Hackclaw", 0], # secret rating
-        8: ["\033[38;2;255;0;116m", "The Big 3", 0.01],
-        7: ["\033[38;2;255;111;237m", "910", 0.05],
-        6: ["\033[38;2;169;53;255m", "Luka Doncic", 0.10],
-        5: ["\033[38;2;206;155;255m", "Jason Taytum", 0.2],
-        4: ["\033[38;2;112;146;255m", "Passion UA", 0.35],
-        3: ["\033[38;2;98;197;255m", "Anthony Davis", 0.5],
-        2: ["\033[38;2;156;190;210m", "Lower AD", 0.60],
-        1: ["\033[38;2;149;150;153m", "Dychas", 0.75],
+    RATINGS = { # dictionary for all possible ratings of all idol [color, rating name, evolve chance, ult bias bonus winrate]
+        9: ["", "Hackclaw", 0, 0], # secret rating
+        8: ["\033[38;2;255;0;116m", "The Big 3", 0.01, 0],
+        7: ["\033[38;2;255;111;237m", "910", 0.05, 0.01],
+        6: ["\033[38;2;169;53;255m", "Luka Doncic", 0.10, 0.025],
+        5: ["\033[38;2;206;155;255m", "Jason Taytum", 0.2, 0.05],
+        4: ["\033[38;2;112;146;255m", "Passion UA", 0.35, 0.1],
+        3: ["\033[38;2;98;197;255m", "Anthony Davis", 0.5, 0.15],
+        2: ["\033[38;2;156;190;210m", "Lower AD", 0.60, 0.2],
+        1: ["\033[38;2;149;150;153m", "Dychas", 0.75, 0.25],
         0: ["\033[0m", "Unrated"]
     }
     c_good = "\033[38;2;133;187;101m"
@@ -187,6 +187,7 @@ def remove_ansi(text): # remove ansi codes from any string
 def determine_variant(idol: Idol, chance: float): # function to add variants to idols
     if random.random() < chance: # chance is a float less than 1, represents percentage chance to hit variant
         idol.variant = random.choice(list(Variants))
+        # idol.variant = Variants.AFIT
     if idol.variant == Variants.AFIT: # increase rating if variant is AFIT
         idol.rating += 1
 

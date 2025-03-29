@@ -20,6 +20,12 @@ card_collection.txt:
 
 ----
 
-default value refactoring
+TODO:
 
+command to see all cards of certain rarity
+command to see all completed idols
+
+stuff i MIGHT do:
+
+default value refactoring
 more stats (perk pickrates)

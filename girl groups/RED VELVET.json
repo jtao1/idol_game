@@ -10,13 +10,13 @@
             "country": "Korean",
             "rating": 5,
             "stats": {
-                "games": 5,
+                "games": 7,
                 "wins": 3,
                 "reroll": 0,
                 "opp reroll": 0,
-                "opp chances": 1,
+                "opp chances": 2,
                 "gr": 0,
-                "times bought": 4,
+                "times bought": 6,
                 "money spent": 1,
                 "ults": 0
             }
@@ -27,14 +27,14 @@
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "games": 11,
+                "games": 12,
                 "wins": 4,
                 "reroll": 2,
                 "opp reroll": 0,
                 "opp chances": 2,
                 "gr": 0,
-                "times bought": 8,
-                "money spent": 0,
+                "times bought": 9,
+                "money spent": 2,
                 "ults": 0
             }
         },
@@ -44,13 +44,13 @@
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "games": 5,
+                "games": 6,
                 "wins": 3,
                 "reroll": 1,
                 "opp reroll": 0,
                 "opp chances": 2,
                 "gr": 0,
-                "times bought": 4,
+                "times bought": 5,
                 "money spent": 1,
                 "ults": 0
             }
@@ -78,14 +78,14 @@
             "country": "Korean",
             "rating": 4,
             "stats": {
-                "games": 2,
+                "games": 4,
                 "wins": 1,
-                "reroll": 1,
+                "reroll": 3,
                 "opp reroll": 0,
                 "opp chances": 0,
                 "gr": 0,
-                "times bought": 2,
-                "money spent": 0,
+                "times bought": 4,
+                "money spent": 2,
                 "ults": 0
             }
         }
